@@ -1,0 +1,11 @@
+Model Information:
+* title:	Game Character- Red Riding Hood
+* source:	https://sketchfab.com/3d-models/game-character-red-riding-hood-1ab786a4a9d44c6aa12fb829c064d17b
+* author:	Fernando4Gomez (https://sketchfab.com/Fernando4Gomez)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Game Character- Red Riding Hood" (https://sketchfab.com/3d-models/game-character-red-riding-hood-1ab786a4a9d44c6aa12fb829c064d17b) by Fernando4Gomez (https://sketchfab.com/Fernando4Gomez) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
