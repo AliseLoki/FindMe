@@ -1,17 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class CookingTable : MonoBehaviour
+public class CookingTable : Table
 {
-    // Start is called before the first frame update
-    void Start()
+    protected override void DoSomething()
     {
-        
+        if (Input.GetMouseButtonDown(0))
+        {
+            print("CHECK COOK");
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    protected override void PutFoodOnTheTable()
     {
         
     }

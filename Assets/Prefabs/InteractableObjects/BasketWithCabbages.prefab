@@ -41,7 +41,7 @@ Transform:
   - {fileID: 3161587360531418047}
   - {fileID: 1606918299885407028}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &8347217307251904974
 BoxCollider:
@@ -78,6 +78,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _selectedObject: {fileID: 5076892148382969818}
   _foodSO: {fileID: 11400000, guid: 9f122e61be7d4f344a3acb4c80b6b23b, type: 2}
+  _food: {fileID: -5478189563921054629, guid: 9c162f51b4b193149a6749b674b3e6bb, type: 3}
 --- !u!1 &4248031844827896667
 GameObject:
   m_ObjectHideFlags: 0
