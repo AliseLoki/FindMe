@@ -36,6 +36,7 @@ public class DeliveryServiceView : MonoBehaviour
         }
     }
 
+   
     private void ShowRecipes()
     {
         foreach (CookingRecipeSO cookingRecipeSO in DeliveryService.Instance.GetOrderedDishiesList())
