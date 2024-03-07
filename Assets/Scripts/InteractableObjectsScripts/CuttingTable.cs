@@ -4,22 +4,33 @@ public class CuttingTable : Table
 {
     [SerializeField] private CuttingRecipeSO[] _allCuttingRecipes;
 
-    private Food _currentFoodPrefab;
     protected override void DoSomething()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            foreach (var recipe in _allCuttingRecipes)
+            if (!_isChangedFood)
             {
-                if (recipe.Input == _foodOnTheTableSO)
+                foreach (var recipe in _allCuttingRecipes)
                 {
-                    _currentFoodPrefab = _food;
-                    _currentFoodPrefab.transform.SetParent(null);
-                    Destroy(_currentFoodPrefab.gameObject);
-                    print("пора резать продукты");
-                    _foodOnTheTableSO = recipe.Output;
-                    _food = Instantiate(_foodOnTheTableSO.Prefab, _placeForFood);                   
+                    if (recipe.Input == _foodOnTheTableSO)
+                    {
+                      //  print("пора резать продукты");
+                        _foodOnTheTableSO = recipe.Output;
+                        Destroy(_placeForFood.GetChild(0).gameObject);
+                        _food = Instantiate(_foodOnTheTableSO.Prefab, _placeForFood);
+                        _isChangedFood = true;                    
+                    }
                 }
+            }
+            else
+            {
+                Player.Instance.SetFood(_food, _foodOnTheTableSO);
+                Player.Instance.SetHasSomethingInHands(true);
+                _food = null;
+                _foodOnTheTableSO = null;
+                Player.Instance.FoodInHands.SetInParent(Player.Instance.HandlePoint);
+               // print("взяли порезанный продукт");
+                _isChangedFood = false;
             }
         }
     }
@@ -30,7 +41,7 @@ public class CuttingTable : Table
         {
             if (recipe.Input == Player.Instance.FoodInHandsSO)
             {
-                print("put on the table");
+               // print("put on the table");
                 _foodOnTheTableSO = Player.Instance.FoodInHandsSO;
                 _food = _foodOnTheTableSO.Prefab;
                 Player.Instance.FoodInHands.SetInParent(_placeForFood);

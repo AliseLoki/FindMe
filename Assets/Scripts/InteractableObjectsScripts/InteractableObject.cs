@@ -31,7 +31,7 @@ public abstract class InteractableObject : MonoBehaviour
         }
         else if (!_isSelected)
         {
-            print("сначала подойдите к объекту");
+          //  print("сначала подойдите к объекту");
         }
     }
 

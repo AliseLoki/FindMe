@@ -9,7 +9,7 @@ public class Container : InteractableObject
     {
         if (!Player.Instance.HasSomethingInHands)
         {
-            print("взяли продукт");
+           // print("взяли продукт");
            
             _food = Instantiate(_foodSO.Prefab, Player.Instance.HandlePoint);         
             Player.Instance.SetHasSomethingInHands(true);
@@ -17,7 +17,7 @@ public class Container : InteractableObject
         }
         else
         {
-            print("в руках уже есть продукт");
+          //  print("в руках уже есть продукт");
         }
     }
 }
