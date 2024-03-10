@@ -1,48 +1,39 @@
 using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class CookingTable : Table
 {
-    [SerializeField] private CuttingRecipeSO[] _ingredientsForCooking;
+    [SerializeField] private ChangingFoodRecipeSO[] _ingredientsForCooking;
     [SerializeField] private Food[] _tableFoodPrefabs;
     [SerializeField] private List<FoodSO> _setToTheTableFoodSO;
     [SerializeField] private Food _unCookedPot;
 
-    private CookingRecipeSO _canBeCookedRecipeSO;
-
     public event Action<CookingRecipeSO> CanBeCooked;
-    public event UnityAction<CookingRecipeSO> DishIsPrepared;
-
-    public void CookDishies()
-    {
-        print("COOOK");
-       // SpawnPotOnTheTable();
-
-        CheckIfCanCook();
-        DishIsPrepared?.Invoke(_canBeCookedRecipeSO);
-        print("why");
-        //деактивировать кнопку или поменять у нее спрайт
-
-        // сет нонэктив префабы на столе и ремув их фром зе сетонзетэйблфудсо
-
-        //инстантинировать кастрюлю и поместить ее в фудонзетэйбл запретить взаимодействовать со столом пока там есть кастрюля
-        // DishIsPrepared?.Invoke(cookingRecipeSO);
-    }
 
     protected override void DoSomething()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            print("пора отнести в печь");
+            GivePotToPlayer();
+            DestroyPotOnTheTable();
+            CheckIfCanCook();
         }
     }
 
-    protected override void PutFoodOnTheTable()
+    public void PrepareDish(CookingRecipeSO cookingRecipeSO)
     {
-        foreach (CuttingRecipeSO cuttingRecipeSO in _ingredientsForCooking)
+        if (_food == null)
+        {
+            SpawnPotOnTheTable();
+        }
+
+        HideFoodOnTheTable(cookingRecipeSO);
+    }
+
+    protected override void PutFood()
+    {
+        foreach (ChangingFoodRecipeSO cuttingRecipeSO in _ingredientsForCooking)
         {
             if (cuttingRecipeSO.Output == Player.Instance.FoodInHandsSO)
             {
@@ -55,9 +46,24 @@ public class CookingTable : Table
         CheckIfCanCook();
     }
 
+    private void GivePotToPlayer()
+    {
+        Player.Instance.SetFood(_food, _foodOnTheTableSO);
+        Player.Instance.SetHasSomethingInHands(true);
+        Player.Instance.FoodInHands.SetInParent(Player.Instance.HandlePoint);
+    }
+
     private void SpawnPotOnTheTable()
     {
         Food pot = Instantiate(_unCookedPot, _placeForFood.position, Quaternion.identity);
+        _food = pot;
+        _foodOnTheTableSO = pot.ConnectedFoodSO;
+    }
+
+    private void DestroyPotOnTheTable()
+    {
+        _food = null;
+        _foodOnTheTableSO = null;
     }
 
     private void ShowFoodOnTheTable()
@@ -80,7 +86,19 @@ public class CookingTable : Table
                 if (food.ConnectedFoodSO == item)
                 {
                     food.gameObject.SetActive(false);
+                    _setToTheTableFoodSO.Remove(item);
                 }
+            }
+        }
+    }
+
+    private void CheckIfCanCook()
+    {
+        foreach (CookingRecipeSO cookingRecipeSO in DeliveryService.Instance.GetOrderedDishiesList())
+        {
+            if (CheckIfEqual(cookingRecipeSO.IngredientsForRecipe, _setToTheTableFoodSO))
+            {
+                CanBeCooked?.Invoke(cookingRecipeSO);
             }
         }
     }
@@ -93,17 +111,6 @@ public class CookingTable : Table
         }
     }
 
-    private void CheckIfCanCook()
-    {
-        foreach (CookingRecipeSO cookingRecipeSO in DeliveryService.Instance.GetOrderedDishiesList())
-        {
-            if (CheckIfEqual(cookingRecipeSO.IngredientsForRecipe, _setToTheTableFoodSO))
-            {
-                _canBeCookedRecipeSO = cookingRecipeSO;
-                CanBeCooked?.Invoke(cookingRecipeSO);
-            }
-        }
-    }
 
     private bool CheckIfEqual(List<FoodSO> ingredientsInRecipe, List<FoodSO> ingredientsOnTheTable)
     {

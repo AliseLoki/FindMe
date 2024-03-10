@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ff33af19770dd3e489f9c65e388009fe, type: 2}
+  - {fileID: 2100000, guid: dd6a843eb49e9c44382f3207bc2eb09b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -269,7 +269,6 @@ MonoBehaviour:
   - {fileID: 5245953054255967268}
   _setToTheTableFoodSO: []
   _unCookedPot: {fileID: 5465372597002421079, guid: 0b4e0fd81296f774eb00037ecc60f2ab, type: 3}
-  _topOfTheCookingTable: {fileID: 4119505889290194825}
 --- !u!1 &6801214454382791985
 GameObject:
   m_ObjectHideFlags: 0
@@ -294,7 +293,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6801214454382791985}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.174, y: 1.283, z: -0.638}
+  m_LocalPosition: {x: -0.174, y: 1.1, z: -0.638}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

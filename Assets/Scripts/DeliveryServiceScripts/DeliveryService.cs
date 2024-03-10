@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class DeliveryService : MonoBehaviour
 {
@@ -8,11 +7,8 @@ public class DeliveryService : MonoBehaviour
 
     [SerializeField] private MenuSO _menuSO;
 
-    private int _maxOrderedDishies = 7;
+    private int _maxOrderedDishies = 6;
     private List<CookingRecipeSO> _orderedDishies;
-
-    //public event UnityAction DeliveryOrdered;
-    //public event UnityAction DeliveryCompleted;
 
     private void Awake()
     {
@@ -31,9 +27,11 @@ public class DeliveryService : MonoBehaviour
         for (int i = 0; i < _maxOrderedDishies; i++)
         {
             CookingRecipeSO cookingRecipeSO = _menuSO.MenuList[Random.Range(0, _menuSO.MenuList.Count)];
-            _orderedDishies.Add(cookingRecipeSO);
-        }
 
-        //DeliveryOrdered?.Invoke();
+            if (!_orderedDishies.Contains(cookingRecipeSO))
+            {
+                _orderedDishies.Add(cookingRecipeSO);
+            }
+        }
     }
 }

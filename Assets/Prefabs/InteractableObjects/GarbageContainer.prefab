@@ -116,7 +116,7 @@ Transform:
   - {fileID: 2572239258486972495}
   - {fileID: 7639138799387283398}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &3616308933396721753
 BoxCollider:
@@ -137,8 +137,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.1901183, y: 0.8136058, z: 0.9574262}
-  m_Center: {x: 0.012368917, y: -0.0029441714, z: 0.013949096}
+  m_Size: {x: 1.1901183, y: 0.8136058, z: 1.2446766}
+  m_Center: {x: 0.012368917, y: -0.0029441714, z: 0.004314095}
 --- !u!114 &-2382291252058579891
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -214,7 +214,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ff33af19770dd3e489f9c65e388009fe, type: 2}
+  - {fileID: 2100000, guid: dd6a843eb49e9c44382f3207bc2eb09b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

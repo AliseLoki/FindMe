@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,7 +11,11 @@ public class RecipeTemplateView : MonoBehaviour
     [SerializeField] private Transform _ingredient;
     [SerializeField] private Button _canCookButton;
 
-    public CookingRecipeSO _cookingRecipeSO;
+    private CookingRecipeSO _cookingRecipeSO;
+
+    public CookingRecipeSO PreparedDish => _cookingRecipeSO;
+
+    public event Action<CookingRecipeSO> DishPrepared;
 
     public void SetCookingRecipeSO(CookingRecipeSO cookingRecipeSO)
     {
@@ -33,11 +38,14 @@ public class RecipeTemplateView : MonoBehaviour
         }
     }
 
-    public void HideCompletedRecepies(CookingRecipeSO cookingRecipeSO)
+    public void DeactivateButton()
     {
-        if (_cookingRecipeSO == cookingRecipeSO)
-        {
-            this.gameObject.SetActive(false);
-        }
+        _canCookButton.gameObject.SetActive(false);
+    }
+
+    public void OnDishPrepared()
+    {
+        DishPrepared?.Invoke(_cookingRecipeSO);
+        this.gameObject.SetActive(false);
     }
 }

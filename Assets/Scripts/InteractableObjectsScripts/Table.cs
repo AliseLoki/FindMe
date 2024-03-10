@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract  class Table : InteractableObject
+public abstract class Table : InteractableObject
 {
     [SerializeField] protected Transform _placeForFood;
 
@@ -10,26 +10,25 @@ public abstract  class Table : InteractableObject
 
     protected override void UseObject()
     {
-        if (Player.Instance.HasSomethingInHands && _foodOnTheTableSO == null )
+        if (_foodOnTheTableSO == null && Player.Instance.HasSomethingInHands)
         {
-            PutFoodOnTheTable();
+            PutFood();
         }
         else if (_foodOnTheTableSO != null && !Player.Instance.HasSomethingInHands)
         {
             DoSomething();
-            print("yyyyyyyyyy");
         }
-        else if( _foodOnTheTableSO != null && Player.Instance.HasSomethingInHands) 
+        else if (_foodOnTheTableSO != null && Player.Instance.HasSomethingInHands)
         {
-            //print("Нельзя взаимодействовать, руки заняты");
+            print("Нельзя взаимодействовать, руки заняты");
         }
         else
         {
-           // print("в руках ничего нет");
+            print("ну нечего делать");
         }
     }
 
     protected abstract void DoSomething();
 
-    protected abstract void PutFoodOnTheTable();
+    protected abstract void PutFood();
 }

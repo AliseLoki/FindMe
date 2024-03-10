@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class CuttingTable : Table
 {
-    [SerializeField] private CuttingRecipeSO[] _allCuttingRecipes;
+    [SerializeField] private ChangingFoodRecipeSO[] _allCuttingRecipes;
 
     protected override void DoSomething()
     {
@@ -35,7 +35,7 @@ public class CuttingTable : Table
         }
     }
 
-    protected override void PutFoodOnTheTable()
+    protected override void PutFood()
     {
         foreach (var recipe in _allCuttingRecipes)
         {

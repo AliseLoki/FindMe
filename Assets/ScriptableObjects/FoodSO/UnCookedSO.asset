@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: UnCookedSO
   m_EditorClassIdentifier: 
   Sprite: {fileID: 0}
-  Prefab: {fileID: 0}
-  Name: 
+  Prefab: {fileID: 5465372597002421079, guid: 0b4e0fd81296f774eb00037ecc60f2ab, type: 3}
+  Name: UncookedFood
