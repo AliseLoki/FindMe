@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5472506156179108982}
   - component: {fileID: 5961519446784125871}
   - component: {fileID: 5478524813611184957}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SelectedCuttingTableVisual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 2655847140849358762}
   - component: {fileID: 8197156649671077057}
   - component: {fileID: 5343477807484417817}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CuttingTableVisual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -190,7 +190,7 @@ GameObject:
   - component: {fileID: 7498763681835279244}
   - component: {fileID: 3256735076946113364}
   - component: {fileID: 6509366943999899213}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CuttingTable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -214,7 +214,7 @@ Transform:
   - {fileID: 6458540882094581935}
   - {fileID: 8942713919773263126}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &3256735076946113364
 BoxCollider:
@@ -266,6 +266,10 @@ PrefabInstance:
     - target: {fileID: 8147641928921280947, guid: edb1d465211159a41a3d1cd70cd00f25, type: 3}
       propertyPath: m_Name
       value: Chopping Board (1) Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 8147641928921280947, guid: edb1d465211159a41a3d1cd70cd00f25, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8816338905484634889, guid: edb1d465211159a41a3d1cd70cd00f25, type: 3}
       propertyPath: m_RootOrder
@@ -329,9 +333,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7498763681835279244}
     m_Modifications:
+    - target: {fileID: 6554324087271504524, guid: ff2f98f2de5ef804db76770ff8315db2, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 7167443423205446150, guid: ff2f98f2de5ef804db76770ff8315db2, type: 3}
       propertyPath: m_Name
       value: Knife (1) Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 7167443423205446150, guid: ff2f98f2de5ef804db76770ff8315db2, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7510895308250712252, guid: ff2f98f2de5ef804db76770ff8315db2, type: 3}
       propertyPath: m_RootOrder

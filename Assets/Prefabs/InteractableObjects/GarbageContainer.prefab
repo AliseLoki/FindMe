@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2572239258486972495}
   - component: {fileID: 596008786905993767}
   - component: {fileID: 1059810671454327722}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GarbageContainerVisual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 23369265976058750}
   - component: {fileID: 3616308933396721753}
   - component: {fileID: -2382291252058579891}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GarbageContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -164,7 +164,7 @@ GameObject:
   - component: {fileID: 9206765970931759131}
   - component: {fileID: 4917854346542807845}
   - component: {fileID: 1417267590647608361}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SelectedGarbageContainerVisual
   m_TagString: Untagged
   m_Icon: {fileID: 0}

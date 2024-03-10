@@ -4,7 +4,8 @@ using UnityEngine;
 [CreateAssetMenu()]
 public class CookingRecipeSO : ScriptableObject
 {
-    public Sprite RecipeImage;
     public string RecipeName;
+    public Sprite RecipeImage;
+    public StateOfReadyness Readyness;
     public List<FoodSO> IngredientsForRecipe;
 }

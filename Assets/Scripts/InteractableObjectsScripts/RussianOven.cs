@@ -9,6 +9,7 @@ public class RussianOven : Table
     [SerializeField] private FoodSO _cookedFoodInPot;
     [SerializeField] private FoodSO _burnedFoodInPot;
 
+    private StateOfReadyness _stateOfReadyness;
     private Coroutine _cookCoroutine;
 
     protected override void DoSomething()
@@ -42,6 +43,8 @@ public class RussianOven : Table
         _food.SetInParent(Player.Instance.HandlePoint);
         Player.Instance.SetFood(_food, _foodOnTheTableSO);
         Player.Instance.SetHasSomethingInHands(true);
+        Player.Instance.SetCookingRecipeStateOfRedyness(_stateOfReadyness);
+        print(_stateOfReadyness);
         _foodOnTheTableSO = null;
         _food = null;
     }
@@ -49,9 +52,14 @@ public class RussianOven : Table
     private IEnumerator CookingCountDownRoutine()
     {
         int pause = 4;
+        _stateOfReadyness = 0;
         yield return new WaitForSeconds(pause);
-        ChangeOnePoTToAnother(_cookedFoodInPot);       
-        yield return new WaitForSeconds(pause);      
+
+        _stateOfReadyness++;
+        ChangeOnePoTToAnother(_cookedFoodInPot);  
+        yield return new WaitForSeconds(pause);
+
+        _stateOfReadyness++;
         ChangeOnePoTToAnother(_burnedFoodInPot);
         _cookCoroutine = null;
     }

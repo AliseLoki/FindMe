@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4361810315132002854}
   - component: {fileID: 2355769278217883649}
   - component: {fileID: 1187204434351499552}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FlourSackVisual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 4784534832206549691}
   - component: {fileID: 9068050819710846058}
   - component: {fileID: -4793692535195755760}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FlourSack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116,7 +116,7 @@ Transform:
   - {fileID: 4361810315132002854}
   - {fileID: 8343807443472311847}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &9068050819710846058
 BoxCollider:
@@ -166,7 +166,7 @@ GameObject:
   - component: {fileID: 7537058286711642774}
   - component: {fileID: 1462810163484782799}
   - component: {fileID: 6945633339869328137}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 'SelectedFlourSackVisual '
   m_TagString: Untagged
   m_Icon: {fileID: 0}

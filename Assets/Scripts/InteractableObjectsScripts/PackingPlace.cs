@@ -3,17 +3,53 @@ using UnityEngine;
 
 public class PackingPlace : GarbageContainer
 {
-    [SerializeField] List<FoodSO> _canBePackedRecipeSO;
-    
+    [SerializeField] private List<FoodSO> _canBePackedRecipeSO;
+    [SerializeField] private List<CookingRecipeSO> _packedDishes;
+    [SerializeField] private Transform _package;
+
+    private int _packageCapacity = 3;
+
     protected override void UseObject()
     {
-        foreach (var item in _canBePackedRecipeSO)
+        if (_packedDishes.Count < _packageCapacity)
         {
-            if(Player.Instance.FoodInHandsSO == item)
+            foreach (var item in _canBePackedRecipeSO)
             {
-                Player.Instance.ThrowFood();
-                print("Упаковали");
+                if (Player.Instance.FoodInHandsSO == item)
+                {
+                    _packedDishes.Add(Player.Instance.CookedRecipeSODish);
+                    Player.Instance.ResetCookingRecipeSO();
+                    Player.Instance.ThrowFood();
+
+                    foreach (var dish in _packedDishes)
+                    {
+                        print(dish.RecipeName + " - " + dish.Readyness);
+                    }
+                }
             }
+        }
+        else
+        {
+            print("В рюкзаке больше нет места, пора отправляться в дорогу");
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                ChekIfHandsAreFree();
+            }
+        }
+    }
+
+    private void ChekIfHandsAreFree()
+    {
+        if (Player.Instance.HasSomethingInHands)
+        {
+            print("сначала освободите руки");
+        }
+        else
+        {
+            _package.gameObject.SetActive(false);
+            Player.Instance.SetDishesForDeliver(_packedDishes);
+            Player.Instance.ShowBackPack();
         }
     }
 }

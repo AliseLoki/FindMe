@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7647435603935201540}
   - component: {fileID: 8347217307251904974}
   - component: {fileID: -8368852292041352880}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BasketWithCabbages
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33,7 +33,7 @@ Transform:
   - {fileID: 8980266432728384886}
   - {fileID: 1340662921633513658}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &8347217307251904974
 BoxCollider:
@@ -83,7 +83,7 @@ GameObject:
   - component: {fileID: 2190965289361794451}
   - component: {fileID: 3417973553625966425}
   - component: {fileID: 5076892148382969818}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SelectedBasketVisual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,7 +178,7 @@ GameObject:
   - component: {fileID: 8980266432728384886}
   - component: {fileID: 8565718318247569953}
   - component: {fileID: 6285252809494783637}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BasketVisual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -314,6 +314,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cabbage_Visual (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 3812876574508226177, guid: 259702638197d9246bfc6f2b0fe88c09, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6979682845569653684, guid: 259702638197d9246bfc6f2b0fe88c09, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -379,6 +387,14 @@ PrefabInstance:
     - target: {fileID: 3812876574508226177, guid: 259702638197d9246bfc6f2b0fe88c09, type: 3}
       propertyPath: m_Name
       value: Cabbage_Visual
+      objectReference: {fileID: 0}
+    - target: {fileID: 3812876574508226177, guid: 259702638197d9246bfc6f2b0fe88c09, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6979682845569653684, guid: 259702638197d9246bfc6f2b0fe88c09, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -446,6 +462,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cabbage_Visual (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 3812876574508226177, guid: 259702638197d9246bfc6f2b0fe88c09, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6979682845569653684, guid: 259702638197d9246bfc6f2b0fe88c09, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -511,6 +535,14 @@ PrefabInstance:
     - target: {fileID: 3812876574508226177, guid: 259702638197d9246bfc6f2b0fe88c09, type: 3}
       propertyPath: m_Name
       value: Cabbage_Visual (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3812876574508226177, guid: 259702638197d9246bfc6f2b0fe88c09, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6979682845569653684, guid: 259702638197d9246bfc6f2b0fe88c09, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -578,6 +610,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cabbage_Visual (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 3812876574508226177, guid: 259702638197d9246bfc6f2b0fe88c09, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6979682845569653684, guid: 259702638197d9246bfc6f2b0fe88c09, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -643,6 +683,14 @@ PrefabInstance:
     - target: {fileID: 3812876574508226177, guid: 259702638197d9246bfc6f2b0fe88c09, type: 3}
       propertyPath: m_Name
       value: Cabbage_Visual (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3812876574508226177, guid: 259702638197d9246bfc6f2b0fe88c09, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6979682845569653684, guid: 259702638197d9246bfc6f2b0fe88c09, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -710,6 +758,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cabbage_Visual (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3812876574508226177, guid: 259702638197d9246bfc6f2b0fe88c09, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6979682845569653684, guid: 259702638197d9246bfc6f2b0fe88c09, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -775,6 +831,14 @@ PrefabInstance:
     - target: {fileID: 3812876574508226177, guid: 259702638197d9246bfc6f2b0fe88c09, type: 3}
       propertyPath: m_Name
       value: Cabbage_Visual (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3812876574508226177, guid: 259702638197d9246bfc6f2b0fe88c09, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6979682845569653684, guid: 259702638197d9246bfc6f2b0fe88c09, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

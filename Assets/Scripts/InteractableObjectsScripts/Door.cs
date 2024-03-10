@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Door : InteractableObject
 {
     protected override void UseObject()
     {
-        print("GO AWAY");
+        SceneManager.LoadScene(1);
     }
 }

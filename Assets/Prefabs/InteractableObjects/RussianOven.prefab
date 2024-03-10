@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8090348374921536837}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RussianOvenVisual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -50,7 +50,7 @@ GameObject:
   - component: {fileID: 3418181569287998898}
   - component: {fileID: 1590986997503362188}
   - component: {fileID: 2216743875203278228}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: WoodInOven
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -144,7 +144,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2119256960112865579}
   - component: {fileID: 5031680085572867852}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 'Selected '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -191,7 +191,7 @@ GameObject:
   - component: {fileID: 8354565727806055446}
   - component: {fileID: 3420852572189072394}
   - component: {fileID: 4777221313749941746}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: WoodInOven
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -286,7 +286,7 @@ GameObject:
   - component: {fileID: 2158398632232855865}
   - component: {fileID: 7771805903932706907}
   - component: {fileID: 5447392368617445972}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -369,7 +369,7 @@ GameObject:
   - component: {fileID: 311954353660579549}
   - component: {fileID: 3368596999171265223}
   - component: {fileID: 2393724889744011078}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -452,7 +452,7 @@ GameObject:
   - component: {fileID: 1302397810216542156}
   - component: {fileID: 8324701562536347580}
   - component: {fileID: 9167268772454450876}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Pan
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -536,7 +536,7 @@ GameObject:
   - component: {fileID: 5848759526613464111}
   - component: {fileID: 2737709862038378082}
   - component: {fileID: 6477578818935134546}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Samovar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -619,7 +619,7 @@ GameObject:
   - component: {fileID: 4353534099653937223}
   - component: {fileID: 8512862024182825986}
   - component: {fileID: 555436814147391511}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Samovar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -700,7 +700,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7456782062289784603}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlaceForPan
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -733,7 +733,7 @@ GameObject:
   - component: {fileID: 6239799414984557367}
   - component: {fileID: 6150139071799453723}
   - component: {fileID: 3583205620169043507}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -816,7 +816,7 @@ GameObject:
   - component: {fileID: 5999340823810545132}
   - component: {fileID: 2265238239021082483}
   - component: {fileID: 8518045493667542601}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RussianOven
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -839,7 +839,7 @@ Transform:
   - {fileID: 2119256960112865579}
   - {fileID: 7456782062289784603}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &2265238239021082483
 BoxCollider:
@@ -893,7 +893,7 @@ GameObject:
   - component: {fileID: 7914031759814897509}
   - component: {fileID: 66733307401813363}
   - component: {fileID: 5986261742478469859}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: WaterInPan
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1009,7 +1009,7 @@ GameObject:
   - component: {fileID: 7448836221302648045}
   - component: {fileID: 8627198303501017883}
   - component: {fileID: 8388804116282304321}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Pan
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1093,7 +1093,7 @@ GameObject:
   - component: {fileID: 2778790059524628266}
   - component: {fileID: 4701383945892041699}
   - component: {fileID: 639368524033135414}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1178,7 +1178,7 @@ GameObject:
   - component: {fileID: 8383718981617854790}
   - component: {fileID: 3399855737572726554}
   - component: {fileID: 462821090735623878}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: WaterInPan
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1294,7 +1294,7 @@ GameObject:
   - component: {fileID: 3243643339599681705}
   - component: {fileID: 1362222785013288871}
   - component: {fileID: 3889986179951528469}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1377,7 +1377,7 @@ GameObject:
   - component: {fileID: 585597184411571588}
   - component: {fileID: 7096814175108106096}
   - component: {fileID: 6097391882502530059}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1460,7 +1460,7 @@ GameObject:
   - component: {fileID: 7801931889462546784}
   - component: {fileID: 7791759752753023344}
   - component: {fileID: 7783116726466056060}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ladder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1541,7 +1541,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5297844571805987234}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RussianOvenVisual (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1581,6 +1581,10 @@ PrefabInstance:
     - target: {fileID: 1438797800468804, guid: 7087784e228be8745af45599a5130532, type: 3}
       propertyPath: m_Name
       value: Ladder
+      objectReference: {fileID: 0}
+    - target: {fileID: 1438797800468804, guid: 7087784e228be8745af45599a5130532, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4891787282750124, guid: 7087784e228be8745af45599a5130532, type: 3}
       propertyPath: m_RootOrder

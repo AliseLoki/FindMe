@@ -6,12 +6,7 @@ public class GarbageContainer : InteractableObject
     {
         if (Player.Instance.HasSomethingInHands)
         {
-            print("выбрось продукт");
             Player.Instance.ThrowFood();
-        }
-        else
-        {
-            print("в руках нет продуктов");
         }
     }
 }

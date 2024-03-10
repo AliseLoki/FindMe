@@ -9,6 +9,8 @@ public class CookingTable : Table
     [SerializeField] private List<FoodSO> _setToTheTableFoodSO;
     [SerializeField] private Food _unCookedPot;
 
+    [SerializeField] private CookingRecipeSO _uncookedFoodInPotRecipe;
+
     public event Action<CookingRecipeSO> CanBeCooked;
 
     protected override void DoSomething()
@@ -18,6 +20,7 @@ public class CookingTable : Table
             GivePotToPlayer();
             DestroyPotOnTheTable();
             CheckIfCanCook();
+            Player.Instance.SetCookingRecipe(_uncookedFoodInPotRecipe);
         }
     }
 
@@ -28,6 +31,7 @@ public class CookingTable : Table
             SpawnPotOnTheTable();
         }
 
+        _uncookedFoodInPotRecipe = cookingRecipeSO;
         HideFoodOnTheTable(cookingRecipeSO);
     }
 

@@ -1,6 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum StateOfReadyness
+{
+    Uncooked,
+    Cooked,
+    Burned
+}
+
 public class DeliveryService : MonoBehaviour
 {
     public static DeliveryService Instance { get; private set; }
