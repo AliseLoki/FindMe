@@ -14,7 +14,6 @@ public class CuttingTable : Table
                 {
                     if (recipe.Input == _foodOnTheTableSO)
                     {
-                      //  print("пора резать продукты");
                         _foodOnTheTableSO = recipe.Output;
                         Destroy(_placeForFood.GetChild(0).gameObject);
                         _food = Instantiate(_foodOnTheTableSO.Prefab, _placeForFood);

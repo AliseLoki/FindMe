@@ -7,7 +7,7 @@ public class PackingPlace : GarbageContainer
     [SerializeField] private List<CookingRecipeSO> _packedDishes;
     [SerializeField] private Transform _package;
 
-    private int _packageCapacity = 3;
+    private int _packageCapacity = 2;
 
     protected override void UseObject()
     {

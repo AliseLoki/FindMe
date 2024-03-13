@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Transform _backpack;
     [SerializeField] private bool _hasSomethingInHands;
 
+    private bool _hasBackPack;
     private Food _food;
     private FoodSO _foodSO;
     private CookingRecipeSO _cookingRecipeSO;
@@ -22,26 +23,47 @@ public class Player : MonoBehaviour
 
     public bool HasSomethingInHands => _hasSomethingInHands;
 
+    public bool HasBackPack => _hasBackPack;
+
     public Transform HandlePoint => _handlePoint;
 
     private void Awake()
     {
         if (Instance != null)
         {
-            print("јй€й€йй у нас двойник");
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this;
         }
 
-        Instance = this;
-
+        DontDestroyOnLoad(this.gameObject);
         _dishesForDeliver = new List<CookingRecipeSO>();
+    }
+
+    public CookingRecipeSO DeliverFood(CookingRecipeSO cookingRecipeSO)
+    {
+        foreach (var dish in _dishesForDeliver)
+        {
+            if (dish == cookingRecipeSO)
+            {
+                print(dish.RecipeName + "  " + dish.Readyness);
+                _dishesForDeliver.Remove(dish);
+                return dish;
+            }
+        }
+
+        return null;
     }
 
     public void ShowBackPack()
     {
         _backpack.gameObject.SetActive(true);
+        _hasBackPack = true;
     }
 
-    public void SetDishesForDeliver(List<CookingRecipeSO>listFromPackingPlace)
+    public void SetDishesForDeliver(List<CookingRecipeSO> listFromPackingPlace)
     {
         _dishesForDeliver = listFromPackingPlace;
 

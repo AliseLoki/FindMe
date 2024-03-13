@@ -14,7 +14,7 @@ public class DeliveryService : MonoBehaviour
 
     [SerializeField] private MenuSO _menuSO;
 
-    private int _maxOrderedDishies = 6;
+    private int _maxOrderedDishies = 7;
     private List<CookingRecipeSO> _orderedDishies;
 
     private void Awake()
@@ -31,14 +31,19 @@ public class DeliveryService : MonoBehaviour
 
     private void TakeOrders()
     {
-        for (int i = 0; i < _maxOrderedDishies; i++)
-        {
-            CookingRecipeSO cookingRecipeSO = _menuSO.MenuList[Random.Range(0, _menuSO.MenuList.Count)];
+        //for (int i = 0; i < _maxOrderedDishies; i++)
+        //{
+        //    CookingRecipeSO cookingRecipeSO = _menuSO.MenuList[Random.Range(0, _menuSO.MenuList.Count)];
+        //    if (!_orderedDishies.Contains(cookingRecipeSO))
+        //    {
+        //        _orderedDishies.Add(cookingRecipeSO);
+        //    }
+        //}
 
-            if (!_orderedDishies.Contains(cookingRecipeSO))
-            {
-                _orderedDishies.Add(cookingRecipeSO);
-            }
+        for (int i = 0; i < _menuSO.MenuList.Count; i++)
+        {
+            CookingRecipeSO cookingRecipeSO = _menuSO.MenuList[i];
+            _orderedDishies.Add(cookingRecipeSO);
         }
     }
 }
