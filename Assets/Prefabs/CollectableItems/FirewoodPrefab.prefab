@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4796804216198891152}
   - component: {fileID: 9160825597609994320}
-  - component: {fileID: 1232575973543395350}
+  - component: {fileID: 1321640222737882926}
   m_Layer: 0
   m_Name: FirewoodPrefab
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Children:
   - {fileID: 551038515036404486}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &9160825597609994320
 BoxCollider:
@@ -49,13 +49,13 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1.2, y: 0.5, z: 1}
   m_Center: {x: 0, y: 0.2, z: 0}
---- !u!114 &1232575973543395350
+--- !u!114 &1321640222737882926
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -64,7 +64,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1678065264194543890}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27691fc79749f6c47a34b0a6a75561b1, type: 3}
+  m_Script: {fileID: 11500000, guid: e2534e7ed7ae26443a717f0c74dd11c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &7319463728409025540

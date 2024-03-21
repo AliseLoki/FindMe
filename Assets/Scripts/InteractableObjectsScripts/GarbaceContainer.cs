@@ -8,5 +8,10 @@ public class GarbageContainer : InteractableObject
         {
             Player.Instance.ThrowFood();
         }
+
+        if(Player.Instance.HasBackPack)
+        {
+            Player.Instance.ShowOrHideBackPack(false);
+        }
     }
 }

@@ -41,7 +41,7 @@ public class PackingPlace : GarbageContainer
 
     private void ChekIfHandsAreFree()
     {
-        if (Player.Instance.HasSomethingInHands)
+        if (Player.Instance.HasSomethingInHands || Player.Instance.HasBackPack)
         {
             print("сначала освободите руки");
         }
@@ -49,7 +49,7 @@ public class PackingPlace : GarbageContainer
         {
             _package.gameObject.SetActive(false);
             Player.Instance.SetDishesForDeliver(_packedDishes);
-            Player.Instance.ShowBackPack();
+            Player.Instance.ShowOrHideBackPack(true);
         }
     }
 }

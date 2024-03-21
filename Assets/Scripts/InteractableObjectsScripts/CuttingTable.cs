@@ -8,28 +8,26 @@ public class CuttingTable : Table
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if (!_isChangedFood)
+            if (!IsChangedFood)
             {
                 foreach (var recipe in _allCuttingRecipes)
                 {
-                    if (recipe.Input == _foodOnTheTableSO)
+                    if (recipe.Input == FoodOnTheTableSO)
                     {
-                        _foodOnTheTableSO = recipe.Output;
+                        FoodOnTheTableSO = recipe.Output;
                         Destroy(_placeForFood.GetChild(0).gameObject);
-                        _food = Instantiate(_foodOnTheTableSO.Prefab, _placeForFood);
-                        _isChangedFood = true;                    
+                        _food = Instantiate(FoodOnTheTableSO.Prefab, _placeForFood);
+                        IsChangedFood = true;                    
                     }
                 }
             }
             else
             {
-                Player.Instance.SetFood(_food, _foodOnTheTableSO);
+                Player.Instance.SetFood(_food, FoodOnTheTableSO);
                 Player.Instance.SetHasSomethingInHands(true);
-                _food = null;
-                _foodOnTheTableSO = null;
+                ResetFoodAndFoodSO();
                 Player.Instance.FoodInHands.SetInParent(Player.Instance.HandlePoint);
-               // print("взяли порезанный продукт");
-                _isChangedFood = false;
+                IsChangedFood = false;
             }
         }
     }
@@ -40,9 +38,8 @@ public class CuttingTable : Table
         {
             if (recipe.Input == Player.Instance.FoodInHandsSO)
             {
-               // print("put on the table");
-                _foodOnTheTableSO = Player.Instance.FoodInHandsSO;
-                _food = _foodOnTheTableSO.Prefab;
+                FoodOnTheTableSO = Player.Instance.FoodInHandsSO;
+                _food = FoodOnTheTableSO.Prefab;
                 Player.Instance.FoodInHands.SetInParent(_placeForFood);
                 Player.Instance.GiveFood();
             }

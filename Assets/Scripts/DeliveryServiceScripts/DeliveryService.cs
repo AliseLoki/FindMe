@@ -14,7 +14,7 @@ public class DeliveryService : MonoBehaviour
 
     [SerializeField] private MenuSO _menuSO;
 
-    private int _maxOrderedDishies = 7;
+  //  private int _maxOrderedDishies = 7;
     private List<CookingRecipeSO> _orderedDishies;
 
     private void Awake()

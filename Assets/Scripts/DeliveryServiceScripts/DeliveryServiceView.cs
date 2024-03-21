@@ -47,15 +47,15 @@ public class DeliveryServiceView : MonoBehaviour
 
     private void ShowRecipes()
     {
-       // int maxRecipeListCapacity = 7;
+        int maxRecipeListCapacity = 7;
 
         foreach (CookingRecipeSO cookingRecipeSO in DeliveryService.Instance.GetOrderedDishiesList())
         {
-            //if (_recipesList.childCount < maxRecipeListCapacity )
-            //{
+            if (_recipesList.childCount < maxRecipeListCapacity)
+            {
                 var newTemplate = Instantiate(_recipeTemplate, _recipesList);
                 newTemplate.GetComponent<RecipeTemplateView>().SetCookingRecipeSO(cookingRecipeSO);
-            //}
+            }
         }
     }
 

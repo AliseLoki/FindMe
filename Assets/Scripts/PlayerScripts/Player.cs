@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,6 +11,7 @@ public class Player : MonoBehaviour
     [SerializeField] private bool _hasSomethingInHands;
 
     private bool _hasBackPack;
+    private bool _hasWood;
     private Food _food;
     private FoodSO _foodSO;
     private CookingRecipeSO _cookingRecipeSO;
@@ -25,7 +27,13 @@ public class Player : MonoBehaviour
 
     public bool HasBackPack => _hasBackPack;
 
+    public bool HasWood => _hasWood;
+
     public Transform HandlePoint => _handlePoint;
+
+    public event Action GoldAmountChanged;
+    public event Action EnteredTheForest;
+    public event Action EnteredSafeZone;
 
     private void Awake()
     {
@@ -42,6 +50,24 @@ public class Player : MonoBehaviour
         _dishesForDeliver = new List<CookingRecipeSO>();
     }
 
+    public void OnEnteredSafeZone()
+    {
+        EnteredSafeZone?.Invoke();
+        print("You are safe");
+    }
+
+    public void OnEnteredTheForest()
+    {
+        EnteredTheForest?.Invoke();
+        print("Зашла в Лес");
+    }
+
+    public void OnGoldAmountChanged()
+    {
+        GoldAmountChanged?.Invoke();
+        print("денюжки");
+    }
+
     public CookingRecipeSO DeliverFood(CookingRecipeSO cookingRecipeSO)
     {
         foreach (var dish in _dishesForDeliver)
@@ -50,6 +76,7 @@ public class Player : MonoBehaviour
             {
                 print(dish.RecipeName + "  " + dish.Readyness);
                 _dishesForDeliver.Remove(dish);
+                CheckIfDeliverIsComplited();
                 return dish;
             }
         }
@@ -57,10 +84,15 @@ public class Player : MonoBehaviour
         return null;
     }
 
-    public void ShowBackPack()
+    public void SetHasWood(bool hasWood)
     {
-        _backpack.gameObject.SetActive(true);
-        _hasBackPack = true;
+        _hasWood = hasWood;
+    }
+
+    public void ShowOrHideBackPack(bool isActive)
+    {
+        _backpack.gameObject.SetActive(isActive);
+        _hasBackPack = isActive;
     }
 
     public void SetDishesForDeliver(List<CookingRecipeSO> listFromPackingPlace)
@@ -102,16 +134,27 @@ public class Player : MonoBehaviour
 
     public void GiveFood()
     {
-        _foodSO = null;
-        _food = null;
-        _hasSomethingInHands = false;
+        ResetFoodAndFoodSO();
     }
 
     public void ThrowFood()
     {
         Destroy(_food.gameObject);
+        ResetFoodAndFoodSO();     
+    }
+
+    private void ResetFoodAndFoodSO()
+    {
         _food = null;
         _foodSO = null;
         _hasSomethingInHands = false;
+    }
+
+    private void CheckIfDeliverIsComplited()
+    {
+        if(_dishesForDeliver.Count == 0)
+        {
+            ShowOrHideBackPack(false);
+        }
     }
 }

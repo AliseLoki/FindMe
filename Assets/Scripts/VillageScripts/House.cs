@@ -1,12 +1,11 @@
 using System.Collections;
 using System.Net;
+using Unity.Android.Types;
 using UnityEngine;
 
 public class House : InteractableObject
 {
-    //Когда останавливать корутину
-    //Стоит ли создавать отдельный класс для спауна обьектов
-    // Как лучше сделать отслеживание прогресса чтобы он переносился из сцены в сцену
+    // Как лучше сделать отслеживание прогресса чтобы он переносился из сцены в сцену 
     // Как сделать так, чтобы прогресс не обнулялся
 
     [SerializeField] private CookingRecipeSO _waitedDish;
@@ -16,10 +15,11 @@ public class House : InteractableObject
     [SerializeField] private GoldCoins _goldCoins;
 
     private bool _packageDelivered;
-    private Coroutine _waitingCoroutine;
-
+    
     protected override void UseObject()
     {
+
+       // PlayerPrefs
         if (!_packageDelivered && Player.Instance.HasBackPack)
         {
             var deliveredDish = Player.Instance.DeliverFood(_waitedDish);
@@ -27,15 +27,15 @@ public class House : InteractableObject
             if (deliveredDish != null)
             {
                 SpawnObject(_deliveredPackage);
-                CheckReadynessOfDishe(deliveredDish);
+                StartCoroutine(CheckReadynessOfDishe(deliveredDish));
                 _packageDelivered = true;
             }
         }
     }
 
-    private void CheckReadynessOfDishe(CookingRecipeSO cookingRecipeSO)
+    private IEnumerator CheckReadynessOfDishe(CookingRecipeSO cookingRecipeSO)
     {
-        _waitingCoroutine = StartCoroutine(PayCountDownRoutine());
+        yield return PayCountDownRoutine();
 
         if (cookingRecipeSO.Readyness == _readyness)
         {
@@ -61,10 +61,8 @@ public class House : InteractableObject
 
     private IEnumerator PayCountDownRoutine()
     {
-        int pause = 4;
+        int pause = 2;
         yield return new WaitForSeconds(pause);
-        print("coroutine works");
         Destroy(_placeForSpawnedObject.GetChild(0).gameObject);
-        _waitingCoroutine = null;
     }
 }

@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1f568734aee7e849840f624ab24238b, type: 3}
   m_Name: BreadRecipe
   m_EditorClassIdentifier: 
-  RecipeImage: {fileID: 21300000, guid: 8b85f16c7d17f8948baa5e5628656e34, type: 3}
   RecipeName: Bread
+  RecipeImage: {fileID: 21300000, guid: 8b85f16c7d17f8948baa5e5628656e34, type: 3}
+  Readyness: 0
   IngredientsForRecipe:
   - {fileID: 11400000, guid: b88ade4f1f4e4bf41993c5c4eed8631c, type: 2}

@@ -18,7 +18,7 @@ public class CookingTable : Table
         if (Input.GetMouseButtonDown(0))
         {
             GivePotToPlayer();
-            DestroyPotOnTheTable();
+            ResetFoodAndFoodSO();
             CheckIfCanCook();
             Player.Instance.SetCookingRecipe(_uncookedFoodInPotRecipe);
         }
@@ -52,7 +52,7 @@ public class CookingTable : Table
 
     private void GivePotToPlayer()
     {
-        Player.Instance.SetFood(_food, _foodOnTheTableSO);
+        Player.Instance.SetFood(_food, FoodOnTheTableSO);
         Player.Instance.SetHasSomethingInHands(true);
         Player.Instance.FoodInHands.SetInParent(Player.Instance.HandlePoint);
     }
@@ -61,13 +61,7 @@ public class CookingTable : Table
     {
         Food pot = Instantiate(_unCookedPot, _placeForFood.position, Quaternion.identity);
         _food = pot;
-        _foodOnTheTableSO = pot.ConnectedFoodSO;
-    }
-
-    private void DestroyPotOnTheTable()
-    {
-        _food = null;
-        _foodOnTheTableSO = null;
+        FoodOnTheTableSO = pot.ConnectedFoodSO;
     }
 
     private void ShowFoodOnTheTable()

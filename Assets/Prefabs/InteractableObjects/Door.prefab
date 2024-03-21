@@ -197,6 +197,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _selectedObject: {fileID: 7593317638507070732}
+  _sceneSwitcher: {fileID: 0}
 --- !u!1 &6229934789878541460
 GameObject:
   m_ObjectHideFlags: 0

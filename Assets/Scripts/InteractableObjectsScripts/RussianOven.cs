@@ -8,10 +8,13 @@ public class RussianOven : Table
     [SerializeField] private FoodSO _uncookedFoodInPot;
     [SerializeField] private FoodSO _cookedFoodInPot;
     [SerializeField] private FoodSO _burnedFoodInPot;
+    [SerializeField] private PlaceForOven _placeForOven;
+
+    [SerializeField] private ParticleSystem _smokeEffect;
 
     private StateOfReadyness _stateOfReadyness;
     private Coroutine _cookCoroutine;
-
+ 
     protected override void DoSomething()
     {
         if (Input.GetMouseButtonDown(0))
@@ -30,23 +33,32 @@ public class RussianOven : Table
     {
         if (_hasFire && _uncookedFoodInPot == Player.Instance.FoodInHandsSO)
         {
-            _foodOnTheTableSO = Player.Instance.FoodInHandsSO;
+            FoodOnTheTableSO = Player.Instance.FoodInHandsSO;
             _food = Player.Instance.FoodInHands;
             Player.Instance.FoodInHands.SetInParent(_placeForFood);
             Player.Instance.GiveFood();
             _cookCoroutine = StartCoroutine(CookingCountDownRoutine());
+        }
+        else if (!_hasFire && !Player.Instance.HasWood)
+        {
+            print("Сначала нужно разжечь огонь");
+        }
+        else if(!_hasFire && Player.Instance.HasWood)
+        {
+            _hasFire = true;
+            _placeForOven.LightFire(true);
         }
     }
 
     private void TakePot()
     {
         _food.SetInParent(Player.Instance.HandlePoint);
-        Player.Instance.SetFood(_food, _foodOnTheTableSO);
+        Player.Instance.SetFood(_food, FoodOnTheTableSO);
         Player.Instance.SetHasSomethingInHands(true);
         Player.Instance.SetCookingRecipeStateOfRedyness(_stateOfReadyness);
         print(_stateOfReadyness);
-        _foodOnTheTableSO = null;
-        _food = null;
+        _smokeEffect.gameObject.SetActive(false);    
+        ResetFoodAndFoodSO();
     }
 
     private IEnumerator CookingCountDownRoutine()
@@ -61,13 +73,14 @@ public class RussianOven : Table
 
         _stateOfReadyness++;
         ChangeOnePoTToAnother(_burnedFoodInPot);
+        _smokeEffect.gameObject.SetActive(true);
         _cookCoroutine = null;
     }
 
     private void ChangeOnePoTToAnother(FoodSO newFoodSO)
     {
         Destroy(_food.gameObject);
-        _foodOnTheTableSO = newFoodSO;
+        FoodOnTheTableSO = newFoodSO;
         _food = Instantiate(newFoodSO.Prefab, _placeForFood);
     }
 }
