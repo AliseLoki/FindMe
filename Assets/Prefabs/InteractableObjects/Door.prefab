@@ -155,8 +155,8 @@ Transform:
   m_GameObject: {fileID: 4016066953902512985}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.2607887, y: -3.3565893, z: 5.6301794}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.4999999, y: 1.4999999, z: 1.4999999}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 333378959112025650}
   - {fileID: 7928521716905836655}
@@ -182,8 +182,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 3.4804785, z: 2.0466383}
-  m_Center: {x: 0, y: 1.240239, z: 0.52331924}
+  m_Size: {x: 1.7184647, y: 3.480479, z: 3.221561}
+  m_Center: {x: -0.29448983, y: 1.2402391, z: -0.064141914}
 --- !u!114 &5448175577317382793
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -197,7 +197,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _selectedObject: {fileID: 7593317638507070732}
-  _sceneSwitcher: {fileID: 0}
+  _nonActiveArea: {fileID: 0}
+  _needToBeActiveArea: {fileID: 0}
+  _newPosition: {fileID: 0}
 --- !u!1 &6229934789878541460
 GameObject:
   m_ObjectHideFlags: 0

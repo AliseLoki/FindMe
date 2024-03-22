@@ -1,13 +1,8 @@
 using System.Collections;
-using System.Net;
-using Unity.Android.Types;
 using UnityEngine;
 
 public class House : InteractableObject
 {
-    // Как лучше сделать отслеживание прогресса чтобы он переносился из сцены в сцену 
-    // Как сделать так, чтобы прогресс не обнулялся
-
     [SerializeField] private CookingRecipeSO _waitedDish;
     [SerializeField] private StateOfReadyness _readyness;
     [SerializeField] private Transform _placeForSpawnedObject;
@@ -18,8 +13,6 @@ public class House : InteractableObject
     
     protected override void UseObject()
     {
-
-       // PlayerPrefs
         if (!_packageDelivered && Player.Instance.HasBackPack)
         {
             var deliveredDish = Player.Instance.DeliverFood(_waitedDish);

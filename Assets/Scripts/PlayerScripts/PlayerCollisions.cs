@@ -14,7 +14,7 @@ public class PlayerCollisions : MonoBehaviour
             Player.Instance.OnEnteredTheForest();
         }
 
-        if(collision.collider.TryGetComponent(out SafeZoneTrigger safeZoneTrigger))
+        if (collision.collider.TryGetComponent(out SafeZoneTrigger safeZoneTrigger))
         {
             Player.Instance.OnEnteredSafeZone();
         }
@@ -36,10 +36,17 @@ public class PlayerCollisions : MonoBehaviour
             Player.Instance.OnGoldAmountChanged();
         }
 
-        if(other.TryGetComponent(out Wood wood))
+        if (other.TryGetComponent(out Wood wood))
         {
-            Player.Instance.SetHasWood(true);
-            Destroy(wood.gameObject);
+            if (!Player.Instance.HasSomethingInHands)
+            {
+                Player.Instance.SetHasWood(true);
+                Destroy(wood.gameObject);
+            }
+            else
+            {
+                print("руки заняты");
+            }
         }
     }
 }

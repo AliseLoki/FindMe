@@ -46,6 +46,7 @@ public class Enemy : MonoBehaviour
         if(_chaseCoroutine != null)
         {
             StopCoroutine(_chaseCoroutine);
+            _agent.isStopped = true;
         }
 
         _patrolCoroutine = StartCoroutine(Patrolling());
