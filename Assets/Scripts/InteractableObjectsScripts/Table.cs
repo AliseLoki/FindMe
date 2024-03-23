@@ -22,9 +22,9 @@ public abstract class Table : InteractableObject
         {
             print("Нельзя взаимодействовать, руки заняты");
         }
-        else
+        else if(this as RussianOven)
         {
-            print("ну нечего делать");
+            PutFood();
         }
     }
 

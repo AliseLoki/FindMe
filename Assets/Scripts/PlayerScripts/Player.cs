@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Transform _backpack;
     [SerializeField] private bool _hasSomethingInHands;
 
+    private int _gold;
     private bool _hasBackPack;
     private bool _hasWood;
     private Food _food;
@@ -31,9 +32,10 @@ public class Player : MonoBehaviour
 
     public Transform HandlePoint => _handlePoint;
 
-    public event Action GoldAmountChanged;
+    public event Action <int> GoldAmountChanged;
     public event Action EnteredTheForest;
     public event Action EnteredSafeZone;
+    public event Action ExitSafeZone;
 
     private void Awake()
     {
@@ -56,6 +58,11 @@ public class Player : MonoBehaviour
         print("You are safe");
     }
 
+    public void OnExitSafeZone()
+    {
+        ExitSafeZone?.Invoke();
+    }
+
     public void OnEnteredTheForest()
     {
         EnteredTheForest?.Invoke();
@@ -64,7 +71,8 @@ public class Player : MonoBehaviour
 
     public void OnGoldAmountChanged()
     {
-        GoldAmountChanged?.Invoke();
+        _gold++;
+        GoldAmountChanged?.Invoke(_gold);
         print("денюжки");
     }
 

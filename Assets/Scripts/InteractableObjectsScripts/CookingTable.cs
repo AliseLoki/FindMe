@@ -8,7 +8,7 @@ public class CookingTable : Table
     [SerializeField] private Food[] _tableFoodPrefabs;
     [SerializeField] private List<FoodSO> _setToTheTableFoodSO;
     [SerializeField] private Food _unCookedPot;
-
+    [SerializeField] private SoundEffects _soundEffects;
     [SerializeField] private CookingRecipeSO _uncookedFoodInPotRecipe;
 
     public event Action<CookingRecipeSO> CanBeCooked;
@@ -44,6 +44,7 @@ public class CookingTable : Table
                 ShowFoodOnTheTable();
                 CheckIfHasSameFood(Player.Instance.FoodInHandsSO);
                 Player.Instance.ThrowFood();
+                _soundEffects.PlayPuttingFoodSoundEffect(transform);
             }
         }
 
@@ -55,6 +56,7 @@ public class CookingTable : Table
         Player.Instance.SetFood(_food, FoodOnTheTableSO);
         Player.Instance.SetHasSomethingInHands(true);
         Player.Instance.FoodInHands.SetInParent(Player.Instance.HandlePoint);
+        _soundEffects.PlayGettingFoodSoundEffect(transform);
     }
 
     private void SpawnPotOnTheTable()

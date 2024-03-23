@@ -8,13 +8,14 @@ public class RussianOven : Table
     [SerializeField] private FoodSO _uncookedFoodInPot;
     [SerializeField] private FoodSO _cookedFoodInPot;
     [SerializeField] private FoodSO _burnedFoodInPot;
-    [SerializeField] private PlaceForOven _placeForOven;
+    [SerializeField] private PlaceForWood _placeForOven;
 
     [SerializeField] private ParticleSystem _smokeEffect;
-
+    [SerializeField] private SoundEffects _soundEffects;
+    
     private StateOfReadyness _stateOfReadyness;
     private Coroutine _cookCoroutine;
- 
+
     protected override void DoSomething()
     {
         if (Input.GetMouseButtonDown(0))
@@ -38,16 +39,21 @@ public class RussianOven : Table
             Player.Instance.FoodInHands.SetInParent(_placeForFood);
             Player.Instance.GiveFood();
             _cookCoroutine = StartCoroutine(CookingCountDownRoutine());
+            _soundEffects.PlayCookingFoodSoundEffect(transform);
         }
         else if (!_hasFire && !Player.Instance.HasWood)
         {
             print("Сначала нужно разжечь огонь");
         }
-        else if(!_hasFire && Player.Instance.HasWood)
+        else if(!_hasFire && Player.Instance.HasWood && !Player.Instance.HasSomethingInHands)
         {
             _hasFire = true;
             _placeForOven.LightFire(true);
         }
+        else if(!_hasFire && Player.Instance.HasWood && Player.Instance.HasSomethingInHands)
+        {
+            print("Невозможно зажечь, руки заняты");
+        }     
     }
 
     private void TakePot()
@@ -59,6 +65,7 @@ public class RussianOven : Table
         print(_stateOfReadyness);
         _smokeEffect.gameObject.SetActive(false);    
         ResetFoodAndFoodSO();
+        _soundEffects.PlayGettingFoodSoundEffect(transform);
     }
 
     private IEnumerator CookingCountDownRoutine()

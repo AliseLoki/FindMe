@@ -26,6 +26,11 @@ public class PlayerCollisions : MonoBehaviour
         {
             interactableObject.Interact();
         }
+
+        if (collision.collider.TryGetComponent(out SafeZoneTrigger safeZoneTrigger))
+        {
+            Player.Instance.OnExitSafeZone();
+        }
     }
 
     private void OnTriggerEnter(Collider other)

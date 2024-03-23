@@ -3,6 +3,7 @@ using UnityEngine;
 public class CuttingTable : Table
 {
     [SerializeField] private ChangingFoodRecipeSO[] _allCuttingRecipes;
+    [SerializeField] private SoundEffects _soundEffects;
 
     protected override void DoSomething()
     {
@@ -17,7 +18,8 @@ public class CuttingTable : Table
                         FoodOnTheTableSO = recipe.Output;
                         Destroy(_placeForFood.GetChild(0).gameObject);
                         _food = Instantiate(FoodOnTheTableSO.Prefab, _placeForFood);
-                        IsChangedFood = true;                    
+                        IsChangedFood = true;
+                        _soundEffects.PlayCuttingFoodSoundEffect(transform);
                     }
                 }
             }
@@ -28,6 +30,7 @@ public class CuttingTable : Table
                 ResetFoodAndFoodSO();
                 Player.Instance.FoodInHands.SetInParent(Player.Instance.HandlePoint);
                 IsChangedFood = false;
+                _soundEffects.PlayGettingFoodSoundEffect(transform);
             }
         }
     }
@@ -42,6 +45,7 @@ public class CuttingTable : Table
                 _food = FoodOnTheTableSO.Prefab;
                 Player.Instance.FoodInHands.SetInParent(_placeForFood);
                 Player.Instance.GiveFood();
+                _soundEffects.PlayPuttingFoodSoundEffect(transform);
             }
         }
     }

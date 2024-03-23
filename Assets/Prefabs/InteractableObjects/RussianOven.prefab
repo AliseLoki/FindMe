@@ -593,7 +593,7 @@ GameObject:
   - component: {fileID: 3493582678820292889}
   - component: {fileID: 8141386196864392795}
   m_Layer: 6
-  m_Name: PlaceForOven
+  m_Name: PlaceForWood
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -630,6 +630,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _woodInOven: {fileID: 1811305364302354101}
   _fireEffect: {fileID: 4543562128234438489}
+  _soundEffects: {fileID: 0}
 --- !u!1 &2997452267856618650
 GameObject:
   m_ObjectHideFlags: 0
