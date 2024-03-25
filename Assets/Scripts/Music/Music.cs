@@ -8,6 +8,7 @@ public class Music : MonoBehaviour
     [SerializeField] private AudioClip _forestMusic;
     [SerializeField] private AudioClip _safeZoneMusic;
     [SerializeField] private AudioClip _roadMusic;
+    [SerializeField] private AudioClip _grannysHomeMusic;
 
     private bool _isForestMusicPlaying;
 
@@ -16,7 +17,7 @@ public class Music : MonoBehaviour
     private void Awake()
     {
         _audioSource = GetComponent<AudioSource>();
-        PlayRoadMusic();
+        PlayGrannysHomeMusic();
     }
 
     private void OnEnable()
@@ -50,6 +51,11 @@ public class Music : MonoBehaviour
     private void PlayRoadMusic()
     {
         PlayMusic(_roadMusic);
+    }
+
+    private void PlayGrannysHomeMusic()
+    {
+        PlayMusic(_grannysHomeMusic);
     }
 
     private void PlayMusic(AudioClip audioClip)

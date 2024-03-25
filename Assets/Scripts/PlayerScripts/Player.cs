@@ -32,23 +32,14 @@ public class Player : MonoBehaviour
 
     public Transform HandlePoint => _handlePoint;
 
-    public event Action <int> GoldAmountChanged;
+    public event Action<int> GoldAmountChanged;
     public event Action EnteredTheForest;
     public event Action EnteredSafeZone;
     public event Action ExitSafeZone;
 
     private void Awake()
     {
-        if (Instance != null)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            Instance = this;
-        }
-
-        DontDestroyOnLoad(this.gameObject);
+        Instance = this;
         _dishesForDeliver = new List<CookingRecipeSO>();
     }
 
@@ -148,7 +139,7 @@ public class Player : MonoBehaviour
     public void ThrowFood()
     {
         Destroy(_food.gameObject);
-        ResetFoodAndFoodSO();     
+        ResetFoodAndFoodSO();
     }
 
     private void ResetFoodAndFoodSO()
@@ -160,7 +151,7 @@ public class Player : MonoBehaviour
 
     private void CheckIfDeliverIsComplited()
     {
-        if(_dishesForDeliver.Count == 0)
+        if (_dishesForDeliver.Count == 0)
         {
             ShowOrHideBackPack(false);
         }

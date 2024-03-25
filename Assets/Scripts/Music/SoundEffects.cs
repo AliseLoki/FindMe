@@ -34,7 +34,7 @@ public class SoundEffects : MonoBehaviour
         PlaySoundEffect(_soundEffectsSO.ThrowingFood, transform.position);
     }
 
-    private void PlaySoundEffect(AudioClip audioClip, Vector3 position, float volume = 5f)
+    private void PlaySoundEffect(AudioClip audioClip, Vector3 position, float volume = 10f)
     {
         AudioSource.PlayClipAtPoint(audioClip, position, volume);      
     }
