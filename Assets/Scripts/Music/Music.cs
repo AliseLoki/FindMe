@@ -3,15 +3,9 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class Music : MonoBehaviour
 {
-    [SerializeField] private Player _player;
-
-    [SerializeField] private AudioClip _forestMusic;
-    [SerializeField] private AudioClip _safeZoneMusic;
-    [SerializeField] private AudioClip _roadMusic;
-    [SerializeField] private AudioClip _grannysHomeMusic;
+    [SerializeField] private MusicSO _musicSO;
 
     private bool _isForestMusicPlaying;
-
     private AudioSource _audioSource;
 
     private void Awake()
@@ -22,40 +16,40 @@ public class Music : MonoBehaviour
 
     private void OnEnable()
     {
-        _player.EnteredSafeZone += PlaySafeZoneMusic;
-        _player.EnteredTheForest += PlayForestMusic;
-        _player.ExitSafeZone += PlayRoadMusic;
+        Player.Instance.EnteredSafeZone += PlaySafeZoneMusic;
+        Player.Instance.EnteredTheForest += PlayForestMusic;
+        Player.Instance.ExitSafeZone += PlayRoadMusic;
     }
 
     private void OnDisable()
     {
-        _player.EnteredSafeZone -= PlaySafeZoneMusic;
-        _player.EnteredTheForest -= PlayForestMusic;
-        _player.ExitSafeZone -= PlayRoadMusic;
+        Player.Instance.EnteredSafeZone -= PlaySafeZoneMusic;
+        Player.Instance.EnteredTheForest -= PlayForestMusic;
+        Player.Instance.ExitSafeZone -= PlayRoadMusic;
     }
 
     private void PlayForestMusic()
     {
         if (!_isForestMusicPlaying)
         {
-            PlayMusic(_forestMusic);
+            PlayMusic(_musicSO.ForestMusic);
             _isForestMusicPlaying = true;
         }
     }
 
     private void PlaySafeZoneMusic()
     {
-        PlayMusic(_safeZoneMusic);
+        PlayMusic(_musicSO.SafeZoneMusic);
     }
 
     private void PlayRoadMusic()
     {
-        PlayMusic(_roadMusic);
+        PlayMusic(_musicSO.RoadMusic);
     }
 
     private void PlayGrannysHomeMusic()
     {
-        PlayMusic(_grannysHomeMusic);
+        PlayMusic(_musicSO.GrannysHomeMusic);
     }
 
     private void PlayMusic(AudioClip audioClip)

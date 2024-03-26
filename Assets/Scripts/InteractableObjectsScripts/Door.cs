@@ -6,6 +6,11 @@ public class Door : InteractableObject
     [SerializeField] private Transform _needToBeActiveArea;
     [SerializeField] private Transform _newPosition;
 
+    private void OnEnable()
+    {
+        _selectedObject.Hide();
+    }
+
     protected override void UseObject()
     {
         _nonActiveArea.gameObject.SetActive(false);

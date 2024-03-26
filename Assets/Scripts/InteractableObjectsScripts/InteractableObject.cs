@@ -2,25 +2,20 @@ using UnityEngine;
 
 public abstract class InteractableObject : MonoBehaviour
 {
-    [SerializeField] private SelectedObject _selectedObject;
+    [SerializeField] protected SelectedObject _selectedObject;
 
     private bool _isSelected;
-    private SelectedObject _defaultSelectedObject;
-
-    public void Interact()
+  
+    public void EnableInteract()
     {
-        if (_selectedObject != _defaultSelectedObject)
-        {
-            _selectedObject.Show();
-            _defaultSelectedObject = _selectedObject;
-            _isSelected = true;
-        }
-        else
-        {
-            _selectedObject.Hide();
-            _defaultSelectedObject = null;
-            _isSelected = false;
-        }
+        _selectedObject.Show();
+        _isSelected = true;
+    }
+
+    public void DisableInteract()
+    {
+        _selectedObject.Hide();
+        _isSelected = false;
     }
 
     private void OnMouseDown()

@@ -88,6 +88,8 @@ public class Enemy : MonoBehaviour
 
     private IEnumerator Patrolling()
     {
+        MoveToNextPoint();
+
         while (enabled)
         {
             if (_agent.remainingDistance < _minDistance && !_agent.pathPending)

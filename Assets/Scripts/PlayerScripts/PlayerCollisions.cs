@@ -6,7 +6,8 @@ public class PlayerCollisions : MonoBehaviour
     {
         if (collision.collider.TryGetComponent(out InteractableObject interactableObject))
         {
-            interactableObject.Interact();
+            //interactableObject.Interact();
+            interactableObject.EnableInteract();
         }
 
         if (collision.collider.TryGetComponent(out ForestTrigger forestTrigger))
@@ -24,7 +25,8 @@ public class PlayerCollisions : MonoBehaviour
     {
         if (collision.collider.TryGetComponent(out InteractableObject interactableObject))
         {
-            interactableObject.Interact();
+            //interactableObject.Interact();
+            interactableObject.DisableInteract();
         }
 
         if (collision.collider.TryGetComponent(out SafeZoneTrigger safeZoneTrigger))
