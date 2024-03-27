@@ -16,3 +16,4 @@ MonoBehaviour:
   SafeZoneMusic: {fileID: 8300000, guid: 4eeaff35a74be6548982a1e33a1b509a, type: 3}
   RoadMusic: {fileID: 8300000, guid: 55652cf9dcfb70847a001cf2e5e8f723, type: 3}
   GrannysHomeMusic: {fileID: 8300000, guid: f61397867a46c3e498d43d4dfec0f01f, type: 3}
+  VillageMusic: {fileID: 8300000, guid: 4f9003d5ed011224e82bbadb4fe3b0df, type: 3}

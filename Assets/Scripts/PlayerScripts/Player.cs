@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(PlayerEvents))]
 public class Player : MonoBehaviour
 {
     public static Player Instance { get; private set; }
@@ -10,19 +11,14 @@ public class Player : MonoBehaviour
     [SerializeField] private Transform _backpack;
     [SerializeField] private bool _hasSomethingInHands;
 
-    private int _gold;
     private bool _hasBackPack;
     private bool _hasWood;
     private Food _food;
     private FoodSO _foodSO;
     private CookingRecipeSO _cookingRecipeSO;
+    private PlayerEvents _playerEvents;
 
     private List<CookingRecipeSO> _dishesForDeliver;
-
-    public Food FoodInHands => _food;
-    public FoodSO FoodInHandsSO => _foodSO;
-
-    public CookingRecipeSO CookedRecipeSODish => _cookingRecipeSO;
 
     public bool HasSomethingInHands => _hasSomethingInHands;
 
@@ -30,41 +26,21 @@ public class Player : MonoBehaviour
 
     public bool HasWood => _hasWood;
 
-    public Transform HandlePoint => _handlePoint;
+    public PlayerEvents PlayerEventsHandler => _playerEvents;
 
-    public event Action<int> GoldAmountChanged;
-    public event Action EnteredTheForest;
-    public event Action EnteredSafeZone;
-    public event Action ExitSafeZone;
+    public Food FoodInHands => _food;
+
+    public FoodSO FoodInHandsSO => _foodSO;
+
+    public CookingRecipeSO CookedRecipeSODish => _cookingRecipeSO;
+
+    public Transform HandlePoint => _handlePoint;
 
     private void Awake()
     {
         Instance = this;
         _dishesForDeliver = new List<CookingRecipeSO>();
-    }
-
-    public void OnEnteredSafeZone()
-    {
-        EnteredSafeZone?.Invoke();
-        print("You are safe");
-    }
-
-    public void OnExitSafeZone()
-    {
-        ExitSafeZone?.Invoke();
-    }
-
-    public void OnEnteredTheForest()
-    {
-        EnteredTheForest?.Invoke();
-        print("Зашла в Лес");
-    }
-
-    public void OnGoldAmountChanged()
-    {
-        _gold++;
-        GoldAmountChanged?.Invoke(_gold);
-        print("денюжки");
+        _playerEvents = GetComponent<PlayerEvents>();
     }
 
     public CookingRecipeSO DeliverFood(CookingRecipeSO cookingRecipeSO)

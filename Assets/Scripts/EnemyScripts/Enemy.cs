@@ -20,7 +20,6 @@ public class Enemy : MonoBehaviour
     private NavMeshAgent _agent;
     private Animator _animator;
     private List<Transform> _targetPoints = new List<Transform>();
-    private Player _player;
     private Coroutine _patrolCoroutine;
     private Coroutine _chaseCoroutine;
 
@@ -33,10 +32,8 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
-        _player = Player.Instance;
-
-        _player.EnteredTheForest += OnPlayerEnteredTheForest;
-        _player.EnteredSafeZone += OnPlayerEnteredSafeZone;
+        Player.Instance.PlayerEventsHandler.EnteredTheForest += OnPlayerEnteredTheForest;
+        Player.Instance.PlayerEventsHandler.EnteredSafeZone += OnPlayerEnteredSafeZone;
 
         _patrolCoroutine = StartCoroutine(Patrolling());
     }
@@ -53,8 +50,8 @@ public class Enemy : MonoBehaviour
 
     private void OnDisable()
     {
-        _player.EnteredTheForest -= OnPlayerEnteredTheForest;
-        _player.EnteredSafeZone -= OnPlayerEnteredSafeZone;
+        Player.Instance.PlayerEventsHandler.EnteredTheForest -= OnPlayerEnteredTheForest;
+        Player.Instance.PlayerEventsHandler.EnteredSafeZone -= OnPlayerEnteredSafeZone;
     }
 
     private void OnPlayerEnteredTheForest()
@@ -104,7 +101,7 @@ public class Enemy : MonoBehaviour
     private void ChasePlayer()
     {
         _agent.speed = _runSpeed;
-        _agent.destination = _player.transform.position;
+        _agent.destination = Player.Instance.transform.position;
         _animator.SetTrigger(PlayerDetected);
     }
 

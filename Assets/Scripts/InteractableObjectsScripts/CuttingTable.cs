@@ -20,6 +20,7 @@ public class CuttingTable : Table
                         _food = Instantiate(FoodOnTheTableSO.Prefab, _placeForFood);
                         IsChangedFood = true;
                         _soundEffects.PlayCuttingFoodSoundEffect(transform);
+                        TipsViewPanel.Instance.ShowBringToCookingTableTip();
                     }
                 }
             }
@@ -46,6 +47,11 @@ public class CuttingTable : Table
                 Player.Instance.FoodInHands.SetInParent(_placeForFood);
                 Player.Instance.GiveFood();
                 _soundEffects.PlayPuttingFoodSoundEffect(transform);
+                TipsViewPanel.Instance.ShowCutItTip();
+            }
+            else
+            {
+                TipsViewPanel.Instance.ShowCantCutTip();
             }
         }
     }

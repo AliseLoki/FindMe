@@ -10,11 +10,17 @@ public class GarbageContainer : InteractableObject
         {
             Player.Instance.ThrowFood();
             _soundEffects.PlayThwrowingFoodSoundEffect(transform);
-        }
 
-        if(Player.Instance.HasBackPack)
+            TipsViewPanel.Instance.ShowThrowFoodTip();
+        }
+        else if (Player.Instance.HasBackPack)
         {
             Player.Instance.ShowOrHideBackPack(false);
+            TipsViewPanel.Instance.ShowThrowFoodTip();
+        }
+        else
+        {
+            TipsViewPanel.Instance.ShowNothingToThrowTip();
         }
     }
 }

@@ -20,7 +20,7 @@ public abstract class Table : InteractableObject
         }
         else if (FoodOnTheTableSO != null && Player.Instance.HasSomethingInHands)
         {
-            print("Ќельз€ взаимодействовать, руки зан€ты");
+            TipsViewPanel.Instance.ShowHandsAreFullTip();
         }
         else if(this as RussianOven)
         {

@@ -2,10 +2,11 @@ using UnityEngine;
 
 public class Door : InteractableObject
 {
-    [SerializeField] private Transform _nonActiveArea;
-    [SerializeField] private Transform _needToBeActiveArea;
     [SerializeField] private Transform _newPosition;
-
+    [SerializeField] private CanvasUI _canvasUI;
+    [SerializeField] private Cameras _cameras;
+   
+    
     private void OnEnable()
     {
         _selectedObject.Hide();
@@ -13,8 +14,8 @@ public class Door : InteractableObject
 
     protected override void UseObject()
     {
-        _nonActiveArea.gameObject.SetActive(false);
-        _needToBeActiveArea.gameObject.SetActive(true);
+        _canvasUI.FadeToBlack();
+        _cameras.SwitchCameras();
         Player.Instance.transform.position = _newPosition.position;
     }
 }

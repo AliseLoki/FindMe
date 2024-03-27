@@ -7,4 +7,5 @@ public class MusicSO : ScriptableObject
     public AudioClip SafeZoneMusic;
     public AudioClip RoadMusic;
     public AudioClip GrannysHomeMusic;
+    public AudioClip VillageMusic;
 }

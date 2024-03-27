@@ -10,6 +10,7 @@ public abstract class InteractableObject : MonoBehaviour
     {
         _selectedObject.Show();
         _isSelected = true;
+        TipsViewPanel.Instance.ShowTapTheObjectTip();
     }
 
     public void DisableInteract()
@@ -26,7 +27,7 @@ public abstract class InteractableObject : MonoBehaviour
         }
         else if (!_isSelected)
         {
-            print("сначала подойдите к объекту");
+            TipsViewPanel.Instance.ShowApproachTip();
         }
     }
 

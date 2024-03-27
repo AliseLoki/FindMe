@@ -11,21 +11,34 @@ public class Music : MonoBehaviour
     private void Awake()
     {
         _audioSource = GetComponent<AudioSource>();
-        PlayGrannysHomeMusic();
     }
 
     private void OnEnable()
     {
-        Player.Instance.EnteredSafeZone += PlaySafeZoneMusic;
-        Player.Instance.EnteredTheForest += PlayForestMusic;
-        Player.Instance.ExitSafeZone += PlayRoadMusic;
+        Player.Instance.PlayerEventsHandler.EnteredGrannysHome += PlayGrannysHomeMusic;
+        Player.Instance.PlayerEventsHandler.ExitGrannysHome += PlayRoadMusic;
+
+        Player.Instance.PlayerEventsHandler.EnteredTheForest += PlayForestMusic;
+
+        Player.Instance.PlayerEventsHandler.EnteredSafeZone += PlaySafeZoneMusic;
+        Player.Instance.PlayerEventsHandler.ExitSafeZone += PlayRoadMusic;
+
+        Player.Instance.PlayerEventsHandler.EnteredVillage += PlayVilageMusic;
+        Player.Instance.PlayerEventsHandler.ExitVillage += PlayRoadMusic;
     }
 
     private void OnDisable()
     {
-        Player.Instance.EnteredSafeZone -= PlaySafeZoneMusic;
-        Player.Instance.EnteredTheForest -= PlayForestMusic;
-        Player.Instance.ExitSafeZone -= PlayRoadMusic;
+        Player.Instance.PlayerEventsHandler.EnteredGrannysHome -= PlayGrannysHomeMusic;
+        Player.Instance.PlayerEventsHandler.ExitGrannysHome -= PlayRoadMusic;
+
+        Player.Instance.PlayerEventsHandler.EnteredTheForest -= PlayForestMusic;
+
+        Player.Instance.PlayerEventsHandler.EnteredSafeZone -= PlaySafeZoneMusic;
+        Player.Instance.PlayerEventsHandler.ExitSafeZone -= PlayRoadMusic;
+
+        Player.Instance.PlayerEventsHandler.EnteredVillage -= PlayVilageMusic;
+        Player.Instance.PlayerEventsHandler.ExitVillage -= PlayRoadMusic;
     }
 
     private void PlayForestMusic()
@@ -50,6 +63,11 @@ public class Music : MonoBehaviour
     private void PlayGrannysHomeMusic()
     {
         PlayMusic(_musicSO.GrannysHomeMusic);
+    }
+
+    private void PlayVilageMusic()
+    {
+        PlayMusic(_musicSO.VillageMusic);
     }
 
     private void PlayMusic(AudioClip audioClip)

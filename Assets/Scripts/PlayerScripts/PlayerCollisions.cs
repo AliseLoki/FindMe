@@ -6,18 +6,7 @@ public class PlayerCollisions : MonoBehaviour
     {
         if (collision.collider.TryGetComponent(out InteractableObject interactableObject))
         {
-            //interactableObject.Interact();
             interactableObject.EnableInteract();
-        }
-
-        if (collision.collider.TryGetComponent(out ForestTrigger forestTrigger))
-        {
-            Player.Instance.OnEnteredTheForest();
-        }
-
-        if (collision.collider.TryGetComponent(out SafeZoneTrigger safeZoneTrigger))
-        {
-            Player.Instance.OnEnteredSafeZone();
         }
     }
 
@@ -25,13 +14,7 @@ public class PlayerCollisions : MonoBehaviour
     {
         if (collision.collider.TryGetComponent(out InteractableObject interactableObject))
         {
-            //interactableObject.Interact();
             interactableObject.DisableInteract();
-        }
-
-        if (collision.collider.TryGetComponent(out SafeZoneTrigger safeZoneTrigger))
-        {
-            Player.Instance.OnExitSafeZone();
         }
     }
 
@@ -40,7 +23,7 @@ public class PlayerCollisions : MonoBehaviour
         if (other.TryGetComponent(out GoldCoins goldCoins))
         {
             goldCoins.PickUpCoins();
-            Player.Instance.OnGoldAmountChanged();
+            Player.Instance.PlayerEventsHandler.OnGoldAmountChanged();
         }
 
         if (other.TryGetComponent(out Wood wood))
@@ -54,6 +37,44 @@ public class PlayerCollisions : MonoBehaviour
             {
                 print("руки заняты");
             }
+        }
+
+        if (other.TryGetComponent(out ForestTrigger forestTrigger))
+        {
+            Player.Instance.PlayerEventsHandler.OnEnteredTheForest();
+        }
+
+        if(other.TryGetComponent(out GrannysHomeTrigger grannysHomeTrigger))
+        {
+            Player.Instance.PlayerEventsHandler.OnEnteredGrannysHome();
+        }
+
+        if(other.TryGetComponent(out VillageZoneTrigger villageZoneTrigger))
+        {
+            Player.Instance.PlayerEventsHandler.OnEnteredVillage();
+        }
+
+        if (other.TryGetComponent(out SafeZoneTrigger safeZoneTrigger))
+        {
+            Player.Instance.PlayerEventsHandler.OnEnteredSafeZone();
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.TryGetComponent(out GrannysHomeTrigger grannysHomeTrigger))
+        {
+            Player.Instance.PlayerEventsHandler.OnExitGrannysHome();
+        }
+
+        if (other.TryGetComponent(out VillageZoneTrigger villageZoneTrigger))
+        {
+            Player.Instance.PlayerEventsHandler.OnExitVillage();
+        }
+
+        if (other.TryGetComponent(out SafeZoneTrigger safeZoneTrigger))
+        {
+            Player.Instance.PlayerEventsHandler.OnExitSafeZone();
         }
     }
 }

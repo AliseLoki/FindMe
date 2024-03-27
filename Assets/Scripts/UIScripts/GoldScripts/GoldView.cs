@@ -7,12 +7,12 @@ public class GoldView : MonoBehaviour
 
     private void OnEnable()
     {
-       Player.Instance.GoldAmountChanged += OnGoldAmountChanged;
+       Player.Instance.PlayerEventsHandler.GoldAmountChanged += OnGoldAmountChanged;
     }
 
     private void OnDisable()
     {
-        Player.Instance.GoldAmountChanged -= OnGoldAmountChanged;
+        Player.Instance.PlayerEventsHandler.GoldAmountChanged -= OnGoldAmountChanged;
     }
 
     private void OnGoldAmountChanged(int gold)
