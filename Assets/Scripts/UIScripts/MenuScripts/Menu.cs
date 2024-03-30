@@ -11,6 +11,16 @@ public class Menu : MonoBehaviour
         SceneManager.LoadScene(1);
     }
     
+    public void OnSaveButtonPressed()
+    {
+
+    }
+
+    public void OnLoadButtonPressed()
+    {
+
+    }
+
     public void OnSettingsButtonPressed()
     {
         _mainMenu.gameObject.SetActive(false);

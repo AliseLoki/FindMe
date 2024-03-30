@@ -56,8 +56,12 @@ public class GameManager : MonoBehaviour
 
             case GameState.GamePlaying:
 
-              //  _gameState = GameState.GameOver;
-              GameStateChanged?.Invoke();
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    _gameState = GameState.GameOver;
+                    GameStateChanged?.Invoke();
+                }
+
                 break;
 
             case GameState.GameOver:
@@ -80,5 +84,10 @@ public class GameManager : MonoBehaviour
     public float GetCountdownToStartTimer()
     {
         return _countdownToStartTimer;
+    }
+
+    public bool IsGameOver()
+    {
+        return _gameState == GameState.GameOver;
     }
 }
