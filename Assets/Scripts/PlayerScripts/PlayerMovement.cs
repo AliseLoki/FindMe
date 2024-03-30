@@ -15,7 +15,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        Rotate(Move());
+        if (GameManager.Instance.IsGamePlaying())
+        {
+            Rotate(Move());
+        }
     }
 
     private void Rotate(Vector3 movement)
