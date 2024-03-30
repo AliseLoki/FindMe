@@ -40,19 +40,21 @@ public class RussianOven : Table
             Player.Instance.GiveFood();
             _cookCoroutine = StartCoroutine(CookingCountDownRoutine());
             _soundEffects.PlayCookingFoodSoundEffect(transform);
+            TipsViewPanel.Instance.ShowReadynessInstruction();
         }
         else if (!_hasFire && !Player.Instance.HasWood)
         {
-            print("Сначала нужно разжечь огонь");
+           TipsViewPanel.Instance.ShowNoWoodsTip();
         }
         else if(!_hasFire && Player.Instance.HasWood && !Player.Instance.HasSomethingInHands)
         {
             _hasFire = true;
             _placeForOven.LightFire(true);
+            TipsViewPanel.Instance.ShowCanUseOvenTip();
         }
         else if(!_hasFire && Player.Instance.HasWood && Player.Instance.HasSomethingInHands)
         {
-            print("Невозможно зажечь, руки заняты");
+            TipsViewPanel.Instance.ShowCantLightFire();
         }     
     }
 
@@ -66,6 +68,7 @@ public class RussianOven : Table
         _smokeEffect.gameObject.SetActive(false);    
         ResetFoodAndFoodSO();
         _soundEffects.PlayGettingFoodSoundEffect(transform);
+        TipsViewPanel.Instance.ShowTimeToPack();
     }
 
     private IEnumerator CookingCountDownRoutine()

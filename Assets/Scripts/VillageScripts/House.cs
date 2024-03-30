@@ -32,7 +32,6 @@ public class House : InteractableObject
 
         if (cookingRecipeSO.Readyness == _readyness)
         {
-            PayMoney();
             SpawnObject(_goldCoins);
         }
         else
@@ -44,12 +43,6 @@ public class House : InteractableObject
     private void SpawnObject(Object spawnedObject)
     {
         Instantiate(spawnedObject, _placeForSpawnedObject);
-    }
-
-    private void PayMoney()
-    {
-        // спаунится мешочек золота, при столкновении коллайдера игрока с мешочком золота вызывается событие
-        // событие поступления денег обрабатывается в 2х скриптах валлет и валлет вью
     }
 
     private IEnumerator PayCountDownRoutine()

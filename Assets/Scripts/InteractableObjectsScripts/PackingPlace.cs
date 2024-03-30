@@ -9,8 +9,15 @@ public class PackingPlace : GarbageContainer
 
     private int _packageCapacity = 2;
 
+    public void ShowPackage(bool isShowed)
+    {
+        _package.gameObject.SetActive(isShowed);
+    }
+
     protected override void UseObject()
     {
+        CheckPackageCapacity();
+
         if (_packedDishes.Count < _packageCapacity)
         {
             foreach (var item in _canBePackedRecipeSO)
@@ -30,8 +37,6 @@ public class PackingPlace : GarbageContainer
         }
         else
         {
-            print("В рюкзаке больше нет места, пора отправляться в дорогу");
-
             if (Input.GetMouseButtonDown(0))
             {
                 ChekIfHandsAreFree();
@@ -43,13 +48,21 @@ public class PackingPlace : GarbageContainer
     {
         if (Player.Instance.HasSomethingInHands || Player.Instance.HasBackPack)
         {
-            print("сначала освободите руки");
+            TipsViewPanel.Instance.ShowHandsAreFullTip();
         }
         else
         {
-            _package.gameObject.SetActive(false);
+            ShowPackage(false);
             Player.Instance.SetDishesForDeliver(_packedDishes);
             Player.Instance.ShowOrHideBackPack(true);
+        }
+    }
+
+    private void CheckPackageCapacity()
+    {
+        if(_packedDishes.Count>=_packageCapacity)
+        {
+            TipsViewPanel.Instance.ShowNoPlaceTip();
         }
     }
 }

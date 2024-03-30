@@ -38,6 +38,8 @@ public class CuttingTable : Table
 
     protected override void PutFood()
     {
+        bool hasMatch = false;
+
         foreach (var recipe in _allCuttingRecipes)
         {
             if (recipe.Input == Player.Instance.FoodInHandsSO)
@@ -48,11 +50,13 @@ public class CuttingTable : Table
                 Player.Instance.GiveFood();
                 _soundEffects.PlayPuttingFoodSoundEffect(transform);
                 TipsViewPanel.Instance.ShowCutItTip();
+                hasMatch = true;
             }
-            else
-            {
-                TipsViewPanel.Instance.ShowCantCutTip();
-            }
+        }
+
+        if (!hasMatch)
+        {
+            TipsViewPanel.Instance.ShowCantCutItTip();
         }
     }
 }

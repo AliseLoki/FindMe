@@ -32,10 +32,11 @@ public class PlayerCollisions : MonoBehaviour
             {
                 Player.Instance.SetHasWood(true);
                 Destroy(wood.gameObject);
+                TipsViewPanel.Instance.ShowPutWoodInOvenTip();
             }
             else
             {
-                print("руки заняты");
+                TipsViewPanel.Instance.ShowHandsAreFullTip();
             }
         }
 

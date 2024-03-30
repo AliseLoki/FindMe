@@ -37,6 +37,8 @@ public class CookingTable : Table
 
     protected override void PutFood()
     {
+        TipsViewPanel.Instance.ShowRecipesTip();
+
         foreach (ChangingFoodRecipeSO cuttingRecipeSO in _ingredientsForCooking)
         {
             if (cuttingRecipeSO.Output == Player.Instance.FoodInHandsSO)
@@ -64,6 +66,7 @@ public class CookingTable : Table
         Food pot = Instantiate(_unCookedPot, _placeForFood.position, Quaternion.identity);
         _food = pot;
         FoodOnTheTableSO = pot.ConnectedFoodSO;
+        TipsViewPanel.Instance.ShowBringToOvenTip();
     }
 
     private void ShowFoodOnTheTable()

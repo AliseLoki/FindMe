@@ -35,6 +35,11 @@ public class RecipeTemplateView : MonoBehaviour
         if (cookingRecipeSO.RecipeName == _recipeName.text)
         {
             _canCookButton.gameObject.SetActive(active);
+           
+            if(_canCookButton.isActiveAndEnabled)
+            {
+                TipsViewPanel.Instance.ShowCanCookTip();
+            }
         }
     }
 

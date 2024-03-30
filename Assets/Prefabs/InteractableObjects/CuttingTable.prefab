@@ -50,7 +50,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2560205650919821047}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
@@ -145,7 +145,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7719006678713992056}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
@@ -255,6 +255,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0cb4c130d94684c4789024397002db2a, type: 2}
   - {fileID: 11400000, guid: cf31fafab345d1a44ab7c907c0190ce5, type: 2}
   - {fileID: 11400000, guid: 4b6294a5ee22ee643840be0409cd49f1, type: 2}
+  _soundEffects: {fileID: 0}
 --- !u!1001 &451216946098662943
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -263,6 +264,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7498763681835279244}
     m_Modifications:
+    - target: {fileID: 7643384112656535654, guid: edb1d465211159a41a3d1cd70cd00f25, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8147641928921280947, guid: edb1d465211159a41a3d1cd70cd00f25, type: 3}
       propertyPath: m_Name
       value: Chopping Board (1) Variant
@@ -387,6 +392,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7510895308250712252, guid: ff2f98f2de5ef804db76770ff8315db2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8680445983952303059, guid: ff2f98f2de5ef804db76770ff8315db2, type: 3}
+      propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

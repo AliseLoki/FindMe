@@ -18,8 +18,6 @@ public class PlayerEvents : MonoBehaviour
 
     public event Action<int> GoldAmountChanged;
 
-    //public event Action<string> TipsShowed;
-
     public void OnEnteredGrannysHome()
     {
         EnteredGrannysHome?.Invoke();
