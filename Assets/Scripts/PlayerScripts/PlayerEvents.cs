@@ -20,12 +20,14 @@ public class PlayerEvents : MonoBehaviour
 
     public void OnEnteredGrannysHome()
     {
-        EnteredGrannysHome?.Invoke();
+        EnteredGrannysHome?.Invoke();      
+        TipsViewPanel.Instance.ShowYouAreSafeTip();
     }
 
     public void OnExitGrannysHome()
     {
         ExitGrannysHome?.Invoke();
+        TipsViewPanel.Instance.ShowYouAreNotSafeTip();
     }
 
     public void OnEnteredTheForest()
@@ -37,12 +39,12 @@ public class PlayerEvents : MonoBehaviour
     public void OnEnteredSafeZone()
     {
         EnteredSafeZone?.Invoke();
-        print("You are safe");
     }
 
     public void OnExitSafeZone()
     {
         ExitSafeZone?.Invoke();
+        TipsViewPanel.Instance.ShowYouAreNotSafeTip();
     }
 
     public void OnEnteredVillage()
@@ -53,6 +55,7 @@ public class PlayerEvents : MonoBehaviour
     public void OnExitVillage()
     {
         ExitVillage?.Invoke();
+        TipsViewPanel.Instance.ShowYouAreNotSafeTip();
     }
 
     public void OnGoldAmountChanged()
@@ -61,9 +64,4 @@ public class PlayerEvents : MonoBehaviour
         GoldAmountChanged?.Invoke(_gold);
         print("денюжки");
     }
-
-    //public void OnTipsShowed(string tipsText)
-    //{
-    //    TipsShowed?.Invoke(tipsText);
-    //}
 }

@@ -11,6 +11,7 @@ public class Music : MonoBehaviour
     private void Awake()
     {
         _audioSource = GetComponent<AudioSource>();
+        PlayForestMusic();
     }
 
     private void OnEnable()

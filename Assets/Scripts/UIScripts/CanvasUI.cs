@@ -1,26 +1,71 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class CanvasUI : MonoBehaviour
 {
     [SerializeField] private Image _fadeScreen;
     [SerializeField] private TipsViewPanel _tipsViewPanel;
+    [SerializeField] private FirstStartPanelView _firstStartPanel;
+    [SerializeField] private EducationUI _educationUI;
 
     private bool _shouldFadeToBlack;
     private bool _shouldFadeFromBlack;
 
     private float _fadeSpeed = 0.5f;
 
-    public void ShowTipsPanelView()
+    public FirstStartPanelView FirstStartPanel;
+
+    private void Awake()
     {
-        if(_tipsViewPanel.gameObject.activeSelf)
+        _tipsViewPanel.gameObject.SetActive(false);
+
+        if (GameManager.Instance.IsFirstStart)
         {
-            _tipsViewPanel.gameObject.SetActive(false);
+            ShowFirstStartPanelView();
+        }
+    }
+
+    private void OnEnable()
+    {
+        GameManager.Instance.GameStateChanged += OnGameStateChanged;
+        GameManager.Instance.EducationStarted += OnEducationStarted;
+        Player.Instance.PlayerEventsHandler.EnteredGrannysHome += PlayerEnteredGrannysHome;
+    }
+
+    private void OnEducationStarted()
+    {
+        _educationUI.gameObject.SetActive(true);
+        HideTipsPanel();
+    }
+
+    private void OnDisable()
+    {
+        GameManager.Instance.GameStateChanged -= OnGameStateChanged;
+        GameManager.Instance.EducationStarted -= OnEducationStarted;
+        Player.Instance.PlayerEventsHandler.EnteredGrannysHome -= PlayerEnteredGrannysHome;
+    }
+
+    public void ShowFirstStartPanelView()
+    {
+        _firstStartPanel.Show();
+    }
+
+    public void OnExitToMenuButtonPressed()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    public void ShowOrHideTipsPanelView()
+    {
+        if (_tipsViewPanel.gameObject.activeSelf)
+        {
+            HideTipsPanel();
         }
         else
         {
-            _tipsViewPanel.gameObject.SetActive(true);
+            ShowTipsPanel();
         }
     }
 
@@ -46,6 +91,7 @@ public class CanvasUI : MonoBehaviour
             }
         }
     }
+
     private IEnumerator LightRoutine()
     {
         while (_shouldFadeFromBlack)
@@ -60,6 +106,29 @@ public class CanvasUI : MonoBehaviour
             }
 
             yield return null;
+        }
+    }
+
+    private void OnGameStateChanged()
+    {
+        _firstStartPanel.Hide();
+    }
+
+    private void ShowTipsPanel()
+    {
+        _tipsViewPanel.gameObject.SetActive(true);
+    }
+
+    private void HideTipsPanel()
+    {
+        _tipsViewPanel.gameObject.SetActive(false);
+    }
+
+    private void PlayerEnteredGrannysHome()
+    {
+        if (GameManager.Instance.IsEducationPlaying())
+        {
+            ShowTipsPanel();
         }
     }
 }

@@ -13,6 +13,22 @@ public class TipsViewPanel : MonoBehaviour
         Instance = this;
     }
 
+    private void OnEnable()
+    {
+        ShowYouAreSafeTip();
+    }
+
+    public void ShowYouAreSafeTip()
+    {
+        ShowTips(_tipsSO.YouAreSafeTip);
+    }
+
+
+    public void ShowYouAreNotSafeTip()
+    {
+        ShowTips(_tipsSO.YouAreNotSafeTip);
+    }
+
     public void ShowThisIsPackingPlaceTip()
     {
         ShowTips(_tipsSO.ThisIsPackingPlace);

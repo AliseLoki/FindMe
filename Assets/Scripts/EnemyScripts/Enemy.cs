@@ -23,7 +23,7 @@ public class Enemy : MonoBehaviour
 
     private bool _isHowling;
 
-   // private AudioSource _audioSource;
+    // private AudioSource _audioSource;
     private NavMeshAgent _agent;
     private Animator _animator;
     private List<Transform> _targetPoints = new List<Transform>();
@@ -31,11 +31,11 @@ public class Enemy : MonoBehaviour
     private Coroutine _patrolCoroutine;
     private Coroutine _chaseCoroutine;
 
-    public bool HasStepsSound { get;private set; }
-    
+    public bool HasStepsSound { get; private set; }
+
     private void Awake()
     {
-       // _audioSource = GetComponent<AudioSource>();
+        // _audioSource = GetComponent<AudioSource>();
         _agent = GetComponent<NavMeshAgent>();
         _animator = GetComponent<Animator>();
         InitializeTargetPoints();
@@ -45,8 +45,8 @@ public class Enemy : MonoBehaviour
     {
         Player.Instance.PlayerEventsHandler.EnteredTheForest += OnPlayerEnteredTheForest;
         Player.Instance.PlayerEventsHandler.EnteredSafeZone += OnPlayerEnteredSafeZone;
-        Player.Instance.PlayerEventsHandler.EnteredGrannysHome += OnPlayerEnteredSafeZone;
-        Player.Instance.PlayerEventsHandler.EnteredVillage += OnPlayerEnteredSafeZone;
+        Player.Instance.PlayerEventsHandler.EnteredGrannysHome += OnEnteredGrannysHome;
+        Player.Instance.PlayerEventsHandler.EnteredVillage += OnEnteredVillage;
 
         _patrolCoroutine = StartCoroutine(Patrolling());
     }
@@ -55,8 +55,8 @@ public class Enemy : MonoBehaviour
     {
         Player.Instance.PlayerEventsHandler.EnteredTheForest -= OnPlayerEnteredTheForest;
         Player.Instance.PlayerEventsHandler.EnteredSafeZone -= OnPlayerEnteredSafeZone;
-        Player.Instance.PlayerEventsHandler.EnteredGrannysHome += OnPlayerEnteredSafeZone;
-        Player.Instance.PlayerEventsHandler.EnteredVillage += OnPlayerEnteredSafeZone;
+        Player.Instance.PlayerEventsHandler.EnteredGrannysHome -= OnPlayerEnteredSafeZone;
+        Player.Instance.PlayerEventsHandler.EnteredVillage -= OnEnteredVillage;
     }
 
     private void InitializeTargetPoints()
@@ -69,7 +69,6 @@ public class Enemy : MonoBehaviour
 
     private void OnPlayerEnteredSafeZone()
     {
-
         if (_chaseCoroutine != null)
         {
             _agent.isStopped = true;
@@ -90,25 +89,25 @@ public class Enemy : MonoBehaviour
         _chaseCoroutine = StartCoroutine(Chasing());
     }
 
+    private void OnEnteredGrannysHome()
+    {
+        OnPlayerEnteredSafeZone();
+    }
+
+    private void OnEnteredVillage()
+    {
+        OnPlayerEnteredSafeZone();
+    }
+
     private void MoveToNextPoint()
     {
-        if (_targetPoints.Count == 0)
-            return;
-        //_agent.stoppingDistance = 0;
-        //_agent.isStopped = false;
-        //_agent.speed = _patrolSpeed;
-        //_animator.SetBool(IsWalking, true);
-         SetNavMeshAgentParametres(0, _patrolSpeed, IsWalking);
+        SetNavMeshAgentParametres(0, _patrolSpeed, IsWalking);
         _agent.destination = _targetPoints[_pointIndex].position;
         _pointIndex = (_pointIndex + 1) % _targetPoints.Count;
     }
 
     private void ChasePlayer()
     {
-        //_agent.isStopped = false;
-        //_agent.stoppingDistance = 10;
-        //_agent.speed = _runSpeed;
-        //_animator.SetBool(IsRunning, true);
         SetNavMeshAgentParametres(_distanceToPlayer, _runSpeed, IsRunning);
         _agent.destination = Player.Instance.transform.position;
     }
@@ -160,14 +159,14 @@ public class Enemy : MonoBehaviour
         {
             _animator.SetBool(IsRunning, false);
             _enemySoundEffects.Roar();
-           // _audioSource.Play();
-           
+            // _audioSource.Play();
+
         }
 
         float pause = 2.4f;
         yield return new WaitForSeconds(pause);
         _isHowling = false;
-       // _audioSource.Stop();
+        // _audioSource.Stop();
         HasStepsSound = true;
     }
 }

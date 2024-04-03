@@ -438,6 +438,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _points: {fileID: 0}
+  _enemySoundEffects: {fileID: 665137844800463637}
 --- !u!82 &8469593081978790628
 AudioSource:
   m_ObjectHideFlags: 0
@@ -448,7 +449,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: f0434bb09b6c86f48945c21555472d4d, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -456,7 +457,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 0
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -546,6 +547,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b751c33fbca216246a381c7920f2c1c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _stepsSound: {fileID: 8300000, guid: 2dfb5bdbfa70cb4449cb0336cb7fa8bb, type: 3}
+  _wolfRoar: {fileID: 8300000, guid: f0434bb09b6c86f48945c21555472d4d, type: 3}
 --- !u!1 &1360366061974469370
 GameObject:
   m_ObjectHideFlags: 0
