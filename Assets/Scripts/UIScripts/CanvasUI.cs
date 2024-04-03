@@ -15,7 +15,7 @@ public class CanvasUI : MonoBehaviour
 
     private float _fadeSpeed = 0.5f;
 
-    public FirstStartPanelView FirstStartPanel;
+    public FirstStartPanelView FirstStartPanel => _firstStartPanel;
 
     private void Awake()
     {

@@ -24,6 +24,7 @@ public class PlayerCollisions : MonoBehaviour
         {
             goldCoins.PickUpCoins();
             Player.Instance.PlayerEventsHandler.OnGoldAmountChanged();
+            // создать ивент , на него подписан евент хэндлер , на евент хэндлер подписаны другие компоненты
         }
 
         if (other.TryGetComponent(out Wood wood))

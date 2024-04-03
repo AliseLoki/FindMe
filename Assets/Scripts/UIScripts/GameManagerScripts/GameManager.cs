@@ -18,14 +18,17 @@ public class GameManager : MonoBehaviour
     [SerializeField] private CanvasUI _canvasUI;
 
     private GameState _gameState;
+
     private float _waitingToStartTimer = 1f;
     private float _countdownToStartTimer = 5f;
     private float _showEducationTipsTimer = 20f;
+
     private bool _isFirstStart = true;
     private bool _isStarted;
 
     public event Action GameStateChanged;
     public event Action EducationStarted;
+    public event Action EducationCancelled;
 
     public bool IsFirstStart => _isFirstStart;
 
@@ -95,6 +98,7 @@ public class GameManager : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.Q))
                 {
                     _gameState = GameState.GamePlaying;
+                    EducationCancelled?.Invoke();
                 }
 
                 break;

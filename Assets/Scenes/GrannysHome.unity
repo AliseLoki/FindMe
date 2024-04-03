@@ -1306,7 +1306,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1246461132228645894, guid: 82c5923e16c1e7640870de88cba0c49c, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4025357732679470472, guid: 82c5923e16c1e7640870de88cba0c49c, type: 3}
       propertyPath: _points
@@ -4582,6 +4582,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf5a2a4453433b04e83fc6674d5bb311, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _startEducationButton: {fileID: 0}
+  _skipEducationButton: {fileID: 0}
+  _educationText: {fileID: 0}
 --- !u!1 &1365212281
 GameObject:
   m_ObjectHideFlags: 0
@@ -8463,7 +8466,7 @@ GameObject:
   - component: {fileID: 2105357446}
   - component: {fileID: 2105357445}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: EducationText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26323,7 +26326,6 @@ MonoBehaviour:
   _tipsViewPanel: {fileID: 489419950}
   _firstStartPanel: {fileID: 1045849756}
   _educationUI: {fileID: 1346495107}
-  FirstStartPanel: {fileID: 1045849756}
 --- !u!33 &7433488016442812906
 MeshFilter:
   m_ObjectHideFlags: 0
