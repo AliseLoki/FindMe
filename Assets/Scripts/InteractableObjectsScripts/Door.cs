@@ -16,6 +16,6 @@ public class Door : InteractableObject
     {
         _canvasUI.FadeToBlack();
         _cameras.SwitchCameras();
-        Player.Instance.transform.position = _newPosition.position;
+        Player1.transform.position = _newPosition.position;
     }
 }

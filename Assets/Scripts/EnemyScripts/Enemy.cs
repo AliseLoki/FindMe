@@ -14,6 +14,7 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] private Transform _points;
     [SerializeField] private EnemySoundEffects _enemySoundEffects;
+    [SerializeField] private Player _player;
 
     private int _pointIndex;
     private float _minDistance = 0.2f;
@@ -43,20 +44,20 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
-        Player.Instance.PlayerEventsHandler.EnteredTheForest += OnPlayerEnteredTheForest;
-        Player.Instance.PlayerEventsHandler.EnteredSafeZone += OnPlayerEnteredSafeZone;
-        Player.Instance.PlayerEventsHandler.EnteredGrannysHome += OnEnteredGrannysHome;
-        Player.Instance.PlayerEventsHandler.EnteredVillage += OnEnteredVillage;
+       _player.PlayerEventsHandler.EnteredTheForest += OnPlayerEnteredTheForest;
+       _player.PlayerEventsHandler.EnteredSafeZone += OnPlayerEnteredSafeZone;
+       _player.PlayerEventsHandler.EnteredGrannysHome += OnEnteredGrannysHome;
+       _player.PlayerEventsHandler.EnteredVillage += OnEnteredVillage;
 
         _patrolCoroutine = StartCoroutine(Patrolling());
     }
 
     private void OnDisable()
     {
-        Player.Instance.PlayerEventsHandler.EnteredTheForest -= OnPlayerEnteredTheForest;
-        Player.Instance.PlayerEventsHandler.EnteredSafeZone -= OnPlayerEnteredSafeZone;
-        Player.Instance.PlayerEventsHandler.EnteredGrannysHome -= OnPlayerEnteredSafeZone;
-        Player.Instance.PlayerEventsHandler.EnteredVillage -= OnEnteredVillage;
+        _player.PlayerEventsHandler.EnteredTheForest -= OnPlayerEnteredTheForest;
+        _player.PlayerEventsHandler.EnteredSafeZone -= OnPlayerEnteredSafeZone;
+        _player.PlayerEventsHandler.EnteredGrannysHome -= OnEnteredGrannysHome;
+        _player.PlayerEventsHandler.EnteredVillage -= OnEnteredVillage;
     }
 
     private void InitializeTargetPoints()
@@ -109,7 +110,8 @@ public class Enemy : MonoBehaviour
     private void ChasePlayer()
     {
         SetNavMeshAgentParametres(_distanceToPlayer, _runSpeed, IsRunning);
-        _agent.destination = Player.Instance.transform.position;
+        _agent.destination = _player.transform.position;
+        HasStepsSound = true;
     }
 
     private void SetNavMeshAgentParametres(float stoppingDistance, float speed, string currentAnimation)

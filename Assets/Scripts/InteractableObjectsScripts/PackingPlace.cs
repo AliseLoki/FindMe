@@ -22,11 +22,11 @@ public class PackingPlace : GarbageContainer
         {
             foreach (var item in _canBePackedRecipeSO)
             {
-                if (Player.Instance.FoodInHandsSO == item)
+                if (Player1.FoodInHandsSO == item)
                 {
-                    _packedDishes.Add(Player.Instance.CookedRecipeSODish);
-                    Player.Instance.ResetCookingRecipeSO();
-                    Player.Instance.ThrowFood();
+                    _packedDishes.Add(Player1.CookedRecipeSODish);
+                    Player1.ResetCookingRecipeSO();
+                    Player1.ThrowFood();
 
                     foreach (var dish in _packedDishes)
                     {
@@ -46,15 +46,15 @@ public class PackingPlace : GarbageContainer
 
     private void ChekIfHandsAreFree()
     {
-        if (Player.Instance.HasSomethingInHands || Player.Instance.HasBackPack)
+        if (Player1.HasSomethingInHands || Player1.HasBackPack)
         {
             TipsViewPanel.Instance.ShowHandsAreFullTip();
         }
         else
         {
             ShowPackage(false);
-            Player.Instance.SetDishesForDeliver(_packedDishes);
-            Player.Instance.ShowOrHideBackPack(true);
+            Player1.SetDishesForDeliver(_packedDishes);
+            Player1.ShowOrHideBackPack(true);
         }
     }
 

@@ -1,10 +1,11 @@
 using System;
-using System.Net;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
+
+    [SerializeField] private Player _player;
 
     public enum GameState
     {
@@ -15,6 +16,7 @@ public class GameManager : MonoBehaviour
         GameOver
     }
 
+    [SerializeField] private bool _isFirstStart = true;
     [SerializeField] private CanvasUI _canvasUI;
 
     private GameState _gameState;
@@ -23,7 +25,6 @@ public class GameManager : MonoBehaviour
     private float _countdownToStartTimer = 5f;
     private float _showEducationTipsTimer = 20f;
 
-    private bool _isFirstStart = true;
     private bool _isStarted;
 
     public event Action GameStateChanged;
@@ -90,7 +91,7 @@ public class GameManager : MonoBehaviour
 
                 _showEducationTipsTimer -= Time.deltaTime;
 
-                if(_showEducationTipsTimer < 0f)
+                if (_showEducationTipsTimer < 0f)
                 {
                     EducationStarted?.Invoke();
                 }
@@ -120,6 +121,11 @@ public class GameManager : MonoBehaviour
 
         print(_gameState);
 
+    }
+
+    public Player InitPlayer()
+    {
+        return _player;
     }
 
     public bool IsGamePlaying()

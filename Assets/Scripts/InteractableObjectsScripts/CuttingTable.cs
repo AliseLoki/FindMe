@@ -26,10 +26,10 @@ public class CuttingTable : Table
             }
             else
             {
-                Player.Instance.SetFood(_food, FoodOnTheTableSO);
-                Player.Instance.SetHasSomethingInHands(true);
+                Player1.SetFood(_food, FoodOnTheTableSO);
+                Player1.SetHasSomethingInHands(true);
                 ResetFoodAndFoodSO();
-                Player.Instance.FoodInHands.SetInParent(Player.Instance.HandlePoint);
+                Player1.FoodInHands.SetInParent(Player1.HandlePoint);
                 IsChangedFood = false;
                 _soundEffects.PlayGettingFoodSoundEffect(transform);
             }
@@ -42,12 +42,12 @@ public class CuttingTable : Table
 
         foreach (var recipe in _allCuttingRecipes)
         {
-            if (recipe.Input == Player.Instance.FoodInHandsSO)
+            if (recipe.Input == Player1.FoodInHandsSO)
             {
-                FoodOnTheTableSO = Player.Instance.FoodInHandsSO;
+                FoodOnTheTableSO = Player1.FoodInHandsSO;
                 _food = FoodOnTheTableSO.Prefab;
-                Player.Instance.FoodInHands.SetInParent(_placeForFood);
-                Player.Instance.GiveFood();
+                Player1.FoodInHands.SetInParent(_placeForFood);
+                Player1.GiveFood();
                 _soundEffects.PlayPuttingFoodSoundEffect(transform);
                 TipsViewPanel.Instance.ShowCutItTip();
                 hasMatch = true;

@@ -7,17 +7,17 @@ public class GarbageContainer : InteractableObject
 
     protected override void UseObject()
     {
-        if (Player.Instance.HasSomethingInHands)
+        if (Player1.HasSomethingInHands)
         {
-            Player.Instance.ThrowFood();
+            Player1.ThrowFood();
             _soundEffects.PlayThwrowingFoodSoundEffect(transform);
 
             TipsViewPanel.Instance.ShowThrowFoodTip();
         }
-        else if (Player.Instance.HasBackPack)
+        else if (Player1.HasBackPack)
         {
             _packingPlace.ShowPackage(true);
-            Player.Instance.ShowOrHideBackPack(false);
+            Player1.ShowOrHideBackPack(false);
             TipsViewPanel.Instance.ShowThrowFoodTip();
         }
         else

@@ -10,15 +10,15 @@ public abstract class Table : InteractableObject
 
     protected override void UseObject()
     {
-        if (FoodOnTheTableSO == null && Player.Instance.HasSomethingInHands)
+        if (FoodOnTheTableSO == null && Player1.HasSomethingInHands)
         {
             PutFood();
         }
-        else if (FoodOnTheTableSO != null && !Player.Instance.HasSomethingInHands)
+        else if (FoodOnTheTableSO != null && !Player1.HasSomethingInHands)
         {
             DoSomething();
         }
-        else if (FoodOnTheTableSO != null && Player.Instance.HasSomethingInHands)
+        else if (FoodOnTheTableSO != null && Player1.HasSomethingInHands)
         {
             TipsViewPanel.Instance.ShowHandsAreFullTip();
         }

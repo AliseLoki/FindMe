@@ -20,7 +20,7 @@ public class CookingTable : Table
             GivePotToPlayer();
             ResetFoodAndFoodSO();
             CheckIfCanCook();
-            Player.Instance.SetCookingRecipe(_uncookedFoodInPotRecipe);
+            Player1.SetCookingRecipe(_uncookedFoodInPotRecipe);
         }
     }
 
@@ -41,11 +41,11 @@ public class CookingTable : Table
 
         foreach (ChangingFoodRecipeSO cuttingRecipeSO in _ingredientsForCooking)
         {
-            if (cuttingRecipeSO.Output == Player.Instance.FoodInHandsSO)
+            if (cuttingRecipeSO.Output == Player1.FoodInHandsSO)
             {
                 ShowFoodOnTheTable();
-                CheckIfHasSameFood(Player.Instance.FoodInHandsSO);
-                Player.Instance.ThrowFood();
+                CheckIfHasSameFood(Player1.FoodInHandsSO);
+                Player1.ThrowFood();
                 _soundEffects.PlayPuttingFoodSoundEffect(transform);
             }
         }
@@ -55,9 +55,9 @@ public class CookingTable : Table
 
     private void GivePotToPlayer()
     {
-        Player.Instance.SetFood(_food, FoodOnTheTableSO);
-        Player.Instance.SetHasSomethingInHands(true);
-        Player.Instance.FoodInHands.SetInParent(Player.Instance.HandlePoint);
+        Player1.SetFood(_food, FoodOnTheTableSO);
+        Player1.SetHasSomethingInHands(true);
+        Player1.FoodInHands.SetInParent(Player1.HandlePoint);
         _soundEffects.PlayGettingFoodSoundEffect(transform);
     }
 
@@ -73,7 +73,7 @@ public class CookingTable : Table
     {
         foreach (Food food in _tableFoodPrefabs)
         {
-            if (food.ConnectedFoodSO == Player.Instance.FoodInHandsSO)
+            if (food.ConnectedFoodSO == Player1.FoodInHandsSO)
             {
                 food.gameObject.SetActive(true);
             }

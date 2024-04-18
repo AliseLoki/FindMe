@@ -32,27 +32,27 @@ public class RussianOven : Table
 
     protected override void PutFood()
     {
-        if (_hasFire && _uncookedFoodInPot == Player.Instance.FoodInHandsSO)
+        if (_hasFire && _uncookedFoodInPot == Player1.FoodInHandsSO)
         {
-            FoodOnTheTableSO = Player.Instance.FoodInHandsSO;
-            _food = Player.Instance.FoodInHands;
-            Player.Instance.FoodInHands.SetInParent(_placeForFood);
-            Player.Instance.GiveFood();
+            FoodOnTheTableSO = Player1.FoodInHandsSO;
+            _food = Player1.FoodInHands;
+            Player1.FoodInHands.SetInParent(_placeForFood);
+            Player1.GiveFood();
             _cookCoroutine = StartCoroutine(CookingCountDownRoutine());
             _soundEffects.PlayCookingFoodSoundEffect(transform);
             TipsViewPanel.Instance.ShowReadynessInstruction();
         }
-        else if (!_hasFire && !Player.Instance.HasWood)
+        else if (!_hasFire && !Player1.HasWood)
         {
            TipsViewPanel.Instance.ShowNoWoodsTip();
         }
-        else if(!_hasFire && Player.Instance.HasWood && !Player.Instance.HasSomethingInHands)
+        else if(!_hasFire && Player1.HasWood && !Player1.HasSomethingInHands)
         {
             _hasFire = true;
             _placeForOven.LightFire(true);
             TipsViewPanel.Instance.ShowCanUseOvenTip();
         }
-        else if(!_hasFire && Player.Instance.HasWood && Player.Instance.HasSomethingInHands)
+        else if(!_hasFire && Player1.HasWood && Player1.HasSomethingInHands)
         {
             TipsViewPanel.Instance.ShowCantLightFire();
         }     
@@ -60,10 +60,10 @@ public class RussianOven : Table
 
     private void TakePot()
     {
-        _food.SetInParent(Player.Instance.HandlePoint);
-        Player.Instance.SetFood(_food, FoodOnTheTableSO);
-        Player.Instance.SetHasSomethingInHands(true);
-        Player.Instance.SetCookingRecipeStateOfRedyness(_stateOfReadyness);
+        _food.SetInParent(Player1.HandlePoint);
+        Player1.SetFood(_food, FoodOnTheTableSO);
+        Player1.SetHasSomethingInHands(true);
+        Player1.SetCookingRecipeStateOfRedyness(_stateOfReadyness);
         print(_stateOfReadyness);
         _smokeEffect.gameObject.SetActive(false);    
         ResetFoodAndFoodSO();

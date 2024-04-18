@@ -3,7 +3,7 @@ using UnityEngine;
 public class SoundEffects : MonoBehaviour
 {
     [SerializeField] private SoundEffectSO _soundEffectsSO;
-
+    
     public void PlayPuttingFoodSoundEffect(Transform transform)
     {
         PlaySoundEffect(_soundEffectsSO.PuttingFood, transform.position);

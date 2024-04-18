@@ -5,8 +5,6 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerEvents))]
 public class Player : MonoBehaviour
 {
-    public static Player Instance { get; private set; }
-
     [SerializeField] private Transform _handlePoint;
     [SerializeField] private Transform _backpack;
     [SerializeField] private bool _hasSomethingInHands;
@@ -38,7 +36,6 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;
         _dishesForDeliver = new List<CookingRecipeSO>();
         _playerEvents = GetComponent<PlayerEvents>();
     }

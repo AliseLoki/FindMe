@@ -3,8 +3,15 @@ using UnityEngine;
 public abstract class InteractableObject : MonoBehaviour
 {
     [SerializeField] protected SelectedObject _selectedObject;
-
+    
     private bool _isSelected;
+
+    protected Player Player1;
+
+    private void Awake()
+    {
+        Player1 = GameManager.Instance.InitPlayer();
+    }
 
     public void EnableInteract()
     {
@@ -44,6 +51,13 @@ public abstract class InteractableObject : MonoBehaviour
         TipsViewPanel.Instance.EraseTip();
     }
 
+    protected abstract void UseObject();
+
+    protected void InitializePlayer()
+    {
+        
+    }
+
     private void OnMouseDown()
     {
         if (_isSelected)
@@ -55,6 +69,4 @@ public abstract class InteractableObject : MonoBehaviour
             TipsViewPanel.Instance.ShowApproachTip();
         }
     }
-
-    protected abstract void UseObject();
 }

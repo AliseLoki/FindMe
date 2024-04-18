@@ -1,7 +1,15 @@
 using UnityEngine;
 
+[RequireComponent (typeof(Player))]
 public class PlayerCollisions : MonoBehaviour
 {
+    private Player _player;
+
+    private void Awake()
+    {
+        _player = GetComponent<Player>();
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.TryGetComponent(out InteractableObject interactableObject))
@@ -23,15 +31,15 @@ public class PlayerCollisions : MonoBehaviour
         if (other.TryGetComponent(out GoldCoins goldCoins))
         {
             goldCoins.PickUpCoins();
-            Player.Instance.PlayerEventsHandler.OnGoldAmountChanged();
+            _player.PlayerEventsHandler.OnGoldAmountChanged();
             // создать ивент , на него подписан евент хэндлер , на евент хэндлер подписаны другие компоненты
         }
 
         if (other.TryGetComponent(out Wood wood))
         {
-            if (!Player.Instance.HasSomethingInHands)
+            if (!_player.HasSomethingInHands)
             {
-                Player.Instance.SetHasWood(true);
+                _player.SetHasWood(true);
                 Destroy(wood.gameObject);
                 TipsViewPanel.Instance.ShowPutWoodInOvenTip();
             }
@@ -43,22 +51,22 @@ public class PlayerCollisions : MonoBehaviour
 
         if (other.TryGetComponent(out ForestTrigger forestTrigger))
         {
-            Player.Instance.PlayerEventsHandler.OnEnteredTheForest();
+            _player.PlayerEventsHandler.OnEnteredTheForest();
         }
 
         if(other.TryGetComponent(out GrannysHomeTrigger grannysHomeTrigger))
         {
-            Player.Instance.PlayerEventsHandler.OnEnteredGrannysHome();
+            _player.PlayerEventsHandler.OnEnteredGrannysHome();
         }
 
         if(other.TryGetComponent(out VillageZoneTrigger villageZoneTrigger))
         {
-            Player.Instance.PlayerEventsHandler.OnEnteredVillage();
+            _player.PlayerEventsHandler.OnEnteredVillage();
         }
 
         if (other.TryGetComponent(out SafeZoneTrigger safeZoneTrigger))
         {
-            Player.Instance.PlayerEventsHandler.OnEnteredSafeZone();
+            _player.PlayerEventsHandler.OnEnteredSafeZone();
         }
     }
 
@@ -66,17 +74,17 @@ public class PlayerCollisions : MonoBehaviour
     {
         if (other.TryGetComponent(out GrannysHomeTrigger grannysHomeTrigger))
         {
-            Player.Instance.PlayerEventsHandler.OnExitGrannysHome();
+            _player.PlayerEventsHandler.OnExitGrannysHome();
         }
 
         if (other.TryGetComponent(out VillageZoneTrigger villageZoneTrigger))
         {
-            Player.Instance.PlayerEventsHandler.OnExitVillage();
+            _player.PlayerEventsHandler.OnExitVillage();
         }
 
         if (other.TryGetComponent(out SafeZoneTrigger safeZoneTrigger))
         {
-            Player.Instance.PlayerEventsHandler.OnExitSafeZone();
+            _player.PlayerEventsHandler.OnExitSafeZone();
         }
     }
 }

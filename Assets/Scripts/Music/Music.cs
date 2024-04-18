@@ -7,39 +7,41 @@ public class Music : MonoBehaviour
 
     private bool _isForestMusicPlaying;
     private AudioSource _audioSource;
+    private Player _player;
 
     private void Awake()
     {
+        _player = GameManager.Instance.InitPlayer();
         _audioSource = GetComponent<AudioSource>();
         PlayForestMusic();
     }
 
     private void OnEnable()
     {
-        Player.Instance.PlayerEventsHandler.EnteredGrannysHome += PlayGrannysHomeMusic;
-        Player.Instance.PlayerEventsHandler.ExitGrannysHome += PlayRoadMusic;
+        _player.PlayerEventsHandler.EnteredGrannysHome += PlayGrannysHomeMusic;
+        _player.PlayerEventsHandler.ExitGrannysHome += PlayRoadMusic;
 
-        Player.Instance.PlayerEventsHandler.EnteredTheForest += PlayForestMusic;
+        _player.PlayerEventsHandler.EnteredTheForest += PlayForestMusic;
 
-        Player.Instance.PlayerEventsHandler.EnteredSafeZone += PlaySafeZoneMusic;
-        Player.Instance.PlayerEventsHandler.ExitSafeZone += PlayRoadMusic;
+        _player.PlayerEventsHandler.EnteredSafeZone += PlaySafeZoneMusic;
+        _player.PlayerEventsHandler.ExitSafeZone += PlayRoadMusic;
 
-        Player.Instance.PlayerEventsHandler.EnteredVillage += PlayVilageMusic;
-        Player.Instance.PlayerEventsHandler.ExitVillage += PlayRoadMusic;
+        _player.PlayerEventsHandler.EnteredVillage += PlayVilageMusic;
+        _player.PlayerEventsHandler.ExitVillage += PlayRoadMusic;
     }
 
     private void OnDisable()
     {
-        Player.Instance.PlayerEventsHandler.EnteredGrannysHome -= PlayGrannysHomeMusic;
-        Player.Instance.PlayerEventsHandler.ExitGrannysHome -= PlayRoadMusic;
+        _player.PlayerEventsHandler.EnteredGrannysHome -= PlayGrannysHomeMusic;
+        _player.PlayerEventsHandler.ExitGrannysHome -= PlayRoadMusic;
 
-        Player.Instance.PlayerEventsHandler.EnteredTheForest -= PlayForestMusic;
+        _player.PlayerEventsHandler.EnteredTheForest -= PlayForestMusic;
 
-        Player.Instance.PlayerEventsHandler.EnteredSafeZone -= PlaySafeZoneMusic;
-        Player.Instance.PlayerEventsHandler.ExitSafeZone -= PlayRoadMusic;
+        _player.PlayerEventsHandler.EnteredSafeZone -= PlaySafeZoneMusic;
+        _player.PlayerEventsHandler.ExitSafeZone -= PlayRoadMusic;
 
-        Player.Instance.PlayerEventsHandler.EnteredVillage -= PlayVilageMusic;
-        Player.Instance.PlayerEventsHandler.ExitVillage -= PlayRoadMusic;
+        _player.PlayerEventsHandler.EnteredVillage -= PlayVilageMusic;
+        _player.PlayerEventsHandler.ExitVillage -= PlayRoadMusic;
     }
 
     private void PlayForestMusic()

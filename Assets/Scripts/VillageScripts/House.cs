@@ -10,12 +10,18 @@ public class House : InteractableObject
     [SerializeField] private GoldCoins _goldCoins;
 
     private bool _packageDelivered;
-    
+    private Player _player;
+
+    private void Awake()
+    {
+        _player = GameManager.Instance.InitPlayer();
+    }
+
     protected override void UseObject()
     {
-        if (!_packageDelivered && Player.Instance.HasBackPack)
+        if (!_packageDelivered && _player.HasBackPack)
         {
-            var deliveredDish = Player.Instance.DeliverFood(_waitedDish);
+            var deliveredDish = _player.DeliverFood(_waitedDish);
 
             if (deliveredDish != null)
             {

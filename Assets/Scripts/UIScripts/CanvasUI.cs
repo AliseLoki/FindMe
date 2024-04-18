@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class CanvasUI : MonoBehaviour
@@ -15,10 +14,14 @@ public class CanvasUI : MonoBehaviour
 
     private float _fadeSpeed = 0.5f;
 
+    private Player _player;
+
     public FirstStartPanelView FirstStartPanel => _firstStartPanel;
 
     private void Awake()
     {
+        _player = GameManager.Instance.InitPlayer();
+
         _tipsViewPanel.gameObject.SetActive(false);
 
         if (GameManager.Instance.IsFirstStart)
@@ -31,7 +34,13 @@ public class CanvasUI : MonoBehaviour
     {
         GameManager.Instance.GameStateChanged += OnGameStateChanged;
         GameManager.Instance.EducationStarted += OnEducationStarted;
-        Player.Instance.PlayerEventsHandler.EnteredGrannysHome += PlayerEnteredGrannysHome;
+        _player.PlayerEventsHandler.EnteredGrannysHome += PlayerEnteredGrannysHome;
+    }
+    private void OnDisable()
+    {
+        GameManager.Instance.GameStateChanged -= OnGameStateChanged;
+        GameManager.Instance.EducationStarted -= OnEducationStarted;
+        _player.PlayerEventsHandler.EnteredGrannysHome -= PlayerEnteredGrannysHome;
     }
 
     private void OnEducationStarted()
@@ -39,22 +48,9 @@ public class CanvasUI : MonoBehaviour
         _educationUI.gameObject.SetActive(true);
         HideTipsPanel();
     }
-
-    private void OnDisable()
-    {
-        GameManager.Instance.GameStateChanged -= OnGameStateChanged;
-        GameManager.Instance.EducationStarted -= OnEducationStarted;
-        Player.Instance.PlayerEventsHandler.EnteredGrannysHome -= PlayerEnteredGrannysHome;
-    }
-
     public void ShowFirstStartPanelView()
     {
         _firstStartPanel.Show();
-    }
-
-    public void OnExitToMenuButtonPressed()
-    {
-        SceneManager.LoadScene(0);
     }
 
     public void ShowOrHideTipsPanelView()
