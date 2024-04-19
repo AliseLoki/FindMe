@@ -7945,7 +7945,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 684138395}
-  _isFirstStart: 0
+  _isFirstStart: 1
   _canvasUI: {fileID: 7431648073523981342}
 --- !u!4 &1695096657
 Transform:
