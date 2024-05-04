@@ -9,7 +9,7 @@ public class GoldView : MonoBehaviour
 
     private void Awake()
     {
-        _player = GameManager.Instance.InitPlayer();
+        _player = GameManager.Instance.GameEntryPoint.InitPlayer();
     }
 
     private void OnEnable()

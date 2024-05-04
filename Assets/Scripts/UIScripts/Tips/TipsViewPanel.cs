@@ -3,26 +3,28 @@ using UnityEngine;
 
 public class TipsViewPanel : MonoBehaviour
 {
-    public static TipsViewPanel Instance { get; private set; }
-
     [SerializeField] private TMP_Text _tipsText;
     [SerializeField] private TipsSO _tipsSO;
-
-    private void Awake()
-    {
-        Instance = this;
-    }
 
     private void OnEnable()
     {
         ShowYouAreSafeTip();
     }
 
+    public void ShowTakeMeTip()
+    {
+        ShowTips(_tipsSO.TakeMeTip);
+    }
+
+    public void ShowEatMeTip()
+    {
+        ShowTips(_tipsSO.EatMeTip);
+    }
+
     public void ShowYouAreSafeTip()
     {
         ShowTips(_tipsSO.YouAreSafeTip);
     }
-
 
     public void ShowYouAreNotSafeTip()
     {
@@ -31,7 +33,7 @@ public class TipsViewPanel : MonoBehaviour
 
     public void ShowThisIsPackingPlaceTip()
     {
-        ShowTips(_tipsSO.ThisIsPackingPlace);
+        ShowTips(_tipsSO.ThisIsPackingPlaceTip);
     }
 
     public void ShowThisISOvenTip()
@@ -44,6 +46,11 @@ public class TipsViewPanel : MonoBehaviour
         ShowTips(_tipsSO.ThisIsCookingTableTip);
     }
 
+    public void ShowFirstCutItTip()
+    {
+        ShowTips(_tipsSO.FirstCutItTip);
+    }
+
     public void ShowThisIsCuttingTableTip()
     {
         ShowTips(_tipsSO.ThisIsCuttingTableTip);
@@ -52,6 +59,11 @@ public class TipsViewPanel : MonoBehaviour
     public void ShowThisIsGarbageTip()
     {
         ShowTips(_tipsSO.ThisIsGarbageTip);
+    }
+
+    public void ShowThisIsContainerTip()
+    {
+        ShowTips(_tipsSO.ThisIsContainerTip);
     }
 
     public void ShowTakeBackpackTip()
@@ -87,6 +99,11 @@ public class TipsViewPanel : MonoBehaviour
     public void ShowBringToOvenTip()
     {
         ShowTips(_tipsSO.BringToOvenTip);
+    }
+
+    public void ShowDishIssPackedTip()
+    {
+        ShowTips(_tipsSO.DishIsPackedTip);
     }
 
     public void ShowTimeToPack()
@@ -129,9 +146,9 @@ public class TipsViewPanel : MonoBehaviour
         ShowTips(_tipsSO.CutItTip);
     }
 
-    public void ShowNothingToThrowTip()
+    public void ShowNothingInHandsTip()
     {
-        ShowTips(_tipsSO.NothingToThrowTip);
+        ShowTips(_tipsSO.NothingInHandsTip);
     }
 
     public void ShowThrowFoodTip()
@@ -157,6 +174,21 @@ public class TipsViewPanel : MonoBehaviour
     public void ShowApproachTip()
     {
         ShowTips(_tipsSO.ApproachObjectForInteractionTip);
+    }
+
+    public void ShowThisIsRecievingOrdersPointTip()
+    {
+        ShowTips(_tipsSO.ThisIsRecievingOrdersPointTip);
+    }
+
+    public void ShowThisIsHouseTip()
+    {
+        ShowTips(_tipsSO.ThisIsHouseTip);
+    }
+
+    public void ShowDishIsPreparedBadlyTip()
+    {
+        ShowTips(_tipsSO.DishIsPreparedBadly);
     }
 
     private void ShowTips(string tips)

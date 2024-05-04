@@ -4,7 +4,7 @@ using UnityEngine;
 public class PlayerCollisions : MonoBehaviour
 {
     private Player _player;
-
+    
     private void Awake()
     {
         _player = GetComponent<Player>();
@@ -33,20 +33,6 @@ public class PlayerCollisions : MonoBehaviour
             goldCoins.PickUpCoins();
             _player.PlayerEventsHandler.OnGoldAmountChanged();
             // создать ивент , на него подписан евент хэндлер , на евент хэндлер подписаны другие компоненты
-        }
-
-        if (other.TryGetComponent(out Wood wood))
-        {
-            if (!_player.HasSomethingInHands)
-            {
-                _player.SetHasWood(true);
-                Destroy(wood.gameObject);
-                TipsViewPanel.Instance.ShowPutWoodInOvenTip();
-            }
-            else
-            {
-                TipsViewPanel.Instance.ShowHandsAreFullTip();
-            }
         }
 
         if (other.TryGetComponent(out ForestTrigger forestTrigger))

@@ -2,27 +2,23 @@ using UnityEngine;
 
 public class GarbageContainer : InteractableObject
 {
-    [SerializeField] private SoundEffects _soundEffects;
-    [SerializeField] private PackingPlace _packingPlace;
-
     protected override void UseObject()
     {
-        if (Player1.HasSomethingInHands)
+        if (Player.HasSomethingInHands && !Player.HasWood )
         {
-            Player1.ThrowFood();
-            _soundEffects.PlayThwrowingFoodSoundEffect(transform);
+            if(Player.PlayerCookingModule.CookingRecipeSO!= null)
+            {
+                DeliveryServiceView.SetHasBeenCooked(Player.PlayerCookingModule.CookingRecipeSO);
+            }
 
-            TipsViewPanel.Instance.ShowThrowFoodTip();
-        }
-        else if (Player1.HasBackPack)
-        {
-            _packingPlace.ShowPackage(true);
-            Player1.ShowOrHideBackPack(false);
-            TipsViewPanel.Instance.ShowThrowFoodTip();
+            Player.PlayerCookingModule.ThrowFood();
+            SoundEffects.PlayThwrowingFoodSoundEffect(transform);
+            TipsViewPanel.ShowThrowFoodTip();
         }
         else
         {
-            TipsViewPanel.Instance.ShowNothingToThrowTip();
+            if(!Player.HasWood)
+            TipsViewPanel.ShowNothingInHandsTip();
         }
     }
 }

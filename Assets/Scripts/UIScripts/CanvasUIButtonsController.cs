@@ -14,6 +14,7 @@ public class CanvasUIButtonsController : MonoBehaviour
     {
         Application.Quit();
     }
+
     public void OnCameraViewChangeButtonPressed()
     {
         ShowOrHideObject(_cameraSlider.gameObject);

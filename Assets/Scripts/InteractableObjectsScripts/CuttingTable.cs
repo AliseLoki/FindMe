@@ -2,8 +2,7 @@ using UnityEngine;
 
 public class CuttingTable : Table
 {
-    [SerializeField] private ChangingFoodRecipeSO[] _allCuttingRecipes;
-    [SerializeField] private SoundEffects _soundEffects;
+    [SerializeField] private ChangingFoodRecipeSO[] _allCuttingRecipesSO;
 
     protected override void DoSomething()
     {
@@ -11,27 +10,27 @@ public class CuttingTable : Table
         {
             if (!IsChangedFood)
             {
-                foreach (var recipe in _allCuttingRecipes)
+                foreach (var recipe in _allCuttingRecipesSO)
                 {
-                    if (recipe.Input == FoodOnTheTableSO)
+                    if (recipe.Input == FoodSO)
                     {
-                        FoodOnTheTableSO = recipe.Output;
-                        Destroy(_placeForFood.GetChild(0).gameObject);
-                        _food = Instantiate(FoodOnTheTableSO.Prefab, _placeForFood);
+                        FoodSO = recipe.Output;
+                        Destroy(PlaceForFood.GetChild(0).gameObject);
+                        Food = Instantiate(FoodSO.Prefab, PlaceForFood);
                         IsChangedFood = true;
-                        _soundEffects.PlayCuttingFoodSoundEffect(transform);
-                        TipsViewPanel.Instance.ShowBringToCookingTableTip();
+                        SoundEffects.PlayCuttingFoodSoundEffect(transform);
+                        TipsViewPanel.ShowBringToCookingTableTip();
                     }
                 }
             }
             else
             {
-                Player1.SetFood(_food, FoodOnTheTableSO);
-                Player1.SetHasSomethingInHands(true);
+                Player.PlayerCookingModule.SetFood(Food, FoodSO);
+                Player.SetHasSomethingInHands(true);
                 ResetFoodAndFoodSO();
-                Player1.FoodInHands.SetInParent(Player1.HandlePoint);
+                Player.PlayerCookingModule.Food.SetInParent(Player.HandlePoint);
                 IsChangedFood = false;
-                _soundEffects.PlayGettingFoodSoundEffect(transform);
+                SoundEffects.PlayGettingFoodSoundEffect(transform);
             }
         }
     }
@@ -40,23 +39,23 @@ public class CuttingTable : Table
     {
         bool hasMatch = false;
 
-        foreach (var recipe in _allCuttingRecipes)
+        foreach (var recipe in _allCuttingRecipesSO)
         {
-            if (recipe.Input == Player1.FoodInHandsSO)
+            if (recipe.Input == Player.PlayerCookingModule.FoodSO)
             {
-                FoodOnTheTableSO = Player1.FoodInHandsSO;
-                _food = FoodOnTheTableSO.Prefab;
-                Player1.FoodInHands.SetInParent(_placeForFood);
-                Player1.GiveFood();
-                _soundEffects.PlayPuttingFoodSoundEffect(transform);
-                TipsViewPanel.Instance.ShowCutItTip();
+                FoodSO = Player.PlayerCookingModule.FoodSO;
+                Food = FoodSO.Prefab;
+                Player.PlayerCookingModule.Food.SetInParent(PlaceForFood);
+                Player.PlayerCookingModule.GiveFood();
+                SoundEffects.PlayPuttingFoodSoundEffect(transform);
+                TipsViewPanel.ShowCutItTip();
                 hasMatch = true;
             }
         }
 
         if (!hasMatch)
         {
-            TipsViewPanel.Instance.ShowCantCutItTip();
+            TipsViewPanel.ShowCantCutItTip();
         }
     }
 }

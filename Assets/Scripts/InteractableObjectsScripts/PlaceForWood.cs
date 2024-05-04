@@ -4,7 +4,13 @@ public class PlaceForWood : MonoBehaviour
 {
     [SerializeField] private Transform _woodInOven;
     [SerializeField] private ParticleSystem _fireEffect;
-    [SerializeField] private SoundEffects _soundEffects;
+
+     private SoundEffects _soundEffects;
+
+    private void Awake()
+    {
+        _soundEffects = GameManager.Instance.GameEntryPoint.InitSoundEffects();
+    }
 
     public void LightFire(bool isBurn)
     {

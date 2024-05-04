@@ -1,23 +1,23 @@
-using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(PlayerEvents))]
+[RequireComponent(typeof(PlayerCookingModule))]
 public class Player : MonoBehaviour
 {
-    [SerializeField] private Transform _handlePoint;
-    [SerializeField] private Transform _backpack;
     [SerializeField] private bool _hasSomethingInHands;
+
+    [SerializeField] private Transform _handlePoint;
+
+    [SerializeField] private Transform _backpack;
+
+    [SerializeField] private DeliveryService _deliveryService;
 
     private bool _hasBackPack;
     private bool _hasWood;
-    private Food _food;
-    private FoodSO _foodSO;
-    private CookingRecipeSO _cookingRecipeSO;
+
     private PlayerEvents _playerEvents;
-
-    private List<CookingRecipeSO> _dishesForDeliver;
-
+    private PlayerCookingModule _playerCookingModule;
+   
     public bool HasSomethingInHands => _hasSomethingInHands;
 
     public bool HasBackPack => _hasBackPack;
@@ -26,39 +26,40 @@ public class Player : MonoBehaviour
 
     public PlayerEvents PlayerEventsHandler => _playerEvents;
 
-    public Food FoodInHands => _food;
-
-    public FoodSO FoodInHandsSO => _foodSO;
-
-    public CookingRecipeSO CookedRecipeSODish => _cookingRecipeSO;
+    public PlayerCookingModule PlayerCookingModule => _playerCookingModule;
 
     public Transform HandlePoint => _handlePoint;
 
     private void Awake()
     {
-        _dishesForDeliver = new List<CookingRecipeSO>();
         _playerEvents = GetComponent<PlayerEvents>();
+        _playerCookingModule = GetComponent<PlayerCookingModule>();
     }
 
-    public CookingRecipeSO DeliverFood(CookingRecipeSO cookingRecipeSO)
+    private void OnEnable()
     {
-        foreach (var dish in _dishesForDeliver)
-        {
-            if (dish == cookingRecipeSO)
-            {
-                print(dish.RecipeName + "  " + dish.Readyness);
-                _dishesForDeliver.Remove(dish);
-                CheckIfDeliverIsComplited();
-                return dish;
-            }
-        }
-
-        return null;
+        _deliveryService.AllDishesHaveBeenDelivered += OnAllDishesHaveBeenDelivered;
+    }
+    private void OnDisable()
+    {
+        _deliveryService.AllDishesHaveBeenDelivered -= OnAllDishesHaveBeenDelivered;
+    }
+   
+    private void OnAllDishesHaveBeenDelivered()
+    {
+        ShowOrHideBackPack(false);
     }
 
     public void SetHasWood(bool hasWood)
     {
         _hasWood = hasWood;
+    }
+
+    public void ResetWoodPrefab()
+    {
+        SetHasWood(false);
+        SetHasSomethingInHands(false);
+        Destroy(_handlePoint.GetChild(0).gameObject);
     }
 
     public void ShowOrHideBackPack(bool isActive)
@@ -67,66 +68,8 @@ public class Player : MonoBehaviour
         _hasBackPack = isActive;
     }
 
-    public void SetDishesForDeliver(List<CookingRecipeSO> listFromPackingPlace)
-    {
-        _dishesForDeliver = listFromPackingPlace;
-
-        foreach (var item in _dishesForDeliver)
-        {
-            print(item.RecipeName + " " + item.Readyness);
-        }
-    }
-
     public void SetHasSomethingInHands(bool hasSomethingInhands)
     {
         _hasSomethingInHands = hasSomethingInhands;
-    }
-
-    public void SetCookingRecipe(CookingRecipeSO cookingRecipeSO)
-    {
-        if (_cookingRecipeSO == null)
-            _cookingRecipeSO = cookingRecipeSO;
-    }
-
-    public void ResetCookingRecipeSO()
-    {
-        _cookingRecipeSO = null;
-    }
-
-    public void SetCookingRecipeStateOfRedyness(StateOfReadyness readyness)
-    {
-        _cookingRecipeSO.Readyness = readyness;
-    }
-
-    public void SetFood(Food food, FoodSO foodSO)
-    {
-        _foodSO = foodSO;
-        _food = food;
-    }
-
-    public void GiveFood()
-    {
-        ResetFoodAndFoodSO();
-    }
-
-    public void ThrowFood()
-    {
-        Destroy(_food.gameObject);
-        ResetFoodAndFoodSO();
-    }
-
-    private void ResetFoodAndFoodSO()
-    {
-        _food = null;
-        _foodSO = null;
-        _hasSomethingInHands = false;
-    }
-
-    private void CheckIfDeliverIsComplited()
-    {
-        if (_dishesForDeliver.Count == 0)
-        {
-            ShowOrHideBackPack(false);
-        }
     }
 }

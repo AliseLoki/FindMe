@@ -11,7 +11,7 @@ public class Music : MonoBehaviour
 
     private void Awake()
     {
-        _player = GameManager.Instance.InitPlayer();
+        _player = GameManager.Instance.GameEntryPoint.InitPlayer();
         _audioSource = GetComponent<AudioSource>();
         PlayForestMusic();
     }

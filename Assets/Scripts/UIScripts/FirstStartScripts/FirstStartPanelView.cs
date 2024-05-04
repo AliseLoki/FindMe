@@ -9,7 +9,7 @@ public class FirstStartPanelView : MonoBehaviour
     [SerializeField] private Button _yesButton;
 
     private string _welcomeText = "готов ли ты начать приключение?";
-    private string _runText = "тогда беги вперед!!!";
+    private string _runText = "тогда беги вперед к дому бабушки!!!";
 
     public Action IsStarted;
 

@@ -1,68 +1,60 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PackingPlace : GarbageContainer
 {
     [SerializeField] private List<FoodSO> _canBePackedRecipeSO;
-    [SerializeField] private List<CookingRecipeSO> _packedDishes;
     [SerializeField] private Transform _package;
 
-    private int _packageCapacity = 2;
+    private bool _isFull;
 
-    public void ShowPackage(bool isShowed)
+    public event Action<CookingRecipeSO> CookingRecipeSOHasBeenPacked;
+
+    private void OnEnable()
+    {
+        DeliveryService.TimeToGoHasCome += OnTimeToGoHasCome;
+        DeliveryService.AllDishesHaveBeenDelivered += OnAllDishesHaveBeenDelivered;
+    }
+
+    private void OnDisable()
+    {
+        DeliveryService.TimeToGoHasCome -= OnTimeToGoHasCome;
+        DeliveryService.AllDishesHaveBeenDelivered -= OnAllDishesHaveBeenDelivered;
+    }
+
+    private void OnAllDishesHaveBeenDelivered()
+    {
+        ShowPackage(true);
+        _isFull = false;
+    }
+
+    private void ShowPackage(bool isShowed)
     {
         _package.gameObject.SetActive(isShowed);
     }
 
     protected override void UseObject()
     {
-        CheckPackageCapacity();
-
-        if (_packedDishes.Count < _packageCapacity)
-        {
-            foreach (var item in _canBePackedRecipeSO)
-            {
-                if (Player1.FoodInHandsSO == item)
-                {
-                    _packedDishes.Add(Player1.CookedRecipeSODish);
-                    Player1.ResetCookingRecipeSO();
-                    Player1.ThrowFood();
-
-                    foreach (var dish in _packedDishes)
-                    {
-                        print(dish.RecipeName + " - " + dish.Readyness);
-                    }
-                }
-            }
-        }
-        else
-        {
-            if (Input.GetMouseButtonDown(0))
-            {
-                ChekIfHandsAreFree();
-            }
-        }
-    }
-
-    private void ChekIfHandsAreFree()
-    {
-        if (Player1.HasSomethingInHands || Player1.HasBackPack)
-        {
-            TipsViewPanel.Instance.ShowHandsAreFullTip();
-        }
-        else
+        if(_isFull)
         {
             ShowPackage(false);
-            Player1.SetDishesForDeliver(_packedDishes);
-            Player1.ShowOrHideBackPack(true);
+            Player.ShowOrHideBackPack(true);
+            return;
+        }
+
+        foreach (var foodSO in _canBePackedRecipeSO)
+        {
+            if (Player.PlayerCookingModule.FoodSO == foodSO)
+            {
+                CookingRecipeSOHasBeenPacked?.Invoke(Player.PlayerCookingModule.CookingRecipeSO);
+                Player.PlayerCookingModule.ThrowFood();
+            }
         }
     }
 
-    private void CheckPackageCapacity()
+    private void OnTimeToGoHasCome()
     {
-        if(_packedDishes.Count>=_packageCapacity)
-        {
-            TipsViewPanel.Instance.ShowNoPlaceTip();
-        }
+       _isFull = true;
     }
 }

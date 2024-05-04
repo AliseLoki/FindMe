@@ -357,7 +357,7 @@ Transform:
   - {fileID: 6293832931046987600}
   - {fileID: 9221253835906158253}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &2537066377765520009
 Animator:
@@ -439,6 +439,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _points: {fileID: 0}
   _enemySoundEffects: {fileID: 665137844800463637}
+  _player: {fileID: 0}
 --- !u!82 &8469593081978790628
 AudioSource:
   m_ObjectHideFlags: 0

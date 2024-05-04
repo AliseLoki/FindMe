@@ -3,16 +3,17 @@ using UnityEngine;
 
 public class RussianOven : Table
 {
-    [SerializeField] private bool _hasFire ;
+    [SerializeField] private bool _hasFire;
 
-    [SerializeField] private FoodSO _uncookedFoodInPot;
-    [SerializeField] private FoodSO _cookedFoodInPot;
+    [SerializeField] private FoodSO _uncookedFoodInPotFoodSO;
+    [SerializeField] private FoodSO _cookedFoodInPotFoodSO;
     [SerializeField] private FoodSO _burnedFoodInPot;
-    [SerializeField] private PlaceForWood _placeForOven;
+
+    [SerializeField] private PlaceForWood _placeForWood;
 
     [SerializeField] private ParticleSystem _smokeEffect;
-    [SerializeField] private SoundEffects _soundEffects;
-    
+
+    private CookingRecipeSO _cookingRecipeSO;
     private StateOfReadyness _stateOfReadyness;
     private Coroutine _cookCoroutine;
 
@@ -32,43 +33,42 @@ public class RussianOven : Table
 
     protected override void PutFood()
     {
-        if (_hasFire && _uncookedFoodInPot == Player1.FoodInHandsSO)
+        if ((_hasFire) && _uncookedFoodInPotFoodSO == Player.PlayerCookingModule.FoodSO)
         {
-            FoodOnTheTableSO = Player1.FoodInHandsSO;
-            _food = Player1.FoodInHands;
-            Player1.FoodInHands.SetInParent(_placeForFood);
-            Player1.GiveFood();
+            FoodSO = Player.PlayerCookingModule.FoodSO;
+            Food = Player.PlayerCookingModule.Food;
+            _cookingRecipeSO = Player.PlayerCookingModule.CookingRecipeSO;
+            Player.PlayerCookingModule.Food.SetInParent(PlaceForFood.transform);
+            Player.PlayerCookingModule.GiveFood();
             _cookCoroutine = StartCoroutine(CookingCountDownRoutine());
-            _soundEffects.PlayCookingFoodSoundEffect(transform);
-            TipsViewPanel.Instance.ShowReadynessInstruction();
+            SoundEffects.PlayCookingFoodSoundEffect(transform);
+            TipsViewPanel.ShowReadynessInstruction();
         }
-        else if (!_hasFire && !Player1.HasWood)
-        {
-           TipsViewPanel.Instance.ShowNoWoodsTip();
-        }
-        else if(!_hasFire && Player1.HasWood && !Player1.HasSomethingInHands)
+        else if (!_hasFire && Player.HasWood)
         {
             _hasFire = true;
-            _placeForOven.LightFire(true);
-            TipsViewPanel.Instance.ShowCanUseOvenTip();
+            _placeForWood.LightFire(true);
+            Player.ResetWoodPrefab();
+            TipsViewPanel.ShowCanUseOvenTip();
         }
-        else if(!_hasFire && Player1.HasWood && Player1.HasSomethingInHands)
+        else if (!_hasFire && !Player.HasWood)
         {
-            TipsViewPanel.Instance.ShowCantLightFire();
-        }     
+            TipsViewPanel.ShowNoWoodsTip();
+        }
     }
 
     private void TakePot()
     {
-        _food.SetInParent(Player1.HandlePoint);
-        Player1.SetFood(_food, FoodOnTheTableSO);
-        Player1.SetHasSomethingInHands(true);
-        Player1.SetCookingRecipeStateOfRedyness(_stateOfReadyness);
+        Food.SetInParent(Player.HandlePoint);
+        Player.PlayerCookingModule.SetFood(Food, FoodSO);
+        Player.SetHasSomethingInHands(true);
+        Player.PlayerCookingModule.SetCookingRecipe(_cookingRecipeSO);
+        Player.PlayerCookingModule.SetCookingRecipeStateOfRedyness(_stateOfReadyness);
         print(_stateOfReadyness);
-        _smokeEffect.gameObject.SetActive(false);    
+        _smokeEffect.gameObject.SetActive(false);
         ResetFoodAndFoodSO();
-        _soundEffects.PlayGettingFoodSoundEffect(transform);
-        TipsViewPanel.Instance.ShowTimeToPack();
+        SoundEffects.PlayGettingFoodSoundEffect(transform);
+        TipsViewPanel.ShowTimeToPack();
     }
 
     private IEnumerator CookingCountDownRoutine()
@@ -78,7 +78,7 @@ public class RussianOven : Table
         yield return new WaitForSeconds(pause);
 
         _stateOfReadyness++;
-        ChangeOnePoTToAnother(_cookedFoodInPot);  
+        ChangeOnePoTToAnother(_cookedFoodInPotFoodSO);
         yield return new WaitForSeconds(pause);
 
         _stateOfReadyness++;
@@ -89,8 +89,8 @@ public class RussianOven : Table
 
     private void ChangeOnePoTToAnother(FoodSO newFoodSO)
     {
-        Destroy(_food.gameObject);
-        FoodOnTheTableSO = newFoodSO;
-        _food = Instantiate(newFoodSO.Prefab, _placeForFood);
+        Destroy(Food.gameObject);
+        FoodSO = newFoodSO;
+        Food = Instantiate(newFoodSO.Prefab, PlaceForFood);
     }
 }

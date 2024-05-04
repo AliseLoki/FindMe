@@ -11,4 +11,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GrannysHome.unity
     guid: 60bace9e0cd2de84e9ed4d5813df411d
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.addressableassets: {fileID: 11400000, guid: 1415802c66f24f240aa685f5e737e366, type: 2}
+    com.unity.localization.settings: {fileID: 11400000, guid: 2a8784ea22011a0439dbb262c5b6f7d0, type: 2}

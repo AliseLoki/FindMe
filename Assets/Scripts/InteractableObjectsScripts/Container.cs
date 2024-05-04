@@ -2,25 +2,23 @@ using UnityEngine;
 
 public class Container : InteractableObject
 {
-    [SerializeField] private FoodSO _foodSO;
-    [SerializeField] private Food _food;
-    [SerializeField] private SoundEffects _soundEffects;
+    [SerializeField] protected FoodSO FoodSO;
+
+    protected Food Food;
 
     protected override void UseObject()
     {
-        if (!Player1.HasSomethingInHands)
+        if (!Player.HasSomethingInHands)
         {
-            TipsViewPanel.Instance.ShowFoodPickedTip();
-
-            _food = Instantiate(_foodSO.Prefab, Player1.HandlePoint);
-            Player1.SetHasSomethingInHands(true);
-            Player1.SetFood(_food, _foodSO);
-
-            _soundEffects.PlayGettingFoodSoundEffect(transform);
+            Food = Instantiate(FoodSO.Prefab, Player.HandlePoint);
+            Player.SetHasSomethingInHands(true);
+            Player.PlayerCookingModule.SetFood(Food, FoodSO);
+            TipsViewPanel.ShowFoodPickedTip();
+            SoundEffects.PlayGettingFoodSoundEffect(transform);
         }
         else
         {
-            TipsViewPanel.Instance.ShowHandsAreFullTip();
+            TipsViewPanel.ShowHandsAreFullTip();
         }
     }
 }

@@ -1,30 +1,28 @@
 using UnityEngine;
 
-public abstract class Table : InteractableObject
+public abstract class Table : Container
 {
-    [SerializeField] protected Transform _placeForFood;
+    [SerializeField] protected Transform PlaceForFood;
 
-    protected bool IsChangedFood;
-    protected FoodSO FoodOnTheTableSO;
-    protected Food _food;
-
+        protected bool IsChangedFood;
+   
     protected override void UseObject()
     {
-        if (FoodOnTheTableSO == null && Player1.HasSomethingInHands)
+        if (FoodSO == null && Player.HasSomethingInHands)
         {
             PutFood();
         }
-        else if (FoodOnTheTableSO != null && !Player1.HasSomethingInHands)
+        else if (FoodSO != null && !Player.HasSomethingInHands)
         {
             DoSomething();
         }
-        else if (FoodOnTheTableSO != null && Player1.HasSomethingInHands)
+        else if (FoodSO != null && Player.HasSomethingInHands)
         {
-            TipsViewPanel.Instance.ShowHandsAreFullTip();
+            TipsViewPanel.ShowHandsAreFullTip();
         }
-        else if(this as RussianOven)
+        else if(FoodSO == null && !Player.HasSomethingInHands)
         {
-            PutFood();
+            TipsViewPanel.ShowNothingInHandsTip();
         }
     }
 
@@ -34,7 +32,7 @@ public abstract class Table : InteractableObject
 
     protected void ResetFoodAndFoodSO()
     {
-        _food = null;
-        FoodOnTheTableSO = null;
+        Food = null;
+        FoodSO = null;
     }
 }

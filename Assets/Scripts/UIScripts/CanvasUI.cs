@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,6 +9,7 @@ public class CanvasUI : MonoBehaviour
     [SerializeField] private TipsViewPanel _tipsViewPanel;
     [SerializeField] private FirstStartPanelView _firstStartPanel;
     [SerializeField] private EducationUI _educationUI;
+    [SerializeField] private GameOverUI _gameOverUI;
 
     private bool _shouldFadeToBlack;
     private bool _shouldFadeFromBlack;
@@ -17,10 +19,11 @@ public class CanvasUI : MonoBehaviour
     private Player _player;
 
     public FirstStartPanelView FirstStartPanel => _firstStartPanel;
+    public EducationUI EducationUI => _educationUI;
 
     private void Awake()
     {
-        _player = GameManager.Instance.InitPlayer();
+        _player = GameManager.Instance.GameEntryPoint.InitPlayer();
 
         _tipsViewPanel.gameObject.SetActive(false);
 
@@ -34,13 +37,21 @@ public class CanvasUI : MonoBehaviour
     {
         GameManager.Instance.GameStateChanged += OnGameStateChanged;
         GameManager.Instance.EducationStarted += OnEducationStarted;
+        _player.PlayerEventsHandler.PlayerHasDied += OnGameOver;
         _player.PlayerEventsHandler.EnteredGrannysHome += PlayerEnteredGrannysHome;
     }
+
     private void OnDisable()
     {
         GameManager.Instance.GameStateChanged -= OnGameStateChanged;
         GameManager.Instance.EducationStarted -= OnEducationStarted;
+        _player.PlayerEventsHandler.PlayerHasDied -= OnGameOver;
         _player.PlayerEventsHandler.EnteredGrannysHome -= PlayerEnteredGrannysHome;
+    }
+
+    private void OnGameOver()
+    {
+        _gameOverUI.gameObject.SetActive(true);
     }
 
     private void OnEducationStarted()
@@ -108,6 +119,7 @@ public class CanvasUI : MonoBehaviour
     private void OnGameStateChanged()
     {
         _firstStartPanel.Hide();
+        _educationUI.gameObject.SetActive(false);
     }
 
     private void ShowTipsPanel()

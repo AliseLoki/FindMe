@@ -10,7 +10,7 @@ public class Enemy : MonoBehaviour
 {
     private const string IsWalking = nameof(IsWalking);
     private const string IsRunning = nameof(IsRunning);
-    private const string PlayerDetected = nameof(PlayerDetected);
+    private const string IsAttacking = nameof(IsAttacking);
 
     [SerializeField] private Transform _points;
     [SerializeField] private EnemySoundEffects _enemySoundEffects;
@@ -23,6 +23,7 @@ public class Enemy : MonoBehaviour
     private float _patrolSpeed = 3.5f;
 
     private bool _isHowling;
+    private bool _isAttacking;
 
     // private AudioSource _audioSource;
     private NavMeshAgent _agent;
@@ -44,10 +45,10 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
-       _player.PlayerEventsHandler.EnteredTheForest += OnPlayerEnteredTheForest;
-       _player.PlayerEventsHandler.EnteredSafeZone += OnPlayerEnteredSafeZone;
-       _player.PlayerEventsHandler.EnteredGrannysHome += OnEnteredGrannysHome;
-       _player.PlayerEventsHandler.EnteredVillage += OnEnteredVillage;
+        _player.PlayerEventsHandler.EnteredTheForest += OnPlayerEnteredTheForest;
+        _player.PlayerEventsHandler.EnteredSafeZone += OnPlayerEnteredSafeZone;
+        _player.PlayerEventsHandler.EnteredGrannysHome += OnEnteredGrannysHome;
+        _player.PlayerEventsHandler.EnteredVillage += OnEnteredVillage;
 
         _patrolCoroutine = StartCoroutine(Patrolling());
     }
@@ -112,6 +113,21 @@ public class Enemy : MonoBehaviour
         SetNavMeshAgentParametres(_distanceToPlayer, _runSpeed, IsRunning);
         _agent.destination = _player.transform.position;
         HasStepsSound = true;
+
+         CheckDistanceToPlayer();
+    }
+
+    private bool CheckDistanceToPlayer()
+    {
+        float distance = Vector3.Distance(transform.position, _player.transform.position);
+
+        if (distance <= _distanceToPlayer)
+        {
+            _isAttacking = true;
+            return true;
+        }
+
+        return false;
     }
 
     private void SetNavMeshAgentParametres(float stoppingDistance, float speed, string currentAnimation)
@@ -145,6 +161,11 @@ public class Enemy : MonoBehaviour
         {
             ChasePlayer();
 
+            if (CheckDistanceToPlayer())
+            {
+                yield return Waiting();
+            }
+
             yield return null;
         }
     }
@@ -153,21 +174,34 @@ public class Enemy : MonoBehaviour
     {
         HasStepsSound = false;
 
-        if (!_isHowling)
+        if (!_isHowling && !_isAttacking)
         {
             _animator.SetBool(IsWalking, false);
         }
-        else
+        else if(_isHowling)
         {
             _animator.SetBool(IsRunning, false);
             _enemySoundEffects.Roar();
             // _audioSource.Play();
-
+        }
+        else if(_isAttacking)
+        {
+            _animator.SetBool(IsAttacking, true);
+            transform.LookAt(_player.transform);
         }
 
         float pause = 2.4f;
         yield return new WaitForSeconds(pause);
+
+        if (CheckDistanceToPlayer() && _isAttacking)
+        {
+            _player.PlayerEventsHandler.OnHealthChanged(-1);
+        }
+
+        _isAttacking = false;
         _isHowling = false;
+
+        _animator.SetBool(IsAttacking, false);
         // _audioSource.Stop();
         HasStepsSound = true;
     }

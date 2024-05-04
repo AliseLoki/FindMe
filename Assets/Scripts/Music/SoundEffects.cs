@@ -36,6 +36,6 @@ public class SoundEffects : MonoBehaviour
 
     private void PlaySoundEffect(AudioClip audioClip, Vector3 position, float volume = 10f)
     {
-        AudioSource.PlayClipAtPoint(audioClip, position, volume);      
+       AudioSource.PlayClipAtPoint(audioClip, position, volume);      
     }
 }

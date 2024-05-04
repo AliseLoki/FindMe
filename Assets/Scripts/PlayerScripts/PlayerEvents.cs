@@ -3,7 +3,11 @@ using UnityEngine;
 
 public class PlayerEvents : MonoBehaviour
 {
-    private int _gold;
+    private int _gold = 0;
+    private int _health = 10;
+    private int _maxhealth = 10;
+
+    private TipsViewPanel _tipsViewPanel;
 
     public event Action EnteredGrannysHome;
     public event Action ExitGrannysHome;
@@ -17,23 +21,34 @@ public class PlayerEvents : MonoBehaviour
     public event Action ExitVillage;
 
     public event Action<int> GoldAmountChanged;
+    public event Action<int> HealthChanged;
+
+    public event Action PlayerHasDied;
+
+    private void Awake()
+    {
+        _tipsViewPanel = GameManager.Instance.GameEntryPoint.InitTipsViewPanel();
+    }
 
     public void OnEnteredGrannysHome()
     {
-        EnteredGrannysHome?.Invoke();      
-        TipsViewPanel.Instance.ShowYouAreSafeTip();
+        EnteredGrannysHome?.Invoke();
+
+        if (GameManager.Instance.IsEducationPlaying())
+        {
+            _tipsViewPanel.ShowYouAreSafeTip();
+        }
     }
 
     public void OnExitGrannysHome()
     {
         ExitGrannysHome?.Invoke();
-        TipsViewPanel.Instance.ShowYouAreNotSafeTip();
+        _tipsViewPanel.ShowYouAreNotSafeTip();
     }
 
     public void OnEnteredTheForest()
     {
         EnteredTheForest?.Invoke();
-        print("Зашла в Лес");
     }
 
     public void OnEnteredSafeZone()
@@ -44,7 +59,7 @@ public class PlayerEvents : MonoBehaviour
     public void OnExitSafeZone()
     {
         ExitSafeZone?.Invoke();
-        TipsViewPanel.Instance.ShowYouAreNotSafeTip();
+        _tipsViewPanel.ShowYouAreNotSafeTip();
     }
 
     public void OnEnteredVillage()
@@ -55,13 +70,23 @@ public class PlayerEvents : MonoBehaviour
     public void OnExitVillage()
     {
         ExitVillage?.Invoke();
-        TipsViewPanel.Instance.ShowYouAreNotSafeTip();
+        _tipsViewPanel.ShowYouAreNotSafeTip();
     }
 
     public void OnGoldAmountChanged()
     {
         _gold++;
         GoldAmountChanged?.Invoke(_gold);
-        print("денюжки");
+    }
+
+    public void OnHealthChanged(int health)
+    {
+        _health = Mathf.Clamp(_health + health, 0, _maxhealth);
+        HealthChanged?.Invoke(_health);
+
+        if (_health == 0)
+        {
+            PlayerHasDied?.Invoke();
+        }
     }
 }

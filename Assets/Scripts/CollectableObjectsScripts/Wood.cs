@@ -2,17 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Wood : MonoBehaviour
+public class Wood : InteractableObject
 {
-    // Start is called before the first frame update
-    void Start()
+    protected override void UseObject()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if(!Player.HasSomethingInHands)
+        {
+            this.transform.parent = Player.HandlePoint.transform;
+            this.transform.position = Player.HandlePoint.position;
+            SelectedObject.Hide();
+            Player.SetHasSomethingInHands(true);
+            Player.SetHasWood(true);
+        }
+        else
+        {
+            TipsViewPanel.ShowHandsAreFullTip();
+        }
     }
 }
