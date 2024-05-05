@@ -208,6 +208,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SelectedObject: {fileID: 4557105790484998942}
+  _inventoryPrefabSO: {fileID: 11400000, guid: 6ff46d52a5effb3409fda4deff858da3, type: 2}
 --- !u!65 &7483953451331543930
 BoxCollider:
   m_ObjectHideFlags: 0

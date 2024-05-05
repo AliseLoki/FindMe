@@ -189,7 +189,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6572086076363524098}
   - component: {fileID: 5988824275343169333}
-  - component: {fileID: 6569694842449885348}
+  - component: {fileID: 8847300563622022960}
   m_Layer: 0
   m_Name: Necronomicon
   m_TagString: Untagged
@@ -212,7 +212,7 @@ Transform:
   - {fileID: 4407537022284489481}
   - {fileID: 8344169401952852748}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &5988824275343169333
 BoxCollider:
@@ -235,7 +235,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.1123466, y: 0.64186394, z: 1.3742676}
   m_Center: {x: -0.052865982, y: -0.17906803, z: 0.19610596}
---- !u!114 &6569694842449885348
+--- !u!114 &8847300563622022960
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -248,3 +248,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SelectedObject: {fileID: 7610600336028955210}
+  _inventoryPrefabSO: {fileID: 11400000, guid: 587a36a619ac6e64bbdefdcdd59d72ce, type: 2}

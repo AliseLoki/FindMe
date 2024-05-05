@@ -236,6 +236,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SelectedObject: {fileID: 849242303347306070}
+  _inventoryPrefabSO: {fileID: 11400000, guid: 34bd6c81d0d3f584eb42d62d4c06e13c, type: 2}
 --- !u!1 &5202692419252996930
 GameObject:
   m_ObjectHideFlags: 0

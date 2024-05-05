@@ -4,15 +4,17 @@ public abstract class InteractableObject : MonoBehaviour
 {
     [SerializeField] protected SelectedObject SelectedObject;
 
-    protected SoundEffects SoundEffects;
     protected Player Player;
+    protected SoundEffects SoundEffects;
     protected TipsViewPanel TipsViewPanel;
     protected DeliveryService DeliveryService;
     protected DeliveryServiceView DeliveryServiceView;
+    protected PlayerInventory PlayerInventory;
     
     private void Awake()
     {
         Player = GameManager.Instance.GameEntryPoint.InitPlayer();
+        PlayerInventory = GameManager.Instance.GameEntryPoint.InitPlayerInventory();
         TipsViewPanel = GameManager.Instance.GameEntryPoint.InitTipsViewPanel();
         SoundEffects = GameManager.Instance.GameEntryPoint.InitSoundEffects();
         DeliveryService = GameManager.Instance.GameEntryPoint.InitDeliveryService();

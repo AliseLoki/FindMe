@@ -2,10 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Necronomicon : InteractableObject
+public class Necronomicon : InventoryPrefab
 {
-    protected override void UseObject()
-    {
-       
-    } 
+  
 }

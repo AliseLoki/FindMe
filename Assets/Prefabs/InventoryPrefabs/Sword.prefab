@@ -248,3 +248,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SelectedObject: {fileID: 5720506782204268560}
+  _inventoryPrefabSO: {fileID: 11400000, guid: afd07a18a31979f4588f2b618be787e9, type: 2}

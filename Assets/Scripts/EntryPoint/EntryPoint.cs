@@ -3,6 +3,7 @@ using UnityEngine;
 public class EntryPoint : MonoBehaviour
 {
     [SerializeField] private Player _player;
+    [SerializeField] private PlayerInventory _playerInventory;
     [SerializeField] private TipsViewPanel _tipsViewPanel;
     [SerializeField] private SoundEffects _soundEffects;
     [SerializeField] private RecievingOrdersPoint _recievingOrdersPoint;
@@ -10,7 +11,7 @@ public class EntryPoint : MonoBehaviour
     [SerializeField] private DeliveryServiceView _deliveryServiceView;
     [SerializeField] private TestingTable _cookingTable;
     [SerializeField] private PackingPlace _packingPlace;
-
+     
     public Player InitPlayer()
     {
         return _player;
@@ -49,5 +50,10 @@ public class EntryPoint : MonoBehaviour
     public PackingPlace InitPackingPlace()
     {
         return _packingPlace;
+    }
+
+    public PlayerInventory InitPlayerInventory()
+    {
+        return _playerInventory;
     }
 }

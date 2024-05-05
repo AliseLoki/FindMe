@@ -2,6 +2,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(PlayerEvents))]
 [RequireComponent(typeof(PlayerCookingModule))]
+[RequireComponent (typeof(PlayerInventory))]
 public class Player : MonoBehaviour
 {
     [SerializeField] private bool _hasSomethingInHands;
@@ -17,7 +18,7 @@ public class Player : MonoBehaviour
 
     private PlayerEvents _playerEvents;
     private PlayerCookingModule _playerCookingModule;
-   
+    
     public bool HasSomethingInHands => _hasSomethingInHands;
 
     public bool HasBackPack => _hasBackPack;
