@@ -19,7 +19,7 @@ public class HealthView : MonoBehaviour
 
     private void OnDisable()
     {
-        _player.PlayerEventsHandler.GoldAmountChanged -= OnPlayerHealthChanged;
+        _player.PlayerEventsHandler.HealthChanged -= OnPlayerHealthChanged;
     }
 
     private void OnPlayerHealthChanged(int health)

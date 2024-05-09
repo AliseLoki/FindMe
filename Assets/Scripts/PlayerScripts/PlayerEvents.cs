@@ -4,7 +4,7 @@ using UnityEngine;
 public class PlayerEvents : MonoBehaviour
 {
     private int _gold = 0;
-    private int _health = 10;
+    private int _health = 0;
     private int _maxhealth = 10;
 
     private TipsViewPanel _tipsViewPanel;
@@ -22,12 +22,17 @@ public class PlayerEvents : MonoBehaviour
 
     public event Action<int> GoldAmountChanged;
     public event Action<int> HealthChanged;
-
+    
     public event Action PlayerHasDied;
 
     private void Awake()
     {
         _tipsViewPanel = GameManager.Instance.GameEntryPoint.InitTipsViewPanel();
+    }
+
+    private void Start()
+    {
+        OnHealthChanged(_maxhealth);
     }
 
     public void OnEnteredGrannysHome()

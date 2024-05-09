@@ -31,7 +31,7 @@ public class Spawner : MonoBehaviour
         {
             foreach (Transform spawnPlace in _spawnPlaces)
             {
-                foreach (InteractableObject prefab in _interactableObjects)
+                foreach (var prefab in _interactableObjects)
                 {
                     Instantiate(prefab, CalculateSpawnPosition(spawnPlace), Quaternion.identity);
                 }

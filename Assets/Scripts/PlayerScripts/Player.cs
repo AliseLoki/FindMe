@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
 
     private PlayerEvents _playerEvents;
     private PlayerCookingModule _playerCookingModule;
+    private PlayerInventory _playerInventory;
     
     public bool HasSomethingInHands => _hasSomethingInHands;
 
@@ -29,12 +30,15 @@ public class Player : MonoBehaviour
 
     public PlayerCookingModule PlayerCookingModule => _playerCookingModule;
 
+    public PlayerInventory PlayerInventory => _playerInventory;
+
     public Transform HandlePoint => _handlePoint;
 
     private void Awake()
     {
         _playerEvents = GetComponent<PlayerEvents>();
         _playerCookingModule = GetComponent<PlayerCookingModule>();
+        _playerInventory = GetComponent<PlayerInventory>();
     }
 
     private void OnEnable()

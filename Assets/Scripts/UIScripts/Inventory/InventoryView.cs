@@ -11,7 +11,6 @@ public class InventoryView : MonoBehaviour
     {
         _playerInventory = GameManager.Instance.GameEntryPoint.InitPlayerInventory();
     }
-
     private void OnEnable()
     {
         _playerInventory.InventoryPrefabSORecieved += OnInventoryPrefabSORecieved;
@@ -20,11 +19,18 @@ public class InventoryView : MonoBehaviour
     private void OnDisable()
     {
         _playerInventory.InventoryPrefabSORecieved -= OnInventoryPrefabSORecieved;
+        _inventoryCell.InventoryCellButtonPressed -= OnInventoryCellButtonPressed;
     }
 
     private void OnInventoryPrefabSORecieved(InventoryPrefabSO inventoryPrefabSO)
     {
         var newInventoryCell = Instantiate(_inventoryCell, _listOfInventoryPrefabImages);
         newInventoryCell.SetInventoryCellImage(inventoryPrefabSO);
+        newInventoryCell.InventoryCellButtonPressed += OnInventoryCellButtonPressed;
+    }
+
+    private void OnInventoryCellButtonPressed(InventoryPrefabSO inventoryPrefabSO)
+    {
+       _playerInventory.RemoveInventoryPrefabSO(inventoryPrefabSO);        
     }
 }
