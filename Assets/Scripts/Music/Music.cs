@@ -1,10 +1,15 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(AudioSource))]
 public class Music : MonoBehaviour
 {
-    [SerializeField] private MusicSO _musicSO;
+    private const string PlayerPrefsMusicVolume = nameof(PlayerPrefsMusicVolume);
 
+    [SerializeField] private MusicSO _musicSO;
+    [SerializeField] private Slider _musicVolumeSlider;
+
+    private float _defaultMusicVolumeValue = 0.3f;
     private bool _isForestMusicPlaying;
     private AudioSource _audioSource;
     private Player _player;
@@ -13,6 +18,8 @@ public class Music : MonoBehaviour
     {
         _player = GameManager.Instance.GameEntryPoint.InitPlayer();
         _audioSource = GetComponent<AudioSource>();
+        _musicVolumeSlider.value = PlayerPrefs.GetFloat(PlayerPrefsMusicVolume, _defaultMusicVolumeValue);
+        ChangeVolume();
         PlayForestMusic();
     }
 
@@ -42,6 +49,18 @@ public class Music : MonoBehaviour
 
         _player.PlayerEventsHandler.EnteredVillage -= PlayVilageMusic;
         _player.PlayerEventsHandler.ExitVillage -= PlayRoadMusic;
+    }
+
+    public void ChangeMusicVolume()
+    {
+        ChangeVolume();
+        PlayerPrefs.SetFloat(PlayerPrefsMusicVolume, _musicVolumeSlider.value);
+        PlayerPrefs.Save();
+    }
+
+    private void ChangeVolume()
+    {
+        _audioSource.volume = _musicVolumeSlider.value;
     }
 
     private void PlayForestMusic()

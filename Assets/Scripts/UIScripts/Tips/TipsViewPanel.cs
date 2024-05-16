@@ -11,6 +11,66 @@ public class TipsViewPanel : MonoBehaviour
         ShowYouAreSafeTip();
     }
 
+    public void ShowIDidntOrderThisTip()
+    {
+        ShowTips(_tipsSO.IDidntOrderThisTip);
+    }
+
+    public void ShowTakeRewardTip()
+    {
+        ShowTips(_tipsSO.TakeRewardTip);
+    }
+
+    public void ShowFirstCompleteOldOrdersTip()
+    {
+        ShowTips(_tipsSO.FirstCompleteOldOrdersTip);
+    }
+
+    public void ShowYouCanBringACowHereTip()
+    {
+        ShowTips(_tipsSO.YouCanBringACowHere);
+    }
+
+    public void ShowGiveMeAWaterTip()
+    {
+        ShowTips(_tipsSO.BringMeAWater);
+    }
+
+    public void ShowNowYouHaveCheeseTip()
+    {
+        ShowTips(_tipsSO.NowYouHaveCheese);
+    }
+
+    public void ShowNowYouHaveNewVegetableTip()
+    {
+        ShowTips(_tipsSO.NowYouHaveNewVegetable);
+    }
+
+    public void ShowBringWaterHere()
+    {
+        ShowTips(_tipsSO.BringWaterHere);
+    }
+
+    public void ShowHereYouCanGrowVegetablesTip()
+    {
+        ShowTips(_tipsSO.HereYouCanGrowVegetables);
+    }
+
+    public void ShowPutGoldInMeTip()
+    {
+        ShowTips(_tipsSO.PutGoldInMe);
+    }
+
+    public void ShowNotEnoughMoneyTip()
+    {
+        ShowTips(_tipsSO.NotEnoughMoney);
+    }
+
+    public void ShowWaterPatchTip()
+    {
+        ShowTips(_tipsSO.WaterPatch);
+    }
+
     public void ShowTakeMeTip()
     {
         ShowTips(_tipsSO.TakeMeTip);

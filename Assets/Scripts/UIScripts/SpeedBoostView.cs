@@ -6,7 +6,6 @@ public class SpeedBoostView : MonoBehaviour
 {
     [SerializeField] private Image _speedBoostImage;
 
-    private float _disappearingDuration = 1;
     private PlayerInventory _playerInventory;
 
     private void Awake()

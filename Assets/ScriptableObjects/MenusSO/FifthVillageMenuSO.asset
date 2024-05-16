@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fbcdf856516e1e479b942ac7ffcfc0f, type: 3}
+  m_Name: FifthVillageMenuSO
+  m_EditorClassIdentifier: 
+  MenuList:
+  - {fileID: 11400000, guid: c3a40badf06b5734c9ad8bbbc18e1169, type: 2}
+  - {fileID: 11400000, guid: 594473717b67c2449a4236f99c01db92, type: 2}
+  - {fileID: 11400000, guid: 90fd557a3cb12b0409603c20e790ee0f, type: 2}
+  - {fileID: 11400000, guid: 2d226eb962dff9f499dac090798aa8e3, type: 2}
+  - {fileID: 11400000, guid: b764ea24338290749b92cc4ad1399d7a, type: 2}
+  - {fileID: 11400000, guid: 231b414b2625efd4f8303171154a2f6d, type: 2}
+  - {fileID: 11400000, guid: ab3ce0a6a6637e04e9a5cc4b31a1cb28, type: 2}

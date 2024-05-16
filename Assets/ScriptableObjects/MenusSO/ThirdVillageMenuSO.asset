@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fbcdf856516e1e479b942ac7ffcfc0f, type: 3}
+  m_Name: ThirdVillageMenuSO
+  m_EditorClassIdentifier: 
+  MenuList:
+  - {fileID: 11400000, guid: 9ee9cc2e9f31f5740b83c40838d0319e, type: 2}
+  - {fileID: 11400000, guid: 94724ef95aeefe74289827b73639d4ca, type: 2}
+  - {fileID: 11400000, guid: e713fe95359504846b634207f39a495f, type: 2}
+  - {fileID: 11400000, guid: 150ebee485efc0f47bce8ef2b848848f, type: 2}
+  - {fileID: 11400000, guid: 56d631204dfccb44f9bd2fa3e33f7ed3, type: 2}
+  - {fileID: 11400000, guid: e58cbe5e6e6c25f4e8965c348302f265, type: 2}
+  - {fileID: 11400000, guid: 3b815e8ff77d4df45a321f5301c2f377, type: 2}

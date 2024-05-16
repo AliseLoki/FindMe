@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1f568734aee7e849840f624ab24238b, type: 3}
+  m_Name: SomTom
+  m_EditorClassIdentifier: 
+  RecipeName: "\u043B\u0435\u043F\u0435\u0448\u043A\u0430"
+  RecipeImage: {fileID: 21300000, guid: 6fc598a34ab75a343a51518a8482c338, type: 3}
+  Readyness: 0
+  IngredientsForRecipe:
+  - {fileID: 11400000, guid: 34feec2956f702a46a9e72e8a55eec28, type: 2}
+  - {fileID: 11400000, guid: b88ade4f1f4e4bf41993c5c4eed8631c, type: 2}

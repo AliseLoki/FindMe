@@ -40,15 +40,30 @@ public class TipsSO : ScriptableObject
     public string NoPlaceTip = "в рюкзаке уже нет места, пора отправл€тьс€ в дорогу";
 
     public string ThisIsRecievingOrdersPointTip = "здесь можно получить заказ";
+    public string FirstCompleteOldOrdersTip = "сначала доставь прошлый заказ";
 
     public string ThisIsHouseTip = "это дом, нажми на дверь, чтобы доставить заказ";
+    public string IDidntOrderThisTip = "€ это блюдо не заказывал";
     public string DishIsPreparedBadly = "блюдо плохо приготовлено, ты не получишь деньги";
+
+    public string PutGoldInMe = "кинь в мен€ 10 золотых и получишь воду";
+    public string NotEnoughMoney = "недостаточно денег";
+    public string WaterPatch = "полей гр€дки";
+
+    public string HereYouCanGrowVegetables = "здесь можно выращивать овощи, лева€ гр€дка дл€ помидор, права€ дл€ капусты";
+    public string BringWaterHere = "полей гр€дку";
+    public string NowYouHaveNewVegetable = "теперь в домике по€вилс€ новый овощ, возьми заказ на новые рецепты";
+
+    public string YouCanBringACowHere = "Ёто место дл€ коровы";
+    public string BringMeAWater = "напои мен€ водой";
+    public string NowYouHaveCheese = "теперь в домике по€вилс€ сыр, ты можешь вз€ть заказ на новые рецепты";
 
     public string PutWoodInOvenTip = "эти дрова можно положить в печь";
 
     public string TakeBackpackTip = "возможно стоило вз€ть с собой посылки";
 
     public string EatMeTip = "съешь мен€";
+    public string TakeMeTip = "возьми мен€ и отнеси на гр€дку";
 
-    public string TakeMeTip = "возьми мен€";
+    public string TakeRewardTip = "возьми награду в центре деревни ";
 }

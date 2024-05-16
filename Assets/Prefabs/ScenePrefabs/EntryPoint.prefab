@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3494930492482163284
 MonoBehaviour:
@@ -45,8 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 0}
+  _playerInventory: {fileID: 0}
   _tipsViewPanel: {fileID: 0}
-  _soundEffects: {fileID: 0}
   _recievingOrdersPoint: {fileID: 0}
   _deliveryService: {fileID: 0}
   _deliveryServiceView: {fileID: 0}

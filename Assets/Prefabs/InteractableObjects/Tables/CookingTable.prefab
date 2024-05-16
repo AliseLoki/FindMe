@@ -1540,6 +1540,7 @@ GameObject:
   - component: {fileID: 6042589465401613235}
   - component: {fileID: 5545060717222423191}
   - component: {fileID: 7303588816970413046}
+  - component: {fileID: 4616130559842840557}
   m_Layer: 6
   m_Name: CookingTable
   m_TagString: Untagged
@@ -1604,6 +1605,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SelectedObject: {fileID: 7401423642438955273}
+  AudioClipsList:
+  - {fileID: 8300000, guid: 961379cce253f794abff0d24df806b68, type: 3}
+  - {fileID: 8300000, guid: e4d8b878bfad827409ca58f1c4abda23, type: 3}
+  - {fileID: 8300000, guid: 5a96e2c290c5f3941bd4b25879ef7e43, type: 3}
   FoodSO: {fileID: 0}
   PlaceForFood: {fileID: 9018617324689279126}
   _ingredientsForCooking:
@@ -1620,8 +1625,102 @@ MonoBehaviour:
   - {fileID: 6753397318778578353}
   _onTheTableFoodSO: []
   _foodPotPrefab: {fileID: 5465372597002421079, guid: 0b4e0fd81296f774eb00037ecc60f2ab, type: 3}
-  _deliveryService: {fileID: 0}
-  _deliveryServiceView: {fileID: 0}
+--- !u!82 &4616130559842840557
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6309944016209489806}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &6429529685987239515
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerMovement : MonoBehaviour
@@ -12,15 +13,20 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float _boostSpeed = 20f;
     [SerializeField] private float _rotateSpeed = 10f;
 
+    private Rigidbody _rigidbody;
     private PlayerInventory _playerInventory;
 
     private bool _isWalking;
     private bool _isRunning;
 
+    private float _verticalInput;
+    private float _horizontalInput;
+
     public bool IsWalking => _isWalking;
 
     private void Awake()
     {
+        _rigidbody = GetComponent<Rigidbody>();
         _playerInventory = GetComponent<PlayerInventory>();
     }
 
@@ -66,7 +72,7 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 movement = new Vector3(horizontalInput, 0, verticalInput).normalized;
 
-        transform.position += moveSpeed  * Time.deltaTime * movement;
+        transform.position += moveSpeed * Time.deltaTime * movement;
 
         _isWalking = movement != Vector3.zero;
 

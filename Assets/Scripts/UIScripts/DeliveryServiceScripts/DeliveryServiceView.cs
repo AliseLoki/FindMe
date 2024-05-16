@@ -1,17 +1,20 @@
 using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class DeliveryServiceView : MonoBehaviour
 {
     [SerializeField] private Transform _recipesList;
     [SerializeField] private RecipeTemplateView _recipeTemplate;
+    [SerializeField] private Transform _recipiesView;
+    [SerializeField] private TMP_Text _destinationPointName;
 
     private DeliveryService _deliveryService;
-    private TestingTable _cookingTable;
+    private CookingTable _cookingTable;
 
     private bool _hasRecievedOrders;
-    
+
     public event Action<CookingRecipeSO> DishPrepared;
 
     private void Awake()
@@ -24,6 +27,7 @@ public class DeliveryServiceView : MonoBehaviour
     {
         _deliveryService.OrdersCanBeShown += ShowOrders;
         _deliveryService.DishHasBeenDelivered += OnDishHasBeenDelivered;
+        _deliveryService.DishHasBeenPacked += OnDishHasBeenPacked;
         _deliveryService.AllDishesHaveBeenDelivered += OnAllDishesHaveBeenDelivered;
         _cookingTable.CanBeCookedCookingRecipeSO += OnCanBeCookedCookingRecipeSO;
     }
@@ -32,22 +36,31 @@ public class DeliveryServiceView : MonoBehaviour
     {
         _recipeTemplate.DishPrepared -= OnDishPrepared;
         _deliveryService.OrdersCanBeShown -= ShowOrders;
+        _deliveryService.DishHasBeenPacked -= OnDishHasBeenPacked;
         _deliveryService.DishHasBeenDelivered -= OnDishHasBeenDelivered;
         _deliveryService.AllDishesHaveBeenDelivered -= OnAllDishesHaveBeenDelivered;
         _cookingTable.CanBeCookedCookingRecipeSO -= OnCanBeCookedCookingRecipeSO;
+    }
+
+    private void OnDishHasBeenPacked(CookingRecipeSO cookingRecipeSO)
+    {
+        foreach (Transform recipe in _recipesList)
+        {
+            recipe.GetComponent<RecipeTemplateView>().SetHasBeenPacked(cookingRecipeSO);
+        }
     }
 
     public void OnRecipeButtonPressed()
     {
         if (_hasRecievedOrders)
         {
-            if (_recipesList.gameObject.activeSelf)
+            if (_recipiesView.gameObject.activeSelf)
             {
-                _recipesList.gameObject.SetActive(false);
+                _recipiesView.gameObject.SetActive(false);
             }
             else
             {
-                _recipesList.gameObject.SetActive(true);
+                _recipiesView.gameObject.SetActive(true);
             }
         }
     }
@@ -63,6 +76,7 @@ public class DeliveryServiceView : MonoBehaviour
     private void OnAllDishesHaveBeenDelivered()
     {
         _hasRecievedOrders = false;
+        _destinationPointName.text = string.Empty;
     }
 
     private void OnCanBeCookedCookingRecipeSO(CookingRecipeSO cookingRecipeSO)
@@ -75,7 +89,7 @@ public class DeliveryServiceView : MonoBehaviour
         }
     }
 
-    private void ShowOrders(List<CookingRecipeSO> ordersToShow)
+    private void ShowOrders(string destinationPointName, List<CookingRecipeSO> ordersToShow)
     {
         if (!_hasRecievedOrders)
         {
@@ -85,6 +99,7 @@ public class DeliveryServiceView : MonoBehaviour
                 newTemplate.SetCookingRecipeSO(cookingRecipeSO);
             }
 
+            _destinationPointName.text = destinationPointName.ToString();
             _hasRecievedOrders = true;
         }
     }
@@ -97,7 +112,7 @@ public class DeliveryServiceView : MonoBehaviour
         {
             if (recipe.GetComponent<RecipeTemplateView>().CheckIfEqual(cookingRecipeSO))
             {
-               recipeView = recipe;
+                recipeView = recipe;
             }
         }
 

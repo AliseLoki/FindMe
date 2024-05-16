@@ -16,7 +16,6 @@ public class EducationUI : MonoBehaviour
     public event Action EducationStarted;
     public event Action EducationSkipped;
 
-
     private void Awake()
     {
         _nextAdviceButton.gameObject.SetActive(false);

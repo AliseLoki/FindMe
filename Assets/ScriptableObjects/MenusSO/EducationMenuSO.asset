@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: EducationMenuSO
   m_EditorClassIdentifier: 
   MenuList:
-  - {fileID: 11400000, guid: a3353403667160748bbd26b42fd5c5a3, type: 2}
+  - {fileID: 11400000, guid: dbaf82c1fe9f73f428838ca08dbc1857, type: 2}

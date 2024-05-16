@@ -31,6 +31,6 @@ public class InventoryView : MonoBehaviour
 
     private void OnInventoryCellButtonPressed(InventoryPrefabSO inventoryPrefabSO)
     {
-       _playerInventory.RemoveInventoryPrefabSO(inventoryPrefabSO);        
+        _playerInventory.RemoveInventoryPrefabSO(inventoryPrefabSO);
     }
 }

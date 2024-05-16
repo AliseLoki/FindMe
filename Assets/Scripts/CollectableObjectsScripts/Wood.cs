@@ -6,7 +6,7 @@ public class Wood : InteractableObject
 {
     protected override void UseObject()
     {
-        if(!Player.HasSomethingInHands)
+        if (!Player.HasSomethingInHands)
         {
             this.transform.parent = Player.HandlePoint.transform;
             this.transform.position = Player.HandlePoint.position;

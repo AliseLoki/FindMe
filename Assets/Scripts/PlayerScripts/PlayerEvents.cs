@@ -3,10 +3,13 @@ using UnityEngine;
 
 public class PlayerEvents : MonoBehaviour
 {
-    private int _gold = 0;
+    [SerializeField] private AudioClip _takingGoldSoundEffect;
+
+    private int _gold = 10;
     private int _health = 0;
     private int _maxhealth = 10;
 
+    private Player _player;
     private TipsViewPanel _tipsViewPanel;
 
     public event Action EnteredGrannysHome;
@@ -22,27 +25,26 @@ public class PlayerEvents : MonoBehaviour
 
     public event Action<int> GoldAmountChanged;
     public event Action<int> HealthChanged;
-    
+
     public event Action PlayerHasDied;
 
     private void Awake()
     {
+        _player = GetComponent<Player>();
         _tipsViewPanel = GameManager.Instance.GameEntryPoint.InitTipsViewPanel();
     }
 
     private void Start()
     {
         OnHealthChanged(_maxhealth);
+        GoldAmountChanged(_gold);
     }
 
     public void OnEnteredGrannysHome()
     {
         EnteredGrannysHome?.Invoke();
-
-        if (GameManager.Instance.IsEducationPlaying())
-        {
-            _tipsViewPanel.ShowYouAreSafeTip();
-        }
+        _tipsViewPanel.gameObject.SetActive(true);
+        _tipsViewPanel.ShowYouAreSafeTip();
     }
 
     public void OnExitGrannysHome()
@@ -80,6 +82,7 @@ public class PlayerEvents : MonoBehaviour
 
     public void OnGoldAmountChanged()
     {
+        _player.PlaySoundEffect(_takingGoldSoundEffect);
         _gold++;
         GoldAmountChanged?.Invoke(_gold);
     }
@@ -93,5 +96,17 @@ public class PlayerEvents : MonoBehaviour
         {
             PlayerHasDied?.Invoke();
         }
+    }
+
+    public bool CheckIfCanPay(int price)
+    {
+        if (_gold >= price)
+        {
+            _gold -= price;
+            GoldAmountChanged?.Invoke(_gold);
+            return true;
+        }
+
+        return false;
     }
 }
