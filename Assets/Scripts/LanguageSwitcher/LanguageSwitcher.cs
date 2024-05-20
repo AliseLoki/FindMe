@@ -21,7 +21,17 @@ public class LanguageSwitcher : MonoBehaviour
     [SerializeField] private FirstStartTextSO _russianFirstStartTextSO;
     [SerializeField] private FirstStartTextSO _turkishFirstStartTextSO;
 
+    [SerializeField] private VillageNamesSO _englishVillageNamesSO;
+    [SerializeField] private VillageNamesSO _russianVillageNamesSO;
+    [SerializeField] private VillageNamesSO _turkishVillageNamesSO;
+
+    [SerializeField] private SignSO _englishSignSO;
+    [SerializeField] private SignSO _russianSignSO;
+    [SerializeField] private SignSO _turkishSignSO;
+
     public event Action<TipsSO, EducationAdvicesSO, FirstStartTextSO> AllSOWereGiven;
+    public event Action<VillageNamesSO> VillageNamesGiven;
+    public event Action<SignSO> SignSOGiven;
 
     private void Awake()
     {
@@ -44,14 +54,20 @@ public class LanguageSwitcher : MonoBehaviour
         if (_currentLanguage == english)
         {
             AllSOWereGiven?.Invoke(_englishTipsSO, _englishEducationAdvicesSO, _englishFirstStartTextSO);
+            VillageNamesGiven?.Invoke(_englishVillageNamesSO);
+            SignSOGiven?.Invoke(_englishSignSO);
         }
         else if (_currentLanguage == russian)
         {
             AllSOWereGiven?.Invoke(_russianTipsSO, _russianEducationAdvicesSO, _russianFirstStartTextSO);
+            VillageNamesGiven?.Invoke(_russianVillageNamesSO);
+            SignSOGiven?.Invoke(_russianSignSO);
         }
         else if (_currentLanguage == turkish)
         {
             AllSOWereGiven?.Invoke(_turkishTipsSO, _turkishEducationAdvicesSO, _turkishFirstStartTextSO);
+            VillageNamesGiven?.Invoke(_turkishVillageNamesSO);
+            SignSOGiven?.Invoke(_turkishSignSO);
         }
     }
 }

@@ -9,8 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3fbcdf856516e1e479b942ac7ffcfc0f, type: 3}
-  m_Name: 2
+  m_Script: {fileID: 11500000, guid: 598d5d88b90836c458c759d13f115c58, type: 3}
+  m_Name: EnglishVillageNamesSO
   m_EditorClassIdentifier: 
-  MenuList:
-  - {fileID: 11400000, guid: 5e5f2723f5d749b41b2b5da27f289d99, type: 2}
+  Woodcutter: woodcutter
+  FirstVillageName: grushevka
+  SecondVillageName: yablonevka
+  ThirdVillageName: korovino
+  FourthVillageName: zelenovka
+  LastVillageName: zarechye

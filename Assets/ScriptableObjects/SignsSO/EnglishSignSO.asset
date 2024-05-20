@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b5f01307ef475f48b7f07da7db8f07e, type: 3}
+  m_Name: EnglishSignSO
+  m_EditorClassIdentifier: 
+  FirstSign:
+  - bridge
+  - granny
+  - woodcutter
+  - grushevka
+  SecondSign:
+  - bridge
+  - woodcutter
+  - granny
+  - grushevka
+  ThirdSign:
+  - granny
+  - bridge
+  - woodcutter
+  - grushevka
+  FourthSign:
+  - woodcutter
+  - grushevka
+  - granny
+  - yablonevka
+  FifthSign:
+  - bridge
+  - yablonevka
+  - granny
+  - grushevka
+  SixthSign:
+  - zarechye
+  - bridge
+  - zelenovka
+  - korovino
+  SeventhSign:
+  - korovino
+  - bridge
+  - zelenovka
+  - zarechye
+  EighthSign:
+  - bridge
+  - korovino
+  - zelenovka
+  - zarechye
+  NinthSign:
+  - korovino
+  - zelenovka
+  - zarechye
+  - bridge
+  TenthSign:
+  - zelenovka
+  - bridge
+  - grushevka
+  - yablonevka
+  EleventhSign:
+  - zelenovka
+  - bridge
+  - zarechye
+  - yablonevka
+  TwelfthSign:
+  - granny
+  - zarechye
+  - grushevka
+  - yablonevka

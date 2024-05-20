@@ -16,8 +16,6 @@ public class CanvasUI : MonoBehaviour
 
     private float _fadeSpeed = 0.5f;
 
-    private FirstStartTextSO _firstStartTextSO;
-
     private Player _player;
     private LanguageSwitcher _languageSwitcher;
 
@@ -32,15 +30,6 @@ public class CanvasUI : MonoBehaviour
 
         _languageSwitcher = GameManager.Instance.GameEntryPoint.InitLanguageSwitcher();
         _languageSwitcher.AllSOWereGiven += OnAllSOWereGiven;
-
-        // _tipsViewPanel.gameObject.SetActive(false);
-
-        //if (GameManager.Instance.IsFirstStart)
-        //{
-        //    _firstStartPanel.gameObject.SetActive(true);
-        //    _firstStartPanel.InitFirstStartTextSO(_firstStartTextSO);
-        //   // FirstStartPanelViewActivated?.Invoke();
-        //}
     }
 
     private void OnEnable()
@@ -58,8 +47,6 @@ public class CanvasUI : MonoBehaviour
         if (GameManager.Instance.IsFirstStart)
         {
             _firstStartPanel.gameObject.SetActive(true);
-            // _firstStartPanel.InitFirstStartTextSO(_firstStartTextSO);
-            // FirstStartPanelViewActivated?.Invoke();
         }
     }
 
@@ -74,7 +61,6 @@ public class CanvasUI : MonoBehaviour
 
     private void OnAllSOWereGiven(TipsSO tipsSO, EducationAdvicesSO educationAdvicesSO, FirstStartTextSO firstStartTextSO)
     {
-        //_firstStartTextSO = firstStartTextSO;
         _firstStartPanel.InitFirstStartTextSO(firstStartTextSO);
         _tipsViewPanel.InitTipsSO(tipsSO);
         _educationUI.InitEducationAdvicesSO(educationAdvicesSO);

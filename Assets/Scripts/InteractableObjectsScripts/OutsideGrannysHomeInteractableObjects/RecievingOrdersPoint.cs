@@ -20,25 +20,23 @@ public class RecievingOrdersPoint : InteractableObject
 
     private bool _orderIsTaken;
 
-    private List<string> _destinationPoints = new List<string>()
-    {
-        "дровосек",
-        "грушевка",
-        "яблоневка",
-        "коровино",
-        "зеленовка",
-        "заречье"
-    };
+    private LanguageSwitcher _languageSwitcher;
+
+    private VillageNamesSO _villageNamesSO;
 
     public event Action<string, MenuSO> OrdersAreTaken;
 
     private void OnEnable()
     {
+        _languageSwitcher = GameManager.Instance.GameEntryPoint.InitLanguageSwitcher();
+        _languageSwitcher.VillageNamesGiven += InitVillageNamesSO;
         DeliveryService.AllDishesHaveBeenDelivered += OnAllDishesHaveBeenDelivered;
     }
+
     private void OnDisable()
     {
         DeliveryService.AllDishesHaveBeenDelivered -= OnAllDishesHaveBeenDelivered;
+        _languageSwitcher.VillageNamesGiven -= InitVillageNamesSO;
     }
 
     public void OnAllDishesHaveBeenDelivered()
@@ -49,35 +47,36 @@ public class RecievingOrdersPoint : InteractableObject
     protected override void UseObject()
     {
         int recievingOrdersSoundEffectIndex = 0;
+
         PlaySoundEffect(AudioClipsList[recievingOrdersSoundEffectIndex]);
 
         if (!_orderIsTaken)
         {
             if (GameManager.Instance.IsEducationPlaying())
             {
-                OrdersAreTaken?.Invoke(_destinationPoints[_woodCuterHomeIndex], _allMenusSO[_woodCuterHomeIndex]);
+                OrdersAreTaken?.Invoke(_villageNamesSO.Woodcutter, _allMenusSO[_woodCuterHomeIndex]);
             }
             else if (GameManager.Instance.IsGamePlaying())
             {
                 if (_meetHanger.isActiveAndEnabled)
                 {
-                    OrdersAreTaken?.Invoke(_destinationPoints[_lastVillageZarechyeIndex], _allMenusSO[_lastVillageZarechyeIndex]);
+                    OrdersAreTaken?.Invoke(_villageNamesSO.LastVillageName, _allMenusSO[_lastVillageZarechyeIndex]);
                 }
                 else if (_bowlWithCheese.isActiveAndEnabled)
                 {
-                    OrdersAreTaken?.Invoke(_destinationPoints[_fourthVillageZelenovkaIndex], _allMenusSO[_fourthVillageZelenovkaIndex]);
+                    OrdersAreTaken?.Invoke(_villageNamesSO.FourthVillageName, _allMenusSO[_fourthVillageZelenovkaIndex]);
                 }
                 else if (_basketWithCabbages.isActiveAndEnabled)
                 {
-                    OrdersAreTaken?.Invoke(_destinationPoints[_thirdVillageKorovinoIndex], _allMenusSO[_thirdVillageKorovinoIndex]);
+                    OrdersAreTaken?.Invoke(_villageNamesSO.ThirdVillageName, _allMenusSO[_thirdVillageKorovinoIndex]);
                 }
                 else if (_barrelWithTomatoes.isActiveAndEnabled)
                 {
-                    OrdersAreTaken?.Invoke(_destinationPoints[_secondVillageYablonevkaIndex], _allMenusSO[_secondVillageYablonevkaIndex]);
+                    OrdersAreTaken?.Invoke(_villageNamesSO.SecondVillageName, _allMenusSO[_secondVillageYablonevkaIndex]);
                 }
                 else
                 {
-                    OrdersAreTaken?.Invoke(_destinationPoints[_firstVillageGrushevkaIndex], _allMenusSO[_firstVillageGrushevkaIndex]);
+                    OrdersAreTaken?.Invoke(_villageNamesSO.FirstVillageName, _allMenusSO[_firstVillageGrushevkaIndex]);
                 }
             }
 
@@ -87,5 +86,10 @@ public class RecievingOrdersPoint : InteractableObject
         {
             TipsViewPanel.ShowFirstCompleteOldOrdersTip();
         }
+    }
+
+    private void InitVillageNamesSO(VillageNamesSO villageNamesSO)
+    {
+        _villageNamesSO = villageNamesSO;
     }
 }
