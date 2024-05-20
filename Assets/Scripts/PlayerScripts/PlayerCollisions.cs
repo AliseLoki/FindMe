@@ -1,10 +1,12 @@
 using UnityEngine;
 
-[RequireComponent (typeof(Player))]
+[RequireComponent(typeof(Player))]
 public class PlayerCollisions : MonoBehaviour
 {
+    private int _coinsValue = 1;
+
     private Player _player;
-    
+
     private void Awake()
     {
         _player = GetComponent<Player>();
@@ -31,7 +33,7 @@ public class PlayerCollisions : MonoBehaviour
         if (other.TryGetComponent(out GoldCoins goldCoins))
         {
             goldCoins.PickUpCoins();
-            _player.PlayerEventsHandler.OnGoldAmountChanged();
+            _player.PlayerEventsHandler.OnGoldAmountChanged(_coinsValue);
             // создать ивент , на него подписан евент хэндлер , на евент хэндлер подписаны другие компоненты
         }
 
@@ -40,12 +42,12 @@ public class PlayerCollisions : MonoBehaviour
             _player.PlayerEventsHandler.OnEnteredTheForest();
         }
 
-        if(other.TryGetComponent(out GrannysHomeTrigger grannysHomeTrigger))
+        if (other.TryGetComponent(out GrannysHomeTrigger grannysHomeTrigger))
         {
             _player.PlayerEventsHandler.OnEnteredGrannysHome();
         }
 
-        if(other.TryGetComponent(out VillageZoneTrigger villageZoneTrigger))
+        if (other.TryGetComponent(out VillageZoneTrigger villageZoneTrigger))
         {
             _player.PlayerEventsHandler.OnEnteredVillage();
         }

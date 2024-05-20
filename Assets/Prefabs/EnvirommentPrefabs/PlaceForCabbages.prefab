@@ -23,7 +23,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 898151270578189859}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -527,8 +527,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3627231790081802628}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.68, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.6800003, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1167,8 +1167,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7838620482266265477}
-  - {fileID: 1159913121128062262}
   - {fileID: 1029380896094636284}
+  - {fileID: 1159913121128062262}
   - {fileID: 8203609461645972647}
   m_Father: {fileID: 0}
   m_RootOrder: -1
@@ -1207,12 +1207,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SelectedObject: {fileID: 6331200558582872567}
-  AudioSource: {fileID: 7271840174639542669}
   AudioClipsList: []
   _inventoryPrefabSO: {fileID: 11400000, guid: 6ff46d52a5effb3409fda4deff858da3, type: 2}
   _grass: {fileID: 8203609461645972647}
   _vegetable: {fileID: 1159913121128062262}
-  _barrelWithVegetables: {fileID: 0}
+  _barrelWithIngredients: {fileID: 0}
 --- !u!82 &7271840174639542669
 AudioSource:
   m_ObjectHideFlags: 0

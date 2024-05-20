@@ -7,16 +7,20 @@ public class FirstStartPanelView : MonoBehaviour
 {
     [SerializeField] private TMP_Text _text;
     [SerializeField] private Button _yesButton;
+    [SerializeField] private TMP_Text _yesButtonText;
 
-    private string _welcomeText = "готов ли ты начать приключение?";
-    private string _runText = "тогда беги вперед к дому бабушки!!!";
+    private FirstStartTextSO _firstStartTextSO;
 
     public Action IsStarted;
 
-    public void Show()
+    private void Start()
     {
-        gameObject.SetActive(true);
-        PrintText(_welcomeText);
+        Show();
+    }
+
+    public void InitFirstStartTextSO(FirstStartTextSO firstStartTextSO)
+    {
+        _firstStartTextSO = firstStartTextSO;
     }
 
     public void Hide()
@@ -27,8 +31,14 @@ public class FirstStartPanelView : MonoBehaviour
     public void OnYesButtonPressed()
     {
         _yesButton.gameObject.SetActive(false);
-        PrintText(_runText);
+        PrintText(_firstStartTextSO.RunText);
         IsStarted?.Invoke();
+    }
+
+    private void Show()
+    {
+        PrintText(_firstStartTextSO.WelcomeTex);
+        _yesButtonText.text = _firstStartTextSO.YesButtonText;
     }
 
     private void PrintText(string text)

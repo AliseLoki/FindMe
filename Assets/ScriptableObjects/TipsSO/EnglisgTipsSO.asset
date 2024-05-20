@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 405151c5fac77fa40b1924d936c7d51d, type: 3}
+  m_Name: EnglisgTipsSO
+  m_EditorClassIdentifier: 
+  YouAreSafeTip: you're safe at grandma's house, the wolf won't eat you
+  YouAreNotSafeTip: "don't leave the road, but you can f\u0131nd f\u0131rewood  only 
+    in the forest..."
+  ApproachObjectForInteractionTip: if you want to use an item, you need to approach
+    it
+  TapTheObjectTip: the item is selected, click on it
+  HandsAreFullTip: hands are full
+  ThisIsGarbageTip: this is a garbage can
+  ThrowFoodTip: are you sure you should have thrown this out?
+  NothingInHandsTip: you have nothing in your hands
+  ThisIsCuttingTableTip: here you can cut the ingredients for the dish
+  CutItTip: tap again to cut
+  CantCutItTip: it can't be cut
+  ThisIsContainerTip: the ingredients for the dishes are here
+  FoodPickedTip: bring the ingredient to the cooking table, but remember, some ingredients
+    need to be cut first
+  BringToCookingTableTip: well done, now brring this to the cooking table
+  BringToOvenTip: now bring it to the oven
+  ThisIsOvenTip: this is an oven, you can cook food in it
+  NoWoodsTip: there is no firewood in the stove
+  CantLightFireTip: cannot light a fire, hands are full
+  CanUseOvenTip: now you can cook in the oven
+  ReadynessInstruction: if the pan turns red, the dish is ready, if there is smoke,
+    the dish is burnt
+  TimeToPack: you can already pack the dish
+  ThisIsCookingTableTip: this is a cooking table, here you can mix ingredients
+  FirstCutItTip: this needs to be cut first
+  ShowRecipesTip: click on the recipes in the left corner of the screen
+  CanCookTip: if the checkmark next to the recipe is green, click on it
+  ThisIsPackingPlaceTip: this is the place to pack ready dishes
+  DishIsPackedTip: dish is packed
+  NoPlaceTip: there is no more place in the backpack, it's time to hit the road
+  ThisIsRecievingOrdersPointTip: you can receive orders here
+  FirstCompleteOldOrdersTip: deliver the last order first
+  ThisIsHouseTip: this is a house, click on the door to deliver your order
+  IDidntOrderThisTip: I did not order this dish
+  DishIsPreparedBadly: dish is poorly prepared, you won't get money
+  PutGoldInMe: throw 10 gold in me and you'll get water
+  NotEnoughMoney: not enough money
+  WaterPatch: water the patch or water the cow
+  HereYouCanGrowVegetables: here you can grow vegetables, the left patch is for tomatoes,
+    the right patch is for cabbage
+  BringWaterHere: you must water it
+  NowYouHaveNewVegetable: now there is a new vegetable in the house, take an order
+    for new recipes
+  YouCanBringACowHere: This is a place for a cow
+  BringMeAWater: give me some water
+  NowYouHaveCheese: now there is cheese in the house, you can take order for new
+    recipes
+  PutWoodInOvenTip: this firewood can be put in the oven
+  TakeBackpackTip: maybe it was worth taking the packages with you
+  EatMeTip: eat me
+  TakeMeTip: pick me and take me to the garden
+  TakeRewardTip: take the reward in the center of the village

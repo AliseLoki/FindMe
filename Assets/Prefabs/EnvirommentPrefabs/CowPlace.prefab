@@ -30,7 +30,6 @@ Transform:
   m_Children:
   - {fileID: 8728096122487869778}
   - {fileID: 2555900998501809381}
-  - {fileID: 598335080987163934}
   m_Father: {fileID: 7787447866920757375}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -90,7 +89,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 496474490830520633}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -2.9, y: 1.63, z: 0.39001465}
+  m_LocalPosition: {x: -2.9000015, y: 1.63, z: 0.39001465}
   m_LocalScale: {x: 1.8, y: 1.8, z: 1.8}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -759,6 +758,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7510580470646023226}
+  - {fileID: 598335080987163934}
   - {fileID: 4970716202008694660}
   - {fileID: 1695438224115962107}
   m_Father: {fileID: 0}
@@ -798,14 +798,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SelectedObject: {fileID: 6054935829834198068}
-  AudioSource: {fileID: 687625981208990816}
   AudioClipsList:
   - {fileID: 8300000, guid: 89b16bfd82038a546af1843006e3cfc0, type: 3}
   - {fileID: 8300000, guid: 4b70ec0f0afb9ac4ea7dfea07aca4eb4, type: 3}
   _inventoryPrefabSO: {fileID: 11400000, guid: f5af632699c9a1a44a10999abe75271e, type: 2}
   _grass: {fileID: 7510580470646023226}
   _vegetable: {fileID: 598335080987163934}
-  _barrelWithVegetables: {fileID: 0}
+  _barrelWithIngredients: {fileID: 0}
 --- !u!82 &687625981208990816
 AudioSource:
   m_ObjectHideFlags: 0
@@ -990,11 +989,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6437380698749792877}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 1.5331993, y: 0.48, z: 0.5112915}
-  m_LocalScale: {x: 2.9354503, y: 0.1, z: 0.6333175}
+  m_LocalPosition: {x: 1.5331993, y: 0.48000002, z: 0.5112915}
+  m_LocalScale: {x: 2.9354496, y: 0.1, z: 0.63331735}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4970716202008694660}
+  m_Father: {fileID: 7787447866920757375}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8688095496104246174

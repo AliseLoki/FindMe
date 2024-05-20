@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b54a66a452309ce4baebc5565d079396, type: 3}
+  m_Name: TurkishFirstStartTextSO
+  m_EditorClassIdentifier: 
+  WelcomeTex: "maceraya haz\u0131r m\u0131s\u0131n ?"
+  RunText: "b\xFCy\xFCk annenin evine do\u011Fru ko\u015F"
+  YesButtonText: evet

@@ -10,6 +10,7 @@ public class EntryPoint : MonoBehaviour
     [SerializeField] private DeliveryServiceView _deliveryServiceView;
     [SerializeField] private CookingTable _cookingTable;
     [SerializeField] private PackingPlace _packingPlace;
+    [SerializeField] private LanguageSwitcher _languageSwitcher;
      
     public Player InitPlayer()
     {
@@ -49,5 +50,10 @@ public class EntryPoint : MonoBehaviour
     public PlayerInventory InitPlayerInventory()
     {
         return _playerInventory;
+    }
+
+    public LanguageSwitcher InitLanguageSwitcher()
+    {
+        return _languageSwitcher;
     }
 }

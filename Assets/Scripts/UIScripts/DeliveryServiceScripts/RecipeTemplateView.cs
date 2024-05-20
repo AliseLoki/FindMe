@@ -37,7 +37,7 @@ public class RecipeTemplateView : MonoBehaviour
 
     public void SetCookingRecipeSO(CookingRecipeSO cookingRecipeSO)
     {
-        _recipeName.text = cookingRecipeSO.RecipeName;
+       // _recipeName.text = cookingRecipeSO.RecipeName;
         _dishImage.GetComponent<Image>().sprite = cookingRecipeSO.RecipeImage;
         _cookingRecipeSO = cookingRecipeSO;
 

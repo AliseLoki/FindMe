@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbf088ad9e304b4479a4c9984bb265aa, type: 3}
+  m_Name: EnglishEducationAdvicesSO
+  m_EditorClassIdentifier: 
+  FirstEducationText: do you want to start training ?
+  StartEducationButtonText: start training
+  SkipEducationButtonText: skip training
+  _advices:
+  - to go to the next tip, click the green arrow under the text
+  - you can change the camera view, click on the red magnifying glass on the right
+    and adjust the zoom
+  - in the same way you can change the volume of the music, click on the notes
+  - "\u0131n the same way you can change the sound effects volume,  click on the
+    speaker icon"
+  - clicking on the map in the lower right corner will exit the game
+  - there are a lot of objects in the game that you can interact with
+  - they light up gray when you approach
+  - go to the bird's house, at the entrance to grandma's house
+  - click on it and you will receive an order
+  - You can view your orders by clicking on the scroll in the upper left corner
+  - now go into the house - to do this, go to the door and press on it
+  - first take the firewood and put it in the oven
+  - now go to the sack of flour and take some
+  - put the flour on the cooking table and open the recipes - the scroll in the upper
+    left corner
+  - if there are enough ingredients, a green checkmark will appear next to the recipe,
+    click on it
+  - a pan has appeared on the cooking table, grab it and take it to the oven
+  - if the pan turns red, quickly take it out and take it to the bench with the parcel
+  - "if smoke comes from the stove, the dish is burnt, it\u2019s better to throw
+    it in a trash can and start over"
+  - put the pan in the parcel, take the parcel and quickly bring it to the woodcutter
+  - the woodcutter's house is next to grandma's house, go straight along the road
+    until the sign
+  - don't leave the road, otherwise the wolf will eat you
+  - near the signpost there are plum trees, in such trees you can hide from the wolf
+  - also there are mushrooms, you can eat them, go to the mushroom and click on it
+  - after this the mushroom will appear in your inventory, click on it
+  - yellow mushrooms increase speed, red mushrooms increase health
+  - just go straight along the path and you will see the woodcutter's house
+  - to deliver the package, go to the door of the woodcutter's house and click on
+    it
+  - if the order is cooked well - not raw and not burnt, you will get the money
+  - with money you can buy water in a well, it is needed to grow vegetables in the
+    garden
+  - vegetables can be obtained in the village after all orders have been delivered
+  - if you get stuck, click on the book in the upper right corner, it will tell you
+    what to do
+  - now you are on your own, prepare dishes, deliver them to the villages
+  - but never forget about the wolf...

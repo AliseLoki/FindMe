@@ -3,9 +3,13 @@ using UnityEngine;
 
 public class PlayerEvents : MonoBehaviour
 {
+    private const string PlayerPrefsGoldAmount = nameof(PlayerPrefsGoldAmount);
+    private const string PlayerPrefsHealthAmount = nameof(PlayerPrefsHealthAmount);
+
     [SerializeField] private AudioClip _takingGoldSoundEffect;
 
-    private int _gold = 10;
+    private int _gold;
+    private int _goldDefaultValue = 0;
     private int _health = 0;
     private int _maxhealth = 10;
 
@@ -36,8 +40,18 @@ public class PlayerEvents : MonoBehaviour
 
     private void Start()
     {
-        OnHealthChanged(_maxhealth);
-        GoldAmountChanged(_gold);
+        if (!GameManager.Instance.IsFirstStart)
+        {
+            _gold = PlayerPrefs.GetInt(PlayerPrefsGoldAmount, _goldDefaultValue);
+            GoldAmountChanged?.Invoke(_gold);
+
+            _health = PlayerPrefs.GetInt(PlayerPrefsHealthAmount, _maxhealth);
+            HealthChanged?.Invoke(_health);
+        }
+        else
+        {
+            OnHealthChanged(_maxhealth);
+        }
     }
 
     public void OnEnteredGrannysHome()
@@ -80,17 +94,17 @@ public class PlayerEvents : MonoBehaviour
         _tipsViewPanel.ShowYouAreNotSafeTip();
     }
 
-    public void OnGoldAmountChanged()
+    public void OnGoldAmountChanged(int gold)
     {
         _player.PlaySoundEffect(_takingGoldSoundEffect);
-        _gold++;
-        GoldAmountChanged?.Invoke(_gold);
+        _gold += gold;
+        SaveGoldAmount(_gold);
     }
 
     public void OnHealthChanged(int health)
     {
         _health = Mathf.Clamp(_health + health, 0, _maxhealth);
-        HealthChanged?.Invoke(_health);
+        SaveHealthAmount(_health);
 
         if (_health == 0)
         {
@@ -103,10 +117,24 @@ public class PlayerEvents : MonoBehaviour
         if (_gold >= price)
         {
             _gold -= price;
-            GoldAmountChanged?.Invoke(_gold);
+            SaveGoldAmount(_gold);
             return true;
         }
 
         return false;
+    }
+
+    private void SaveHealthAmount(int health)
+    {
+        PlayerPrefs.SetInt(PlayerPrefsHealthAmount, health);
+        PlayerPrefs.Save();
+        HealthChanged.Invoke(health);
+    }
+
+    private void SaveGoldAmount(int gold)
+    {
+        PlayerPrefs.SetInt(PlayerPrefsGoldAmount, gold);
+        PlayerPrefs.Save();
+        GoldAmountChanged?.Invoke(gold);
     }
 }

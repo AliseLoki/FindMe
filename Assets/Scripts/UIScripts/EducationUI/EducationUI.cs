@@ -7,11 +7,15 @@ public class EducationUI : MonoBehaviour
 {
     [SerializeField] private Button _startEducationButton;
     [SerializeField] private Button _skipEducationButton;
-    [SerializeField] private TMP_Text _educationText;
     [SerializeField] private Button _nextAdviceButton;
-    [SerializeField] private EducationAdvicesSO _educationAdvicesSO;
+
+    [SerializeField] private TMP_Text _educationText;
+    [SerializeField] private TMP_Text _startEducationButtonText;
+    [SerializeField] private TMP_Text _skipEducationButtonText;
 
     private int _index = 0;
+
+    private EducationAdvicesSO _educationAdvicesSO;
 
     public event Action EducationStarted;
     public event Action EducationSkipped;
@@ -19,6 +23,18 @@ public class EducationUI : MonoBehaviour
     private void Awake()
     {
         _nextAdviceButton.gameObject.SetActive(false);
+    }
+
+    private void Start()
+    {
+        ShowAdvice(_educationAdvicesSO.FirstEducationText);
+        _startEducationButtonText.text = _educationAdvicesSO.StartEducationButtonText;
+        _skipEducationButtonText.text = _educationAdvicesSO.SkipEducationButtonText;
+    }
+
+    public void InitEducationAdvicesSO(EducationAdvicesSO educationAdvicesSO)
+    {
+        _educationAdvicesSO = educationAdvicesSO;
     }
 
     public void OnStartEducationButtonPressed()

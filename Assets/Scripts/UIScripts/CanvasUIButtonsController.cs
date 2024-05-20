@@ -1,11 +1,8 @@
 using UnityEngine;
-using UnityEngine.Audio;
 using UnityEngine.UI;
 
 public class CanvasUIButtonsController : MonoBehaviour
 {
-    public AudioMixerGroup AudioMixer;
-
     [SerializeField] private Slider _cameraSlider;
     [SerializeField] private Slider _musicVolumeSlider;
     [SerializeField] private Slider _soundEffectsVolumeSlider;

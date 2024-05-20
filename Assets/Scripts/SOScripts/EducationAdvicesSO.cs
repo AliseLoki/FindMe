@@ -4,6 +4,10 @@ using UnityEngine;
 [CreateAssetMenu()]
 public class EducationAdvicesSO : ScriptableObject
 {
+    public string FirstEducationText;
+    public string StartEducationButtonText;
+    public string SkipEducationButtonText;
+
     public List<string> _advices = new List<string>()
     {
       "чтобы перейти к следующему совету, нажми зеленую стрелочку под текстом",

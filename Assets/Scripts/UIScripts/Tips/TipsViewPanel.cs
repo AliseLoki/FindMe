@@ -4,11 +4,17 @@ using UnityEngine;
 public class TipsViewPanel : MonoBehaviour
 {
     [SerializeField] private TMP_Text _tipsText;
-    [SerializeField] private TipsSO _tipsSO;
 
-    private void OnEnable()
+    private TipsSO _tipsSO;
+   
+    private void Start()
     {
         ShowYouAreSafeTip();
+    }
+
+    public void InitTipsSO(TipsSO tipsSO)
+    {
+        _tipsSO = tipsSO;
     }
 
     public void ShowIDidntOrderThisTip()

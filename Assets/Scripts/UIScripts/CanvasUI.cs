@@ -16,21 +16,31 @@ public class CanvasUI : MonoBehaviour
 
     private float _fadeSpeed = 0.5f;
 
+    private FirstStartTextSO _firstStartTextSO;
+
     private Player _player;
+    private LanguageSwitcher _languageSwitcher;
 
     public FirstStartPanelView FirstStartPanel => _firstStartPanel;
     public EducationUI EducationUI => _educationUI;
+
+    public event Action FirstStartPanelViewActivated;
 
     private void Awake()
     {
         _player = GameManager.Instance.GameEntryPoint.InitPlayer();
 
-        _tipsViewPanel.gameObject.SetActive(false);
+        _languageSwitcher = GameManager.Instance.GameEntryPoint.InitLanguageSwitcher();
+        _languageSwitcher.AllSOWereGiven += OnAllSOWereGiven;
 
-        if (GameManager.Instance.IsFirstStart)
-        {
-            ShowFirstStartPanelView();
-        }
+        // _tipsViewPanel.gameObject.SetActive(false);
+
+        //if (GameManager.Instance.IsFirstStart)
+        //{
+        //    _firstStartPanel.gameObject.SetActive(true);
+        //    _firstStartPanel.InitFirstStartTextSO(_firstStartTextSO);
+        //   // FirstStartPanelViewActivated?.Invoke();
+        //}
     }
 
     private void OnEnable()
@@ -41,12 +51,33 @@ public class CanvasUI : MonoBehaviour
         _player.PlayerEventsHandler.EnteredGrannysHome += PlayerEnteredGrannysHome;
     }
 
+    private void Start()
+    {
+        _tipsViewPanel.gameObject.SetActive(false);
+
+        if (GameManager.Instance.IsFirstStart)
+        {
+            _firstStartPanel.gameObject.SetActive(true);
+            // _firstStartPanel.InitFirstStartTextSO(_firstStartTextSO);
+            // FirstStartPanelViewActivated?.Invoke();
+        }
+    }
+
     private void OnDisable()
     {
+        _languageSwitcher.AllSOWereGiven += OnAllSOWereGiven;
         GameManager.Instance.GameStateChanged -= OnGameStateChanged;
         GameManager.Instance.EducationStarted -= OnEducationStarted;
         _player.PlayerEventsHandler.PlayerHasDied -= OnGameOver;
         _player.PlayerEventsHandler.EnteredGrannysHome -= PlayerEnteredGrannysHome;
+    }
+
+    private void OnAllSOWereGiven(TipsSO tipsSO, EducationAdvicesSO educationAdvicesSO, FirstStartTextSO firstStartTextSO)
+    {
+        //_firstStartTextSO = firstStartTextSO;
+        _firstStartPanel.InitFirstStartTextSO(firstStartTextSO);
+        _tipsViewPanel.InitTipsSO(tipsSO);
+        _educationUI.InitEducationAdvicesSO(educationAdvicesSO);
     }
 
     private void OnGameOver()
@@ -58,10 +89,6 @@ public class CanvasUI : MonoBehaviour
     {
         _educationUI.gameObject.SetActive(true);
         HideTipsPanel();
-    }
-    public void ShowFirstStartPanelView()
-    {
-        _firstStartPanel.Show();
     }
 
     public void ShowOrHideTipsPanelView()

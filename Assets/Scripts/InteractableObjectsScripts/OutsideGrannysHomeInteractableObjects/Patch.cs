@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Patch : InteractableObject
@@ -5,7 +6,7 @@ public class Patch : InteractableObject
     [SerializeField] private InventoryPrefabSO _inventoryPrefabSO;
     [SerializeField] private Transform _grass;
     [SerializeField] private Transform _vegetable;
-    [SerializeField] private Container _barrelWithVegetables;
+    [SerializeField] private Container _barrelWithIngredients;
 
     private bool _seedIsLanded;
 
@@ -17,17 +18,17 @@ public class Patch : InteractableObject
         if (_seedIsLanded && Player.HasWater)
         {
             PlaySoundEffect(AudioClipsList[wateringSoundEffectIndex]);
-            _vegetable.gameObject.SetActive(true);
             Player.GiveWater();
-            _barrelWithVegetables.gameObject.SetActive(true);
+            _vegetable.gameObject.SetActive(true);
+            _barrelWithIngredients.gameObject.SetActive(true);
             ShowYouHaveNewIngredientTips();
         }
         else if (Player.HasSeed && Player.SetInventoryPrefabSO() == _inventoryPrefabSO)
         {
             PlaySoundEffect(AudioClipsList[throwingSoundEffect]);
-            _grass.gameObject.SetActive(true);
             Player.LandSeed();
             _seedIsLanded = true;
+            _grass.gameObject.SetActive(true);
             DisableInteract();
             ShowBringWaterTip();
         }
