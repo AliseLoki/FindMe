@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerMovement : MonoBehaviour
@@ -18,9 +17,6 @@ public class PlayerMovement : MonoBehaviour
 
     private bool _isWalking;
     private bool _isRunning;
-
-    private float _verticalInput;
-    private float _horizontalInput;
 
     public bool IsWalking => _isWalking;
 
