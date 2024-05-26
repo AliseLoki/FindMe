@@ -1,32 +1,28 @@
+using TMPro;
 using UnityEngine;
 
 public class GameOverUI : MonoBehaviour
 {
+    [SerializeField] private TMP_Text _text;
+    [SerializeField] private TMP_Text _restartButtonText;
+    [SerializeField] private TMP_Text _exitButtonText;
+
+    private GameOverSO _gameOverSO;
+
     private void Start()
     {
-        GameManager.Instance.GameStateChanged += OnGameStateChanged;
-        HideGameOver();
+        InitText();
     }
 
-    private void OnGameStateChanged()
+    public void InitGameOverSO(GameOverSO gameOverSO)
     {
-        if (GameManager.Instance.IsGameOver())
-        {
-            ShowGameOver();
-        }
-        else
-        {
-            HideGameOver();
-        }
+        _gameOverSO = gameOverSO;
     }
 
-    private void ShowGameOver()
+    private void InitText()
     {
-        gameObject.SetActive(true);
-    }
-
-    private void HideGameOver()
-    {
-        gameObject.SetActive(false);
+        _text.text = _gameOverSO.GameOver;
+        _restartButtonText.text = _gameOverSO.Restart;
+        _exitButtonText.text = _gameOverSO.Exit;
     }
 }

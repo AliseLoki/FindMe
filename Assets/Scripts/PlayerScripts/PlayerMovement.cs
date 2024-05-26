@@ -1,6 +1,8 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
 
+[RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerMovement : MonoBehaviour
 {
@@ -12,8 +14,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float _boostSpeed = 20f;
     [SerializeField] private float _rotateSpeed = 10f;
 
-    private Rigidbody _rigidbody;
     private PlayerInventory _playerInventory;
+    private NavMeshAgent _navMeshAgent;
 
     private bool _isWalking;
     private bool _isRunning;
@@ -22,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
-        _rigidbody = GetComponent<Rigidbody>();
+        _navMeshAgent = GetComponent<NavMeshAgent>();
         _playerInventory = GetComponent<PlayerInventory>();
     }
 
@@ -51,6 +53,11 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public void Teleport(Transform transform)
+    {
+        _navMeshAgent.Warp(transform.position);
+    }
+
     private void OnUsedSpeedBoost()
     {
         StartCoroutine(SpeedBoostCountdown());
@@ -68,7 +75,7 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 movement = new Vector3(horizontalInput, 0, verticalInput).normalized;
 
-        transform.position += moveSpeed * Time.deltaTime * movement;
+        _navMeshAgent.velocity = movement * moveSpeed;
 
         _isWalking = movement != Vector3.zero;
 

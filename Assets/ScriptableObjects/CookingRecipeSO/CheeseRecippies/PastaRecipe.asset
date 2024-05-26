@@ -18,4 +18,4 @@ MonoBehaviour:
   IngredientsForRecipe:
   - {fileID: 11400000, guid: 51d9f08a0684c744cb1d24922c0e8bde, type: 2}
   - {fileID: 11400000, guid: b88ade4f1f4e4bf41993c5c4eed8631c, type: 2}
-  - {fileID: 11400000, guid: 5d6581c2c70bd3942a0d5aee1359e730, type: 2}
+  - {fileID: 11400000, guid: 34feec2956f702a46a9e72e8a55eec28, type: 2}

@@ -99,7 +99,11 @@ public abstract class InteractableObject : MonoBehaviour
         }
         else if (this as Necronomicon)
         {
-            TipsViewPanel.ShowTakeMeTip();
+            TipsViewPanel.ShowKillTheWitchTip();
+        }
+        else if (this as Sword)
+        {
+            TipsViewPanel.ShowKillTheWolfTip();
         }
         else if (this as Well)
         {

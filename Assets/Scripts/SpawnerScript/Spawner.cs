@@ -3,9 +3,12 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    [SerializeField] private List<InventoryPrefabSO> _inventoryPrefabsSO;
+    // [SerializeField] private List<InventoryPrefabSO> _inventoryPrefabsSO;
     [SerializeField] private List<InteractableObject> _interactableObjects;
+
+    [SerializeField] private Wood _wood;
     [SerializeField] private Transform _spawnPlaces;
+    [SerializeField] private Transform _woodSpawnPlace;
 
     private bool _haveBeenSpawned;
     private Player _player;
@@ -18,6 +21,14 @@ public class Spawner : MonoBehaviour
     private void OnEnable()
     {
         _player.PlayerEventsHandler.ExitGrannysHome += SpawnObjects;
+    }
+
+    private void Start()
+    {
+        if (GameManager.Instance.IsFirstStart)
+        {
+            Instantiate(_wood, _woodSpawnPlace.position, Quaternion.identity);
+        }
     }
 
     private void OnDisable()

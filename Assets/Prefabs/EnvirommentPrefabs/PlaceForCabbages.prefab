@@ -1207,7 +1207,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SelectedObject: {fileID: 6331200558582872567}
-  AudioClipsList: []
+  AudioClipsList:
+  - {fileID: 8300000, guid: 89b16bfd82038a546af1843006e3cfc0, type: 3}
+  - {fileID: 8300000, guid: 4b70ec0f0afb9ac4ea7dfea07aca4eb4, type: 3}
   _inventoryPrefabSO: {fileID: 11400000, guid: 6ff46d52a5effb3409fda4deff858da3, type: 2}
   _grass: {fileID: 8203609461645972647}
   _vegetable: {fileID: 1159913121128062262}
@@ -1595,7 +1597,7 @@ Transform:
   m_GameObject: {fileID: 8638361397379044467}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0.2, z: 0}
-  m_LocalScale: {x: 1.1, y: 1.1, z: 1.1}
+  m_LocalScale: {x: 1.09, y: 1.09, z: 1.09}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1680573218895913124}

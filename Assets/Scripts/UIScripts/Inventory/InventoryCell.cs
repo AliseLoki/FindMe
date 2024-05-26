@@ -29,8 +29,23 @@ public class InventoryCell : MonoBehaviour
     {
         if (!_player.HasSomethingInHands)
         {
-            InventoryCellButtonPressed?.Invoke(_inventoryPrefabSO);
-            RemoveInventoryCell();
+            if (_inventoryPrefabSO.InventoryPrefab as Necronomicon)
+            {
+                if (!GameManager.Instance.IsWitchAppeared())
+                {
+                    _tipsViewPanel.ShowItIsNotRightTimeTip();
+                }
+                else
+                {
+                    InventoryCellButtonPressed?.Invoke(_inventoryPrefabSO);
+                    Destroy(this.gameObject, 0.5f);
+                }
+            }
+            else
+            {
+                InventoryCellButtonPressed?.Invoke(_inventoryPrefabSO);
+                Destroy(this.gameObject, 0.5f);
+            }
         }
         else
         {
@@ -40,6 +55,7 @@ public class InventoryCell : MonoBehaviour
 
     private void RemoveInventoryCell()
     {
+        InventoryCellButtonPressed?.Invoke(_inventoryPrefabSO);
         Destroy(this.gameObject, 0.5f);
     }
 }

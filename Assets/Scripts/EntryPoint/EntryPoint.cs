@@ -11,7 +11,13 @@ public class EntryPoint : MonoBehaviour
     [SerializeField] private CookingTable _cookingTable;
     [SerializeField] private PackingPlace _packingPlace;
     [SerializeField] private LanguageSwitcher _languageSwitcher;
+    [SerializeField] private CanvasUI _canvasUI;
      
+    public CanvasUI InitCanvasUI()
+    {
+         return _canvasUI; 
+    }
+
     public Player InitPlayer()
     {
         return _player;

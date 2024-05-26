@@ -6,7 +6,7 @@ public class TipsViewPanel : MonoBehaviour
     [SerializeField] private TMP_Text _tipsText;
 
     private TipsSO _tipsSO;
-   
+
     private void Start()
     {
         ShowYouAreSafeTip();
@@ -15,6 +15,46 @@ public class TipsViewPanel : MonoBehaviour
     public void InitTipsSO(TipsSO tipsSO)
     {
         _tipsSO = tipsSO;
+    }
+
+    public void ShowItIsNotRightTimeTip()
+    {
+        ShowTips(_tipsSO.ItIsNotRightTimeTip);
+    }
+
+    public void ShowYouHaveMeatNowTip()
+    {
+        ShowTips(_tipsSO.YouHaveMeatNowTip);
+    }
+
+    public void ShowYouCankillTheWolfNowTip()
+    {
+        ShowTips(_tipsSO.YouCanKillWolfNowTip);
+    }
+
+    public void ShowYouCanCookOnkyInGrannysHome()
+    {
+        ShowTips(_tipsSO.YouCanCookOnlyInGrannysHomeTip);
+    }
+
+    public void ShowBringmeToPatchTip()
+    {
+        ShowTips(_tipsSO.BringMeToPatchTip);
+    }
+
+    public void ShowUseNecronomikonTip()
+    {
+        ShowTips(_tipsSO.UseNecronomiconTip);
+    }
+
+    public void ShowKillTheWitchTip()
+    {
+        ShowTips(_tipsSO.KillTheWitchTip);
+    }
+
+    public void ShowKillTheWolfTip()
+    {
+        ShowTips(_tipsSO.KillTheWolfTip);
     }
 
     public void ShowIDidntOrderThisTip()

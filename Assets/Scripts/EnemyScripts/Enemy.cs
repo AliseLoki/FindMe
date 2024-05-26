@@ -3,18 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+[RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(AudioSource))]
 [RequireComponent(typeof(NavMeshAgent))]
-[RequireComponent(typeof(Animator))]
 public class Enemy : MonoBehaviour
 {
     private const string IsWalking = nameof(IsWalking);
     private const string IsRunning = nameof(IsRunning);
     private const string IsAttacking = nameof(IsAttacking);
+    private const string IsDying = nameof(IsDying);
 
     [SerializeField] private Transform _points;
-    [SerializeField] private EnemySoundEffects _enemySoundEffects;
     [SerializeField] private Player _player;
+    [SerializeField] private WolfBody _wolfBody;
+
+    [SerializeField] private EnemySoundEffects _enemySoundEffects;
 
     private int _pointIndex;
     private float _minDistance = 0.2f;
@@ -24,6 +27,7 @@ public class Enemy : MonoBehaviour
 
     private bool _isHowling;
     private bool _isAttacking;
+    private bool _isDying;
 
     // private AudioSource _audioSource;
     private NavMeshAgent _agent;
@@ -49,9 +53,11 @@ public class Enemy : MonoBehaviour
         _player.PlayerEventsHandler.EnteredSafeZone += OnPlayerEnteredSafeZone;
         _player.PlayerEventsHandler.EnteredGrannysHome += OnEnteredGrannysHome;
         _player.PlayerEventsHandler.EnteredVillage += OnEnteredVillage;
+        _player.PlayerEventsHandler.WolfHasBeenKilled += OnWolfHasBeenKilled;
 
         _patrolCoroutine = StartCoroutine(Patrolling());
     }
+
 
     private void OnDisable()
     {
@@ -59,6 +65,22 @@ public class Enemy : MonoBehaviour
         _player.PlayerEventsHandler.EnteredSafeZone -= OnPlayerEnteredSafeZone;
         _player.PlayerEventsHandler.EnteredGrannysHome -= OnEnteredGrannysHome;
         _player.PlayerEventsHandler.EnteredVillage -= OnEnteredVillage;
+        _player.PlayerEventsHandler.WolfHasBeenKilled -= OnWolfHasBeenKilled;
+    }
+
+    private void OnWolfHasBeenKilled()
+    {
+        _agent.isStopped = true;
+        StopAllCoroutines();
+        GetComponent<CapsuleCollider>().enabled = false;
+        _wolfBody.gameObject.SetActive(true);
+        HasStepsSound = false;
+
+        if (!_isDying)
+        {
+            _animator.SetTrigger(IsDying);
+            _isDying = true;
+        }
     }
 
     private void InitializeTargetPoints()
@@ -71,24 +93,42 @@ public class Enemy : MonoBehaviour
 
     private void OnPlayerEnteredSafeZone()
     {
-        if (_chaseCoroutine != null)
+        if (!_isDying)
         {
-            _agent.isStopped = true;
-            _isHowling = true;
-            StopCoroutine(_chaseCoroutine);
-        }
+            if (_patrolCoroutine != null)
+            {
+                return;
+            }
 
-        _patrolCoroutine = StartCoroutine(Patrolling());
+            if (_chaseCoroutine != null)
+            {
+                _agent.isStopped = true;
+                _isHowling = true;
+                StopCoroutine(_chaseCoroutine);
+                _chaseCoroutine = null;
+            }
+
+            _patrolCoroutine = StartCoroutine(Patrolling());
+        }
     }
 
     private void OnPlayerEnteredTheForest()
     {
-        if (_patrolCoroutine != null)
+        if (!_isDying)
         {
-            StopCoroutine(_patrolCoroutine);
-        }
+            if (_chaseCoroutine != null)
+            {
+                return;
+            }
 
-        _chaseCoroutine = StartCoroutine(Chasing());
+            if (_patrolCoroutine != null)
+            {
+                StopCoroutine(_patrolCoroutine);
+                _patrolCoroutine = null;
+            }
+
+            _chaseCoroutine = StartCoroutine(Chasing());
+        }
     }
 
     private void OnEnteredGrannysHome()
@@ -114,7 +154,7 @@ public class Enemy : MonoBehaviour
         _agent.destination = _player.transform.position;
         HasStepsSound = true;
 
-         CheckDistanceToPlayer();
+        CheckDistanceToPlayer();
     }
 
     private bool CheckDistanceToPlayer()
@@ -178,13 +218,13 @@ public class Enemy : MonoBehaviour
         {
             _animator.SetBool(IsWalking, false);
         }
-        else if(_isHowling)
+        else if (_isHowling)
         {
             _animator.SetBool(IsRunning, false);
             _enemySoundEffects.Roar();
             // _audioSource.Play();
         }
-        else if(_isAttacking)
+        else if (_isAttacking)
         {
             _animator.SetBool(IsAttacking, true);
             transform.LookAt(_player.transform);

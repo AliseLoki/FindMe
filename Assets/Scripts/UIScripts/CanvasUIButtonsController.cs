@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class CanvasUIButtonsController : MonoBehaviour
@@ -6,6 +7,30 @@ public class CanvasUIButtonsController : MonoBehaviour
     [SerializeField] private Slider _cameraSlider;
     [SerializeField] private Slider _musicVolumeSlider;
     [SerializeField] private Slider _soundEffectsVolumeSlider;
+
+    [SerializeField] private Button _firstStartPanelViewButton;
+    [SerializeField] private Button _startEducationButton;
+    [SerializeField] private Button _skipEducationButton;
+
+    private CanvasUI _canvasUI;
+
+    private void Awake()
+    {
+        _canvasUI = GetComponent<CanvasUI>();
+
+        _firstStartPanelViewButton.onClick.AddListener(_canvasUI.OnFirstStartPanelViewButtonPressed);
+        _firstStartPanelViewButton.onClick.AddListener(GameManager.Instance.OnFirstStartPanelViewButtonPressed);
+
+        _startEducationButton.onClick.AddListener(_canvasUI.OnStartEducationButtonPressed);
+
+        _skipEducationButton.onClick.AddListener(_canvasUI.OnSkipeducationButtonPressed);
+        _skipEducationButton.onClick.AddListener(GameManager.Instance.OnEducationCancelled);
+    }
+
+    public void OnRestartButtonPresed()
+    {
+        SceneManager.LoadScene(0);
+    }
 
     public void OnExitButtonPressed()
     {

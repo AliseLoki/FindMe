@@ -1,5 +1,4 @@
 using System;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,24 +6,25 @@ public class RecipeTemplateView : MonoBehaviour
 {
     [SerializeField] private Image _dishImage;
     [SerializeField] private Image _cookedDishImage;
-    [SerializeField] private TMP_Text _recipeName;
     [SerializeField] private Transform _ingredientsContainer;
     [SerializeField] private Transform _ingredient;
     [SerializeField] private Button _canCookButton;
 
-    private float _minUpPosition = 100;
+    private float _minUpPosition = 10;
 
     private bool _hasBeenCooked;
     private bool _hasBeenPacked;
 
     private CookingRecipeSO _cookingRecipeSO;
     private Player _player;
+    private TipsViewPanel _tipsViewPanel;
 
     public event Action<CookingRecipeSO> DishPrepared;
 
     private void Awake()
     {
         _player = GameManager.Instance.GameEntryPoint.InitPlayer();
+        _tipsViewPanel = GameManager.Instance.GameEntryPoint.InitTipsViewPanel();
     }
 
     public void CookingRecipeSOHasBeenPacked(CookingRecipeSO cookingRecipeSO)
@@ -37,7 +37,6 @@ public class RecipeTemplateView : MonoBehaviour
 
     public void SetCookingRecipeSO(CookingRecipeSO cookingRecipeSO)
     {
-       // _recipeName.text = cookingRecipeSO.RecipeName;
         _dishImage.GetComponent<Image>().sprite = cookingRecipeSO.RecipeImage;
         _cookingRecipeSO = cookingRecipeSO;
 
@@ -89,7 +88,7 @@ public class RecipeTemplateView : MonoBehaviour
         }
         else
         {
-            print("чтобы приготовить рецепт зайди в дом бабушки");
+            _tipsViewPanel.ShowYouCanCookOnkyInGrannysHome();
         }
     }
 

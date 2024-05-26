@@ -10,11 +10,13 @@ public class PlayerEvents : MonoBehaviour
 
     private int _gold;
     private int _goldDefaultValue = 0;
-    private int _health = 0;
+    private int _health = 10;
     private int _maxhealth = 10;
 
     private Player _player;
     private TipsViewPanel _tipsViewPanel;
+
+    public int Health => _health;
 
     public event Action EnteredGrannysHome;
     public event Action ExitGrannysHome;
@@ -31,6 +33,9 @@ public class PlayerEvents : MonoBehaviour
     public event Action<int> HealthChanged;
 
     public event Action PlayerHasDied;
+    public event Action WolfHasBeenKilled;
+
+    public event Action WitchHasBeenAttacked;
 
     private void Awake()
     {
@@ -48,10 +53,23 @@ public class PlayerEvents : MonoBehaviour
             _health = PlayerPrefs.GetInt(PlayerPrefsHealthAmount, _maxhealth);
             HealthChanged?.Invoke(_health);
         }
-        else
+        else if (GameManager.Instance.IsFirstStart)
         {
-            OnHealthChanged(_maxhealth);
+            _health = _maxhealth;
+            HealthChanged?.Invoke(_health);
+            _gold = _goldDefaultValue;
+            GoldAmountChanged?.Invoke(_gold);
         }
+    }
+
+    public void OnWitchHasBeenAttacked()
+    {
+        WitchHasBeenAttacked?.Invoke();
+    }
+
+    public void OnWolfHasBeenKilled()
+    {
+        WolfHasBeenKilled?.Invoke();
     }
 
     public void OnEnteredGrannysHome()
@@ -104,12 +122,17 @@ public class PlayerEvents : MonoBehaviour
     public void OnHealthChanged(int health)
     {
         _health = Mathf.Clamp(_health + health, 0, _maxhealth);
-        SaveHealthAmount(_health);
 
         if (_health == 0)
         {
             PlayerHasDied?.Invoke();
         }
+        else if (_health > 0)
+        {
+            SaveHealthAmount(_health);
+        }
+
+        HealthChanged?.Invoke(_health);
     }
 
     public bool CheckIfCanPay(int price)
@@ -128,7 +151,6 @@ public class PlayerEvents : MonoBehaviour
     {
         PlayerPrefs.SetInt(PlayerPrefsHealthAmount, health);
         PlayerPrefs.Save();
-        HealthChanged.Invoke(health);
     }
 
     private void SaveGoldAmount(int gold)

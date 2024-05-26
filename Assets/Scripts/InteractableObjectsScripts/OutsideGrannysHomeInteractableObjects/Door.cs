@@ -17,6 +17,6 @@ public class Door : InteractableObject
         PlaySoundEffect(AudioClipsList[openingDoorSoundEffectIndex]);
         _canvasUI.FadeToBlack();
         _cameras.SwitchCameras();
-        Player.transform.position = _newPosition.position;
+        Player.PlayerMovement.Teleport(_newPosition);
     }
 }

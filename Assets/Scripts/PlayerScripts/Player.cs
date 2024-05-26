@@ -1,5 +1,8 @@
+using System;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
+[RequireComponent(typeof(PlayerMovement))]
 [RequireComponent(typeof(PlayerEvents))]
 [RequireComponent(typeof(PlayerCookingModule))]
 [RequireComponent(typeof(PlayerInventory))]
@@ -15,18 +18,22 @@ public class Player : MonoBehaviour
 
     [SerializeField] private DeliveryService _deliveryService;
 
+    [SerializeField] private TipsViewPanel _tipsViewPanel;
+
     [SerializeField] private AudioClip _takingWoodSoundEffect;
 
     private bool _hasBackPack;
     private bool _hasWood;
     private bool _hasSeed;
     private bool _hasWater;
+    private bool _hasSword;
+    private bool _hasNecronomicon;
 
     private InventoryPrefabSO _inventoryPrefabSO;
-
     private PlayerEvents _playerEvents;
     private PlayerCookingModule _playerCookingModule;
     private PlayerInventory _playerInventory;
+    private PlayerMovement _playerMovement;
     private AudioSource _audioSource;
 
     public bool HasSomethingInHands => _hasSomethingInHands;
@@ -38,6 +45,12 @@ public class Player : MonoBehaviour
     public bool HasSeed => _hasSeed;
 
     public bool HasWater => _hasWater;
+
+    public bool HasSword => _hasSword;
+
+    public bool HasNecronomicon => _hasNecronomicon;
+
+    public PlayerMovement PlayerMovement => _playerMovement;
 
     public PlayerEvents PlayerEventsHandler => _playerEvents;
 
@@ -53,15 +66,18 @@ public class Player : MonoBehaviour
         _playerEvents = GetComponent<PlayerEvents>();
         _playerCookingModule = GetComponent<PlayerCookingModule>();
         _playerInventory = GetComponent<PlayerInventory>();
+        _playerMovement = GetComponent<PlayerMovement>();
     }
 
     private void OnEnable()
     {
         _deliveryService.AllDishesHaveBeenDelivered += OnAllDishesHaveBeenDelivered;
+        _playerEvents.WolfHasBeenKilled += OnWolfHasBeenKilled;
     }
     private void OnDisable()
     {
         _deliveryService.AllDishesHaveBeenDelivered -= OnAllDishesHaveBeenDelivered;
+        _playerEvents.WolfHasBeenKilled -= OnWolfHasBeenKilled;
     }
 
     public void PlaySoundEffect(AudioClip audioClip)
@@ -73,7 +89,7 @@ public class Player : MonoBehaviour
     {
         _hasWood = hasWood;
 
-        if(_hasWood == true)
+        if (_hasWood == true)
         {
             PlaySoundEffect(_takingWoodSoundEffect);
         }
@@ -99,11 +115,22 @@ public class Player : MonoBehaviour
 
     public void TakeSeedInHands(InventoryPrefabSO inventoryPrefabSO)
     {
-        var seedInHands = Instantiate(inventoryPrefabSO.InventoryPrefab, HandlePoint, true);
-        seedInHands.transform.position = HandlePoint.position;
+        TakeInvenoryPrefabInHands(inventoryPrefabSO);
         _hasSeed = true;
-        SetHasSomethingInHands(true);
-        _inventoryPrefabSO = inventoryPrefabSO;
+        _tipsViewPanel.ShowBringmeToPatchTip();
+    }
+
+    public void TakeSwordInHands(InventoryPrefabSO inventoryPrefabSO)
+    {
+        TakeInvenoryPrefabInHands(inventoryPrefabSO);
+        _hasSword = true;
+        _tipsViewPanel.ShowYouCankillTheWolfNowTip();
+    }
+
+    public void TakeNecronomiconInHands(InventoryPrefabSO inventoryPrefabSO)
+    {
+        TakeInvenoryPrefabInHands(inventoryPrefabSO);
+        _hasNecronomicon = true;
     }
 
     public void LandSeed()
@@ -132,6 +159,22 @@ public class Player : MonoBehaviour
         _hasWater = false;
         _hasSomethingInHands = false;
         Destroy(_handlePoint.GetChild(0).gameObject);
+    }
+
+    private void OnWolfHasBeenKilled()
+    {
+        _hasSword = false;
+        _hasSomethingInHands = false;
+        Destroy(_handlePoint.GetChild(0).gameObject);
+    }
+
+    private void TakeInvenoryPrefabInHands(InventoryPrefabSO inventoryPrefabSO)
+    {
+        var prefabInHands = Instantiate(inventoryPrefabSO.InventoryPrefab, HandlePoint, true);
+        prefabInHands.transform.position = HandlePoint.position;
+        prefabInHands.transform.rotation = Quaternion.LookRotation(transform.forward);
+        SetHasSomethingInHands(true);
+        _inventoryPrefabSO = inventoryPrefabSO;
     }
 
     private void OnAllDishesHaveBeenDelivered()

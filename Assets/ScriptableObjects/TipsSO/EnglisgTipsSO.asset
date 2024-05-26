@@ -65,4 +65,12 @@ MonoBehaviour:
   TakeBackpackTip: maybe it was worth taking the packages with you
   EatMeTip: eat me
   TakeMeTip: pick me and take me to the garden
+  KillTheWolfTip: take me and kill the wolf
+  KillTheWitchTip: take me, i will be useful for you
   TakeRewardTip: take the reward in the center of the village
+  UseNecronomiconTip: be quick, open necronomicon
+  YouCanCookOnlyInGrannysHomeTip: you can cook only in granny's home
+  BringMeToPatchTip: put me in patch and water
+  YouCanKillWolfNowTip: now you can kill the wolf
+  YouHaveMeatNowTip: now you have meat in granny's home
+  ItIsNotRightTimeTip: it's not time yet

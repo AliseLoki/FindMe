@@ -64,4 +64,12 @@ MonoBehaviour:
   TakeBackpackTip: "belki  paketleri yan\u0131na almaya gerekiyordu"
   EatMeTip: beni ye
   TakeMeTip: "beni al ve bah\xE7eye getir"
+  KillTheWolfTip: "beni al ve kurdu \xF6ld\xFCr"
+  KillTheWitchTip: "al beni, sana faydal\u0131 olaca\u011F\u0131m"
   TakeRewardTip: "\xF6d\xFCl\xFC k\xF6y\xFCn merkezinde al"
+  UseNecronomiconTip: "\xE7abuk nekronomikon a\xE7"
+  YouCanCookOnlyInGrannysHomeTip: "sadece ninenin evinde yemek pi\u015Firebilirsin"
+  BringMeToPatchTip: "bah\xE7e yata\u011F\u0131na beni dik ve sula"
+  YouCanKillWolfNowTip: "art\u0131k kurdu \xF6ld\xFCrebilirsin"
+  YouHaveMeatNowTip: "art\u0131k ninenin evinde et var"
+  ItIsNotRightTimeTip: "hen\xFCz do\u011Fru zaman\u0131 gelmedi..."

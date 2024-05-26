@@ -3,11 +3,13 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(CanvasUIButtonsController))]
 public class CanvasUI : MonoBehaviour
 {
     [SerializeField] private Image _fadeScreen;
     [SerializeField] private TipsViewPanel _tipsViewPanel;
-    [SerializeField] private FirstStartPanelView _firstStartPanel;
+    [SerializeField] private FirstStartPanelView _firstStartPanelView;
+    [SerializeField] private GameStartCountdownUI _gameStartCountdownUI;
     [SerializeField] private EducationUI _educationUI;
     [SerializeField] private GameOverUI _gameOverUI;
 
@@ -19,73 +21,64 @@ public class CanvasUI : MonoBehaviour
     private Player _player;
     private LanguageSwitcher _languageSwitcher;
 
-    public FirstStartPanelView FirstStartPanel => _firstStartPanel;
-    public EducationUI EducationUI => _educationUI;
-
     public event Action FirstStartPanelViewActivated;
 
     private void Awake()
     {
         _player = GameManager.Instance.GameEntryPoint.InitPlayer();
-
         _languageSwitcher = GameManager.Instance.GameEntryPoint.InitLanguageSwitcher();
         _languageSwitcher.AllSOWereGiven += OnAllSOWereGiven;
     }
 
     private void OnEnable()
     {
-        GameManager.Instance.GameStateChanged += OnGameStateChanged;
+        GameManager.Instance.WaitingToStartEnabled += OnWaitingToStartEnabled;
+        GameManager.Instance.CountdownToStartEnabled += OnCountdownToStartEnabled;
+        GameManager.Instance.EducationPlayingEnabled += OnEducationPlayingEnabled;
         GameManager.Instance.EducationStarted += OnEducationStarted;
-        _player.PlayerEventsHandler.PlayerHasDied += OnGameOver;
+
+        _player.PlayerEventsHandler.PlayerHasDied += OnPlayerhasDied;
         _player.PlayerEventsHandler.EnteredGrannysHome += PlayerEnteredGrannysHome;
-    }
-
-    private void Start()
-    {
-        _tipsViewPanel.gameObject.SetActive(false);
-
-        if (GameManager.Instance.IsFirstStart)
-        {
-            _firstStartPanel.gameObject.SetActive(true);
-        }
     }
 
     private void OnDisable()
     {
-        _languageSwitcher.AllSOWereGiven += OnAllSOWereGiven;
-        GameManager.Instance.GameStateChanged -= OnGameStateChanged;
+
+        GameManager.Instance.WaitingToStartEnabled -= OnWaitingToStartEnabled;
+        GameManager.Instance.CountdownToStartEnabled -= OnCountdownToStartEnabled;
+        GameManager.Instance.EducationPlayingEnabled -= OnEducationPlayingEnabled;
         GameManager.Instance.EducationStarted -= OnEducationStarted;
-        _player.PlayerEventsHandler.PlayerHasDied -= OnGameOver;
+
+        _languageSwitcher.AllSOWereGiven -= OnAllSOWereGiven;
+      
+        _player.PlayerEventsHandler.PlayerHasDied -= OnPlayerhasDied;
         _player.PlayerEventsHandler.EnteredGrannysHome -= PlayerEnteredGrannysHome;
     }
 
-    private void OnAllSOWereGiven(TipsSO tipsSO, EducationAdvicesSO educationAdvicesSO, FirstStartTextSO firstStartTextSO)
+    public void OnSkipeducationButtonPressed()
     {
-        _firstStartPanel.InitFirstStartTextSO(firstStartTextSO);
-        _tipsViewPanel.InitTipsSO(tipsSO);
-        _educationUI.InitEducationAdvicesSO(educationAdvicesSO);
+        _educationUI.gameObject.SetActive(false);
     }
 
-    private void OnGameOver()
+    public void OnFirstStartPanelViewButtonPressed()
     {
-        _gameOverUI.gameObject.SetActive(true);
+        _firstStartPanelView.OnFirstStartPanelViewButtonPressed();
     }
 
-    private void OnEducationStarted()
+    public void OnStartEducationButtonPressed()
     {
-        _educationUI.gameObject.SetActive(true);
-        HideTipsPanel();
+        _educationUI.OnStartEducationButtonPressed();
     }
 
     public void ShowOrHideTipsPanelView()
     {
         if (_tipsViewPanel.gameObject.activeSelf)
         {
-            HideTipsPanel();
+            _tipsViewPanel.gameObject.SetActive(false);
         }
         else
         {
-            ShowTipsPanel();
+            _tipsViewPanel.gameObject.SetActive(true);
         }
     }
 
@@ -95,6 +88,43 @@ public class CanvasUI : MonoBehaviour
         _shouldFadeToBlack = true;
         StartCoroutine(FadeRoutine());
     }
+
+    private void OnWaitingToStartEnabled()
+    {
+        _firstStartPanelView.gameObject.SetActive(true);
+    }
+
+    private void OnCountdownToStartEnabled()
+    {
+        _firstStartPanelView.gameObject.SetActive(false);
+        _gameStartCountdownUI.gameObject.SetActive(true);
+    }
+
+    private void OnEducationPlayingEnabled()
+    {
+        _gameStartCountdownUI.gameObject.SetActive(false);
+    }
+
+    private void OnEducationStarted()
+    {
+        _educationUI.gameObject.SetActive(true);
+        _tipsViewPanel.gameObject.SetActive(false);
+    }
+
+    private void OnPlayerhasDied()
+    {
+        _gameOverUI.gameObject.SetActive(true);
+    }
+
+    private void OnAllSOWereGiven(TipsSO tipsSO, EducationAdvicesSO educationAdvicesSO, FirstStartTextSO firstStartTextSO, GameOverSO gameOverSO)
+    {
+        _firstStartPanelView.InitFirstStartTextSO(firstStartTextSO);
+        _tipsViewPanel.InitTipsSO(tipsSO);
+        _educationUI.InitEducationAdvicesSO(educationAdvicesSO);
+        _gameOverUI.InitGameOverSO(gameOverSO);
+    }
+
+
 
     private IEnumerator FadeRoutine()
     {
@@ -129,27 +159,24 @@ public class CanvasUI : MonoBehaviour
         }
     }
 
-    private void OnGameStateChanged()
-    {
-        _firstStartPanel.Hide();
-        _educationUI.gameObject.SetActive(false);
-    }
+    //private void OnGameStateChanged()
+    //{
+    //    //_firstStartPanelView.Hide();
+    //    _educationUI.gameObject.SetActive(false);
+    //}
 
-    private void ShowTipsPanel()
-    {
-        _tipsViewPanel.gameObject.SetActive(true);
-    }
+    //private void ShowTipsPanel()
+    //{
+    //    _tipsViewPanel.gameObject.SetActive(true);
+    //}
 
-    private void HideTipsPanel()
-    {
-        _tipsViewPanel.gameObject.SetActive(false);
-    }
+    //private void HideTipsPanel()
+    //{
+    //    _tipsViewPanel.gameObject.SetActive(false);
+    //}
 
     private void PlayerEnteredGrannysHome()
     {
-        if (GameManager.Instance.IsEducationPlaying())
-        {
-            ShowTipsPanel();
-        }
+        _tipsViewPanel.gameObject.SetActive(true);
     }
 }

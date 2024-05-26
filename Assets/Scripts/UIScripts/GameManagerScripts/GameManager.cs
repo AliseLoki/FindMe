@@ -5,37 +5,43 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
+    private const string PlayerPrefsIsFirstStart = nameof(PlayerPrefsIsFirstStart);
+
     public enum GameState
     {
         WaitingToStart,
         CountdownToStart,
         EducationPlaying,
         GamePlaying,
+        WitchAppeared,
         GameOver
     }
 
     private Player _player;
-
-    [SerializeField] private bool _isFirstStart = true;
-
-    [SerializeField] private CanvasUI _canvasUI;
+    private TipsViewPanel _tipsViewPanel;
 
     [SerializeField] private EntryPoint _gameEntryPoint;
+    [SerializeField] private LastVillage _lastVillage;
 
     public EntryPoint GameEntryPoint => _gameEntryPoint;
 
     private GameState _gameState;
 
-    private float _waitingToStartTimer = 1f;
+    private float _waitingToStartTimer = 2f;
     private float _countdownToStartTimer = 5f;
     private float _showEducationTipsTimer = 4f;
 
-    private bool _isStarted;
-    private bool _isEducationCancelled;
+    private bool _isFirstStart;
+
+    private bool _isReadyToStart;
     private bool _isEnteredGrannysHome;
+    private bool _isEducationCancelled;
+    private bool _hasWitchAppeared;
     private bool _isGameOver;
 
-    public event Action GameStateChanged;
+    public event Action WaitingToStartEnabled;
+    public event Action CountdownToStartEnabled;
+    public event Action EducationPlayingEnabled;
     public event Action EducationStarted;
 
     public bool IsFirstStart => _isFirstStart;
@@ -44,45 +50,53 @@ public class GameManager : MonoBehaviour
     {
         Instance = this;
         _player = _gameEntryPoint.InitPlayer();
-        _gameState = GameState.WaitingToStart;
+        SetFirstStart(PlayerPrefs.GetInt(PlayerPrefsIsFirstStart, 1));
+        _tipsViewPanel = _gameEntryPoint.InitTipsViewPanel();
     }
 
     private void OnEnable()
     {
-        _canvasUI.FirstStartPanel.IsStarted += OnIsStarted;
-        _canvasUI.EducationUI.EducationSkipped += OnEducationCancelled;
-        _player.PlayerEventsHandler.PlayerHasDied += OnPlayerHasDied;
         _player.PlayerEventsHandler.EnteredGrannysHome += OnPlayerEnteredGrannysHome;
+        _player.PlayerEventsHandler.PlayerHasDied += OnPlayerHasDied;
+        _lastVillage.WitchAppeared += OnWitchAppeared;
     }
+
 
     private void OnDisable()
     {
-        _canvasUI.FirstStartPanel.IsStarted -= OnIsStarted;
-        _canvasUI.EducationUI.EducationSkipped -= OnEducationCancelled;
-        _player.PlayerEventsHandler.PlayerHasDied -= OnPlayerHasDied;
         _player.PlayerEventsHandler.EnteredGrannysHome -= OnPlayerEnteredGrannysHome;
+        _player.PlayerEventsHandler.PlayerHasDied -= OnPlayerHasDied;
+        _lastVillage.WitchAppeared -= OnWitchAppeared;
+    }
+
+    private void Start()
+    {
+        if (_isFirstStart)
+        {
+            _gameState = GameState.WaitingToStart;
+        }
+        else
+        {
+            _gameState = GameState.GamePlaying;
+        }
     }
 
     private void Update()
     {
-        if (!_isFirstStart)
-        {
-            _gameState = GameState.GamePlaying;
-            return;
-        }
-
         switch (_gameState)
         {
             case GameState.WaitingToStart:
 
-                if (_isStarted)
+                WaitingToStartEnabled?.Invoke();
+
+                if (_isReadyToStart)
                 {
                     _waitingToStartTimer -= Time.deltaTime;
 
                     if (_waitingToStartTimer < 0f)
                     {
                         _gameState = GameState.CountdownToStart;
-                        GameStateChanged?.Invoke();
+                        CountdownToStartEnabled?.Invoke();
                     }
                 }
 
@@ -95,7 +109,7 @@ public class GameManager : MonoBehaviour
                 if (_countdownToStartTimer < 0f)
                 {
                     _gameState = GameState.EducationPlaying;
-                    GameStateChanged?.Invoke();
+                    EducationPlayingEnabled?.Invoke();
                 }
 
                 break;
@@ -115,22 +129,49 @@ public class GameManager : MonoBehaviour
                 if (_isEducationCancelled)
                 {
                     _gameState = GameState.GamePlaying;
-                    GameStateChanged?.Invoke();
+                }
+
+                if (_isGameOver)
+                {
+                    _gameState = GameState.GameOver;
                 }
 
                 break;
 
             case GameState.GamePlaying:
 
+                SaveState(0, false);
+
                 if (_isGameOver)
                 {
                     _gameState = GameState.GameOver;
-                    GameStateChanged?.Invoke();
+                }
+
+                if (_hasWitchAppeared)
+                {
+                    _gameState = GameState.WitchAppeared;
+                }
+
+                break;
+
+            case GameState.WitchAppeared:
+
+                _tipsViewPanel.ShowUseNecronomikonTip();
+
+                //событие смерти ведьмы
+                //победная панель
+                SaveState(1, true);
+
+                if (_isGameOver)
+                {
+                    _gameState = GameState.GameOver;
                 }
 
                 break;
 
             case GameState.GameOver:
+
+                SaveState(1, true);
 
                 break;
         }
@@ -138,14 +179,9 @@ public class GameManager : MonoBehaviour
         print(_gameState);
     }
 
-    public bool IsGamePlaying()
+    public void OnFirstStartPanelViewButtonPressed()
     {
-        return _gameState == GameState.GamePlaying || _gameState == GameState.EducationPlaying;
-    }
-
-    public bool IsCountdownToStartActive()
-    {
-        return _gameState == GameState.CountdownToStart;
+        _isReadyToStart = true;
     }
 
     public float GetCountdownToStartTimer()
@@ -153,9 +189,19 @@ public class GameManager : MonoBehaviour
         return _countdownToStartTimer;
     }
 
-    public bool IsGameOver()
+    public void OnPlayerEnteredGrannysHome()
     {
-        return _gameState == GameState.GameOver;
+        _isEnteredGrannysHome = true;
+    }
+
+    public void OnEducationCancelled()
+    {
+        _isEducationCancelled = true;
+    }
+
+    public bool IsGamePlaying()
+    {
+        return _gameState == GameState.GamePlaying || _gameState == GameState.EducationPlaying;
     }
 
     public bool IsEducationPlaying()
@@ -163,14 +209,9 @@ public class GameManager : MonoBehaviour
         return _gameState == GameState.EducationPlaying;
     }
 
-    private void OnIsStarted()
+    public bool IsWitchAppeared()
     {
-        _isStarted = true;
-    }
-
-    private void OnEducationCancelled()
-    {
-        _isEducationCancelled = true;
+        return _gameState == GameState.WitchAppeared;
     }
 
     private void OnPlayerHasDied()
@@ -178,8 +219,27 @@ public class GameManager : MonoBehaviour
         _isGameOver = true;
     }
 
-    public void OnPlayerEnteredGrannysHome()
+    private void OnWitchAppeared()
     {
-        _isEnteredGrannysHome = true;
+        _hasWitchAppeared = true;
+    }
+
+    private void SaveState(int value, bool isTrue)
+    {
+        _isFirstStart = isTrue;
+        PlayerPrefs.SetInt(PlayerPrefsIsFirstStart, value);
+        PlayerPrefs.Save();
+    }
+
+    private void SetFirstStart(int value)
+    {
+        if (value == 1)
+        {
+            _isFirstStart = true;
+        }
+        else if (value == 0)
+        {
+            _isFirstStart = false;
+        }
     }
 }

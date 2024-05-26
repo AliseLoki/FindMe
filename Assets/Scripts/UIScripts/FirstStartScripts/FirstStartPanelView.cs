@@ -1,4 +1,3 @@
-using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,8 +10,6 @@ public class FirstStartPanelView : MonoBehaviour
 
     private FirstStartTextSO _firstStartTextSO;
 
-    public Action IsStarted;
-
     private void Start()
     {
         Show();
@@ -23,16 +20,10 @@ public class FirstStartPanelView : MonoBehaviour
         _firstStartTextSO = firstStartTextSO;
     }
 
-    public void Hide()
-    {
-        gameObject.SetActive(false);
-    }
-
-    public void OnYesButtonPressed()
+    public void OnFirstStartPanelViewButtonPressed()
     {
         _yesButton.gameObject.SetActive(false);
         PrintText(_firstStartTextSO.RunText);
-        IsStarted?.Invoke();
     }
 
     private void Show()

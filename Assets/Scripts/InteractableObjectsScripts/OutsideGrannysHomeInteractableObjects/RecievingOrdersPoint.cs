@@ -21,7 +21,6 @@ public class RecievingOrdersPoint : InteractableObject
     private bool _orderIsTaken;
 
     private LanguageSwitcher _languageSwitcher;
-
     private VillageNamesSO _villageNamesSO;
 
     public event Action<string, MenuSO> OrdersAreTaken;
@@ -31,12 +30,19 @@ public class RecievingOrdersPoint : InteractableObject
         _languageSwitcher = GameManager.Instance.GameEntryPoint.InitLanguageSwitcher();
         _languageSwitcher.VillageNamesGiven += InitVillageNamesSO;
         DeliveryService.AllDishesHaveBeenDelivered += OnAllDishesHaveBeenDelivered;
+        Player.PlayerEventsHandler.WolfHasBeenKilled += OnWolfHasBeenKilled;
+    }
+
+    private void OnWolfHasBeenKilled()
+    {
+        _meetHanger.gameObject.SetActive(true);
     }
 
     private void OnDisable()
     {
         DeliveryService.AllDishesHaveBeenDelivered -= OnAllDishesHaveBeenDelivered;
         _languageSwitcher.VillageNamesGiven -= InitVillageNamesSO;
+        Player.PlayerEventsHandler.WolfHasBeenKilled -= OnWolfHasBeenKilled;
     }
 
     public void OnAllDishesHaveBeenDelivered()

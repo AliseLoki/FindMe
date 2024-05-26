@@ -17,7 +17,6 @@ public class EducationUI : MonoBehaviour
 
     private EducationAdvicesSO _educationAdvicesSO;
 
-    public event Action EducationStarted;
     public event Action EducationSkipped;
 
     private void Awake()
@@ -39,15 +38,9 @@ public class EducationUI : MonoBehaviour
 
     public void OnStartEducationButtonPressed()
     {
-        EducationStarted?.Invoke();
         HideButtons();
         _nextAdviceButton.gameObject.SetActive(true);
         OnNextAdviceButtonPressed();
-    }
-
-    public void OnSkipEducationButtonPressed()
-    {
-        EducationSkipped?.Invoke();
     }
 
     public void OnNextAdviceButtonPressed()

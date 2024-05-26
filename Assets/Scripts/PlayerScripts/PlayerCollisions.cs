@@ -18,6 +18,21 @@ public class PlayerCollisions : MonoBehaviour
         {
             interactableObject.EnableInteract();
         }
+
+        if (collision.collider.TryGetComponent(out Enemy enemy) && _player.HasSword)
+        {
+            _player.PlayerEventsHandler.OnWolfHasBeenKilled();
+        }
+
+        if (collision.collider.TryGetComponent(out Witch witch))
+        {
+            _player.transform.LookAt(witch.transform.position);
+
+            if (_player.HasNecronomicon)
+            {
+                _player.PlayerEventsHandler.OnWitchHasBeenAttacked();
+            }
+        }
     }
 
     private void OnCollisionExit(Collision collision)

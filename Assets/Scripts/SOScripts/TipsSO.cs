@@ -64,6 +64,15 @@ public class TipsSO : ScriptableObject
 
     public string EatMeTip = "съешь мен€";
     public string TakeMeTip = "возьми мен€ и отнеси на гр€дку";
+    public string KillTheWolfTip = "возьми мен€ и убей волка";
+    public string KillTheWitchTip = "возьми мен€, € тебе пригожусь";
 
     public string TakeRewardTip = "возьми награду в центре деревни ";
+
+    public string UseNecronomiconTip = "скорее доставай некрономикон";
+    public string YouCanCookOnlyInGrannysHomeTip = "готовить ты можешь только в доме бабушки";
+    public string BringMeToPatchTip = "а теперь посади мен€ в гр€дку и  полей";
+    public string YouCanKillWolfNowTip = "теперь ты можешь убить волка";
+    public string YouHaveMeatNowTip = "теперь у теб€ в домике есть м€со...";
+    public string ItIsNotRightTimeTip = "еще не врем€...";
 }
