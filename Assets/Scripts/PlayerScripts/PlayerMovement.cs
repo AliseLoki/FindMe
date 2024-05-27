@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 [RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(Rigidbody))]
@@ -51,6 +52,11 @@ public class PlayerMovement : MonoBehaviour
                 Rotate(Move(_boostSpeed));
             }
         }
+    }
+
+    public void LookAtTheWitch(Witch witch)
+    {
+        transform.LookAt(witch.transform.position);
     }
 
     public void Teleport(Transform transform)

@@ -5,11 +5,11 @@ public class LastVillage : Village
 {
     [SerializeField] private Witch _witch;
 
-    public event Action WitchAppeared;
+    public event Action <Witch> WitchAppeared;
 
     protected override void GiveReward()
     {
-        Instantiate(_witch, transform.position, Quaternion.identity);
-        WitchAppeared?.Invoke();
+        Witch witch = Instantiate(_witch, transform.position, Quaternion.identity);
+        WitchAppeared?.Invoke(witch);
     }
 }

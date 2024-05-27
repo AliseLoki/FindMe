@@ -26,8 +26,6 @@ public class PlayerCollisions : MonoBehaviour
 
         if (collision.collider.TryGetComponent(out Witch witch))
         {
-            _player.transform.LookAt(witch.transform.position);
-
             if (_player.HasNecronomicon)
             {
                 _player.PlayerEventsHandler.OnWitchHasBeenAttacked();

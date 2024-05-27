@@ -20,6 +20,8 @@ public class Player : MonoBehaviour
 
     [SerializeField] private TipsViewPanel _tipsViewPanel;
 
+    [SerializeField] private LastVillage _lastVillage;
+
     [SerializeField] private AudioClip _takingWoodSoundEffect;
 
     private bool _hasBackPack;
@@ -73,11 +75,20 @@ public class Player : MonoBehaviour
     {
         _deliveryService.AllDishesHaveBeenDelivered += OnAllDishesHaveBeenDelivered;
         _playerEvents.WolfHasBeenKilled += OnWolfHasBeenKilled;
+        _lastVillage.WitchAppeared += OnWitchAppeared;
     }
+
+
     private void OnDisable()
     {
         _deliveryService.AllDishesHaveBeenDelivered -= OnAllDishesHaveBeenDelivered;
         _playerEvents.WolfHasBeenKilled -= OnWolfHasBeenKilled;
+        _lastVillage.WitchAppeared -= OnWitchAppeared;
+    }
+
+    private void OnWitchAppeared(Witch witch)
+    {
+        _playerMovement.LookAtTheWitch(witch);
     }
 
     public void PlaySoundEffect(AudioClip audioClip)

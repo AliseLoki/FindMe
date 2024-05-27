@@ -12,6 +12,7 @@ public class CanvasUI : MonoBehaviour
     [SerializeField] private GameStartCountdownUI _gameStartCountdownUI;
     [SerializeField] private EducationUI _educationUI;
     [SerializeField] private GameOverUI _gameOverUI;
+    [SerializeField] private FinalPanelView _finalPanelView;
 
     private bool _shouldFadeToBlack;
     private bool _shouldFadeFromBlack;
@@ -36,9 +37,15 @@ public class CanvasUI : MonoBehaviour
         GameManager.Instance.CountdownToStartEnabled += OnCountdownToStartEnabled;
         GameManager.Instance.EducationPlayingEnabled += OnEducationPlayingEnabled;
         GameManager.Instance.EducationStarted += OnEducationStarted;
+        GameManager.Instance.WitchIsDead += OnWitchIsDead;
 
         _player.PlayerEventsHandler.PlayerHasDied += OnPlayerhasDied;
         _player.PlayerEventsHandler.EnteredGrannysHome += PlayerEnteredGrannysHome;
+    }
+
+    private void OnWitchIsDead()
+    {
+        _finalPanelView.gameObject.SetActive(true);
     }
 
     private void OnDisable()
@@ -48,6 +55,7 @@ public class CanvasUI : MonoBehaviour
         GameManager.Instance.CountdownToStartEnabled -= OnCountdownToStartEnabled;
         GameManager.Instance.EducationPlayingEnabled -= OnEducationPlayingEnabled;
         GameManager.Instance.EducationStarted -= OnEducationStarted;
+        GameManager.Instance.WitchIsDead -= OnWitchIsDead;
 
         _languageSwitcher.AllSOWereGiven -= OnAllSOWereGiven;
       
@@ -124,8 +132,6 @@ public class CanvasUI : MonoBehaviour
         _gameOverUI.InitGameOverSO(gameOverSO);
     }
 
-
-
     private IEnumerator FadeRoutine()
     {
         while (_shouldFadeToBlack)
@@ -158,22 +164,6 @@ public class CanvasUI : MonoBehaviour
             yield return null;
         }
     }
-
-    //private void OnGameStateChanged()
-    //{
-    //    //_firstStartPanelView.Hide();
-    //    _educationUI.gameObject.SetActive(false);
-    //}
-
-    //private void ShowTipsPanel()
-    //{
-    //    _tipsViewPanel.gameObject.SetActive(true);
-    //}
-
-    //private void HideTipsPanel()
-    //{
-    //    _tipsViewPanel.gameObject.SetActive(false);
-    //}
 
     private void PlayerEnteredGrannysHome()
     {

@@ -64,7 +64,7 @@ public class PlayerEvents : MonoBehaviour
 
     public void OnWitchHasBeenAttacked()
     {
-        WitchHasBeenAttacked?.Invoke();
+        WitchHasBeenAttacked?.Invoke(); 
     }
 
     public void OnWolfHasBeenKilled()

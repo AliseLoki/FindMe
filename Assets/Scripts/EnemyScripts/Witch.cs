@@ -1,5 +1,4 @@
-using System.Collections;
-using Unity.VisualScripting;
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
@@ -19,6 +18,8 @@ public class Witch : MonoBehaviour
 
     private Animator _animator;
     private Player _player;
+
+    public event Action WitchIsDead;
 
     private void Awake()
     {
@@ -82,5 +83,6 @@ public class Witch : MonoBehaviour
         _isDying = true;
         _pentagram.gameObject.SetActive(true);
         _animator.SetTrigger(IsDying);
+        WitchIsDead?.Invoke();
     }
 }

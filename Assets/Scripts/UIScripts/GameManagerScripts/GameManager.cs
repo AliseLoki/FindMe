@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     }
 
     private Player _player;
+    private Witch _witch;
     private TipsViewPanel _tipsViewPanel;
 
     [SerializeField] private EntryPoint _gameEntryPoint;
@@ -37,13 +38,15 @@ public class GameManager : MonoBehaviour
     private bool _isEnteredGrannysHome;
     private bool _isEducationCancelled;
     private bool _hasWitchAppeared;
+    private bool _witchIsDead;
     private bool _isGameOver;
 
     public event Action WaitingToStartEnabled;
     public event Action CountdownToStartEnabled;
     public event Action EducationPlayingEnabled;
     public event Action EducationStarted;
-
+    public event Action WitchIsDead;
+    
     public bool IsFirstStart => _isFirstStart;
 
     private void Awake()
@@ -67,6 +70,7 @@ public class GameManager : MonoBehaviour
         _player.PlayerEventsHandler.EnteredGrannysHome -= OnPlayerEnteredGrannysHome;
         _player.PlayerEventsHandler.PlayerHasDied -= OnPlayerHasDied;
         _lastVillage.WitchAppeared -= OnWitchAppeared;
+        _witch.WitchIsDead -= OnWitchIsDead;
     }
 
     private void Start()
@@ -162,6 +166,11 @@ public class GameManager : MonoBehaviour
                 //победная панель
                 SaveState(1, true);
 
+                if (_witchIsDead)
+                {
+                    WitchIsDead?.Invoke();
+                }
+
                 if (_isGameOver)
                 {
                     _gameState = GameState.GameOver;
@@ -219,9 +228,16 @@ public class GameManager : MonoBehaviour
         _isGameOver = true;
     }
 
-    private void OnWitchAppeared()
+    private void OnWitchAppeared(Witch witch)
     {
         _hasWitchAppeared = true;
+        _witch = witch;
+        _witch.WitchIsDead += OnWitchIsDead;
+    }
+
+    private void OnWitchIsDead()
+    {
+        _witchIsDead = true;
     }
 
     private void SaveState(int value, bool isTrue)
