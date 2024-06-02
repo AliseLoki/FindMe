@@ -40,7 +40,7 @@ public class LanguageSwitcher : MonoBehaviour
     private void Awake()
     {
         //берется из внешнего метода язык
-        InitCurrentLanguage(turkish);
+        InitCurrentLanguage(russian);
     }
 
     private void Start()

@@ -70,7 +70,6 @@ public class GameManager : MonoBehaviour
         _player.PlayerEventsHandler.EnteredGrannysHome -= OnPlayerEnteredGrannysHome;
         _player.PlayerEventsHandler.PlayerHasDied -= OnPlayerHasDied;
         _lastVillage.WitchAppeared -= OnWitchAppeared;
-        _witch.WitchIsDead -= OnWitchIsDead;
     }
 
     private void Start()
@@ -161,10 +160,6 @@ public class GameManager : MonoBehaviour
             case GameState.WitchAppeared:
 
                 _tipsViewPanel.ShowUseNecronomikonTip();
-
-                //событие смерти ведьмы
-                //победная панель
-                SaveState(1, true);
 
                 if (_witchIsDead)
                 {

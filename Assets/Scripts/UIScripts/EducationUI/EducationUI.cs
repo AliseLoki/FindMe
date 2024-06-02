@@ -1,4 +1,3 @@
-using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,8 +15,6 @@ public class EducationUI : MonoBehaviour
     private int _index = 0;
 
     private EducationAdvicesSO _educationAdvicesSO;
-
-    public event Action EducationSkipped;
 
     private void Awake()
     {

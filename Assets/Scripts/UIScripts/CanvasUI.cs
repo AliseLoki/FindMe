@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -21,8 +20,6 @@ public class CanvasUI : MonoBehaviour
 
     private Player _player;
     private LanguageSwitcher _languageSwitcher;
-
-    public event Action FirstStartPanelViewActivated;
 
     private void Awake()
     {
