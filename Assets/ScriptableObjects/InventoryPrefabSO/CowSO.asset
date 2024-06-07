@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: CowSO
   m_EditorClassIdentifier: 
   Sprite: {fileID: 21300000, guid: aaa96b247acd9b74f8b2c034169cdc14, type: 3}
-  InventoryPrefab: {fileID: 8554861624611036841, guid: 7dd634b1db4f18f489e1ceaac16e0628, type: 3}
+  InventoryPrefab: {fileID: 3934595705252057339, guid: cbc2162c81e852441a50326eac7019ba, type: 3}

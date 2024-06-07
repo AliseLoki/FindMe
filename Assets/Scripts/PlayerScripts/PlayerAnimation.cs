@@ -1,21 +1,37 @@
 using UnityEngine;
 
-[RequireComponent (typeof(Animator))]
+[RequireComponent(typeof(Animator))]
 public class PlayerAnimation : MonoBehaviour
 {
-   private const string IsWalking = nameof(IsWalking);
+    private const string IsWalking = nameof(IsWalking);
+    private const string IsRunning = nameof(IsRunning);
+    private const string IsDying = nameof(IsDying);
 
-    [SerializeField] private PlayerMovement _playerMovement;
+    [SerializeField] private Player _player;
 
+    private PlayerMovement _playerMovement;
     private Animator _animatior;
+
+    private bool _isDying;
 
     private void Awake()
     {
+        _playerMovement = _player.PlayerMovement;
         _animatior = GetComponent<Animator>();
     }
 
     private void Update()
     {
-        _animatior.SetBool(IsWalking,_playerMovement.IsWalking);
+        _animatior.SetBool(IsWalking, _playerMovement.IsWalking);
+    }
+
+    public void UseRunningAnimation(bool isUsing)
+    {
+        _animatior.SetBool(IsRunning, isUsing);
+    }
+
+    public void EnableDeathAnimation()
+    {
+        _animatior.SetTrigger(IsDying);
     }
 }

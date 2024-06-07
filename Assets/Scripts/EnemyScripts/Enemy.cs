@@ -29,7 +29,6 @@ public class Enemy : MonoBehaviour
     private bool _isAttacking;
     private bool _isDying;
 
-    // private AudioSource _audioSource;
     private NavMeshAgent _agent;
     private Animator _animator;
     private List<Transform> _targetPoints = new List<Transform>();
@@ -41,7 +40,6 @@ public class Enemy : MonoBehaviour
 
     private void Awake()
     {
-        // _audioSource = GetComponent<AudioSource>();
         _agent = GetComponent<NavMeshAgent>();
         _animator = GetComponent<Animator>();
         InitializeTargetPoints();
@@ -57,7 +55,6 @@ public class Enemy : MonoBehaviour
 
         _patrolCoroutine = StartCoroutine(Patrolling());
     }
-
 
     private void OnDisable()
     {

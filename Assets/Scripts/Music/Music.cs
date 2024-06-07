@@ -20,7 +20,7 @@ public class Music : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
         _musicVolumeSlider.value = PlayerPrefs.GetFloat(PlayerPrefsMusicVolume, _defaultMusicVolumeValue);
         ChangeVolume();
-        PlayForestMusic();
+        PlayStartMusic();
     }
 
     private void OnEnable()
@@ -35,6 +35,11 @@ public class Music : MonoBehaviour
 
         _player.PlayerEventsHandler.EnteredVillage += PlayVilageMusic;
         _player.PlayerEventsHandler.ExitVillage += PlayRoadMusic;
+
+        _player.PlayerEventsHandler.EnteredPentagramZone += PlayPentagramMusic;
+        _player.PlayerEventsHandler.ExitPentagramZone += PlayRoadMusic;
+
+        _player.PlayerEventsHandler.PlayerHasDied += PlayGameOverMusic;
     }
 
     private void OnDisable()
@@ -49,6 +54,11 @@ public class Music : MonoBehaviour
 
         _player.PlayerEventsHandler.EnteredVillage -= PlayVilageMusic;
         _player.PlayerEventsHandler.ExitVillage -= PlayRoadMusic;
+
+        _player.PlayerEventsHandler.EnteredPentagramZone -= PlayPentagramMusic;
+        _player.PlayerEventsHandler.ExitPentagramZone -= PlayRoadMusic;
+
+        _player.PlayerEventsHandler.PlayerHasDied -= PlayGameOverMusic;
     }
 
     public void ChangeMusicVolume()
@@ -56,6 +66,11 @@ public class Music : MonoBehaviour
         ChangeVolume();
         PlayerPrefs.SetFloat(PlayerPrefsMusicVolume, _musicVolumeSlider.value);
         PlayerPrefs.Save();
+    }
+
+    public void PlayWitchAppearMusic()
+    {
+        PlayMusic(_musicSO.WitchAppearMusic);
     }
 
     private void ChangeVolume()
@@ -90,6 +105,26 @@ public class Music : MonoBehaviour
     private void PlayVilageMusic()
     {
         PlayMusic(_musicSO.VillageMusic);
+    }
+
+    private void PlayStartMusic()
+    {
+        PlayMusic(_musicSO.StartMusic);
+    }
+
+    private void PlayGameOverMusic()
+    {
+        PlayMusic(_musicSO.GameOverMusic);
+    }
+
+    private void PlayLastVillageMusic()
+    {
+        PlayMusic(_musicSO.LastVillageMusic);
+    }
+
+    private void PlayPentagramMusic()
+    {
+        PlayMusic(_musicSO.PentagramMusic);
     }
 
     private void PlayMusic(AudioClip audioClip)

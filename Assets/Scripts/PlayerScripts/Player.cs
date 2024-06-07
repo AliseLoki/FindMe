@@ -183,9 +183,28 @@ public class Player : MonoBehaviour
     {
         var prefabInHands = Instantiate(inventoryPrefabSO.InventoryPrefab, HandlePoint, true);
         prefabInHands.transform.position = HandlePoint.position;
-        prefabInHands.transform.rotation = Quaternion.LookRotation(transform.forward);
+
+        if (!CheckIfCow(inventoryPrefabSO))
+        {
+            prefabInHands.transform.rotation = Quaternion.LookRotation(transform.forward);
+        }
+        else
+        {
+            prefabInHands.transform.rotation = Quaternion.LookRotation(transform.right);
+        }
+
         SetHasSomethingInHands(true);
         _inventoryPrefabSO = inventoryPrefabSO;
+    }
+
+    private bool CheckIfCow(InventoryPrefabSO inventoryPrefabSO)
+    {
+        if ((inventoryPrefabSO.InventoryPrefab as Cow))
+        {
+            return true;
+        }
+
+        return false;
     }
 
     private void OnAllDishesHaveBeenDelivered()

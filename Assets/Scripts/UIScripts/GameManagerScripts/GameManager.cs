@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private EntryPoint _gameEntryPoint;
     [SerializeField] private LastVillage _lastVillage;
+    [SerializeField] private Music _music;
 
     public EntryPoint GameEntryPoint => _gameEntryPoint;
 
@@ -159,6 +160,7 @@ public class GameManager : MonoBehaviour
 
             case GameState.WitchAppeared:
 
+                _music.PlayWitchAppearMusic();
                 _tipsViewPanel.ShowUseNecronomikonTip();
 
                 if (_witchIsDead)

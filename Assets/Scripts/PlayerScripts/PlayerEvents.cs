@@ -7,11 +7,15 @@ public class PlayerEvents : MonoBehaviour
     private const string PlayerPrefsHealthAmount = nameof(PlayerPrefsHealthAmount);
 
     [SerializeField] private AudioClip _takingGoldSoundEffect;
+    [SerializeField] private PlayerAnimation _playerAnimation;
+    [SerializeField] private PlayerRagdollController _playerRagdollController;
 
     private int _gold;
     private int _goldDefaultValue = 0;
     private int _health = 10;
     private int _maxhealth = 10;
+
+    private bool _isDead;
 
     private Player _player;
     private TipsViewPanel _tipsViewPanel;
@@ -28,6 +32,9 @@ public class PlayerEvents : MonoBehaviour
 
     public event Action EnteredVillage;
     public event Action ExitVillage;
+
+    public event Action EnteredPentagramZone;
+    public event Action ExitPentagramZone;
 
     public event Action<int> GoldAmountChanged;
     public event Action<int> HealthChanged;
@@ -64,7 +71,7 @@ public class PlayerEvents : MonoBehaviour
 
     public void OnWitchHasBeenAttacked()
     {
-        WitchHasBeenAttacked?.Invoke(); 
+        WitchHasBeenAttacked?.Invoke();
     }
 
     public void OnWolfHasBeenKilled()
@@ -112,6 +119,16 @@ public class PlayerEvents : MonoBehaviour
         _tipsViewPanel.ShowYouAreNotSafeTip();
     }
 
+    public void OnEnteredPentagramZone()
+    {
+        EnteredPentagramZone?.Invoke();
+    }
+
+    public void OnExitPentagramZone()
+    {
+        ExitPentagramZone?.Invoke();
+    }
+
     public void OnGoldAmountChanged(int gold)
     {
         _player.PlaySoundEffect(_takingGoldSoundEffect);
@@ -123,9 +140,12 @@ public class PlayerEvents : MonoBehaviour
     {
         _health = Mathf.Clamp(_health + health, 0, _maxhealth);
 
-        if (_health == 0)
+        if (_health == 0 && !_isDead)
         {
+            _playerAnimation.EnableDeathAnimation();
+            _playerRagdollController.MakePhysical();
             PlayerHasDied?.Invoke();
+            _isDead = true;
         }
         else if (_health > 0)
         {

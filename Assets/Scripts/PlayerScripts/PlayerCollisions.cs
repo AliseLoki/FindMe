@@ -47,7 +47,6 @@ public class PlayerCollisions : MonoBehaviour
         {
             goldCoins.PickUpCoins();
             _player.PlayerEventsHandler.OnGoldAmountChanged(_coinsValue);
-            // создать ивент , на него подписан евент хэндлер , на евент хэндлер подписаны другие компоненты
         }
 
         if (other.TryGetComponent(out ForestTrigger forestTrigger))
@@ -69,6 +68,11 @@ public class PlayerCollisions : MonoBehaviour
         {
             _player.PlayerEventsHandler.OnEnteredSafeZone();
         }
+
+        if (other.TryGetComponent(out PlaceForPentagramTrigger placeForPentagramTrigger))
+        {
+            _player.PlayerEventsHandler.OnEnteredPentagramZone();
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -86,6 +90,11 @@ public class PlayerCollisions : MonoBehaviour
         if (other.TryGetComponent(out SafeZoneTrigger safeZoneTrigger))
         {
             _player.PlayerEventsHandler.OnExitSafeZone();
+        }
+
+        if (other.TryGetComponent(out PlaceForPentagramTrigger placeForPentagramTrigger))
+        {
+            _player.PlayerEventsHandler.OnExitPentagramZone();
         }
     }
 }

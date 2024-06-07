@@ -10,9 +10,11 @@ public class PlayerMovement : MonoBehaviour
     private const string Vertical = nameof(Vertical);
 
     [SerializeField] private int _speedBoostDuration = 5;
-    [SerializeField] private float _moveSpeed = 15f;
-    [SerializeField] private float _boostSpeed = 20f;
-    [SerializeField] private float _rotateSpeed = 10f;
+    [SerializeField] private float _moveSpeed = 5f;
+    [SerializeField] private float _boostSpeed = 10f;
+    [SerializeField] private float _rotateSpeed = 5f;
+
+    [SerializeField] private PlayerAnimation _playerAnimation;
 
     private PlayerInventory _playerInventory;
     private NavMeshAgent _navMeshAgent;
@@ -90,7 +92,9 @@ public class PlayerMovement : MonoBehaviour
     private IEnumerator SpeedBoostCountdown()
     {
         _isRunning = true;
+        _playerAnimation.UseRunningAnimation(_isWalking);
         yield return new WaitForSeconds(_speedBoostDuration);
         _isRunning = false;
+        _playerAnimation.UseRunningAnimation(false);
     }
 }

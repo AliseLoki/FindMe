@@ -15,7 +15,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &748093842999318184
 Transform:
@@ -78,7 +78,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &3728053574793243990
 Transform:
@@ -144,7 +144,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &774641270977066010
 Transform:
@@ -4970,7 +4970,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &3130209206607790007
 Transform:
@@ -5004,7 +5004,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &5077583844943974864
 Transform:
@@ -5043,7 +5043,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &6864349920001366894
 Transform:
@@ -5126,7 +5126,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &598863177489001160
 Transform:
@@ -5209,7 +5209,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &4317642996614040032
 Transform:
@@ -5284,9 +5284,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5077583844943974864}
     m_Modifications:
+    - target: {fileID: 2359924578718258495, guid: c80fbf850ad97a34694544deb65b7fa2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 8439506048520143327, guid: c80fbf850ad97a34694544deb65b7fa2, type: 3}
       propertyPath: m_Name
       value: PT_Fruit_Tree_01_plums
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439506048520143327, guid: c80fbf850ad97a34694544deb65b7fa2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 8562572573934374867, guid: c80fbf850ad97a34694544deb65b7fa2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 8757141357260219641, guid: c80fbf850ad97a34694544deb65b7fa2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 9103171939639073637, guid: c80fbf850ad97a34694544deb65b7fa2, type: 3}
       propertyPath: m_RootOrder
@@ -5350,9 +5366,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5077583844943974864}
     m_Modifications:
+    - target: {fileID: 2359924578718258495, guid: c80fbf850ad97a34694544deb65b7fa2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 8439506048520143327, guid: c80fbf850ad97a34694544deb65b7fa2, type: 3}
       propertyPath: m_Name
       value: PT_Fruit_Tree_01_plums (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439506048520143327, guid: c80fbf850ad97a34694544deb65b7fa2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 8562572573934374867, guid: c80fbf850ad97a34694544deb65b7fa2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 8757141357260219641, guid: c80fbf850ad97a34694544deb65b7fa2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 9103171939639073637, guid: c80fbf850ad97a34694544deb65b7fa2, type: 3}
       propertyPath: m_RootOrder
@@ -5416,9 +5448,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5077583844943974864}
     m_Modifications:
+    - target: {fileID: 2359924578718258495, guid: c80fbf850ad97a34694544deb65b7fa2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 8439506048520143327, guid: c80fbf850ad97a34694544deb65b7fa2, type: 3}
       propertyPath: m_Name
       value: PT_Fruit_Tree_01_plums (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439506048520143327, guid: c80fbf850ad97a34694544deb65b7fa2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 8562572573934374867, guid: c80fbf850ad97a34694544deb65b7fa2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 8757141357260219641, guid: c80fbf850ad97a34694544deb65b7fa2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 9103171939639073637, guid: c80fbf850ad97a34694544deb65b7fa2, type: 3}
       propertyPath: m_RootOrder
@@ -5482,9 +5530,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5077583844943974864}
     m_Modifications:
+    - target: {fileID: 2359924578718258495, guid: c80fbf850ad97a34694544deb65b7fa2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 8439506048520143327, guid: c80fbf850ad97a34694544deb65b7fa2, type: 3}
       propertyPath: m_Name
       value: PT_Fruit_Tree_01_plums (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439506048520143327, guid: c80fbf850ad97a34694544deb65b7fa2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 8562572573934374867, guid: c80fbf850ad97a34694544deb65b7fa2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 8757141357260219641, guid: c80fbf850ad97a34694544deb65b7fa2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 9103171939639073637, guid: c80fbf850ad97a34694544deb65b7fa2, type: 3}
       propertyPath: m_RootOrder
@@ -5548,9 +5612,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5077583844943974864}
     m_Modifications:
+    - target: {fileID: 2359924578718258495, guid: c80fbf850ad97a34694544deb65b7fa2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 8439506048520143327, guid: c80fbf850ad97a34694544deb65b7fa2, type: 3}
       propertyPath: m_Name
       value: PT_Fruit_Tree_01_plums (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439506048520143327, guid: c80fbf850ad97a34694544deb65b7fa2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 8562572573934374867, guid: c80fbf850ad97a34694544deb65b7fa2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 8757141357260219641, guid: c80fbf850ad97a34694544deb65b7fa2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 9103171939639073637, guid: c80fbf850ad97a34694544deb65b7fa2, type: 3}
       propertyPath: m_RootOrder

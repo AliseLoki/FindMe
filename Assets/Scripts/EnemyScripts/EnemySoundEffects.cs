@@ -6,12 +6,15 @@ public class EnemySoundEffects : MonoBehaviour
     [SerializeField] private AudioClip _stepsSound;
     [SerializeField] private AudioClip _wolfRoar;
 
-    private Enemy _enemy;
     private float _footStepTimer;
     private float _footStepTimerMax = 1.1f;
 
+    private Enemy _enemy;
+    private AudioSource _audioSource;
+
     private void Awake()
     {
+        _audioSource = GetComponent<AudioSource>();
         _enemy = GetComponent<Enemy>();
     }
 
