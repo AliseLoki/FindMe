@@ -12,7 +12,13 @@ public class EntryPoint : MonoBehaviour
     [SerializeField] private PackingPlace _packingPlace;
     [SerializeField] private LanguageSwitcher _languageSwitcher;
     [SerializeField] private CanvasUI _canvasUI;
-     
+    [SerializeField] private Music _music;
+
+    public Music InitMusic()
+    {
+        return _music;
+    }
+
     public CanvasUI InitCanvasUI()
     {
          return _canvasUI; 

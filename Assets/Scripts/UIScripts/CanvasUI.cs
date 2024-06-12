@@ -11,8 +11,7 @@ public class CanvasUI : MonoBehaviour
     [SerializeField] private GameStartCountdownUI _gameStartCountdownUI;
     [SerializeField] private EducationUI _educationUI;
     [SerializeField] private GameOverUI _gameOverUI;
-    [SerializeField] private FinalPanelView _finalPanelView;
-
+    
     private bool _shouldFadeToBlack;
     private bool _shouldFadeFromBlack;
 
@@ -34,26 +33,18 @@ public class CanvasUI : MonoBehaviour
         GameManager.Instance.CountdownToStartEnabled += OnCountdownToStartEnabled;
         GameManager.Instance.EducationPlayingEnabled += OnEducationPlayingEnabled;
         GameManager.Instance.EducationStarted += OnEducationStarted;
-        GameManager.Instance.WitchIsDead += OnWitchIsDead;
-
+        
         _player.PlayerEventsHandler.PlayerHasDied += OnPlayerhasDied;
         _player.PlayerEventsHandler.EnteredGrannysHome += PlayerEnteredGrannysHome;
     }
 
-    private void OnWitchIsDead()
-    {
-        _finalPanelView.gameObject.SetActive(true);
-    }
-
     private void OnDisable()
     {
-
         GameManager.Instance.WaitingToStartEnabled -= OnWaitingToStartEnabled;
         GameManager.Instance.CountdownToStartEnabled -= OnCountdownToStartEnabled;
         GameManager.Instance.EducationPlayingEnabled -= OnEducationPlayingEnabled;
         GameManager.Instance.EducationStarted -= OnEducationStarted;
-        GameManager.Instance.WitchIsDead -= OnWitchIsDead;
-
+        
         _languageSwitcher.AllSOWereGiven -= OnAllSOWereGiven;
       
         _player.PlayerEventsHandler.PlayerHasDied -= OnPlayerhasDied;

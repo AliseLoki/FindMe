@@ -5402,6 +5402,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _meatEffect: {fileID: 1116463258387872806}
+  _enemySoundEffects: {fileID: 2647121636247090455}
 --- !u!1 &3054350898214461715
 GameObject:
   m_ObjectHideFlags: 0
@@ -5861,7 +5862,7 @@ Transform:
   - {fileID: 4119549741335631245}
   - {fileID: 5957791666600297072}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &7214606308141248394
 Animator:
@@ -5944,7 +5945,6 @@ MonoBehaviour:
   _points: {fileID: 0}
   _player: {fileID: 0}
   _wolfBody: {fileID: 1414814269774204381}
-  _enemySoundEffects: {fileID: 2647121636247090455}
 --- !u!82 &8028585776832423007
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5955,20 +5955,20 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: f0434bb09b6c86f48945c21555472d4d, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 0
+  Priority: 161
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 200
+  MaxDistance: 500
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -6055,6 +6055,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _stepsSound: {fileID: 8300000, guid: 2dfb5bdbfa70cb4449cb0336cb7fa8bb, type: 3}
   _wolfRoar: {fileID: 8300000, guid: f0434bb09b6c86f48945c21555472d4d, type: 3}
+  _howling: {fileID: 8300000, guid: 87597488c6297394fa79c6cfd0d76cf5, type: 3}
+  _wolfDeath: {fileID: 8300000, guid: e65851a0626552343a559810c4818c42, type: 3}
+  _cutTheWolf: {fileID: 8300000, guid: 4b70ec0f0afb9ac4ea7dfea07aca4eb4, type: 3}
 --- !u!1 &4529630158835538507
 GameObject:
   m_ObjectHideFlags: 0

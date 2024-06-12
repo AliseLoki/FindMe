@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -17,13 +18,15 @@ public class GameManager : MonoBehaviour
         GameOver
     }
 
+    private int _finalGameOverSceneIndex = 1;
+    private int _winSceneIndex = 2;
+
     private Player _player;
     private Witch _witch;
     private TipsViewPanel _tipsViewPanel;
 
     [SerializeField] private EntryPoint _gameEntryPoint;
     [SerializeField] private LastVillage _lastVillage;
-    [SerializeField] private Music _music;
 
     public EntryPoint GameEntryPoint => _gameEntryPoint;
 
@@ -46,8 +49,7 @@ public class GameManager : MonoBehaviour
     public event Action CountdownToStartEnabled;
     public event Action EducationPlayingEnabled;
     public event Action EducationStarted;
-    public event Action WitchIsDead;
-    
+  
     public bool IsFirstStart => _isFirstStart;
 
     private void Awake()
@@ -56,6 +58,7 @@ public class GameManager : MonoBehaviour
         _player = _gameEntryPoint.InitPlayer();
         SetFirstStart(PlayerPrefs.GetInt(PlayerPrefsIsFirstStart, 1));
         _tipsViewPanel = _gameEntryPoint.InitTipsViewPanel();
+
     }
 
     private void OnEnable()
@@ -150,6 +153,11 @@ public class GameManager : MonoBehaviour
                 {
                     _gameState = GameState.GameOver;
                 }
+                //
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    _hasWitchAppeared = true;
+                }
 
                 if (_hasWitchAppeared)
                 {
@@ -160,17 +168,12 @@ public class GameManager : MonoBehaviour
 
             case GameState.WitchAppeared:
 
-                _music.PlayWitchAppearMusic();
                 _tipsViewPanel.ShowUseNecronomikonTip();
 
                 if (_witchIsDead)
                 {
-                    WitchIsDead?.Invoke();
-                }
-
-                if (_isGameOver)
-                {
-                    _gameState = GameState.GameOver;
+                    SaveState(1, true);
+                    SceneManager.LoadScene(_winSceneIndex);
                 }
 
                 break;
@@ -183,6 +186,12 @@ public class GameManager : MonoBehaviour
         }
 
         print(_gameState);
+    }
+
+    public void WitchKilledPlayer()
+    {
+        SaveState(1, true);
+        SceneManager.LoadScene(_finalGameOverSceneIndex);
     }
 
     public void OnFirstStartPanelViewButtonPressed()
@@ -213,6 +222,11 @@ public class GameManager : MonoBehaviour
     public bool IsEducationPlaying()
     {
         return _gameState == GameState.EducationPlaying;
+    }
+
+    public bool IsGameFinished()
+    {
+        return _gameState == GameState.GameOver || _gameState == GameState.WitchAppeared;
     }
 
     public bool IsWitchAppeared()

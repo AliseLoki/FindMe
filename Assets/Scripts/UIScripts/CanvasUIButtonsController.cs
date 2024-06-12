@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(CanvasUI))]
 public class CanvasUIButtonsController : MonoBehaviour
 {
     [SerializeField] private Slider _cameraSlider;
@@ -23,8 +24,8 @@ public class CanvasUIButtonsController : MonoBehaviour
 
         _startEducationButton.onClick.AddListener(_canvasUI.OnStartEducationButtonPressed);
 
-        _skipEducationButton.onClick.AddListener(_canvasUI.OnSkipeducationButtonPressed);
         _skipEducationButton.onClick.AddListener(GameManager.Instance.OnEducationCancelled);
+        _skipEducationButton.onClick.AddListener(_canvasUI.OnSkipeducationButtonPressed);
     }
 
     public void OnRestartButtonPresed()

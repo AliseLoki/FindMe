@@ -13,12 +13,13 @@ MonoBehaviour:
   m_Name: BackgroundMusicSO
   m_EditorClassIdentifier: 
   ForestMusic: {fileID: 8300000, guid: 2fe3fd1e345d37b4bae5241291119668, type: 3}
-  SafeZoneMusic: {fileID: 8300000, guid: 4eeaff35a74be6548982a1e33a1b509a, type: 3}
+  SafeZoneMusic: {fileID: 8300000, guid: 51b45bfe1b3b36c4ba1394636ba30778, type: 3}
   RoadMusic: {fileID: 8300000, guid: 55652cf9dcfb70847a001cf2e5e8f723, type: 3}
   GrannysHomeMusic: {fileID: 8300000, guid: f61397867a46c3e498d43d4dfec0f01f, type: 3}
   VillageMusic: {fileID: 8300000, guid: 4f9003d5ed011224e82bbadb4fe3b0df, type: 3}
   StartMusic: {fileID: 8300000, guid: 4e52639e66d250142a3e6feff0646622, type: 3}
-  WitchAppearMusic: {fileID: 8300000, guid: 39e96396a851d2749b01366e83480eaa, type: 3}
+  WitchAppearMusic: {fileID: 8300000, guid: 4eeaff35a74be6548982a1e33a1b509a, type: 3}
   GameOverMusic: {fileID: 8300000, guid: e3430f77b01a55e469368a8d2bc9daf7, type: 3}
   LastVillageMusic: {fileID: 8300000, guid: 2c0689b7542225e40b9b2e27b3e934b0, type: 3}
-  PentagramMusic: {fileID: 8300000, guid: 51b45bfe1b3b36c4ba1394636ba30778, type: 3}
+  PentagramMusic: {fileID: 8300000, guid: 39e96396a851d2749b01366e83480eaa, type: 3}
+  WinMusic: {fileID: 8300000, guid: 393f467e6c1d4a348bea4df6e5d9ce75, type: 3}

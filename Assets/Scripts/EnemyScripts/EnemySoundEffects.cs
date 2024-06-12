@@ -5,6 +5,9 @@ public class EnemySoundEffects : MonoBehaviour
 {
     [SerializeField] private AudioClip _stepsSound;
     [SerializeField] private AudioClip _wolfRoar;
+    [SerializeField] private AudioClip _howling;
+    [SerializeField] private AudioClip _wolfDeath;
+    [SerializeField] private AudioClip _cutTheWolf;
 
     private float _footStepTimer;
     private float _footStepTimerMax = 1.1f;
@@ -33,8 +36,27 @@ public class EnemySoundEffects : MonoBehaviour
         }
     }
 
-    public void Roar()
+    public void PlayCutTheWolf()
     {
-        AudioSource.PlayClipAtPoint(_wolfRoar, _enemy.transform.position);
+        _audioSource.clip = _cutTheWolf;
+        _audioSource.Play();
+    }
+
+    public void PlayRoaring()
+    {
+        _audioSource.clip = _wolfRoar;
+        _audioSource.Play();
+    }
+
+    public void PlayHowling()
+    {
+        _audioSource.clip = _howling;
+        _audioSource.Play();
+    }
+
+    public void PlayWolfDeathScream()
+    {
+        _audioSource.clip = _wolfDeath;
+        _audioSource.Play();
     }
 }

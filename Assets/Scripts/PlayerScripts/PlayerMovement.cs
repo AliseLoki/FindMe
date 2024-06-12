@@ -53,10 +53,17 @@ public class PlayerMovement : MonoBehaviour
                 Rotate(Move(_boostSpeed));
             }
         }
+        else if (GameManager.Instance.IsGameFinished())
+        {
+            _playerAnimation.EnableIdle();
+            _navMeshAgent.isStopped = true;
+            _navMeshAgent.destination = transform.position;
+        }
     }
 
     public void LookAtTheWitch(Witch witch)
     {
+        _playerAnimation.EnableIdle();
         transform.LookAt(witch.transform.position);
     }
 

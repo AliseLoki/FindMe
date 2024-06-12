@@ -140,12 +140,22 @@ public class PlayerEvents : MonoBehaviour
     {
         _health = Mathf.Clamp(_health + health, 0, _maxhealth);
 
-        if (_health == 0 && !_isDead)
+        if (health < 0)
         {
+            _player.PlayHitEffects();
+        }
+
+        if (_health == 0 && !_isDead && !GameManager.Instance.IsWitchAppeared())
+        {
+            _player.PlayDeathSound();
             _playerAnimation.EnableDeathAnimation();
             _playerRagdollController.MakePhysical();
             PlayerHasDied?.Invoke();
             _isDead = true;
+        }
+        else if (_health == 0 && !_isDead && GameManager.Instance.IsWitchAppeared())
+        {
+            GameManager.Instance.WitchKilledPlayer();
         }
         else if (_health > 0)
         {

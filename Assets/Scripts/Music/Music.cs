@@ -59,6 +59,7 @@ public class Music : MonoBehaviour
         _player.PlayerEventsHandler.ExitPentagramZone -= PlayRoadMusic;
 
         _player.PlayerEventsHandler.PlayerHasDied -= PlayGameOverMusic;
+
     }
 
     public void ChangeMusicVolume()
@@ -115,11 +116,6 @@ public class Music : MonoBehaviour
     private void PlayGameOverMusic()
     {
         PlayMusic(_musicSO.GameOverMusic);
-    }
-
-    private void PlayLastVillageMusic()
-    {
-        PlayMusic(_musicSO.LastVillageMusic);
     }
 
     private void PlayPentagramMusic()

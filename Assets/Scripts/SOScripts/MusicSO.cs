@@ -13,4 +13,5 @@ public class MusicSO : ScriptableObject
     public AudioClip GameOverMusic;
     public AudioClip LastVillageMusic;
     public AudioClip PentagramMusic;
+    public AudioClip WinMusic;
 }

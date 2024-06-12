@@ -24,6 +24,12 @@ public class Player : MonoBehaviour
 
     [SerializeField] private AudioClip _takingWoodSoundEffect;
 
+    [SerializeField] private AudioClip _getHurt;
+
+    [SerializeField] private AudioClip _deathCry;
+
+    [SerializeField] private ParticleSystem _hitEffect;
+
     private bool _hasBackPack;
     private bool _hasWood;
     private bool _hasSeed;
@@ -86,9 +92,15 @@ public class Player : MonoBehaviour
         _lastVillage.WitchAppeared -= OnWitchAppeared;
     }
 
-    private void OnWitchAppeared(Witch witch)
+    public void PlayDeathSound()
     {
-        _playerMovement.LookAtTheWitch(witch);
+        PlaySoundEffect(_deathCry);
+    }
+
+    public void PlayHitEffects()
+    {
+        PlaySoundEffect(_getHurt);
+        _hitEffect.Play();
     }
 
     public void PlaySoundEffect(AudioClip audioClip)
@@ -177,6 +189,11 @@ public class Player : MonoBehaviour
         _hasSword = false;
         _hasSomethingInHands = false;
         Destroy(_handlePoint.GetChild(0).gameObject);
+    }
+
+    private void OnWitchAppeared(Witch witch)
+    {
+        _playerMovement.LookAtTheWitch(witch);
     }
 
     private void TakeInvenoryPrefabInHands(InventoryPrefabSO inventoryPrefabSO)

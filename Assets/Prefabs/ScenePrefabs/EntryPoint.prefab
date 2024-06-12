@@ -15,7 +15,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1832047729964850804
 Transform:
@@ -52,3 +52,6 @@ MonoBehaviour:
   _deliveryServiceView: {fileID: 0}
   _cookingTable: {fileID: 0}
   _packingPlace: {fileID: 0}
+  _languageSwitcher: {fileID: 0}
+  _canvasUI: {fileID: 0}
+  _music: {fileID: 0}

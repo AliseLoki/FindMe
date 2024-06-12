@@ -6,13 +6,13 @@ public class PlayerAnimation : MonoBehaviour
     private const string IsWalking = nameof(IsWalking);
     private const string IsRunning = nameof(IsRunning);
     private const string IsDying = nameof(IsDying);
+    private const string IsWitchAppeared = nameof(IsWitchAppeared);
+    
 
     [SerializeField] private Player _player;
 
     private PlayerMovement _playerMovement;
     private Animator _animatior;
-
-    private bool _isDying;
 
     private void Awake()
     {
@@ -33,5 +33,10 @@ public class PlayerAnimation : MonoBehaviour
     public void EnableDeathAnimation()
     {
         _animatior.SetTrigger(IsDying);
+    }
+
+    public void EnableIdle()
+    {
+        _animatior.SetTrigger(IsWitchAppeared);
     }
 }

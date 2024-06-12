@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 [RequireComponent(typeof(Animator))]
 public class Witch : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class Witch : MonoBehaviour
     private const string IsDying = nameof(IsDying);
 
     [SerializeField] private Transform _pentagram;
+    [SerializeField] private AudioClip _witchDeathScream;
+    [SerializeField] private AudioClip _witchSteps;
 
     private float _timer;
     private float _timerDefaultValue = 1.5f;
@@ -18,6 +21,8 @@ public class Witch : MonoBehaviour
 
     private Animator _animator;
     private Player _player;
+    private Music _music;
+    private AudioSource _audioSource;
 
     public event Action WitchIsDead;
 
@@ -26,12 +31,20 @@ public class Witch : MonoBehaviour
         _animator = GetComponent<Animator>();
         _player = GameManager.Instance.GameEntryPoint.InitPlayer();
         _timer = _timerDefaultValue;
+        _music = GameManager.Instance.GameEntryPoint.InitMusic();
+        _audioSource = GetComponent<AudioSource>();
+    }
+
+    private void Start()
+    {
+        _music.PlayWitchAppearMusic();
     }
 
     private void OnEnable()
     {
         _player.PlayerEventsHandler.WitchHasBeenAttacked += Die;
     }
+
     private void OnDisable()
     {
         _player.PlayerEventsHandler.WitchHasBeenAttacked -= Die;
@@ -47,6 +60,7 @@ public class Witch : MonoBehaviour
             }
             else
             {
+                _audioSource.Stop();
                 Attack();
             }
         }
@@ -80,6 +94,9 @@ public class Witch : MonoBehaviour
 
     private void Die()
     {
+        _audioSource.loop = false;
+        _audioSource.clip = _witchDeathScream;
+        _audioSource.Play();
         _isDying = true;
         _pentagram.gameObject.SetActive(true);
         _animator.SetTrigger(IsDying);

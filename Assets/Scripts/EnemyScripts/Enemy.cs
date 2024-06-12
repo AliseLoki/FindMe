@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+[RequireComponent(typeof(EnemySoundEffects))]
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(AudioSource))]
 [RequireComponent(typeof(NavMeshAgent))]
@@ -17,12 +18,12 @@ public class Enemy : MonoBehaviour
     [SerializeField] private Player _player;
     [SerializeField] private WolfBody _wolfBody;
 
-    [SerializeField] private EnemySoundEffects _enemySoundEffects;
+    private EnemySoundEffects _enemySoundEffects;
 
     private int _pointIndex;
     private float _minDistance = 0.2f;
     private float _distanceToPlayer = 8f;
-    private float _runSpeed = 10f;
+    private float _runSpeed = 20f;
     private float _patrolSpeed = 3.5f;
 
     private bool _isHowling;
@@ -40,6 +41,7 @@ public class Enemy : MonoBehaviour
 
     private void Awake()
     {
+        _enemySoundEffects = GetComponent<EnemySoundEffects>(); 
         _agent = GetComponent<NavMeshAgent>();
         _animator = GetComponent<Animator>();
         InitializeTargetPoints();
@@ -75,6 +77,7 @@ public class Enemy : MonoBehaviour
 
         if (!_isDying)
         {
+            _enemySoundEffects.PlayWolfDeathScream();
             _animator.SetTrigger(IsDying);
             _isDying = true;
         }
@@ -218,16 +221,16 @@ public class Enemy : MonoBehaviour
         else if (_isHowling)
         {
             _animator.SetBool(IsRunning, false);
-            _enemySoundEffects.Roar();
-            // _audioSource.Play();
+            _enemySoundEffects.PlayHowling();
         }
         else if (_isAttacking)
         {
             _animator.SetBool(IsAttacking, true);
             transform.LookAt(_player.transform);
+            _enemySoundEffects.PlayRoaring();
         }
 
-        float pause = 2.4f;
+        float pause = 2f;
         yield return new WaitForSeconds(pause);
 
         if (CheckDistanceToPlayer() && _isAttacking)
@@ -239,7 +242,6 @@ public class Enemy : MonoBehaviour
         _isHowling = false;
 
         _animator.SetBool(IsAttacking, false);
-        // _audioSource.Stop();
         HasStepsSound = true;
     }
 }
