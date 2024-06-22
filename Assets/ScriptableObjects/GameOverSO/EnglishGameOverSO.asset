@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: EnglishGameOverSO
   m_EditorClassIdentifier: 
   Restart: restart
-  Exit: exit
   GameOver: game over
+  VictoryText: you win !!!
+  LooseText: i have found you ...

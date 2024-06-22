@@ -212,6 +212,7 @@ MonoBehaviour:
   AudioClipsList:
   - {fileID: 8300000, guid: dd3a9bf23f1906c41820c9956b72b01f, type: 3}
   _inventoryPrefabSO: {fileID: 11400000, guid: 6ff46d52a5effb3409fda4deff858da3, type: 2}
+  _boxCollider: {fileID: 7483953451331543930}
 --- !u!65 &7483953451331543930
 BoxCollider:
   m_ObjectHideFlags: 0

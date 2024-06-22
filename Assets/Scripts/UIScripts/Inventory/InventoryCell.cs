@@ -37,14 +37,16 @@ public class InventoryCell : MonoBehaviour
                 }
                 else
                 {
-                    InventoryCellButtonPressed?.Invoke(_inventoryPrefabSO);
-                    Destroy(this.gameObject, 0.5f);
+                    RemoveInventoryCell();
+                   // InventoryCellButtonPressed?.Invoke(_inventoryPrefabSO);
+                   // Destroy(this.gameObject, 0.5f);
                 }
             }
             else
             {
-                InventoryCellButtonPressed?.Invoke(_inventoryPrefabSO);
-                Destroy(this.gameObject, 0.5f);
+                RemoveInventoryCell();
+               // InventoryCellButtonPressed?.Invoke(_inventoryPrefabSO);
+               //Destroy(this.gameObject, 0.5f);
             }
         }
         else

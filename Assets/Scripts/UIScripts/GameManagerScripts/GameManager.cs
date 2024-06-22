@@ -18,8 +18,8 @@ public class GameManager : MonoBehaviour
         GameOver
     }
 
-    private int _finalGameOverSceneIndex = 1;
-    private int _winSceneIndex = 2;
+    private int _finalGameOverSceneIndex = 2;
+    private int _winSceneIndex = 3;
 
     private Player _player;
     private Witch _witch;
@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
     public event Action CountdownToStartEnabled;
     public event Action EducationPlayingEnabled;
     public event Action EducationStarted;
-  
+
     public bool IsFirstStart => _isFirstStart;
 
     private void Awake()
@@ -58,7 +58,6 @@ public class GameManager : MonoBehaviour
         _player = _gameEntryPoint.InitPlayer();
         SetFirstStart(PlayerPrefs.GetInt(PlayerPrefsIsFirstStart, 1));
         _tipsViewPanel = _gameEntryPoint.InitTipsViewPanel();
-
     }
 
     private void OnEnable()

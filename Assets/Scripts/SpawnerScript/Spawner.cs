@@ -3,13 +3,14 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    // [SerializeField] private List<InventoryPrefabSO> _inventoryPrefabsSO;
     [SerializeField] private List<InteractableObject> _interactableObjects;
 
     [SerializeField] private Wood _wood;
     [SerializeField] private Transform _spawnPlaces;
     [SerializeField] private Transform _woodSpawnPlace;
+    [SerializeField] private PresentFromAd _presentFromAd;
 
+    private Vector3 _offset = new Vector3(0, -1.7f, 2);
     private bool _haveBeenSpawned;
     private Player _player;
 
@@ -34,6 +35,11 @@ public class Spawner : MonoBehaviour
     private void OnDisable()
     {
         _player.PlayerEventsHandler.ExitGrannysHome -= SpawnObjects;
+    }
+
+    public void GiveRewardForWatchingAd()
+    {
+        Instantiate(_presentFromAd, _player.HandlePoint.position + _offset, Quaternion.identity);
     }
 
     private void SpawnObjects()

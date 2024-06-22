@@ -6,9 +6,9 @@ public class LanguageSwitcher : MonoBehaviour
 {
     private string _currentLanguage;
 
-    private const string english = "english";
-    private const string russian = "russian";
-    private const string turkish = "turkish";
+    private const string English = "en";
+    private const string Russian = "ru";
+    private const string Turkish = "tr";
 
     [SerializeField] private TipsSO _englishTipsSO;
     [SerializeField] private TipsSO _russianTipsSO;
@@ -34,16 +34,18 @@ public class LanguageSwitcher : MonoBehaviour
     [SerializeField] private GameOverSO _russianGameOverSO;
     [SerializeField] private GameOverSO _turkishGameOverSO;
 
-    public event Action<TipsSO, EducationAdvicesSO, FirstStartTextSO,GameOverSO> AllSOWereGiven;
+    public GameOverSO GameOverSO { get; private set; }
+
+    public event Action<TipsSO, EducationAdvicesSO, FirstStartTextSO, GameOverSO> AllSOWereGiven;
     public event Action<VillageNamesSO> VillageNamesGiven;
     public event Action<SignSO> SignSOGiven;
 
     private void Awake()
     {
-        //string lang = YandexGamesSdk.Environment.i18n.lang;
-       // print(lang);
-        //берется из внешнего метода язык
-        InitCurrentLanguage(russian);
+#if UNITY_WEBGL && !UNITY_EDITOR
+        string lang = YandexGamesSdk.Environment.i18n.lang;
+        InitCurrentLanguage(lang);
+#endif
     }
 
     private void Start()
@@ -58,23 +60,26 @@ public class LanguageSwitcher : MonoBehaviour
 
     private void InitSO()
     {
-        if (_currentLanguage == english)
+        if (_currentLanguage == English)
         {
-            AllSOWereGiven?.Invoke(_englishTipsSO, _englishEducationAdvicesSO, _englishFirstStartTextSO,_englishGameOverSO);
+            AllSOWereGiven?.Invoke(_englishTipsSO, _englishEducationAdvicesSO, _englishFirstStartTextSO, _englishGameOverSO);
             VillageNamesGiven?.Invoke(_englishVillageNamesSO);
             SignSOGiven?.Invoke(_englishSignSO);
+            GameOverSO = _englishGameOverSO;
         }
-        else if (_currentLanguage == russian)
+        else if (_currentLanguage == Russian)
         {
-            AllSOWereGiven?.Invoke(_russianTipsSO, _russianEducationAdvicesSO, _russianFirstStartTextSO,_russianGameOverSO);
+            AllSOWereGiven?.Invoke(_russianTipsSO, _russianEducationAdvicesSO, _russianFirstStartTextSO, _russianGameOverSO);
             VillageNamesGiven?.Invoke(_russianVillageNamesSO);
             SignSOGiven?.Invoke(_russianSignSO);
+            GameOverSO = _russianGameOverSO;
         }
-        else if (_currentLanguage == turkish)
+        else if (_currentLanguage == Turkish)
         {
-            AllSOWereGiven?.Invoke(_turkishTipsSO, _turkishEducationAdvicesSO, _turkishFirstStartTextSO,_turkishGameOverSO);
+            AllSOWereGiven?.Invoke(_turkishTipsSO, _turkishEducationAdvicesSO, _turkishFirstStartTextSO, _turkishGameOverSO);
             VillageNamesGiven?.Invoke(_turkishVillageNamesSO);
             SignSOGiven?.Invoke(_turkishSignSO);
+            GameOverSO = _turkishGameOverSO;
         }
     }
 }

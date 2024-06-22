@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3885167593053377932
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7150520889492143621}
+  - component: {fileID: 8407013118371769731}
+  m_Layer: 0
+  m_Name: LanguageSwitcher
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 2147483647
+  m_IsActive: 1
+--- !u!4 &7150520889492143621
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3885167593053377932}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8407013118371769731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3885167593053377932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0770d5313e12354589febad604b12b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _englishTipsSO: {fileID: 11400000, guid: a73a97b7674f39341a233cdb74d0db16, type: 2}
+  _russianTipsSO: {fileID: 11400000, guid: 78387156dcda6864eb9e8466503bf894, type: 2}
+  _turkishTipsSO: {fileID: 11400000, guid: 3c4707ab2e8f28b42b0d3319697ef896, type: 2}
+  _englishEducationAdvicesSO: {fileID: 11400000, guid: 94cc994146f979447bb8ce9368f1c0e8, type: 2}
+  _russianEducationAdvicesSO: {fileID: 11400000, guid: 80a5e436e58d0a549b2dd3e2af84365b, type: 2}
+  _turkishEducationAdvicesSO: {fileID: 11400000, guid: 63b4092692986534a944a3f20eb81885, type: 2}
+  _englishFirstStartTextSO: {fileID: 11400000, guid: 02101a872a88f7a4a88f82eb0ab203de, type: 2}
+  _russianFirstStartTextSO: {fileID: 11400000, guid: 90d1c578df0c2a44b8cb00826dccc4ad, type: 2}
+  _turkishFirstStartTextSO: {fileID: 11400000, guid: 1969c859837ad43428d64b972e4fb8fc, type: 2}
+  _englishVillageNamesSO: {fileID: 11400000, guid: a954b0beb2684de40a4ad9116269cce9, type: 2}
+  _russianVillageNamesSO: {fileID: 11400000, guid: b52f98dbed4de62469ff7f25bf2c5a99, type: 2}
+  _turkishVillageNamesSO: {fileID: 11400000, guid: d2ddf6bcf0a842e4183a6928f44ed3e3, type: 2}
+  _englishSignSO: {fileID: 11400000, guid: 3ef5a33ebb5c6244c9f35fbdcad899da, type: 2}
+  _russianSignSO: {fileID: 11400000, guid: 1889f3531f8e83e49a23d395ca20d267, type: 2}
+  _turkishSignSO: {fileID: 11400000, guid: c20bf9a0df2781a4e845a92bc06b1267, type: 2}
+  _englishGameOverSO: {fileID: 11400000, guid: d544c98031f79554e8e4cc1846400321, type: 2}
+  _russianGameOverSO: {fileID: 11400000, guid: 37a75a08d216c67488e03ca0811fa8d4, type: 2}
+  _turkishGameOverSO: {fileID: 11400000, guid: 96bbf05451426c742bf2c113f8955e59, type: 2}

@@ -64,8 +64,10 @@ public class PlayerEvents : MonoBehaviour
         {
             _health = _maxhealth;
             HealthChanged?.Invoke(_health);
+            SaveHealthAmount(_health);
             _gold = _goldDefaultValue;
             GoldAmountChanged?.Invoke(_gold);
+            SaveGoldAmount(_gold);
         }
     }
 

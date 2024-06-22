@@ -11,7 +11,7 @@ public class EducationUI : MonoBehaviour
     [SerializeField] private TMP_Text _educationText;
     [SerializeField] private TMP_Text _startEducationButtonText;
     [SerializeField] private TMP_Text _skipEducationButtonText;
-
+   
     private int _index = 0;
 
     private EducationAdvicesSO _educationAdvicesSO;

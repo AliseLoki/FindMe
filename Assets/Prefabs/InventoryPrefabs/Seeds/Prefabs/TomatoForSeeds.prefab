@@ -252,9 +252,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 149207400032194528}
-  - component: {fileID: 8560003692043078484}
   - component: {fileID: 4007806401801285426}
   - component: {fileID: 7935193672729175734}
+  - component: {fileID: 9215933525727072269}
   m_Layer: 0
   m_Name: TomatoForSeeds
   m_TagString: Untagged
@@ -279,27 +279,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &8560003692043078484
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9204292258941029051}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &4007806401801285426
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -316,6 +295,7 @@ MonoBehaviour:
   AudioClipsList:
   - {fileID: 8300000, guid: dd3a9bf23f1906c41820c9956b72b01f, type: 3}
   _inventoryPrefabSO: {fileID: 11400000, guid: d8ba808f32cc00a4b90a80255e32bd48, type: 2}
+  _boxCollider: {fileID: 9215933525727072269}
 --- !u!82 &7935193672729175734
 AudioSource:
   m_ObjectHideFlags: 0
@@ -412,3 +392,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!65 &9215933525727072269
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9204292258941029051}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}

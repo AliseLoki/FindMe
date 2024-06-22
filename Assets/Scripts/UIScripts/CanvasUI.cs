@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using Agava.YandexGames;
 
 [RequireComponent(typeof(CanvasUIButtonsController))]
 public class CanvasUI : MonoBehaviour
@@ -11,17 +12,22 @@ public class CanvasUI : MonoBehaviour
     [SerializeField] private GameStartCountdownUI _gameStartCountdownUI;
     [SerializeField] private EducationUI _educationUI;
     [SerializeField] private GameOverUI _gameOverUI;
-    
+    [SerializeField] private TestFocus _testFocus;
+
     private bool _shouldFadeToBlack;
     private bool _shouldFadeFromBlack;
+    private bool _canShowAd;
 
     private float _fadeSpeed = 0.5f;
+    private float _timer;
+    private float _timerMax = 60f;
 
     private Player _player;
     private LanguageSwitcher _languageSwitcher;
 
     private void Awake()
     {
+        _timer = _timerMax;
         _player = GameManager.Instance.GameEntryPoint.InitPlayer();
         _languageSwitcher = GameManager.Instance.GameEntryPoint.InitLanguageSwitcher();
         _languageSwitcher.AllSOWereGiven += OnAllSOWereGiven;
@@ -33,9 +39,10 @@ public class CanvasUI : MonoBehaviour
         GameManager.Instance.CountdownToStartEnabled += OnCountdownToStartEnabled;
         GameManager.Instance.EducationPlayingEnabled += OnEducationPlayingEnabled;
         GameManager.Instance.EducationStarted += OnEducationStarted;
-        
+
         _player.PlayerEventsHandler.PlayerHasDied += OnPlayerhasDied;
         _player.PlayerEventsHandler.EnteredGrannysHome += PlayerEnteredGrannysHome;
+        _player.PlayerEventsHandler.EnteredVillage += OnPlayerEnteredVillage;
     }
 
     private void OnDisable()
@@ -44,11 +51,27 @@ public class CanvasUI : MonoBehaviour
         GameManager.Instance.CountdownToStartEnabled -= OnCountdownToStartEnabled;
         GameManager.Instance.EducationPlayingEnabled -= OnEducationPlayingEnabled;
         GameManager.Instance.EducationStarted -= OnEducationStarted;
-        
+
         _languageSwitcher.AllSOWereGiven -= OnAllSOWereGiven;
-      
+
         _player.PlayerEventsHandler.PlayerHasDied -= OnPlayerhasDied;
         _player.PlayerEventsHandler.EnteredGrannysHome -= PlayerEnteredGrannysHome;
+        _player.PlayerEventsHandler.EnteredVillage -= OnPlayerEnteredVillage;
+    }
+
+    private void Start()
+    {
+        _educationUI.gameObject.SetActive(false);
+    }
+
+    private void Update()
+    {
+        _timer -= Time.deltaTime;
+
+        if (_timer <= 0)
+        {
+            _canShowAd = true;
+        }
     }
 
     public void OnSkipeducationButtonPressed()
@@ -85,6 +108,18 @@ public class CanvasUI : MonoBehaviour
         StartCoroutine(FadeRoutine());
     }
 
+    private void OnPlayerEnteredVillage()
+    {
+        if (_canShowAd)
+        {
+            _gameStartCountdownUI.gameObject.SetActive(true);
+            _gameStartCountdownUI.ShowBeforeAdWarning();
+            _timer = _timerMax;
+            _canShowAd = false;
+            StartCoroutine(AdTimer());
+        }
+    }
+
     private void OnWaitingToStartEnabled()
     {
         _firstStartPanelView.gameObject.SetActive(true);
@@ -118,6 +153,28 @@ public class CanvasUI : MonoBehaviour
         _tipsViewPanel.InitTipsSO(tipsSO);
         _educationUI.InitEducationAdvicesSO(educationAdvicesSO);
         _gameOverUI.InitGameOverSO(gameOverSO);
+        _gameStartCountdownUI.InitText(firstStartTextSO);
+    }
+
+    private IEnumerator AdTimer()
+    {
+        int pause = 5;
+        yield return new WaitForSeconds(pause);
+        _gameStartCountdownUI.gameObject.SetActive(false);
+        Agava.YandexGames.InterstitialAd.Show(OnOpen, OnClose);
+        _canShowAd = false;
+    }
+
+    private void OnOpen()
+    {
+        _testFocus.MuteAudio(true);
+        _testFocus.PauseGame(true);
+    }
+
+    private void OnClose(bool state)
+    {
+        _testFocus.MuteAudio(false);
+        _testFocus.PauseGame(false);
     }
 
     private IEnumerator FadeRoutine()

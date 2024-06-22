@@ -10,6 +10,7 @@ public class Wood : InteractableObject
         {
             this.transform.parent = Player.HandlePoint.transform;
             this.transform.position = Player.HandlePoint.position;
+            GetComponent<Collider>().enabled = false;
             SelectedObject.Hide();
             Player.SetHasSomethingInHands(true);
             Player.SetHasWood(true);

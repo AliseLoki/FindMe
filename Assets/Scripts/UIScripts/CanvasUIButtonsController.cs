@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Agava.YandexGames;
 
 [RequireComponent(typeof(CanvasUI))]
 public class CanvasUIButtonsController : MonoBehaviour
@@ -12,6 +13,9 @@ public class CanvasUIButtonsController : MonoBehaviour
     [SerializeField] private Button _firstStartPanelViewButton;
     [SerializeField] private Button _startEducationButton;
     [SerializeField] private Button _skipEducationButton;
+
+    [SerializeField] private Spawner _spawner;
+    [SerializeField] private TestFocus _testFocus;
 
     private CanvasUI _canvasUI;
 
@@ -30,12 +34,7 @@ public class CanvasUIButtonsController : MonoBehaviour
 
     public void OnRestartButtonPresed()
     {
-        SceneManager.LoadScene(0);
-    }
-
-    public void OnExitButtonPressed()
-    {
-        Application.Quit();
+        SceneManager.LoadScene(1);
     }
 
     public void OnCameraViewChangeButtonPressed()
@@ -51,6 +50,28 @@ public class CanvasUIButtonsController : MonoBehaviour
     public void OnSoundEffectsVolumeChangeButtonPressed()
     {
         ShowOrHideObject(_soundEffectsVolumeSlider.gameObject);
+    }
+
+    public void OnShowVideoAdButtonPressed()
+    {
+        Agava.YandexGames.VideoAd.Show(OnOpen, OnGiveReward, OnClose);
+    }
+
+    private void OnOpen()
+    {
+        _testFocus.MuteAudio(true);
+        _testFocus.PauseGame(true);
+    }
+
+    private void OnGiveReward()
+    {
+        _spawner.GiveRewardForWatchingAd();
+    }
+
+    private void OnClose()
+    {
+        _testFocus.PauseGame(false);
+        _testFocus.MuteAudio(false);
     }
 
     private void ShowOrHideObject(GameObject gameObject)

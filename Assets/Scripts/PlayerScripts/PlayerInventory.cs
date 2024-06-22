@@ -9,7 +9,7 @@ public class PlayerInventory : MonoBehaviour
     [SerializeField] private List<InventoryPrefabSO> _recievedInventoryPrefabsSO;
     [SerializeField] private AudioClip _takingInventoryPrefabSoundEffect;
 
-    private int _maxCells = 6;
+    private int _maxCells = 5;
     private PlayerEvents _playerEvents;
     private Player _player;
 
@@ -74,6 +74,6 @@ public class PlayerInventory : MonoBehaviour
             _player.TakeNecronomiconInHands(inventoryPrefabSO);
         }
 
-        _recievedInventoryPrefabsSO.Remove(inventoryPrefabSO);
+        _recievedInventoryPrefabsSO.Remove(inventoryPrefabSO);       
     }
 }

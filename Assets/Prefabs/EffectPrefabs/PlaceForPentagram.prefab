@@ -9769,6 +9769,10 @@ PrefabInstance:
       propertyPath: UVModule.enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2956557115011382465, guid: 538a350bb26ad904d8dcb130f6a00bfe, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6572086076363524098, guid: 538a350bb26ad904d8dcb130f6a00bfe, type: 3}
       propertyPath: m_RootOrder
       value: -1

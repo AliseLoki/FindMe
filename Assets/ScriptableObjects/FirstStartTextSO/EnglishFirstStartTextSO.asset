@@ -15,3 +15,4 @@ MonoBehaviour:
   WelcomeTex: are you ready for an adventure ?
   RunText: then run forward to granny's house !
   YesButtonText: yes
+  RemainingTimeText: remaining time before showing advertisement

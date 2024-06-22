@@ -4,6 +4,7 @@ using UnityEngine;
 public class GameOverSO : ScriptableObject
 {
     public string Restart;
-    public string Exit;
     public string GameOver;
+    public string VictoryText;
+    public string LooseText;
 }

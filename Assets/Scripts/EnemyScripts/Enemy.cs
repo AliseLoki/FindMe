@@ -181,14 +181,15 @@ public class Enemy : MonoBehaviour
     private IEnumerator Patrolling()
     {
         yield return Waiting();
-        MoveToNextPoint();
+        //MoveToNextPoint();
 
         while (enabled)
         {
             if (_agent.remainingDistance < _minDistance && !_agent.pathPending)
             {
                 yield return Waiting();
-                MoveToNextPoint();
+             
+              //  MoveToNextPoint();
             }
 
             yield return null;
@@ -243,5 +244,6 @@ public class Enemy : MonoBehaviour
 
         _animator.SetBool(IsAttacking, false);
         HasStepsSound = true;
+        MoveToNextPoint();
     }
 }

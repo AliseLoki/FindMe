@@ -84,7 +84,6 @@ public class Player : MonoBehaviour
         _lastVillage.WitchAppeared += OnWitchAppeared;
     }
 
-
     private void OnDisable()
     {
         _deliveryService.AllDishesHaveBeenDelivered -= OnAllDishesHaveBeenDelivered;
@@ -200,6 +199,7 @@ public class Player : MonoBehaviour
     {
         var prefabInHands = Instantiate(inventoryPrefabSO.InventoryPrefab, HandlePoint, true);
         prefabInHands.transform.position = HandlePoint.position;
+        prefabInHands.GetComponent<Collider>().enabled = false;
 
         if (!CheckIfCow(inventoryPrefabSO))
         {

@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: TurkishGameOverSO
   m_EditorClassIdentifier: 
   Restart: "ba\u015Ftan ba\u015Fla"
-  Exit: "\xE7\u0131k\u0131\u015F"
   GameOver: oyun bitti
+  VictoryText: "tebrikler, sen kazand\u0131n !!!"
+  LooseText: buldum seni
