@@ -1,8 +1,10 @@
-using UnityEngine;
 using Agava.WebUtility;
+using UnityEngine;
 
 public class TestFocus : MonoBehaviour
 {
+    private bool _isStopped;
+
     private void OnEnable()
     {
         WebApplication.InBackgroundChangeEvent += OnInBackgroundChangeWeb;
@@ -15,16 +17,24 @@ public class TestFocus : MonoBehaviour
 
     private void OnInBackgroundChangeWeb(bool isBackground)
     {
-        MuteAudio(isBackground);
-        PauseGame(isBackground);
+        StopGame(isBackground);
     }
 
-    public void MuteAudio(bool value)
+    public void StopGame(bool isPaused)
+    {
+        if (_isStopped == isPaused) return;
+
+        MuteAudio(isPaused);
+        PauseGame(isPaused);
+        _isStopped = isPaused;
+    }
+
+    private void MuteAudio(bool value)
     {
         AudioListener.volume = value ? 0 : 1;
     }
 
-    public void PauseGame(bool value)
+    private void PauseGame(bool value)
     {
         Time.timeScale = value ? 0 : 1;
     }

@@ -7,11 +7,12 @@ public class EducationUI : MonoBehaviour
     [SerializeField] private Button _startEducationButton;
     [SerializeField] private Button _skipEducationButton;
     [SerializeField] private Button _nextAdviceButton;
+    [SerializeField] private Button _previousAdviceButton;
 
     [SerializeField] private TMP_Text _educationText;
     [SerializeField] private TMP_Text _startEducationButtonText;
     [SerializeField] private TMP_Text _skipEducationButtonText;
-   
+
     private int _index = 0;
 
     private EducationAdvicesSO _educationAdvicesSO;
@@ -19,6 +20,7 @@ public class EducationUI : MonoBehaviour
     private void Awake()
     {
         _nextAdviceButton.gameObject.SetActive(false);
+        _previousAdviceButton.gameObject.SetActive(false);
     }
 
     private void Start()
@@ -37,24 +39,30 @@ public class EducationUI : MonoBehaviour
     {
         HideButtons();
         _nextAdviceButton.gameObject.SetActive(true);
-        OnNextAdviceButtonPressed();
+        _previousAdviceButton.gameObject.SetActive(true);
+        ShowAdvice(_educationAdvicesSO.Advices[0]);
     }
 
     public void OnNextAdviceButtonPressed()
     {
-        if (_index == _educationAdvicesSO._advices.Count - 1)
+        if (_index == _educationAdvicesSO.Advices.Count - 1)
         {
             _skipEducationButton.gameObject.SetActive(true);
         }
 
-        if (_index < _educationAdvicesSO._advices.Count)
+        if (_index < _educationAdvicesSO.Advices.Count - 1)
         {
-            ShowAdvice(_educationAdvicesSO._advices[_index]);
             _index++;
+            ShowAdvice(_educationAdvicesSO.Advices[_index]);
         }
-        else
+    }
+
+    public void OnPreviousAdviceButtonPressed()
+    {
+        if (_index < _educationAdvicesSO.Advices.Count && _index > 0)
         {
-            _index = 0;
+            _index--;
+            ShowAdvice(_educationAdvicesSO.Advices[_index]);
         }
     }
 

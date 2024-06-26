@@ -42,6 +42,8 @@ public class LanguageSwitcher : MonoBehaviour
 
     private void Awake()
     {
+        InitCurrentLanguage(Russian);
+
 #if UNITY_WEBGL && !UNITY_EDITOR
         string lang = YandexGamesSdk.Environment.i18n.lang;
         InitCurrentLanguage(lang);

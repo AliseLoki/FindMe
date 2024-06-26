@@ -167,14 +167,12 @@ public class CanvasUI : MonoBehaviour
 
     private void OnOpen()
     {
-        _testFocus.MuteAudio(true);
-        _testFocus.PauseGame(true);
+        _testFocus.StopGame(true);
     }
 
     private void OnClose(bool state)
     {
-        _testFocus.MuteAudio(false);
-        _testFocus.PauseGame(false);
+        _testFocus.StopGame(false);
     }
 
     private IEnumerator FadeRoutine()

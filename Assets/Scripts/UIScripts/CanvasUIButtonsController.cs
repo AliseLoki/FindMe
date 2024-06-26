@@ -59,8 +59,7 @@ public class CanvasUIButtonsController : MonoBehaviour
 
     private void OnOpen()
     {
-        _testFocus.MuteAudio(true);
-        _testFocus.PauseGame(true);
+        _testFocus.StopGame(true);
     }
 
     private void OnGiveReward()
@@ -70,8 +69,7 @@ public class CanvasUIButtonsController : MonoBehaviour
 
     private void OnClose()
     {
-        _testFocus.PauseGame(false);
-        _testFocus.MuteAudio(false);
+        _testFocus.StopGame(false);
     }
 
     private void ShowOrHideObject(GameObject gameObject)

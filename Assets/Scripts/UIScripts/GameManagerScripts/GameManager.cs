@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
 
     private GameState _gameState;
 
-    private float _waitingToStartTimer = 2f;
+    private float _waitingToStartTimer = 4f;
     private float _countdownToStartTimer = 5f;
     private float _showEducationTipsTimer = 4f;
 
@@ -152,12 +152,7 @@ public class GameManager : MonoBehaviour
                 {
                     _gameState = GameState.GameOver;
                 }
-                //
-                if (Input.GetKeyDown(KeyCode.E))
-                {
-                    _hasWitchAppeared = true;
-                }
-
+               
                 if (_hasWitchAppeared)
                 {
                     _gameState = GameState.WitchAppeared;

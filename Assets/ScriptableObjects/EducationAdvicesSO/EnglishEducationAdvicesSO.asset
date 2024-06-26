@@ -15,20 +15,20 @@ MonoBehaviour:
   FirstEducationText: do you want to start training ?
   StartEducationButtonText: start training
   SkipEducationButtonText: skip training
-  _advices:
+  Advices:
   - to go to the next tip, click the green arrow under the text
   - you can change the camera view, click on the red magnifying glass on the right
     and adjust the zoom
   - in the same way you can change the volume of the music, click on the notes
-  - "\u0131n the same way you can change the sound effects volume,  click on the
-    speaker icon"
-  - clicking on the map in the lower right corner will exit the game
+  - in the same way you can change the sound effects volume,  click on the speaker
+    icon
+  - click on the present in the bottom right corner, you will watch add and get present
   - there are a lot of objects in the game that you can interact with
   - they light up gray when you approach
   - go to the bird's house, at the entrance to grandma's house
   - click on it and you will receive an order
-  - You can view your orders by clicking on the scroll in the upper left corner
-  - now go into the house - to do this, go to the door and press on it
+  - you can view your orders by clicking on the scroll in the upper left corner
+  - now go into the house - to do this, go to the door and click on it
   - first take the firewood and put it in the oven
   - now go to the sack of flour and take some
   - put the flour on the cooking table and open the recipes - the scroll in the upper
@@ -37,8 +37,8 @@ MonoBehaviour:
     click on it
   - a pan has appeared on the cooking table, grab it and take it to the oven
   - if the pan turns red, quickly take it out and take it to the bench with the parcel
-  - "if smoke comes from the stove, the dish is burnt, it\u2019s better to throw
-    it in a trash can and start over"
+  - if smoke comes from the stove, the dish is burnt, it is better to throw it in
+    a trash box and start over
   - put the pan in the parcel, take the parcel and quickly bring it to the woodcutter
   - the woodcutter's house is next to grandma's house, go straight along the road
     until the sign
@@ -54,7 +54,7 @@ MonoBehaviour:
   - with money you can buy water in a well, it is needed to grow vegetables in the
     garden
   - vegetables can be obtained in the village after all orders have been delivered
-  - if you get stuck, click on the book in the upper right corner, it will tell you
+  - if you get stuck, click on the book in the upper right corner, it will tell you 
     what to do
   - now you are on your own, prepare dishes, deliver them to the villages
   - but never forget about the wolf...
