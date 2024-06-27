@@ -43,6 +43,11 @@ public class EducationUI : MonoBehaviour
         ShowAdvice(_educationAdvicesSO.Advices[0]);
     }
 
+    public void OnSkipEducationButtonPressed()
+    {
+        GameManager.Instance.OnEducationCancelled();
+    }
+
     public void OnNextAdviceButtonPressed()
     {
         if (_index == _educationAdvicesSO.Advices.Count - 1)

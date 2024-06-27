@@ -7899,7 +7899,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 500
-  field of view: 23.37426
+  field of view: 46.74855
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -7925,7 +7925,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 772431199}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.16679566, y: 0.023070494, z: -0.0027577071, w: -0.98571765}
+  m_LocalRotation: {x: 0.11969818, y: 0.029312389, z: -0.010054664, w: -0.99232656}
   m_LocalPosition: {x: 55.55871, y: 215.16371, z: 168.29816}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -15875,6 +15875,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _gameEntryPoint: {fileID: 2064204384}
   _lastVillage: {fileID: 6692536881538758238}
+  _educationUI: {fileID: 1346495107}
 --- !u!4 &1695096657
 Transform:
   m_ObjectHideFlags: 0
@@ -26691,7 +26692,7 @@ PrefabInstance:
       objectReference: {fileID: 91126043}
     - target: {fileID: 438151464050510512, guid: faaeac109b112724c9dd992fdc642715, type: 3}
       propertyPath: m_Lens.FieldOfView
-      value: 23.37426
+      value: 46.74855
       objectReference: {fileID: 0}
     - target: {fileID: 1725415032196383227, guid: faaeac109b112724c9dd992fdc642715, type: 3}
       propertyPath: m_Name
@@ -26723,19 +26724,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3006431010277591108, guid: faaeac109b112724c9dd992fdc642715, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.98571765
+      value: -0.99232656
       objectReference: {fileID: 0}
     - target: {fileID: 3006431010277591108, guid: faaeac109b112724c9dd992fdc642715, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.16679566
+      value: 0.11969818
       objectReference: {fileID: 0}
     - target: {fileID: 3006431010277591108, guid: faaeac109b112724c9dd992fdc642715, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.023070494
+      value: 0.029312389
       objectReference: {fileID: 0}
     - target: {fileID: 3006431010277591108, guid: faaeac109b112724c9dd992fdc642715, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0027577071
+      value: -0.010054664
       objectReference: {fileID: 0}
     - target: {fileID: 3006431010277591108, guid: faaeac109b112724c9dd992fdc642715, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -64793,10 +64794,6 @@ PrefabInstance:
       value: TestFocus
       objectReference: {fileID: 0}
     - target: {fileID: 3411639947400421601, guid: b61ea167ac49fa6418813970f28df644, type: 3}
-      propertyPath: m_RootOrder
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3411639947400421601, guid: b61ea167ac49fa6418813970f28df644, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -65766,6 +65763,7 @@ MonoBehaviour:
   _educationUI: {fileID: 1346495107}
   _gameOverUI: {fileID: 1048846177}
   _testFocus: {fileID: 7246759813045112132}
+  IsAdPlaying: 0
 --- !u!114 &7431648073523981343
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65785,7 +65783,7 @@ MonoBehaviour:
   _startEducationButton: {fileID: 416310740}
   _skipEducationButton: {fileID: 401606709}
   _spawner: {fileID: 2078751510}
-  _testFocus: {fileID: 0}
+  _testFocus: {fileID: 7246759813045112132}
 --- !u!4 &7474718107358230616
 Transform:
   m_ObjectHideFlags: 0

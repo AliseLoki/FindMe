@@ -28,7 +28,7 @@ public class CanvasUIButtonsController : MonoBehaviour
 
         _startEducationButton.onClick.AddListener(_canvasUI.OnStartEducationButtonPressed);
 
-        _skipEducationButton.onClick.AddListener(GameManager.Instance.OnEducationCancelled);
+       // _skipEducationButton.onClick.AddListener(GameManager.Instance.OnEducationCancelled);
         _skipEducationButton.onClick.AddListener(_canvasUI.OnSkipeducationButtonPressed);
     }
 
@@ -60,6 +60,7 @@ public class CanvasUIButtonsController : MonoBehaviour
     private void OnOpen()
     {
         _testFocus.StopGame(true);
+        _canvasUI.IsAdPlaying = true;
     }
 
     private void OnGiveReward()
@@ -70,6 +71,7 @@ public class CanvasUIButtonsController : MonoBehaviour
     private void OnClose()
     {
         _testFocus.StopGame(false);
+        _canvasUI.IsAdPlaying = false;
     }
 
     private void ShowOrHideObject(GameObject gameObject)

@@ -25,6 +25,8 @@ public class CanvasUI : MonoBehaviour
     private Player _player;
     private LanguageSwitcher _languageSwitcher;
 
+    public bool IsAdPlaying;
+
     private void Awake()
     {
         _timer = _timerMax;
@@ -59,11 +61,6 @@ public class CanvasUI : MonoBehaviour
         _player.PlayerEventsHandler.EnteredVillage -= OnPlayerEnteredVillage;
     }
 
-    private void Start()
-    {
-        _educationUI.gameObject.SetActive(false);
-    }
-
     private void Update()
     {
         _timer -= Time.deltaTime;
@@ -76,7 +73,7 @@ public class CanvasUI : MonoBehaviour
 
     public void OnSkipeducationButtonPressed()
     {
-        _educationUI.gameObject.SetActive(false);
+        _educationUI.OnSkipEducationButtonPressed();
     }
 
     public void OnFirstStartPanelViewButtonPressed()
@@ -168,11 +165,13 @@ public class CanvasUI : MonoBehaviour
     private void OnOpen()
     {
         _testFocus.StopGame(true);
+        IsAdPlaying = true;
     }
 
     private void OnClose(bool state)
     {
         _testFocus.StopGame(false);
+        IsAdPlaying = false;
     }
 
     private IEnumerator FadeRoutine()

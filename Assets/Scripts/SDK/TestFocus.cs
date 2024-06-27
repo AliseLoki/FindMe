@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class TestFocus : MonoBehaviour
 {
+    [SerializeField] private CanvasUI _canvasUI;
+
     private bool _isStopped;
 
     private void OnEnable()
@@ -17,7 +19,10 @@ public class TestFocus : MonoBehaviour
 
     private void OnInBackgroundChangeWeb(bool isBackground)
     {
-        StopGame(isBackground);
+        if (!_canvasUI.IsAdPlaying)
+        {
+            StopGame(isBackground);
+        }
     }
 
     public void StopGame(bool isPaused)

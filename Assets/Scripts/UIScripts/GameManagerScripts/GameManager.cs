@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private EntryPoint _gameEntryPoint;
     [SerializeField] private LastVillage _lastVillage;
+    [SerializeField] private EducationUI _educationUI;
 
     public EntryPoint GameEntryPoint => _gameEntryPoint;
 
@@ -145,6 +146,8 @@ public class GameManager : MonoBehaviour
                 break;
 
             case GameState.GamePlaying:
+
+                _educationUI.gameObject.SetActive(false);
 
                 SaveState(0, false);
 
