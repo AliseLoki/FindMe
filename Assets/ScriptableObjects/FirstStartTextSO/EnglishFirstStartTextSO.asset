@@ -16,3 +16,7 @@ MonoBehaviour:
   RunText: then run forward to granny's house ! use W,A,S,D buttons to move
   YesButtonText: yes
   RemainingTimeText: remaining time before showing advertisement
+  CloseButtonText: close
+  AuthorizeButtonText: authorize
+  NeedToAuthorizeText: to view the leaderboard you need to log in
+  AnonymousName: anonymous

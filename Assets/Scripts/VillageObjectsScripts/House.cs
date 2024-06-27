@@ -10,9 +10,16 @@ public class House : InteractableObject
 
     private bool _isDelivered;
 
+    private DeliveredDishesCounter _deliveredDishesCounter;
+
     private StateOfReadyness _readyness = StateOfReadyness.Cooked;
 
     public bool IsDelivered => _isDelivered;
+
+    private void Start()
+    {
+        _deliveredDishesCounter = GameManager.Instance.GameEntryPoint.InitDeliveredDishesCounter();
+    }
 
     protected override void UseObject()
     {
@@ -46,6 +53,8 @@ public class House : InteractableObject
         {
             PlaySoundEffect(AudioClipsList[goldAppearSoundEffectIndex]);
             SpawnObject(_goldCoins);
+            _deliveredDishesCounter.AddDeliveredDish();
+            //добавить в счетчик доставленных блюд
         }
         else
         {

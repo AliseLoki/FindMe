@@ -13,6 +13,12 @@ public class EntryPoint : MonoBehaviour
     [SerializeField] private LanguageSwitcher _languageSwitcher;
     [SerializeField] private CanvasUI _canvasUI;
     [SerializeField] private Music _music;
+    [SerializeField] private DeliveredDishesCounter _deliveredDishesCounter;
+
+    public DeliveredDishesCounter InitDeliveredDishesCounter()
+    {
+        return _deliveredDishesCounter;
+    }
 
     public Music InitMusic()
     {

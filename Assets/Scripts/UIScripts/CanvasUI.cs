@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Agava.YandexGames;
 
+[RequireComponent(typeof(YandexLeaderboard))]
 [RequireComponent(typeof(CanvasUIButtonsController))]
 public class CanvasUI : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class CanvasUI : MonoBehaviour
     [SerializeField] private EducationUI _educationUI;
     [SerializeField] private GameOverUI _gameOverUI;
     [SerializeField] private TestFocus _testFocus;
+    [SerializeField] private AuthorisePanel _authorisePanel;
+    [SerializeField] private LeaderboardView _leaderboardView;
 
     private bool _shouldFadeToBlack;
     private bool _shouldFadeFromBlack;
@@ -24,6 +27,7 @@ public class CanvasUI : MonoBehaviour
 
     private Player _player;
     private LanguageSwitcher _languageSwitcher;
+    private YandexLeaderboard _yandexLeaderboard;
 
     public bool IsAdPlaying;
 
@@ -31,6 +35,7 @@ public class CanvasUI : MonoBehaviour
     {
         _timer = _timerMax;
         _player = GameManager.Instance.GameEntryPoint.InitPlayer();
+        _yandexLeaderboard = GetComponent<YandexLeaderboard>();
         _languageSwitcher = GameManager.Instance.GameEntryPoint.InitLanguageSwitcher();
         _languageSwitcher.AllSOWereGiven += OnAllSOWereGiven;
     }
@@ -69,6 +74,26 @@ public class CanvasUI : MonoBehaviour
         {
             _canShowAd = true;
         }
+    }
+
+    public void CloseLeaderboardView()
+    {
+        _leaderboardView.gameObject.SetActive(false);
+    }
+
+    public void ShowLeaderboardView()
+    {
+        _leaderboardView.gameObject.SetActive(true);
+    }
+
+    public void ShowAuthorisePanel()
+    {
+        _authorisePanel.gameObject.SetActive(true);
+    }
+
+    public void CloseAuthorizePanel()
+    {
+        _authorisePanel.gameObject.SetActive(false);
     }
 
     public void OnSkipeducationButtonPressed()
@@ -151,6 +176,10 @@ public class CanvasUI : MonoBehaviour
         _educationUI.InitEducationAdvicesSO(educationAdvicesSO);
         _gameOverUI.InitGameOverSO(gameOverSO);
         _gameStartCountdownUI.InitText(firstStartTextSO);
+        _authorisePanel.InitFirstStartTextSO(firstStartTextSO);
+        _leaderboardView.InitFirstStartTextSO(firstStartTextSO);
+        _yandexLeaderboard.InitFirstStartTextSO(firstStartTextSO);
+        
     }
 
     private IEnumerator AdTimer()

@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Agava.YandexGames;
 
+[RequireComponent(typeof(YandexLeaderboard))]
 [RequireComponent(typeof(CanvasUI))]
 public class CanvasUIButtonsController : MonoBehaviour
 {
@@ -17,19 +18,40 @@ public class CanvasUIButtonsController : MonoBehaviour
     [SerializeField] private Spawner _spawner;
     [SerializeField] private TestFocus _testFocus;
 
+    private YandexLeaderboard _yandexLeaderboard;
     private CanvasUI _canvasUI;
 
     private void Awake()
     {
         _canvasUI = GetComponent<CanvasUI>();
+        _yandexLeaderboard = GetComponent<YandexLeaderboard>();
 
         _firstStartPanelViewButton.onClick.AddListener(_canvasUI.OnFirstStartPanelViewButtonPressed);
         _firstStartPanelViewButton.onClick.AddListener(GameManager.Instance.OnFirstStartPanelViewButtonPressed);
 
         _startEducationButton.onClick.AddListener(_canvasUI.OnStartEducationButtonPressed);
 
-       // _skipEducationButton.onClick.AddListener(GameManager.Instance.OnEducationCancelled);
         _skipEducationButton.onClick.AddListener(_canvasUI.OnSkipeducationButtonPressed);
+    }
+
+    public void OnCloseLeaderboardButtonPressed()
+    {
+        _canvasUI.CloseLeaderboardView();
+    }
+
+    public void OnLeaderboardButtonPressed()
+    {
+        if (PlayerAccount.IsAuthorized == false)
+        {
+            _canvasUI.ShowAuthorisePanel();
+        }
+        else if(PlayerAccount.IsAuthorized) 
+        {
+            PlayerAccount.RequestPersonalProfileDataPermission();
+            _canvasUI.ShowLeaderboardView();
+            _yandexLeaderboard.Fill();
+            //вызывать метод фил повесить сюда же яндекслидеоборд
+        }
     }
 
     public void OnRestartButtonPresed()

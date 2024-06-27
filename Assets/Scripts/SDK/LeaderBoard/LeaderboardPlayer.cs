@@ -1,18 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class LeaderboardPlayer : MonoBehaviour
+public class LeaderboardPlayer 
 {
-    // Start is called before the first frame update
-    void Start()
+    public LeaderboardPlayer(int rank, string name, int score)
     {
-        
+        Rank = rank;
+        Name = name;
+        Score = score;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public int Rank { get; private set; }
+    public int Score { get; private set; }
+    public string Name { get; private set; }
 }
