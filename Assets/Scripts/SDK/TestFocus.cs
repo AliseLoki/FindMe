@@ -1,5 +1,7 @@
 using Agava.WebUtility;
+using System;
 using UnityEngine;
+using static Agava.YandexGames.YandexGamesEnvironment;
 
 public class TestFocus : MonoBehaviour
 {
@@ -19,19 +21,18 @@ public class TestFocus : MonoBehaviour
 
     private void OnInBackgroundChangeWeb(bool isBackground)
     {
-        if (!_canvasUI.IsAdPlaying)
+        if (_canvasUI.IsAdPlaying && isBackground == false)
         {
-            StopGame(isBackground);
+            return;
         }
+
+        StopGame(isBackground);
     }
 
     public void StopGame(bool isPaused)
     {
-        if (_isStopped == isPaused) return;
-
         MuteAudio(isPaused);
         PauseGame(isPaused);
-        _isStopped = isPaused;
     }
 
     private void MuteAudio(bool value)

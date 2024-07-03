@@ -15,8 +15,7 @@ public class CanvasUIButtonsController : MonoBehaviour
     [SerializeField] private Button _startEducationButton;
     [SerializeField] private Button _skipEducationButton;
 
-    [SerializeField] private Spawner _spawner;
-    [SerializeField] private TestFocus _testFocus;
+    [SerializeField] private Button _showAdButton;
 
     private YandexLeaderboard _yandexLeaderboard;
     private CanvasUI _canvasUI;
@@ -34,6 +33,16 @@ public class CanvasUIButtonsController : MonoBehaviour
         _skipEducationButton.onClick.AddListener(_canvasUI.OnSkipeducationButtonPressed);
     }
 
+    public void ActivateShowAdButton()
+    {
+        _showAdButton.gameObject.SetActive(true);
+    }
+
+    public void DeactivateShowAdButton()
+    {
+        _showAdButton.gameObject.SetActive(false);
+    }
+
     public void OnCloseLeaderboardButtonPressed()
     {
         _canvasUI.CloseLeaderboardView();
@@ -45,12 +54,11 @@ public class CanvasUIButtonsController : MonoBehaviour
         {
             _canvasUI.ShowAuthorisePanel();
         }
-        else if(PlayerAccount.IsAuthorized) 
+        else if (PlayerAccount.IsAuthorized)
         {
             PlayerAccount.RequestPersonalProfileDataPermission();
             _canvasUI.ShowLeaderboardView();
             _yandexLeaderboard.Fill();
-            //вызывать метод фил повесить сюда же яндекслидеоборд
         }
     }
 
@@ -76,24 +84,10 @@ public class CanvasUIButtonsController : MonoBehaviour
 
     public void OnShowVideoAdButtonPressed()
     {
-        Agava.YandexGames.VideoAd.Show(OnOpen, OnGiveReward, OnClose);
-    }
-
-    private void OnOpen()
-    {
-        _testFocus.StopGame(true);
-        _canvasUI.IsAdPlaying = true;
-    }
-
-    private void OnGiveReward()
-    {
-        _spawner.GiveRewardForWatchingAd();
-    }
-
-    private void OnClose()
-    {
-        _testFocus.StopGame(false);
-        _canvasUI.IsAdPlaying = false;
+        if (_canvasUI.IsAdPlaying == false)
+        {
+            _canvasUI.ShowRewardedVideoAd();
+        }
     }
 
     private void ShowOrHideObject(GameObject gameObject)

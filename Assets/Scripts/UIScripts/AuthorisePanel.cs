@@ -3,17 +3,25 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(TextEqualizer))]
 public class AuthorisePanel : MonoBehaviour
 {
     [SerializeField] private TMP_Text _authorizeButtonText;
     [SerializeField] private TMP_Text _closeButtonText;
     [SerializeField] private TMP_Text _needToAuthorizeText;
 
+    private TextEqualizer _textEqualizer;
     private FirstStartTextSO _firstStartTextSO;
+
+    private void Awake()
+    {
+        _textEqualizer = GetComponent<TextEqualizer>();
+    }
 
     private void Start()
     {
         InitButtonsText();
+        _textEqualizer.MakeAllTextSameSize(_authorizeButtonText, _closeButtonText);
     }
 
     public void InitFirstStartTextSO(FirstStartTextSO firstStarttextSO)

@@ -2,6 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(TextEqualizer))]
 public class EducationUI : MonoBehaviour
 {
     [SerializeField] private Button _startEducationButton;
@@ -15,10 +16,12 @@ public class EducationUI : MonoBehaviour
 
     private int _index = 0;
 
+    private TextEqualizer _textEqualizer;
     private EducationAdvicesSO _educationAdvicesSO;
 
     private void Awake()
     {
+        _textEqualizer = GetComponent<TextEqualizer>();
         _nextAdviceButton.gameObject.SetActive(false);
         _previousAdviceButton.gameObject.SetActive(false);
     }
@@ -26,8 +29,8 @@ public class EducationUI : MonoBehaviour
     private void Start()
     {
         ShowAdvice(_educationAdvicesSO.FirstEducationText);
-        _startEducationButtonText.text = _educationAdvicesSO.StartEducationButtonText;
-        _skipEducationButtonText.text = _educationAdvicesSO.SkipEducationButtonText;
+        InitText();
+        _textEqualizer.MakeAllTextSameSize(_startEducationButtonText, _skipEducationButtonText);
     }
 
     public void InitEducationAdvicesSO(EducationAdvicesSO educationAdvicesSO)
@@ -80,5 +83,11 @@ public class EducationUI : MonoBehaviour
     {
         _startEducationButton.gameObject.SetActive(false);
         _skipEducationButton.gameObject.SetActive(false);
+    }
+
+    private void InitText()
+    {
+        _startEducationButtonText.text = _educationAdvicesSO.StartEducationButtonText;
+        _skipEducationButtonText.text = _educationAdvicesSO.SkipEducationButtonText;
     }
 }

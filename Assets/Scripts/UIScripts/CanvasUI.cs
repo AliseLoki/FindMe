@@ -16,10 +16,12 @@ public class CanvasUI : MonoBehaviour
     [SerializeField] private TestFocus _testFocus;
     [SerializeField] private AuthorisePanel _authorisePanel;
     [SerializeField] private LeaderboardView _leaderboardView;
+    [SerializeField] private Spawner _spawner;
 
     private bool _shouldFadeToBlack;
     private bool _shouldFadeFromBlack;
     private bool _canShowAd;
+    private bool _isAdPlaying;
 
     private float _fadeSpeed = 0.5f;
     private float _timer;
@@ -28,14 +30,16 @@ public class CanvasUI : MonoBehaviour
     private Player _player;
     private LanguageSwitcher _languageSwitcher;
     private YandexLeaderboard _yandexLeaderboard;
+    private CanvasUIButtonsController _canvasUIButtonController;
 
-    public bool IsAdPlaying;
+    public bool IsAdPlaying => _isAdPlaying;
 
     private void Awake()
     {
         _timer = _timerMax;
         _player = GameManager.Instance.GameEntryPoint.InitPlayer();
         _yandexLeaderboard = GetComponent<YandexLeaderboard>();
+        _canvasUIButtonController = GetComponent<CanvasUIButtonsController>();
         _languageSwitcher = GameManager.Instance.GameEntryPoint.InitLanguageSwitcher();
         _languageSwitcher.AllSOWereGiven += OnAllSOWereGiven;
     }
@@ -74,6 +78,13 @@ public class CanvasUI : MonoBehaviour
         {
             _canShowAd = true;
         }
+    }
+
+    public void ShowRewardedVideoAd()
+    {
+#if UNITY_WEBGL && !UNITY_EDITOR
+        Agava.YandexGames.VideoAd.Show(OnOpen, OnGiveReward, OnClose);
+#endif
     }
 
     public void CloseLeaderboardView()
@@ -179,7 +190,6 @@ public class CanvasUI : MonoBehaviour
         _authorisePanel.InitFirstStartTextSO(firstStartTextSO);
         _leaderboardView.InitFirstStartTextSO(firstStartTextSO);
         _yandexLeaderboard.InitFirstStartTextSO(firstStartTextSO);
-        
     }
 
     private IEnumerator AdTimer()
@@ -187,20 +197,37 @@ public class CanvasUI : MonoBehaviour
         int pause = 5;
         yield return new WaitForSeconds(pause);
         _gameStartCountdownUI.gameObject.SetActive(false);
+
+#if UNITY_WEBGL && !UNITY_EDITOR        
         Agava.YandexGames.InterstitialAd.Show(OnOpen, OnClose);
+#endif
         _canShowAd = false;
     }
 
     private void OnOpen()
     {
         _testFocus.StopGame(true);
-        IsAdPlaying = true;
+        _isAdPlaying = true;
+        _canvasUIButtonController.DeactivateShowAdButton();
+    }
+
+    private void OnGiveReward()
+    {
+        _spawner.GiveRewardForWatchingAd();
     }
 
     private void OnClose(bool state)
     {
         _testFocus.StopGame(false);
-        IsAdPlaying = false;
+        _isAdPlaying = false;
+        _canvasUIButtonController.ActivateShowAdButton();
+    }
+
+    private void OnClose()
+    {
+        _testFocus.StopGame(false);
+        _isAdPlaying = false;
+        _canvasUIButtonController.ActivateShowAdButton();
     }
 
     private IEnumerator FadeRoutine()

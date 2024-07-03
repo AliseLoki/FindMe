@@ -31,7 +31,7 @@ public class EnemySoundEffects : MonoBehaviour
 
             if (_enemy.HasStepsSound)
             {
-                AudioSource.PlayClipAtPoint(_stepsSound, _enemy.transform.position);
+                PlayWolfStepSound();
             }
         }
     }
@@ -57,6 +57,12 @@ public class EnemySoundEffects : MonoBehaviour
     public void PlayWolfDeathScream()
     {
         _audioSource.clip = _wolfDeath;
+        _audioSource.Play();
+    }
+
+    private void PlayWolfStepSound()
+    {
+        _audioSource.clip = _stepsSound;
         _audioSource.Play();
     }
 }
