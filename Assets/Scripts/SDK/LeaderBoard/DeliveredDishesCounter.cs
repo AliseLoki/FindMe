@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class DeliveredDishesCounter : MonoBehaviour
 {
-    private const string LeaderboardName = "Leaderboard";
+    private const string LeaderboardName = "LeaderboardPlayers";
     
     private const string PlayerPrefsDeliveredDishesNumber = nameof(PlayerPrefsDeliveredDishesNumber);
 
@@ -14,6 +14,8 @@ public class DeliveredDishesCounter : MonoBehaviour
     private void Awake()
     {
         _deliveredDishesNumber = PlayerPrefs.GetInt(PlayerPrefsDeliveredDishesNumber, 0);
+        PlayerPrefs.SetInt(PlayerPrefsDeliveredDishesNumber, _deliveredDishesNumber);
+        PlayerPrefs.Save();
     }
 
     public void AddDeliveredDish()

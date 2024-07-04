@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: EnglishFirstStartTextSO
   m_EditorClassIdentifier: 
   WelcomeTex: are you ready for an adventure ?
-  RunText: then run forward to granny's house ! use W,A,S,D buttons to move
+  RunText: then run forward to granny's house, use W,A,S,D buttons to move
   YesButtonText: yes
   RemainingTimeText: remaining time before showing advertisement
   LeaderbordName: best players
