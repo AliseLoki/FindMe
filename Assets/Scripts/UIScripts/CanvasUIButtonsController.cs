@@ -64,6 +64,7 @@ public class CanvasUIButtonsController : MonoBehaviour
 
     public void OnRestartButtonPresed()
     {
+        _canvasUI.ShowInterstitialAd();
         SceneManager.LoadScene(1);
     }
 

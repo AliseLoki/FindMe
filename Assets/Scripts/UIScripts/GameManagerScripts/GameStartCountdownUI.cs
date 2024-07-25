@@ -6,7 +6,7 @@ public class GameStartCountdownUI : MonoBehaviour
     [SerializeField] private TMP_Text _countdownText;
     [SerializeField] private TMP_Text _remainingTimeText;
 
-    private float _timer = 5f;
+    private float _timer = 2f;
     private FirstStartTextSO _firstStartTextSO;
 
     private void Start()
@@ -48,7 +48,7 @@ public class GameStartCountdownUI : MonoBehaviour
 
         if (_timer < 0f)
         {
-            _timer = 5f;
+            _timer = 2f;
         }
     }
 

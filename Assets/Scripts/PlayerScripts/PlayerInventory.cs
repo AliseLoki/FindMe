@@ -8,6 +8,16 @@ public class PlayerInventory : MonoBehaviour
 {
     [SerializeField] private List<InventoryPrefabSO> _recievedInventoryPrefabsSO;
     [SerializeField] private AudioClip _takingInventoryPrefabSoundEffect;
+    //
+
+    private const string PlayerPrefsFirstSlot = nameof(PlayerPrefsFirstSlot);
+     private const string PlayerPrefsSecondSlot = nameof(PlayerPrefsSecondSlot);
+     private const string PlayerPrefsThirdSlot = nameof(PlayerPrefsThirdSlot);
+     private const string PlayerPrefsFourthSlot = nameof(PlayerPrefsFourthSlot);
+     private const string PlayerPrefsFifthSlot = nameof(PlayerPrefsFifthSlot);
+
+    [SerializeField] private List<InventoryPrefabSO> _allInventoryPrefabsSO;
+    [SerializeField] private List<int> _pickedInventoryPrefabsIndexes;
 
     private int _maxCells = 5;
     private PlayerEvents _playerEvents;
@@ -32,7 +42,7 @@ public class PlayerInventory : MonoBehaviour
                 return true;
             }
         }
-
+       
         return false;
     }
 
@@ -43,6 +53,15 @@ public class PlayerInventory : MonoBehaviour
             _player.PlaySoundEffect(_takingInventoryPrefabSoundEffect);
             _recievedInventoryPrefabsSO.Add(inventoryPrefabSO);
             InventoryPrefabSORecieved?.Invoke(inventoryPrefabSO);
+            //
+            int index = GetInventoryPrefabSOIndexInAllInventoryPrefabSOList(inventoryPrefabSO);
+
+            if (index >= 0)
+            {
+               
+            }
+
+           // PlayerPrefs.SetInt
             return true;
         }
 
@@ -75,5 +94,28 @@ public class PlayerInventory : MonoBehaviour
         }
 
         _recievedInventoryPrefabsSO.Remove(inventoryPrefabSO);       
+    }
+
+    //
+
+    private int GetInventoryPrefabSOIndexInAllInventoryPrefabSOList(InventoryPrefabSO inventoryPrefabSO)
+    {
+        int index = -1;
+
+        for (int i = 0; i < _allInventoryPrefabsSO.Count; i++)
+        {
+            if(inventoryPrefabSO == _allInventoryPrefabsSO[i])
+            {
+                index = i;
+                break;
+            }
+        }
+
+        return index;
+    }
+
+    private void SaveInventoryPrefabSOIndex(int index)
+    {
+
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Door : InteractableObject
@@ -12,6 +13,12 @@ public class Door : InteractableObject
     }
 
     protected override void UseObject()
+    {
+        _canvasUI.ShowInterstitialAd();
+        TeleportPlayer();
+    }
+
+    private void TeleportPlayer()
     {
         int openingDoorSoundEffectIndex = 0;
         PlaySoundEffect(AudioClipsList[openingDoorSoundEffectIndex]);

@@ -18,7 +18,7 @@ public class ObjectsSaver : MonoBehaviour
     [SerializeField] private List<Transform> _cowPatch;
 
     private void Start()
-    {
+    {        
         if (!GameManager.Instance.IsFirstStart)
         {
             GetContainerState(PlayerPrefsMeetContainerState, 1, _meetHanger);

@@ -181,8 +181,6 @@ public class GameManager : MonoBehaviour
 
                 break;
         }
-
-        print(_gameState);
     }
 
     public void WitchKilledPlayer()

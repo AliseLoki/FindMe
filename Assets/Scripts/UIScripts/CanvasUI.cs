@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using Agava.YandexGames;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(YandexLeaderboard))]
 [RequireComponent(typeof(CanvasUIButtonsController))]
@@ -53,7 +54,6 @@ public class CanvasUI : MonoBehaviour
 
         _player.PlayerEventsHandler.PlayerHasDied += OnPlayerhasDied;
         _player.PlayerEventsHandler.EnteredGrannysHome += PlayerEnteredGrannysHome;
-        _player.PlayerEventsHandler.EnteredVillage += OnPlayerEnteredVillage;
     }
 
     private void OnDisable()
@@ -67,7 +67,6 @@ public class CanvasUI : MonoBehaviour
 
         _player.PlayerEventsHandler.PlayerHasDied -= OnPlayerhasDied;
         _player.PlayerEventsHandler.EnteredGrannysHome -= PlayerEnteredGrannysHome;
-        _player.PlayerEventsHandler.EnteredVillage -= OnPlayerEnteredVillage;
     }
 
     private void Update()
@@ -141,16 +140,15 @@ public class CanvasUI : MonoBehaviour
         StartCoroutine(FadeRoutine());
     }
 
-    private void OnPlayerEnteredVillage()
+    public void ShowInterstitialAd()
     {
         if (_canShowAd)
         {
-            _gameStartCountdownUI.gameObject.SetActive(true);
-            _gameStartCountdownUI.ShowBeforeAdWarning();
-            _timer = _timerMax;
+#if UNITY_WEBGL && !UNITY_EDITOR
+        Agava.YandexGames.InterstitialAd.Show(OnOpen, OnClose);
+#endif
             _canShowAd = false;
-            StartCoroutine(AdTimer());
-        }
+        }        
     }
 
     private void OnWaitingToStartEnabled()
@@ -192,18 +190,6 @@ public class CanvasUI : MonoBehaviour
         _yandexLeaderboard.InitFirstStartTextSO(firstStartTextSO);
     }
 
-    private IEnumerator AdTimer()
-    {
-        int pause = 5;
-        yield return new WaitForSeconds(pause);
-        _gameStartCountdownUI.gameObject.SetActive(false);
-
-#if UNITY_WEBGL && !UNITY_EDITOR        
-        Agava.YandexGames.InterstitialAd.Show(OnOpen, OnClose);
-#endif
-        _canShowAd = false;
-    }
-
     private void OnOpen()
     {
         _testFocus.StopGame(true);
@@ -227,7 +213,7 @@ public class CanvasUI : MonoBehaviour
     {
         _testFocus.StopGame(false);
         _isAdPlaying = false;
-        _canvasUIButtonController.ActivateShowAdButton();
+        _canvasUIButtonController.ActivateShowAdButton();       
     }
 
     private IEnumerator FadeRoutine()
