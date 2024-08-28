@@ -11,6 +11,8 @@ public class RecievingOrdersPoint : InteractableObject
     [SerializeField] private Container _bowlWithCheese;
     [SerializeField] private Container _meetHanger;
 
+    [SerializeField] private SaveSystem _saveSystem;
+
     private int _woodCuterHomeIndex = 0;
     private int _firstVillageGrushevkaIndex = 1;
     private int _secondVillageYablonevkaIndex = 2;
@@ -23,6 +25,8 @@ public class RecievingOrdersPoint : InteractableObject
     private LanguageSwitcher _languageSwitcher;
     private VillageNamesSO _villageNamesSO;
 
+    public bool OrderIsTaken => _orderIsTaken;
+
     public event Action<string, MenuSO> OrdersAreTaken;
 
     private void OnEnable()
@@ -31,8 +35,25 @@ public class RecievingOrdersPoint : InteractableObject
         _languageSwitcher.VillageNamesGiven += InitVillageNamesSO;
         DeliveryService.AllDishesHaveBeenDelivered += OnAllDishesHaveBeenDelivered;
         Player.PlayerEventsHandler.WolfHasBeenKilled += OnWolfHasBeenKilled;
+        _orderIsTaken = _saveSystem.LoadOrderIsTakenState();     
     }
 
+    private void Start()
+    {
+        if (_orderIsTaken == true)
+        {
+            ChooseMenuSO();
+        }
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            _orderIsTaken = false;
+        }
+    }
+   
     private void OnWolfHasBeenKilled()
     {
         _meetHanger.gameObject.SetActive(true);
@@ -58,39 +79,43 @@ public class RecievingOrdersPoint : InteractableObject
 
         if (!_orderIsTaken)
         {
-            if (GameManager.Instance.IsEducationPlaying())
-            {
-                OrdersAreTaken?.Invoke(_villageNamesSO.Woodcutter, _allMenusSO[_woodCuterHomeIndex]);
-            }
-            else if (GameManager.Instance.IsGamePlaying())
-            {
-                if (_meetHanger.isActiveAndEnabled)
-                {
-                    OrdersAreTaken?.Invoke(_villageNamesSO.LastVillageName, _allMenusSO[_lastVillageZarechyeIndex]);
-                }
-                else if (_bowlWithCheese.isActiveAndEnabled)
-                {
-                    OrdersAreTaken?.Invoke(_villageNamesSO.FourthVillageName, _allMenusSO[_fourthVillageZelenovkaIndex]);
-                }
-                else if (_basketWithCabbages.isActiveAndEnabled)
-                {
-                    OrdersAreTaken?.Invoke(_villageNamesSO.ThirdVillageName, _allMenusSO[_thirdVillageKorovinoIndex]);
-                }
-                else if (_barrelWithTomatoes.isActiveAndEnabled)
-                {
-                    OrdersAreTaken?.Invoke(_villageNamesSO.SecondVillageName, _allMenusSO[_secondVillageYablonevkaIndex]);
-                }
-                else
-                {
-                    OrdersAreTaken?.Invoke(_villageNamesSO.FirstVillageName, _allMenusSO[_firstVillageGrushevkaIndex]);
-                }
-            }
-
+            ChooseMenuSO();          
             _orderIsTaken = true;
         }
         else
         {
             TipsViewPanel.ShowFirstCompleteOldOrdersTip();
+        }
+    }
+
+    private void ChooseMenuSO()
+    {
+        if (GameManager.Instance.IsEducationPlaying())
+        {
+            OrdersAreTaken?.Invoke(_villageNamesSO.Woodcutter, _allMenusSO[_woodCuterHomeIndex]);
+        }
+        else if (GameManager.Instance.IsGamePlaying())
+        {
+            if (_meetHanger.isActiveAndEnabled)
+            {
+                OrdersAreTaken?.Invoke(_villageNamesSO.LastVillageName, _allMenusSO[_lastVillageZarechyeIndex]);
+            }
+            else if (_bowlWithCheese.isActiveAndEnabled)
+            {
+                OrdersAreTaken?.Invoke(_villageNamesSO.FourthVillageName, _allMenusSO[_fourthVillageZelenovkaIndex]);
+            }
+            else if (_basketWithCabbages.isActiveAndEnabled)
+            {
+                OrdersAreTaken?.Invoke(_villageNamesSO.ThirdVillageName, _allMenusSO[_thirdVillageKorovinoIndex]);
+            }
+            else if (_barrelWithTomatoes.isActiveAndEnabled)
+            {
+                OrdersAreTaken?.Invoke(_villageNamesSO.SecondVillageName, _allMenusSO[_secondVillageYablonevkaIndex]);
+            }
+            else
+            {
+                OrdersAreTaken?.Invoke(_villageNamesSO.FirstVillageName, _allMenusSO[_firstVillageGrushevkaIndex]);
+            }
         }
     }
 

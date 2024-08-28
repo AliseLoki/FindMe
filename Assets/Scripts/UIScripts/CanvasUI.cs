@@ -17,6 +17,7 @@ public class CanvasUI : MonoBehaviour
     [SerializeField] private TestFocus _testFocus;
     [SerializeField] private AuthorisePanel _authorisePanel;
     [SerializeField] private LeaderboardView _leaderboardView;
+    [SerializeField] private SaveGameView _saveGameView;
     [SerializeField] private Spawner _spawner;
 
     private bool _shouldFadeToBlack;
@@ -188,6 +189,7 @@ public class CanvasUI : MonoBehaviour
         _authorisePanel.InitFirstStartTextSO(firstStartTextSO);
         _leaderboardView.InitFirstStartTextSO(firstStartTextSO);
         _yandexLeaderboard.InitFirstStartTextSO(firstStartTextSO);
+        _saveGameView.InitFirstStartTextSO(firstStartTextSO);
     }
 
     private void OnOpen()

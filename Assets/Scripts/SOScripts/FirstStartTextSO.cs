@@ -17,4 +17,6 @@ public class FirstStartTextSO : ScriptableObject
     public string AuthorizeButtonText;
     public string NeedToAuthorizeText;
     public string AnonymousName;
+
+    public string SaveGameText;
 }

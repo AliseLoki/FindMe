@@ -24,3 +24,4 @@ MonoBehaviour:
   AuthorizeButtonText: authorize
   NeedToAuthorizeText: to view the leaderboard you need to log in
   AnonymousName: anonymous
+  SaveGameText: game saved

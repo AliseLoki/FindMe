@@ -68,7 +68,6 @@ public class GameManager : MonoBehaviour
         _lastVillage.WitchAppeared += OnWitchAppeared;
     }
 
-
     private void OnDisable()
     {
         _player.PlayerEventsHandler.EnteredGrannysHome -= OnPlayerEnteredGrannysHome;

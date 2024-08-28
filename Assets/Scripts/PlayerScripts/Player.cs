@@ -30,6 +30,9 @@ public class Player : MonoBehaviour
 
     [SerializeField] private ParticleSystem _hitEffect;
 
+
+    [SerializeField] private SaveSystem _saveSystem;
+
     private bool _hasBackPack;
     private bool _hasWood;
     private bool _hasSeed;
@@ -75,6 +78,13 @@ public class Player : MonoBehaviour
         _playerCookingModule = GetComponent<PlayerCookingModule>();
         _playerInventory = GetComponent<PlayerInventory>();
         _playerMovement = GetComponent<PlayerMovement>();
+    }
+
+    private void Start()
+    {
+        _hasWood = _saveSystem.LoadHasWood();
+       
+            Load();
     }
 
     private void OnEnable()
@@ -181,6 +191,15 @@ public class Player : MonoBehaviour
         _hasWater = false;
         _hasSomethingInHands = false;
         Destroy(_handlePoint.GetChild(0).gameObject);
+    }
+
+    private void Load()
+    {
+        if (_hasWood)
+        {
+            _hasSomethingInHands = true;
+            // заспаунить дрова в руках
+        }
     }
 
     private void OnWolfHasBeenKilled()

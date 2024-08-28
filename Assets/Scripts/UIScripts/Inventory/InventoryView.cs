@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class InventoryView : MonoBehaviour
@@ -9,8 +10,14 @@ public class InventoryView : MonoBehaviour
 
     private void Awake()
     {
-        _playerInventory = GameManager.Instance.GameEntryPoint.InitPlayerInventory();
+        _playerInventory = GameManager.Instance.GameEntryPoint.InitPlayerInventory();             
     }
+
+    private void Start()
+    {
+        InitInventoryList(_playerInventory.GetRecievedInventoryPrefabSOList());
+    }
+
     private void OnEnable()
     {
         _playerInventory.InventoryPrefabSORecieved += OnInventoryPrefabSORecieved;
@@ -32,5 +39,13 @@ public class InventoryView : MonoBehaviour
     private void OnInventoryCellButtonPressed(InventoryPrefabSO inventoryPrefabSO)
     {
         _playerInventory.RemoveInventoryPrefabSO(inventoryPrefabSO);
+    }
+
+    private void InitInventoryList(List<InventoryPrefabSO> list)
+    {
+        foreach (var item in list)
+        {
+            OnInventoryPrefabSORecieved(item);
+        }
     }
 }

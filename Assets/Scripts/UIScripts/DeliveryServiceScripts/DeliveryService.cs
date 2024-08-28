@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class DeliveryService : MonoBehaviour
 {
+    [SerializeField] private SaveSystem _saveSystem;
+
     private List<CookingRecipeSO> _orderedDishies = new List<CookingRecipeSO>();
     private List<CookingRecipeSO> _packedDishes = new List<CookingRecipeSO>();
 
@@ -13,7 +15,9 @@ public class DeliveryService : MonoBehaviour
     private PackingPlace _packingPlace;
     private TipsViewPanel _tipsViewPanel;
 
-    public event Action<string,List<CookingRecipeSO>> OrdersCanBeShown;
+    public MenuSO MenuSO => _menuSO;
+
+    public event Action<string, List<CookingRecipeSO>> OrdersCanBeShown;
     public event Action<CookingRecipeSO> DishHasBeenPacked;
     public event Action<CookingRecipeSO> DishHasBeenDelivered;
     public event Action AllDishesHaveBeenDelivered;
@@ -26,6 +30,16 @@ public class DeliveryService : MonoBehaviour
         _tipsViewPanel = GameManager.Instance.GameEntryPoint.InitTipsViewPanel();
     }
 
+    private void Start()
+    {
+        if (_recievingOrdersPoint.OrderIsTaken)
+        {
+            _orderedDishies = _saveSystem.LoadOrderedDishies();
+            _packedDishes = _saveSystem.LoadPackedDishies();
+            SortSavedDishies();
+        }
+    }
+
     private void OnEnable()
     {
         _recievingOrdersPoint.OrdersAreTaken += OnOrdersAreTaken;
@@ -36,6 +50,16 @@ public class DeliveryService : MonoBehaviour
     {
         _recievingOrdersPoint.OrdersAreTaken -= OnOrdersAreTaken;
         _packingPlace.CookingRecipeSOHasBeenPacked -= OnCookingRecipeSOHasBeenPacked;
+    }
+
+    public List<CookingRecipeSO> GetOrderedDishiesList()
+    {
+        return _orderedDishies;
+    }
+
+    public List<CookingRecipeSO> GetPackedDishiesList()
+    {
+        return _packedDishes;
     }
 
     public CookingRecipeSO CheckEquality(CookingRecipeSO cookingRecipeSO)
@@ -79,6 +103,17 @@ public class DeliveryService : MonoBehaviour
         }
     }
 
+    private void SortSavedDishies()
+    {
+        foreach (CookingRecipeSO recipe in _orderedDishies)
+        {
+            if(CheckEquality(recipe))
+            {
+                DishHasBeenPacked?.Invoke(recipe);
+            }
+        }
+    }
+
     private bool CheckIfOrdersAndPakcedDishesAreEqual()
     {
         if (_packedDishes.Count == _orderedDishies.Count)
@@ -90,11 +125,11 @@ public class DeliveryService : MonoBehaviour
         return false;
     }
 
-    private void OnOrdersAreTaken(string destinationPointName,MenuSO menuSO)
+    private void OnOrdersAreTaken(string destinationPointName, MenuSO menuSO)
     {
         _menuSO = menuSO;
         TakeOrders();
-        OrdersCanBeShown?.Invoke(destinationPointName,_orderedDishies);
+        OrdersCanBeShown?.Invoke(destinationPointName, _orderedDishies);
     }
 
     private void TakeOrders()

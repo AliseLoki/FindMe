@@ -54,7 +54,6 @@ public class House : InteractableObject
             PlaySoundEffect(AudioClipsList[goldAppearSoundEffectIndex]);
             SpawnObject(_goldCoins);
             _deliveredDishesCounter.AddDeliveredDish();
-            //добавить в счетчик доставленных блюд
         }
         else
         {

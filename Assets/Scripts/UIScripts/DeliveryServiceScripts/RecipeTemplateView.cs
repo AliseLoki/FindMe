@@ -61,6 +61,9 @@ public class RecipeTemplateView : MonoBehaviour
         if (CheckIfEqual(cookingRecipeSO))
         {
             _hasBeenPacked = true;
+            _hasBeenCooked = true;
+            DeactivateButton();
+            _cookedDishImage.gameObject.SetActive(true);
         }
     }
 

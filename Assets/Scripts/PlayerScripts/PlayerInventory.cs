@@ -8,16 +8,7 @@ public class PlayerInventory : MonoBehaviour
 {
     [SerializeField] private List<InventoryPrefabSO> _recievedInventoryPrefabsSO;
     [SerializeField] private AudioClip _takingInventoryPrefabSoundEffect;
-    //
-
-    private const string PlayerPrefsFirstSlot = nameof(PlayerPrefsFirstSlot);
-     private const string PlayerPrefsSecondSlot = nameof(PlayerPrefsSecondSlot);
-     private const string PlayerPrefsThirdSlot = nameof(PlayerPrefsThirdSlot);
-     private const string PlayerPrefsFourthSlot = nameof(PlayerPrefsFourthSlot);
-     private const string PlayerPrefsFifthSlot = nameof(PlayerPrefsFifthSlot);
-
-    [SerializeField] private List<InventoryPrefabSO> _allInventoryPrefabsSO;
-    [SerializeField] private List<int> _pickedInventoryPrefabsIndexes;
+    [SerializeField] private SaveSystem _saveSystem;
 
     private int _maxCells = 5;
     private PlayerEvents _playerEvents;
@@ -30,7 +21,14 @@ public class PlayerInventory : MonoBehaviour
     {
         _player = GetComponent<Player>();
         _playerEvents = GetComponent<PlayerEvents>();
-        _recievedInventoryPrefabsSO = new List<InventoryPrefabSO>();
+       // _recievedInventoryPrefabsSO = new List<InventoryPrefabSO>();
+    }
+
+    private void Start()
+    {
+        _recievedInventoryPrefabsSO = _saveSystem.LoadInventory();     
+        //_player.PlayerMovement.Teleport(_saveSystem.LoadPlayerPosition(transform));
+        //print(_saveSystem.LoadPlayerPosition(transform).position);
     }
 
     public bool CheckIfHasSeeds(InventoryPrefabSO inventoryPrefabSO)
@@ -42,8 +40,13 @@ public class PlayerInventory : MonoBehaviour
                 return true;
             }
         }
-       
+
         return false;
+    }
+  
+    public List<InventoryPrefabSO> GetRecievedInventoryPrefabSOList()
+    {
+        return _recievedInventoryPrefabsSO;
     }
 
     public bool AddInventoryPrefabSO(InventoryPrefabSO inventoryPrefabSO)
@@ -53,15 +56,6 @@ public class PlayerInventory : MonoBehaviour
             _player.PlaySoundEffect(_takingInventoryPrefabSoundEffect);
             _recievedInventoryPrefabsSO.Add(inventoryPrefabSO);
             InventoryPrefabSORecieved?.Invoke(inventoryPrefabSO);
-            //
-            int index = GetInventoryPrefabSOIndexInAllInventoryPrefabSOList(inventoryPrefabSO);
-
-            if (index >= 0)
-            {
-               
-            }
-
-           // PlayerPrefs.SetInt
             return true;
         }
 
@@ -93,29 +87,8 @@ public class PlayerInventory : MonoBehaviour
             _player.TakeNecronomiconInHands(inventoryPrefabSO);
         }
 
-        _recievedInventoryPrefabsSO.Remove(inventoryPrefabSO);       
-    }
-
-    //
-
-    private int GetInventoryPrefabSOIndexInAllInventoryPrefabSOList(InventoryPrefabSO inventoryPrefabSO)
-    {
-        int index = -1;
-
-        for (int i = 0; i < _allInventoryPrefabsSO.Count; i++)
-        {
-            if(inventoryPrefabSO == _allInventoryPrefabsSO[i])
-            {
-                index = i;
-                break;
-            }
-        }
-
-        return index;
-    }
-
-    private void SaveInventoryPrefabSOIndex(int index)
-    {
-
+        _recievedInventoryPrefabsSO.Remove(inventoryPrefabSO);
     }
 }
+
+
