@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
 
 public class Spawner : MonoBehaviour
@@ -6,6 +7,11 @@ public class Spawner : MonoBehaviour
     [SerializeField] private List<InteractableObject> _interactableObjects;
 
     [SerializeField] private Wood _wood;
+    [SerializeField] private Sword _sword;
+    [SerializeField] private Cow _cow;
+    [SerializeField] private CabbageForSeeds _cabbageForSeeds;
+    [SerializeField] private TomatoForSeeds _tomatoForSeeds;
+
     [SerializeField] private Transform _spawnPlaces;
     [SerializeField] private Transform _woodSpawnPlace;
     [SerializeField] private PresentFromAd _presentFromAd;
@@ -35,6 +41,36 @@ public class Spawner : MonoBehaviour
     private void OnDisable()
     {
         _player.PlayerEventsHandler.ExitGrannysHome -= SpawnObjects;
+    }
+
+    public void SpawnWoodInHands()
+    {
+        var wood = Instantiate(_wood);
+        wood.DisableCollider();
+    }
+
+    public InventoryPrefabSO SpawnSwordInHands()
+    {
+       var sword = Instantiate(_sword);
+      return  sword.DisableCollider();
+    }
+
+    public InventoryPrefabSO SpawnCowInHands()
+    {
+        var cow = Instantiate(_cow);
+       return cow.DisableCollider();
+    }
+
+    public InventoryPrefabSO SpawnCabbageForSeedsInHands( )
+    {
+        var cabbageForSeeds = Instantiate(_cabbageForSeeds);
+       return cabbageForSeeds.DisableCollider();    
+    }
+
+    public InventoryPrefabSO SpawnTomatoForSeedsInHands()
+    {
+        var tomatoForSeeds = Instantiate(_tomatoForSeeds);
+       return tomatoForSeeds.DisableCollider();
     }
 
     public void GiveRewardForWatchingAd()

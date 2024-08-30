@@ -32,6 +32,7 @@ public class Player : MonoBehaviour
 
 
     [SerializeField] private SaveSystem _saveSystem;
+    [SerializeField] private Spawner _spawner;
 
     private bool _hasBackPack;
     private bool _hasWood;
@@ -39,6 +40,10 @@ public class Player : MonoBehaviour
     private bool _hasWater;
     private bool _hasSword;
     private bool _hasNecronomicon;
+
+    private bool _hasCow;
+    private bool _hasCabbageForSeeds;
+    private bool _hasTomatoForSeeds;
 
     private InventoryPrefabSO _inventoryPrefabSO;
     private PlayerEvents _playerEvents;
@@ -60,6 +65,11 @@ public class Player : MonoBehaviour
     public bool HasSword => _hasSword;
 
     public bool HasNecronomicon => _hasNecronomicon;
+
+
+    public bool HasCow => _hasCow;
+    public bool HasTomatoForSeeds => _hasTomatoForSeeds;
+    public bool HasCabbageForSeeds => _hasCabbageForSeeds;
 
     public PlayerMovement PlayerMovement => _playerMovement;
 
@@ -83,8 +93,14 @@ public class Player : MonoBehaviour
     private void Start()
     {
         _hasWood = _saveSystem.LoadHasWood();
-       
-            Load();
+        _hasBackPack = _saveSystem.LoadHasBackPack();
+        _hasWater = _saveSystem.LoadHasWater();
+        _hasSword = _saveSystem.LoadHasSword();
+        _hasSeed = _saveSystem.LoadHasSeed();
+        _hasCow = _saveSystem.LoadHasCow();
+        _hasTomatoForSeeds = _saveSystem.LoadHasTomatoForSeeds();
+        _hasCabbageForSeeds = _saveSystem.LoadHasCabbageForSeeds();
+        Load();
     }
 
     private void OnEnable()
@@ -167,6 +183,7 @@ public class Player : MonoBehaviour
 
     public void LandSeed()
     {
+        CheckWitchSeed(_inventoryPrefabSO, false);
         Destroy(_handlePoint.GetChild(0).gameObject);
         _hasSeed = false;
         SetHasSomethingInHands(false);
@@ -195,10 +212,34 @@ public class Player : MonoBehaviour
 
     private void Load()
     {
-        if (_hasWood)
+        if (_hasBackPack == true)
         {
-            _hasSomethingInHands = true;
-            // заспаунить дрова в руках
+            ShowOrHideBackPack(true);
+        }
+
+        if (_hasWood == true)
+        {
+            _spawner.SpawnWoodInHands();
+        }
+        else if (_hasWater == true)
+        {
+            TakeWater();
+        }
+        else if (_hasSword == true)
+        {
+            _inventoryPrefabSO = _spawner.SpawnSwordInHands();
+        }
+        else if (_hasCow == true)
+        {
+            _inventoryPrefabSO = _spawner.SpawnCowInHands();
+        }
+        else if (_hasTomatoForSeeds == true)
+        {
+            _inventoryPrefabSO = _spawner.SpawnTomatoForSeedsInHands();
+        }
+        else if (_hasCabbageForSeeds == true)
+        {
+            _inventoryPrefabSO = _spawner.SpawnCabbageForSeedsInHands();
         }
     }
 
@@ -216,6 +257,7 @@ public class Player : MonoBehaviour
 
     private void TakeInvenoryPrefabInHands(InventoryPrefabSO inventoryPrefabSO)
     {
+        CheckWitchSeed(inventoryPrefabSO, true);
         var prefabInHands = Instantiate(inventoryPrefabSO.InventoryPrefab, HandlePoint, true);
         prefabInHands.transform.position = HandlePoint.position;
         prefabInHands.GetComponent<Collider>().enabled = false;
@@ -246,5 +288,21 @@ public class Player : MonoBehaviour
     private void OnAllDishesHaveBeenDelivered()
     {
         ShowOrHideBackPack(false);
+    }
+
+    private void CheckWitchSeed(InventoryPrefabSO inventoryPrefabSO, bool isTrue)
+    {
+        if (inventoryPrefabSO.InventoryPrefab as Cow)
+        {
+            _hasCow = isTrue;
+        }
+        else if (inventoryPrefabSO.InventoryPrefab as CabbageForSeeds)
+        {
+            _hasCabbageForSeeds = isTrue;
+        }
+        else if (inventoryPrefabSO.InventoryPrefab as TomatoForSeeds)
+        {
+            _hasTomatoForSeeds = isTrue;
+        }
     }
 }

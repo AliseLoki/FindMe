@@ -6,6 +6,7 @@ public class SaveSystem : MonoBehaviour
     [SerializeField] private Player _player;
     [SerializeField] private RecievingOrdersPoint _recievingOrdersPoint;
     [SerializeField] private DeliveryService _deliveryService;
+    [SerializeField] private ObjectsSaver _objectSaver;
 
     private const string SavedInventoryList = nameof(SavedInventoryList);
     private const string SavedOrderedDishes = nameof(SavedOrderedDishes);
@@ -15,10 +16,28 @@ public class SaveSystem : MonoBehaviour
 
     private const string PlayerPrefsOrderIsTaken = nameof(PlayerPrefsOrderIsTaken);
     private const string PlayerPrefsHasWood = nameof(PlayerPrefsHasWood);
+    private const string PlayerPrefsHasWater = nameof(PlayerPrefsHasWater);
+    private const string PlayerPrefsHasSeed = nameof(PlayerPrefsHasSeed);
+    private const string PlayerPrefsHasSword = nameof(PlayerPrefsHasSword);
+
+    private const string PlayerPrefsHasCow = nameof(PlayerPrefsHasCow);
+    private const string PlayerPrefsHasTomatoForSeeds = nameof(PlayerPrefsHasTomatoForSeeds);
+    private const string PlayerPrefsHasCabbageForSeeds = nameof(PlayerPrefsHasCabbageForSeeds);
+
+    private const string PlayerPrefsHasBackPack = nameof(PlayerPrefsHasBackPack);
+
+    [SerializeField] private Transform _tomatoPatchWithoutWater;
+    [SerializeField] private Transform _cabbagePatchWithoutWater;
+    [SerializeField] private Transform _cowPatchWithoutWater;
+
 
     private void OnEnable()
     {
         _player.PlayerEventsHandler.EnteredSafeZone += Save;
+
+        //GetContainerState(PlayerPrefsGrassInCabbagePatch, 1, _cabbagePatchWithoutWater);
+        //GetContainerState(PlayerPrefsGrassInTomatoPatch, 1, _tomatoPatchWithoutWater);
+        //GetContainerState(PlayerPrefsCowInCowPlace, 1, _cowPatchWithoutWater);
     }
 
     private void OnDisable()
@@ -80,6 +99,43 @@ public class SaveSystem : MonoBehaviour
     {
         return ConvertIntToBool(PlayerPrefs.GetInt(PlayerPrefsHasWood, 0));
     }
+
+    public bool LoadHasBackPack()
+    {
+        return ConvertIntToBool(PlayerPrefs.GetInt(PlayerPrefsHasBackPack, 0));
+    }
+
+    public bool LoadHasWater()
+    {
+        return ConvertIntToBool(PlayerPrefs.GetInt(PlayerPrefsHasWater, 0));
+    }
+
+    public bool LoadHasSeed()
+    {
+        return ConvertIntToBool(PlayerPrefs.GetInt(PlayerPrefsHasSeed, 0));
+    }
+
+    public bool LoadHasSword()
+    {
+        return ConvertIntToBool(PlayerPrefs.GetInt(PlayerPrefsHasSword, 0));
+    }
+
+    public bool LoadHasCow()
+    {
+        return ConvertIntToBool(PlayerPrefs.GetInt(PlayerPrefsHasCow, 0));
+    }
+
+    public bool LoadHasTomatoForSeeds()
+    {
+        return ConvertIntToBool(PlayerPrefs.GetInt(PlayerPrefsHasTomatoForSeeds, 0));
+    }
+
+    public bool LoadHasCabbageForSeeds()
+    {
+        return ConvertIntToBool(PlayerPrefs.GetInt(PlayerPrefsHasCabbageForSeeds, 0));
+    }
+
+
     //public Transform LoadPlayerPosition(Transform defaultPosition)
     //{
     //    string globalDataJSON = PlayerPrefs.GetString(SavedPlayerPosition);
@@ -147,9 +203,21 @@ public class SaveSystem : MonoBehaviour
     {
         //SavePlayerPosition(_player.transform);
         SaveState(PlayerPrefsOrderIsTaken, ConvertBoolToInt(_recievingOrdersPoint.OrderIsTaken));
-        SaveState(PlayerPrefsHasWood,ConvertBoolToInt(_player.HasWood));
+        SaveState(PlayerPrefsHasWood, ConvertBoolToInt(_player.HasWood));
+        SaveState(PlayerPrefsHasWater, ConvertBoolToInt(_player.HasWater));
+        SaveState(PlayerPrefsHasSword, ConvertBoolToInt(_player.HasSword));
+        SaveState(PlayerPrefsHasSeed, ConvertBoolToInt(_player.HasSeed));
+
+        SaveState(PlayerPrefsHasCow, ConvertBoolToInt(_player.HasCow));
+        SaveState(PlayerPrefsHasTomatoForSeeds, ConvertBoolToInt(_player.HasTomatoForSeeds));
+        SaveState(PlayerPrefsHasCabbageForSeeds, ConvertBoolToInt(_player.HasCabbageForSeeds));
+
+        SaveState(PlayerPrefsHasBackPack, ConvertBoolToInt(_player.HasBackPack));
+
         SaveLists(_player.PlayerInventory.GetRecievedInventoryPrefabSOList(), _deliveryService.GetOrderedDishiesList(),
             _deliveryService.GetPackedDishiesList());
+
+        _objectSaver.SaveContainers();
     }
 
     private bool ConvertIntToBool(int value)

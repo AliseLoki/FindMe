@@ -10,6 +10,14 @@ public class Patch : InteractableObject
 
     private bool _seedIsLanded;
 
+    private void Start()
+    {
+        if (_grass.gameObject.activeSelf)
+        {
+            _seedIsLanded = true;
+        }
+    }
+
     protected override void UseObject()
     {
         int wateringSoundEffectIndex = 0;

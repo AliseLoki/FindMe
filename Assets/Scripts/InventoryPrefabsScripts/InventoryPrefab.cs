@@ -11,4 +11,14 @@ public class InventoryPrefab : InteractableObject
             Destroy(this.gameObject);
         }
     }
+
+    public InventoryPrefabSO DisableCollider()
+    {
+        this.transform.parent = Player.HandlePoint.transform;
+        this.transform.position = Player.HandlePoint.position;
+        GetComponent<Collider>().enabled = false;
+        SelectedObject.Hide();
+        Player.SetHasSomethingInHands(true);
+        return _inventoryPrefabSO;
+    }
 }
