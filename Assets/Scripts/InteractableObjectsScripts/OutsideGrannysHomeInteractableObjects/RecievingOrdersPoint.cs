@@ -11,7 +11,10 @@ public class RecievingOrdersPoint : InteractableObject
     [SerializeField] private Container _bowlWithCheese;
     [SerializeField] private Container _meetHanger;
 
-    [SerializeField] private SaveSystem _saveSystem;
+    [SerializeField] private Saver _saver;
+
+    [SerializeField] private LanguageSwitcher _languageSwitcher;
+    [SerializeField] private GameStatesSwitcher _gameStatesSwitcher;
 
     private int _woodCuterHomeIndex = 0;
     private int _firstVillageGrushevkaIndex = 1;
@@ -22,7 +25,6 @@ public class RecievingOrdersPoint : InteractableObject
 
     private bool _orderIsTaken;
 
-    private LanguageSwitcher _languageSwitcher;
     private VillageNamesSO _villageNamesSO;
 
     public bool OrderIsTaken => _orderIsTaken;
@@ -31,11 +33,10 @@ public class RecievingOrdersPoint : InteractableObject
 
     private void OnEnable()
     {
-        _languageSwitcher = GameManager.Instance.GameEntryPoint.InitLanguageSwitcher();
         _languageSwitcher.VillageNamesGiven += InitVillageNamesSO;
         DeliveryService.AllDishesHaveBeenDelivered += OnAllDishesHaveBeenDelivered;
         Player.PlayerEventsHandler.WolfHasBeenKilled += OnWolfHasBeenKilled;
-        _orderIsTaken = _saveSystem.LoadOrderIsTakenState();     
+        _orderIsTaken = _saver.LoadOrderIsTakenState();     
     }
 
     private void Start()
@@ -90,11 +91,11 @@ public class RecievingOrdersPoint : InteractableObject
 
     private void ChooseMenuSO()
     {
-        if (GameManager.Instance.IsEducationPlaying())
+        if (_gameStatesSwitcher.IsEducationPlaying())
         {
             OrdersAreTaken?.Invoke(_villageNamesSO.Woodcutter, _allMenusSO[_woodCuterHomeIndex]);
         }
-        else if (GameManager.Instance.IsGamePlaying())
+        else if (_gameStatesSwitcher.IsGamePlaying())
         {
             if (_meetHanger.isActiveAndEnabled)
             {

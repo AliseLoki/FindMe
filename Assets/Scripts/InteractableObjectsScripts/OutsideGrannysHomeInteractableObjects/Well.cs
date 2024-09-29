@@ -11,7 +11,7 @@ public class Well : InteractableObject
     {
         int payingForWaterSoundEffectIndex = 0;
 
-        if (!Player.HasSomethingInHands)
+        if (!Player.PlayerHands.HasSomethingInHands)
         {
             PayForBucketOfWater();
 

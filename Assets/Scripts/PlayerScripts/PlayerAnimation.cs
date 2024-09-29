@@ -11,18 +11,16 @@ public class PlayerAnimation : MonoBehaviour
 
     [SerializeField] private Player _player;
 
-    private PlayerMovement _playerMovement;
     private Animator _animatior;
 
     private void Awake()
     {
-        _playerMovement = _player.PlayerMovement;
         _animatior = GetComponent<Animator>();
     }
 
     private void Update()
     {
-        _animatior.SetBool(IsWalking, _playerMovement.IsWalking);
+        _animatior.SetBool(IsWalking, _player.PlayerMovement.IsWalking);
     }
 
     public void UseRunningAnimation(bool isUsing)

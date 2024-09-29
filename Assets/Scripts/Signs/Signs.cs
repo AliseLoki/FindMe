@@ -4,14 +4,9 @@ using UnityEngine;
 public class Signs : MonoBehaviour
 {
     private SignSO _signSO;
-    private LanguageSwitcher _languageSwitcher;
-
+    
     [SerializeField] private List<Sign> _signs;
-
-    private void Awake()
-    {
-        _languageSwitcher = GameManager.Instance.GameEntryPoint.InitLanguageSwitcher();
-    }
+    [SerializeField] private LanguageSwitcher _languageSwitcher;
 
     private void OnEnable()
     {
@@ -24,6 +19,11 @@ public class Signs : MonoBehaviour
     }
 
     private void Start()
+    {
+      InitAllSignsNames();
+    }
+
+    private void InitAllSignsNames()
     {
         _signs[0].InitPointerNames(_signSO.FirstSign);
         _signs[1].InitPointerNames(_signSO.SecondSign);

@@ -25,10 +25,12 @@ public class ObjectsSaver : MonoBehaviour
     [SerializeField] private List<Transform> _cabbagePatch;
     [SerializeField] private List<Transform> _cowPatch;
 
+    [SerializeField] private GameStatesSwitcher _gameStatesSwitcher;
+
     
     private void Start()
     {
-        if (!GameManager.Instance.IsFirstStart)
+        if (!_gameStatesSwitcher.IsFirstStart)
         {
             GetContainerState(PlayerPrefsMeetContainerState, 1, _meetHanger);
             GetContainerState(PlayerPrefsCheeseContainerState, 1, _bowlWithCheese);

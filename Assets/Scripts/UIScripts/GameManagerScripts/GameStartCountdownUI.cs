@@ -6,6 +6,8 @@ public class GameStartCountdownUI : MonoBehaviour
     [SerializeField] private TMP_Text _countdownText;
     [SerializeField] private TMP_Text _remainingTimeText;
 
+    [SerializeField] private GameStatesSwitcher _gameStatesSwitcher;
+
     private float _timer = 2f;
     private FirstStartTextSO _firstStartTextSO;
 
@@ -54,6 +56,6 @@ public class GameStartCountdownUI : MonoBehaviour
 
     private void CountdownToStart()
     {
-        _countdownText.text = Mathf.Ceil(GameManager.Instance.GetCountdownToStartTimer()).ToString();
+        _countdownText.text = Mathf.Ceil(_gameStatesSwitcher.GetCountdownToStartTimer()).ToString();
     }
 }

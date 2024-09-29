@@ -4,17 +4,9 @@ using UnityEngine;
 public class SaveSystem : MonoBehaviour
 {
     [SerializeField] private Player _player;
-    [SerializeField] private RecievingOrdersPoint _recievingOrdersPoint;
-    [SerializeField] private DeliveryService _deliveryService;
+   
     [SerializeField] private ObjectsSaver _objectSaver;
 
-    private const string SavedInventoryList = nameof(SavedInventoryList);
-    private const string SavedOrderedDishes = nameof(SavedOrderedDishes);
-    private const string SavedPackedDishes = nameof(SavedPackedDishes);
-
-    private const string SavedPlayerPosition = nameof(SavedPlayerPosition);
-
-    private const string PlayerPrefsOrderIsTaken = nameof(PlayerPrefsOrderIsTaken);
     private const string PlayerPrefsHasWood = nameof(PlayerPrefsHasWood);
     private const string PlayerPrefsHasWater = nameof(PlayerPrefsHasWater);
     private const string PlayerPrefsHasSeed = nameof(PlayerPrefsHasSeed);
@@ -33,7 +25,7 @@ public class SaveSystem : MonoBehaviour
 
     private void OnEnable()
     {
-        _player.PlayerEventsHandler.EnteredSafeZone += Save;
+      //  _player.PlayerEventsHandler.EnteredSafeZone += Save;
 
         //GetContainerState(PlayerPrefsGrassInCabbagePatch, 1, _cabbagePatchWithoutWater);
         //GetContainerState(PlayerPrefsGrassInTomatoPatch, 1, _tomatoPatchWithoutWater);
@@ -42,57 +34,7 @@ public class SaveSystem : MonoBehaviour
 
     private void OnDisable()
     {
-        _player.PlayerEventsHandler.EnteredSafeZone -= Save;
-    }
-
-    public List<InventoryPrefabSO> LoadInventory()
-    {
-        string globalDataJSON = PlayerPrefs.GetString(SavedInventoryList);
-        SaveJson loadedList = JsonUtility.FromJson<SaveJson>(globalDataJSON);
-
-        if (loadedList != null)
-        {
-            return loadedList.SavedInventoryListJson;
-        }
-        else
-        {
-            return new List<InventoryPrefabSO>();
-        }
-    }
-
-    public List<CookingRecipeSO> LoadOrderedDishies()
-    {
-        string globalDataJSON = PlayerPrefs.GetString(SavedOrderedDishes);
-        SaveJson loadedList = JsonUtility.FromJson<SaveJson>(globalDataJSON);
-
-        if (loadedList != null)
-        {
-            return loadedList.SavedOrderedDishesListJson;
-        }
-        else
-        {
-            return new List<CookingRecipeSO>();
-        }
-    }
-
-    public List<CookingRecipeSO> LoadPackedDishies()
-    {
-        string globalDataJSON = PlayerPrefs.GetString(SavedPackedDishes);
-        SaveJson loadedList = JsonUtility.FromJson<SaveJson>(globalDataJSON);
-
-        if (loadedList != null)
-        {
-            return loadedList.SavedPackedDishesListJson;
-        }
-        else
-        {
-            return new List<CookingRecipeSO>();
-        }
-    }
-
-    public bool LoadOrderIsTakenState()
-    {
-        return ConvertIntToBool(PlayerPrefs.GetInt(PlayerPrefsOrderIsTaken, 0));
+       // _player.PlayerEventsHandler.EnteredSafeZone -= Save;
     }
 
     public bool LoadHasWood()
@@ -134,66 +76,7 @@ public class SaveSystem : MonoBehaviour
     {
         return ConvertIntToBool(PlayerPrefs.GetInt(PlayerPrefsHasCabbageForSeeds, 0));
     }
-
-
-    //public Transform LoadPlayerPosition(Transform defaultPosition)
-    //{
-    //    string globalDataJSON = PlayerPrefs.GetString(SavedPlayerPosition);
-    //    SaveJson loadedPlayerPosition = JsonUtility.FromJson<SaveJson>(globalDataJSON);
-
-    //    if (loadedPlayerPosition != null)
-    //    {
-    //        return loadedPlayerPosition.SavedPlayerPositionToJson;
-    //    }
-    //    else
-    //    {
-    //        return defaultPosition;
-    //    }
-    //}
-
-    //private void SavePlayerPosition(Transform playerPositionToSave)
-    //{
-    //    SaveJson saveJson = new SaveJson();
-    //    saveJson.SavedPlayerPositionToJson = playerPositionToSave;
-
-    //    string Json = JsonUtility.ToJson(saveJson);
-    //    PlayerPrefs.SetString(SavedPlayerPosition, Json);
-
-    //    Debug.Log(saveJson.SavedPlayerPositionToJson.position);
-    //}
-
-    private void SaveLists(List<InventoryPrefabSO> inventoryToSave, List<CookingRecipeSO> orderedDishesToSave, List<CookingRecipeSO> packedDishesToSave)
-    {
-        var ListInClass = new SaveJson();
-
-        ListInClass.SavedInventoryListJson = inventoryToSave;
-        ListInClass.SavedOrderedDishesListJson = orderedDishesToSave;
-        ListInClass.SavedPackedDishesListJson = packedDishesToSave;
-        var outputString = JsonUtility.ToJson(ListInClass);
-        var outputString2 = JsonUtility.ToJson(ListInClass);
-        var outputString3 = JsonUtility.ToJson(ListInClass);
-        PlayerPrefs.SetString(SavedInventoryList, outputString);
-        PlayerPrefs.SetString(SavedOrderedDishes, outputString2);
-        PlayerPrefs.SetString(SavedPackedDishes, outputString3);
-    }
-
-    //private void SaveLists(List<InventoryPrefabSO> inventoryToSave, List<CookingRecipeSO> orderedDishesToSave, List<CookingRecipeSO> packedDishesToSave)
-    //{
-    //    var ListInClass = new SaveJson();
-
-    //    //SaveList(ListInClass.SavedInventoryListJson,inventoryToSave,ListInClass,SavedInventoryList);
-    //    //SaveList(ListInClass.SavedInventoryListJson,inventoryToSave,ListInClass,SavedInventoryList);
-    //    //SaveList(ListInClass.SavedInventoryListJson,inventoryToSave,ListInClass,SavedInventoryList);
-
-    //}
-
-    //private void SaveList(List<object>jsonList,List<object>listToSave,SaveJson saveJson,string constString)
-    //{
-    //    jsonList = listToSave;
-    //    var outputString = JsonUtility.ToJson(saveJson);
-    //    PlayerPrefs.SetString(constString, outputString);
-    //}
-
+  
     private void SaveState(string nameOfState, int value)
     {
         PlayerPrefs.SetInt(nameOfState, value);
@@ -201,23 +84,18 @@ public class SaveSystem : MonoBehaviour
 
     private void Save()
     {
-        //SavePlayerPosition(_player.transform);
-        SaveState(PlayerPrefsOrderIsTaken, ConvertBoolToInt(_recievingOrdersPoint.OrderIsTaken));
-        SaveState(PlayerPrefsHasWood, ConvertBoolToInt(_player.HasWood));
-        SaveState(PlayerPrefsHasWater, ConvertBoolToInt(_player.HasWater));
-        SaveState(PlayerPrefsHasSword, ConvertBoolToInt(_player.HasSword));
-        SaveState(PlayerPrefsHasSeed, ConvertBoolToInt(_player.HasSeed));
+        //SaveState(PlayerPrefsHasWood, ConvertBoolToInt(_player.PlayerHands.HasWood));
+        //SaveState(PlayerPrefsHasWater, ConvertBoolToInt(_player.PlayerHands.HasWater));
+        //SaveState(PlayerPrefsHasSword, ConvertBoolToInt(_player.PlayerHands.HasSword));
+        //SaveState(PlayerPrefsHasSeed, ConvertBoolToInt(_player.PlayerHands.HasSeed));
 
-        SaveState(PlayerPrefsHasCow, ConvertBoolToInt(_player.HasCow));
-        SaveState(PlayerPrefsHasTomatoForSeeds, ConvertBoolToInt(_player.HasTomatoForSeeds));
-        SaveState(PlayerPrefsHasCabbageForSeeds, ConvertBoolToInt(_player.HasCabbageForSeeds));
+        //SaveState(PlayerPrefsHasCow, ConvertBoolToInt(_player.PlayerHands.HasCow));
+        //SaveState(PlayerPrefsHasTomatoForSeeds, ConvertBoolToInt(_player.PlayerHands.HasTomatoForSeeds));
+        //SaveState(PlayerPrefsHasCabbageForSeeds, ConvertBoolToInt(_player.PlayerHands.HasCabbageForSeeds));
 
-        SaveState(PlayerPrefsHasBackPack, ConvertBoolToInt(_player.HasBackPack));
+        //// SaveState(PlayerPrefsHasBackPack, ConvertBoolToInt(_player.HasBackPack));
 
-        SaveLists(_player.PlayerInventory.GetRecievedInventoryPrefabSOList(), _deliveryService.GetOrderedDishiesList(),
-            _deliveryService.GetPackedDishiesList());
-
-        _objectSaver.SaveContainers();
+        //_objectSaver.SaveContainers();
     }
 
     private bool ConvertIntToBool(int value)

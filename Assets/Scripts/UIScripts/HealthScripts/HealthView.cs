@@ -5,12 +5,7 @@ public class HealthView : MonoBehaviour
 {
     [SerializeField] private TMP_Text _healthChangedText;
 
-    private Player _player;
-
-    private void Awake()
-    {
-        _player = GameManager.Instance.GameEntryPoint.InitPlayer();
-    }
+    [SerializeField] private Player _player;
 
     private void OnEnable()
     {

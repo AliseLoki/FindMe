@@ -1,23 +1,24 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.UIElements;
 
 [RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerMovement : MonoBehaviour
-{
+{    
     private const string Horizontal = nameof(Horizontal);
     private const string Vertical = nameof(Vertical);
 
     [SerializeField] private int _speedBoostDuration = 5;
+
     [SerializeField] private float _moveSpeed = 5f;
     [SerializeField] private float _boostSpeed = 10f;
     [SerializeField] private float _rotateSpeed = 5f;
 
-    [SerializeField] private PlayerAnimation _playerAnimation;
+    [SerializeField] private Player _player;
+    [SerializeField] private GameStatesSwitcher _gameStatesSwitcher;
 
-    private PlayerInventory _playerInventory;
     private NavMeshAgent _navMeshAgent;
 
     private bool _isWalking;
@@ -28,22 +29,21 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
-        _playerInventory = GetComponent<PlayerInventory>();
     }
 
     private void OnEnable()
     {
-        _playerInventory.UsedSpeedBoost += OnUsedSpeedBoost;
+        _player.PlayerInventory.UsedSpeedBoost += OnUsedSpeedBoost;
     }
 
     private void OnDisable()
     {
-        _playerInventory.UsedSpeedBoost -= OnUsedSpeedBoost;
+        _player.PlayerInventory.UsedSpeedBoost -= OnUsedSpeedBoost;
     }
 
     private void Update()
     {
-        if (GameManager.Instance.IsGamePlaying())
+        if (_gameStatesSwitcher.IsGamePlaying())
         {
             if (!_isRunning)
             {
@@ -54,17 +54,16 @@ public class PlayerMovement : MonoBehaviour
                 Rotate(Move(_boostSpeed));
             }
         }
-        else if (GameManager.Instance.IsGameFinished())
+        else if (_gameStatesSwitcher.IsGameFinished())
         {
-            _playerAnimation.EnableIdle();
-            _navMeshAgent.isStopped = true;
-            _navMeshAgent.destination = transform.position;
+           StopMoving();
         }
     }
 
+
     public void LookAtTheWitch(Witch witch)
     {
-        _playerAnimation.EnableIdle();
+        _player.PlayerAnimation.EnableIdle();
         transform.LookAt(witch.transform.position);
     }
 
@@ -100,9 +99,16 @@ public class PlayerMovement : MonoBehaviour
     private IEnumerator SpeedBoostCountdown()
     {
         _isRunning = true;
-        _playerAnimation.UseRunningAnimation(_isWalking);
+        _player.PlayerAnimation.UseRunningAnimation(_isWalking);
         yield return new WaitForSeconds(_speedBoostDuration);
         _isRunning = false;
-        _playerAnimation.UseRunningAnimation(false);
+        _player.PlayerAnimation.UseRunningAnimation(false);
+    }
+
+    private void StopMoving()
+    {
+        _player.PlayerAnimation.EnableIdle();
+        _navMeshAgent.isStopped = true;
+        _navMeshAgent.destination = transform.position;
     }
 }

@@ -14,6 +14,8 @@ public class EducationUI : MonoBehaviour
     [SerializeField] private TMP_Text _startEducationButtonText;
     [SerializeField] private TMP_Text _skipEducationButtonText;
 
+    [SerializeField] private GameStatesSwitcher _gamesStatesSwitcher;
+
     private int _index = 0;
 
     private TextEqualizer _textEqualizer;
@@ -48,7 +50,7 @@ public class EducationUI : MonoBehaviour
 
     public void OnSkipEducationButtonPressed()
     {
-        GameManager.Instance.OnEducationCancelled();
+        _gamesStatesSwitcher.OnEducationCancelled();     
     }
 
     public void OnNextAdviceButtonPressed()

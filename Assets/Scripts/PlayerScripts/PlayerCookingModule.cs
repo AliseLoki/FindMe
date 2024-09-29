@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerCookingModule : MonoBehaviour
 {
-    private Player _player;
+    [SerializeField] private Player _player;
 
     private Food _food;
     private FoodSO _foodSO;
@@ -13,11 +13,6 @@ public class PlayerCookingModule : MonoBehaviour
     public FoodSO FoodSO => _foodSO;
 
     public CookingRecipeSO CookingRecipeSO => _cookingRecipeSO;
-
-    private void Awake()
-    {
-        _player = GetComponent<Player>();
-    }
 
     public void SetCookingRecipe(CookingRecipeSO cookingRecipeSO)
     {

@@ -5516,9 +5516,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4758380605734509572}
   - component: {fileID: 5230588331314797134}
-  - component: {fileID: 7616039916908869498}
   - component: {fileID: 595515026745781173}
   - component: {fileID: -2049067297805556161}
+  - component: {fileID: -4836551725316553799}
   m_Layer: 0
   m_Name: Witch
   m_TagString: Untagged
@@ -5565,21 +5565,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &7616039916908869498
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4033126931318528185}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce83fba9e14bdb04c8ec03071342607f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _pentagram: {fileID: 5896971870769556256}
-  _witchDeathScream: {fileID: 8300000, guid: 4b84851eda4996d4f912f85bd68ba322, type: 3}
-  _witchSteps: {fileID: 8300000, guid: 7e0c485274fe1e044a023717211b6b6d, type: 3}
 --- !u!136 &595515026745781173
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -5615,7 +5600,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 547a1801a0cfcc943a52e4b59e9002f2, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.18542086
+  m_Volume: 0.05228354
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -5699,6 +5684,23 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-4836551725316553799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4033126931318528185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce83fba9e14bdb04c8ec03071342607f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pentagram: {fileID: 0}
+  _witchDeathScream: {fileID: 8300000, guid: 4b84851eda4996d4f912f85bd68ba322, type: 3}
+  _witchSteps: {fileID: 0}
+  _player: {fileID: 0}
+  _music: {fileID: 0}
 --- !u!1 &4046720174529258332
 GameObject:
   m_ObjectHideFlags: 0

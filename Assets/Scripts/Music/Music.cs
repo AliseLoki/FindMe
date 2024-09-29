@@ -4,21 +4,18 @@ using UnityEngine.UI;
 [RequireComponent(typeof(AudioSource))]
 public class Music : MonoBehaviour
 {
-    private const string PlayerPrefsMusicVolume = nameof(PlayerPrefsMusicVolume);
-
     [SerializeField] private MusicSO _musicSO;
     [SerializeField] private Slider _musicVolumeSlider;
+    [SerializeField] private Player _player;
+    [SerializeField] private Saver _saver;
 
-    private float _defaultMusicVolumeValue = 0.3f;
     private bool _isForestMusicPlaying;
     private AudioSource _audioSource;
-    private Player _player;
-
+   
     private void Awake()
     {
-        _player = GameManager.Instance.GameEntryPoint.InitPlayer();
         _audioSource = GetComponent<AudioSource>();
-        _musicVolumeSlider.value = PlayerPrefs.GetFloat(PlayerPrefsMusicVolume, _defaultMusicVolumeValue);
+        _musicVolumeSlider.value = _saver.LoadMusicVolume();
         ChangeVolume();
         PlayStartMusic();
     }
@@ -65,8 +62,7 @@ public class Music : MonoBehaviour
     public void ChangeMusicVolume()
     {
         ChangeVolume();
-        PlayerPrefs.SetFloat(PlayerPrefsMusicVolume, _musicVolumeSlider.value);
-        PlayerPrefs.Save();
+        _saver.SaveMusicVolume(_musicVolumeSlider.value);
     }
 
     public void PlayWitchAppearMusic()

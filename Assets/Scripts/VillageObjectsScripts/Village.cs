@@ -11,15 +11,15 @@ public class Village : MonoBehaviour
     [SerializeField] private AudioClip _audioClip;
 
     private bool _isGivenReward;
-    private DeliveryService _deliveryService;
+    [SerializeField] private DeliveryService _deliveryService;
     private AudioSource _audioSource;
-    private TipsViewPanel _tipsViewPanel;
+    [SerializeField] private TipsViewPanel _tipsViewPanel;
+    [SerializeField] private Player _player;
+    [SerializeField] private PlayerInventory _playerInventory;
 
     private void Awake()
     {
         _audioSource = GetComponent<AudioSource>();
-        _deliveryService = GameManager.Instance.GameEntryPoint.InitDeliveryService();
-        _tipsViewPanel = GameManager.Instance.GameEntryPoint.InitTipsViewPanel();
     }
 
     private void OnEnable()
@@ -34,7 +34,8 @@ public class Village : MonoBehaviour
 
     protected virtual void GiveReward()
     {
-        Instantiate(_inventoryPrefab, _spawnPoint.position, Quaternion.identity);
+        var rewardForDelivery = Instantiate(_inventoryPrefab, _spawnPoint.position, Quaternion.identity);
+        rewardForDelivery.InitLinks(_tipsViewPanel, _player, _playerInventory);
         _effect.Play();
     }
 
@@ -42,7 +43,7 @@ public class Village : MonoBehaviour
     {
         if (CheckIfDelivered() && !_isGivenReward)
         {
-            _audioSource.PlayOneShot(_audioClip);         
+            _audioSource.PlayOneShot(_audioClip);
             GiveReward();
             _tipsViewPanel.ShowTakeRewardTip();
             _isGivenReward = true;

@@ -55,7 +55,7 @@ public class RussianOven : Table
             _cookCoroutine = StartCoroutine(CookingCountDownRoutine());
             TipsViewPanel.ShowReadynessInstruction();
         }
-        else if (!_hasFire && Player.HasWood)
+        else if (!_hasFire && Player.PlayerHands.HasWood)
         {
             _hasFire = true;
             _placeForWood.LightFire(true);
@@ -63,7 +63,7 @@ public class RussianOven : Table
             Player.ResetWoodPrefab();
             TipsViewPanel.ShowCanUseOvenTip();
         }
-        else if (!_hasFire && !Player.HasWood)
+        else if (!_hasFire && !Player.PlayerHands.HasWood)
         {
             TipsViewPanel.ShowNoWoodsTip();
         }

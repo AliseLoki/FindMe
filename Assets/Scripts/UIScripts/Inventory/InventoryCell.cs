@@ -8,15 +8,17 @@ public class InventoryCell : MonoBehaviour
     [SerializeField] private Image _inventoryCellImage;
 
     private InventoryPrefabSO _inventoryPrefabSO;
-    private Player _player;
-    private TipsViewPanel _tipsViewPanel;
+    [SerializeField] private Player _player;
+    [SerializeField] private TipsViewPanel _tipsViewPanel;
+    [SerializeField] private GameStatesSwitcher _gameStatesSwitcher;
 
     public event Action<InventoryPrefabSO> InventoryCellButtonPressed;
-
-    private void Awake()
+  
+    public void InitLinks(Player player,GameStatesSwitcher gameStatesSwitcher,TipsViewPanel tipsViewPanel)
     {
-        _player = GameManager.Instance.GameEntryPoint.InitPlayer();
-        _tipsViewPanel = GameManager.Instance.GameEntryPoint.InitTipsViewPanel();
+        _player = player;
+        _gameStatesSwitcher = gameStatesSwitcher;
+        _tipsViewPanel = tipsViewPanel;
     }
 
     public void SetInventoryCellImage(InventoryPrefabSO inventoryPrefabSO)
@@ -27,11 +29,11 @@ public class InventoryCell : MonoBehaviour
 
     public void OnInventoryCellButtonPressed()
     {
-        if (!_player.HasSomethingInHands)
+        if (!_player.PlayerHands.HasSomethingInHands)
         {
             if (_inventoryPrefabSO.InventoryPrefab as Necronomicon)
             {
-                if (!GameManager.Instance.IsWitchAppeared())
+                if (!_gameStatesSwitcher.IsWitchAppeared())
                 {
                     _tipsViewPanel.ShowItIsNotRightTimeTip();
                 }

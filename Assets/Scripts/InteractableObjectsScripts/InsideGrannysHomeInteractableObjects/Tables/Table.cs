@@ -8,19 +8,19 @@ public abstract class Table : Container
    
     protected override void UseObject()
     {
-        if (FoodSO == null && Player.HasSomethingInHands)
+        if (FoodSO == null && Player.PlayerHands.HasSomethingInHands)
         {
             PutFood();
         }
-        else if (FoodSO != null && !Player.HasSomethingInHands)
+        else if (FoodSO != null && !Player.PlayerHands.HasSomethingInHands)
         {
             DoSomething();
         }
-        else if (FoodSO != null && Player.HasSomethingInHands)
+        else if (FoodSO != null && Player.PlayerHands.HasSomethingInHands)
         {
             TipsViewPanel.ShowHandsAreFullTip();
         }
-        else if(FoodSO == null && !Player.HasSomethingInHands)
+        else if(FoodSO == null && !Player.PlayerHands.HasSomethingInHands)
         {
             TipsViewPanel.ShowNothingInHandsTip();
         }

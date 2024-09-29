@@ -29,8 +29,10 @@ public class CanvasUI : MonoBehaviour
     private float _timer;
     private float _timerMax = 60f;
 
-    private Player _player;
-    private LanguageSwitcher _languageSwitcher;
+    [SerializeField] private Player _player;
+    [SerializeField] private LanguageSwitcher _languageSwitcher;
+    [SerializeField] private GameStatesSwitcher _gameStatesSwitcher;
+
     private YandexLeaderboard _yandexLeaderboard;
     private CanvasUIButtonsController _canvasUIButtonController;
 
@@ -39,19 +41,18 @@ public class CanvasUI : MonoBehaviour
     private void Awake()
     {
         _timer = _timerMax;
-        _player = GameManager.Instance.GameEntryPoint.InitPlayer();
+
         _yandexLeaderboard = GetComponent<YandexLeaderboard>();
         _canvasUIButtonController = GetComponent<CanvasUIButtonsController>();
-        _languageSwitcher = GameManager.Instance.GameEntryPoint.InitLanguageSwitcher();
         _languageSwitcher.AllSOWereGiven += OnAllSOWereGiven;
     }
 
     private void OnEnable()
     {
-        GameManager.Instance.WaitingToStartEnabled += OnWaitingToStartEnabled;
-        GameManager.Instance.CountdownToStartEnabled += OnCountdownToStartEnabled;
-        GameManager.Instance.EducationPlayingEnabled += OnEducationPlayingEnabled;
-        GameManager.Instance.EducationStarted += OnEducationStarted;
+        _gameStatesSwitcher.WaitingToStartEnabled += OnWaitingToStartEnabled;
+        _gameStatesSwitcher.CountdownToStartEnabled += OnCountdownToStartEnabled;
+        _gameStatesSwitcher.EducationPlayingEnabled += OnEducationPlayingEnabled;
+        _gameStatesSwitcher.EducationStarted += OnEducationStarted;
 
         _player.PlayerEventsHandler.PlayerHasDied += OnPlayerhasDied;
         _player.PlayerEventsHandler.EnteredGrannysHome += PlayerEnteredGrannysHome;
@@ -59,10 +60,10 @@ public class CanvasUI : MonoBehaviour
 
     private void OnDisable()
     {
-        GameManager.Instance.WaitingToStartEnabled -= OnWaitingToStartEnabled;
-        GameManager.Instance.CountdownToStartEnabled -= OnCountdownToStartEnabled;
-        GameManager.Instance.EducationPlayingEnabled -= OnEducationPlayingEnabled;
-        GameManager.Instance.EducationStarted -= OnEducationStarted;
+        _gameStatesSwitcher.WaitingToStartEnabled -= OnWaitingToStartEnabled;
+        _gameStatesSwitcher.CountdownToStartEnabled -= OnCountdownToStartEnabled;
+        _gameStatesSwitcher.EducationPlayingEnabled -= OnEducationPlayingEnabled;
+        _gameStatesSwitcher.EducationStarted -= OnEducationStarted;
 
         _languageSwitcher.AllSOWereGiven -= OnAllSOWereGiven;
 
@@ -149,7 +150,7 @@ public class CanvasUI : MonoBehaviour
         Agava.YandexGames.InterstitialAd.Show(OnOpen, OnClose);
 #endif
             _canShowAd = false;
-        }        
+        }
     }
 
     private void OnWaitingToStartEnabled()
@@ -215,7 +216,7 @@ public class CanvasUI : MonoBehaviour
     {
         _testFocus.StopGame(false);
         _isAdPlaying = false;
-        _canvasUIButtonController.ActivateShowAdButton();       
+        _canvasUIButtonController.ActivateShowAdButton();
     }
 
     private IEnumerator FadeRoutine()

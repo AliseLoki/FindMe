@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
 
 public class Spawner : MonoBehaviour
@@ -16,14 +15,13 @@ public class Spawner : MonoBehaviour
     [SerializeField] private Transform _woodSpawnPlace;
     [SerializeField] private PresentFromAd _presentFromAd;
 
+    [SerializeField] private Player _player;
+    [SerializeField] private PlayerInventory _playerInventory;
+    [SerializeField] private GameStatesSwitcher _gameStatesSwitcher;
+    [SerializeField] private TipsViewPanel _tipsViewPanel;
+
     private Vector3 _offset = new Vector3(0, -1.7f, 2);
     private bool _haveBeenSpawned;
-    private Player _player;
-
-    private void Awake()
-    {
-        _player = GameManager.Instance.GameEntryPoint.InitPlayer();
-    }
 
     private void OnEnable()
     {
@@ -32,7 +30,7 @@ public class Spawner : MonoBehaviour
 
     private void Start()
     {
-        if (GameManager.Instance.IsFirstStart)
+        if (_gameStatesSwitcher.IsFirstStart)
         {
             Instantiate(_wood, _woodSpawnPlace.position, Quaternion.identity);
         }
@@ -51,31 +49,32 @@ public class Spawner : MonoBehaviour
 
     public InventoryPrefabSO SpawnSwordInHands()
     {
-       var sword = Instantiate(_sword);
-      return  sword.DisableCollider();
+        var sword = Instantiate(_sword);
+        return sword.DisableCollider();
     }
 
     public InventoryPrefabSO SpawnCowInHands()
     {
         var cow = Instantiate(_cow);
-       return cow.DisableCollider();
+        return cow.DisableCollider();
     }
 
-    public InventoryPrefabSO SpawnCabbageForSeedsInHands( )
+    public InventoryPrefabSO SpawnCabbageForSeedsInHands()
     {
         var cabbageForSeeds = Instantiate(_cabbageForSeeds);
-       return cabbageForSeeds.DisableCollider();    
+        return cabbageForSeeds.DisableCollider();
     }
 
     public InventoryPrefabSO SpawnTomatoForSeedsInHands()
     {
         var tomatoForSeeds = Instantiate(_tomatoForSeeds);
-       return tomatoForSeeds.DisableCollider();
+        return tomatoForSeeds.DisableCollider();
     }
 
     public void GiveRewardForWatchingAd()
     {
-        Instantiate(_presentFromAd, _player.HandlePoint.position + _offset, Quaternion.identity);
+        var presentFromAd = Instantiate(_presentFromAd, _player.HandlePoint.position + _offset, Quaternion.identity);
+        presentFromAd.InitLinks(_tipsViewPanel, _player, _playerInventory);
     }
 
     private void SpawnObjects()
@@ -84,9 +83,10 @@ public class Spawner : MonoBehaviour
         {
             foreach (Transform spawnPlace in _spawnPlaces)
             {
-                foreach (var prefab in _interactableObjects)
+                foreach (var interactableObject in _interactableObjects)
                 {
-                    Instantiate(prefab, CalculateSpawnPosition(spawnPlace), Quaternion.identity);
+                    var newSpawnedInteractableObject = Instantiate(interactableObject, CalculateSpawnPosition(spawnPlace), Quaternion.identity);
+                    newSpawnedInteractableObject.InitLinks(_tipsViewPanel, _player, _playerInventory);
                 }
             }
 

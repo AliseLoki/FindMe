@@ -1,75 +1,26 @@
-using System;
 using UnityEngine;
 
-[RequireComponent(typeof(AudioSource))]
-[RequireComponent(typeof(PlayerMovement))]
-[RequireComponent(typeof(PlayerEvents))]
-[RequireComponent(typeof(PlayerCookingModule))]
-[RequireComponent(typeof(PlayerInventory))]
 public class Player : MonoBehaviour
 {
-    [SerializeField] private bool _hasSomethingInHands;
-
     [SerializeField] private Transform _handlePoint;
-
     [SerializeField] private Transform _backpack;
-
     [SerializeField] private Transform _bucketOfWater;
-
     [SerializeField] private DeliveryService _deliveryService;
-
     [SerializeField] private TipsViewPanel _tipsViewPanel;
-
     [SerializeField] private LastVillage _lastVillage;
 
-    [SerializeField] private AudioClip _takingWoodSoundEffect;
-
-    [SerializeField] private AudioClip _getHurt;
-
-    [SerializeField] private AudioClip _deathCry;
-
-    [SerializeField] private ParticleSystem _hitEffect;
-
-
-    [SerializeField] private SaveSystem _saveSystem;
-    [SerializeField] private Spawner _spawner;
-
-    private bool _hasBackPack;
-    private bool _hasWood;
-    private bool _hasSeed;
-    private bool _hasWater;
-    private bool _hasSword;
-    private bool _hasNecronomicon;
-
-    private bool _hasCow;
-    private bool _hasCabbageForSeeds;
-    private bool _hasTomatoForSeeds;
+    [SerializeField] private Saver _saver;
+    [SerializeField] private GameStatesSwitcher _gameStatesSwitcher;
 
     private InventoryPrefabSO _inventoryPrefabSO;
-    private PlayerEvents _playerEvents;
-    private PlayerCookingModule _playerCookingModule;
-    private PlayerInventory _playerInventory;
-    private PlayerMovement _playerMovement;
-    private AudioSource _audioSource;
 
-    public bool HasSomethingInHands => _hasSomethingInHands;
-
-    public bool HasBackPack => _hasBackPack;
-
-    public bool HasWood => _hasWood;
-
-    public bool HasSeed => _hasSeed;
-
-    public bool HasWater => _hasWater;
-
-    public bool HasSword => _hasSword;
-
-    public bool HasNecronomicon => _hasNecronomicon;
-
-
-    public bool HasCow => _hasCow;
-    public bool HasTomatoForSeeds => _hasTomatoForSeeds;
-    public bool HasCabbageForSeeds => _hasCabbageForSeeds;
+    [SerializeField] private PlayerEvents _playerEvents;
+    [SerializeField] private PlayerCookingModule _playerCookingModule;
+    [SerializeField] private PlayerInventory _playerInventory;
+    [SerializeField] private PlayerMovement _playerMovement;
+    [SerializeField] private PlayerHands _playerHands;
+    [SerializeField] private PlayerSoundEffects _playerSoundEffects;
+    [SerializeField] private PlayerAnimation _playerAnimation;
 
     public PlayerMovement PlayerMovement => _playerMovement;
 
@@ -79,28 +30,23 @@ public class Player : MonoBehaviour
 
     public PlayerInventory PlayerInventory => _playerInventory;
 
+    public PlayerHands PlayerHands => _playerHands;
+
+    public PlayerSoundEffects PlayerSoundEffects => _playerSoundEffects;
+
+    public PlayerAnimation PlayerAnimation => _playerAnimation;
+
     public Transform HandlePoint => _handlePoint;
 
-    private void Awake()
-    {
-        _audioSource = GetComponent<AudioSource>();
-        _playerEvents = GetComponent<PlayerEvents>();
-        _playerCookingModule = GetComponent<PlayerCookingModule>();
-        _playerInventory = GetComponent<PlayerInventory>();
-        _playerMovement = GetComponent<PlayerMovement>();
-    }
 
     private void Start()
     {
-        _hasWood = _saveSystem.LoadHasWood();
-        _hasBackPack = _saveSystem.LoadHasBackPack();
-        _hasWater = _saveSystem.LoadHasWater();
-        _hasSword = _saveSystem.LoadHasSword();
-        _hasSeed = _saveSystem.LoadHasSeed();
-        _hasCow = _saveSystem.LoadHasCow();
-        _hasTomatoForSeeds = _saveSystem.LoadHasTomatoForSeeds();
-        _hasCabbageForSeeds = _saveSystem.LoadHasCabbageForSeeds();
-        Load();
+        if (!_gameStatesSwitcher.IsFirstStart)
+        {
+            transform.position = _saver.LoadPlayerPosition();
+        }
+        //  InitAllBooleans();
+        //Load();
     }
 
     private void OnEnable()
@@ -117,29 +63,29 @@ public class Player : MonoBehaviour
         _lastVillage.WitchAppeared -= OnWitchAppeared;
     }
 
-    public void PlayDeathSound()
-    {
-        PlaySoundEffect(_deathCry);
-    }
+    //непонятно это просто сокращенная запись метода, без кудрявых скобок?
+    //public void InitState(PlayerStatesToSave playerState) => StatesToSave = playerState;
 
-    public void PlayHitEffects()
-    {
-        PlaySoundEffect(_getHurt);
-        _hitEffect.Play();
-    }
+    //public void InitAllBooleans()
+    //{
+    //    _hasWood = _saveSystem.LoadHasWood();
+    //    _hasBackPack = _saveSystem.LoadHasBackPack();
+    //    _hasWater = _saveSystem.LoadHasWater();
+    //    _hasSword = _saveSystem.LoadHasSword();
+    //    _hasSeed = _saveSystem.LoadHasSeed();
+    //    _hasCow = _saveSystem.LoadHasCow();
+    //    _hasTomatoForSeeds = _saveSystem.LoadHasTomatoForSeeds();
+    //    _hasCabbageForSeeds = _saveSystem.LoadHasCabbageForSeeds();
+    //}
 
-    public void PlaySoundEffect(AudioClip audioClip)
-    {
-        _audioSource.PlayOneShot(audioClip);
-    }
 
     public void SetHasWood(bool hasWood)
     {
-        _hasWood = hasWood;
+        _playerHands.HasWood = hasWood;
 
-        if (_hasWood == true)
+        if (_playerHands.HasWood == true)
         {
-            PlaySoundEffect(_takingWoodSoundEffect);
+            _playerSoundEffects.PlayTakingWoodSoundEffect();
         }
     }
 
@@ -153,39 +99,39 @@ public class Player : MonoBehaviour
     public void ShowOrHideBackPack(bool isActive)
     {
         _backpack.gameObject.SetActive(isActive);
-        _hasBackPack = isActive;
+        _playerHands.HasBackPack = isActive;
     }
 
     public void SetHasSomethingInHands(bool hasSomethingInhands)
     {
-        _hasSomethingInHands = hasSomethingInhands;
+        _playerHands.HasSomethingInHands = hasSomethingInhands;
     }
 
     public void TakeSeedInHands(InventoryPrefabSO inventoryPrefabSO)
     {
         TakeInvenoryPrefabInHands(inventoryPrefabSO);
-        _hasSeed = true;
+        _playerHands.HasSeed = true;
         _tipsViewPanel.ShowBringmeToPatchTip();
     }
 
     public void TakeSwordInHands(InventoryPrefabSO inventoryPrefabSO)
     {
         TakeInvenoryPrefabInHands(inventoryPrefabSO);
-        _hasSword = true;
+        _playerHands.HasSword = true;
         _tipsViewPanel.ShowYouCankillTheWolfNowTip();
     }
 
     public void TakeNecronomiconInHands(InventoryPrefabSO inventoryPrefabSO)
     {
         TakeInvenoryPrefabInHands(inventoryPrefabSO);
-        _hasNecronomicon = true;
+        _playerHands.HasNecronomicon = true;
     }
 
     public void LandSeed()
     {
         CheckWitchSeed(_inventoryPrefabSO, false);
         Destroy(_handlePoint.GetChild(0).gameObject);
-        _hasSeed = false;
+        _playerHands.HasSeed = false;
         SetHasSomethingInHands(false);
         _inventoryPrefabSO = null;
     }
@@ -197,56 +143,56 @@ public class Player : MonoBehaviour
 
     public void TakeWater()
     {
-        _hasWater = true;
-        _hasSomethingInHands = true;
+        _playerHands.HasWater = true;
+        _playerHands.HasSomethingInHands = true;
         var waterInHands = Instantiate(_bucketOfWater, HandlePoint, true);
         waterInHands.transform.position = HandlePoint.position;
     }
 
     public void GiveWater()
     {
-        _hasWater = false;
-        _hasSomethingInHands = false;
+        _playerHands.HasWater = false;
+        _playerHands.HasSomethingInHands = false;
         Destroy(_handlePoint.GetChild(0).gameObject);
     }
 
-    private void Load()
-    {
-        if (_hasBackPack == true)
-        {
-            ShowOrHideBackPack(true);
-        }
+    //private void Load()
+    //{
+    //    if (_hasBackPack == true)
+    //    {
+    //        ShowOrHideBackPack(true);
+    //    }
 
-        if (_hasWood == true)
-        {
-            _spawner.SpawnWoodInHands();
-        }
-        else if (_hasWater == true)
-        {
-            TakeWater();
-        }
-        else if (_hasSword == true)
-        {
-            _inventoryPrefabSO = _spawner.SpawnSwordInHands();
-        }
-        else if (_hasCow == true)
-        {
-            _inventoryPrefabSO = _spawner.SpawnCowInHands();
-        }
-        else if (_hasTomatoForSeeds == true)
-        {
-            _inventoryPrefabSO = _spawner.SpawnTomatoForSeedsInHands();
-        }
-        else if (_hasCabbageForSeeds == true)
-        {
-            _inventoryPrefabSO = _spawner.SpawnCabbageForSeedsInHands();
-        }
-    }
+    //    if (_hasWood == true)
+    //    {
+    //        _spawner.SpawnWoodInHands();
+    //    }
+    //    else if (_hasWater == true)
+    //    {
+    //        TakeWater();
+    //    }
+    //    else if (_hasSword == true)
+    //    {
+    //        _inventoryPrefabSO = _spawner.SpawnSwordInHands();
+    //    }
+    //    else if (_hasCow == true)
+    //    {
+    //        _inventoryPrefabSO = _spawner.SpawnCowInHands();
+    //    }
+    //    else if (_hasTomatoForSeeds == true)
+    //    {
+    //        _inventoryPrefabSO = _spawner.SpawnTomatoForSeedsInHands();
+    //    }
+    //    else if (_hasCabbageForSeeds == true)
+    //    {
+    //        _inventoryPrefabSO = _spawner.SpawnCabbageForSeedsInHands();
+    //    }
+    //}
 
     private void OnWolfHasBeenKilled()
     {
-        _hasSword = false;
-        _hasSomethingInHands = false;
+        _playerHands.HasSword = false;
+        _playerHands.HasSomethingInHands = false;
         Destroy(_handlePoint.GetChild(0).gameObject);
     }
 
@@ -294,15 +240,15 @@ public class Player : MonoBehaviour
     {
         if (inventoryPrefabSO.InventoryPrefab as Cow)
         {
-            _hasCow = isTrue;
+            _playerHands.HasCow = isTrue;
         }
         else if (inventoryPrefabSO.InventoryPrefab as CabbageForSeeds)
         {
-            _hasCabbageForSeeds = isTrue;
+            _playerHands.HasCabbageForSeeds = isTrue;
         }
         else if (inventoryPrefabSO.InventoryPrefab as TomatoForSeeds)
         {
-            _hasTomatoForSeeds = isTrue;
+            _playerHands.HasTomatoForSeeds = isTrue;
         }
     }
 }

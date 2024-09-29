@@ -4,25 +4,21 @@ using UnityEngine.UI;
 
 public class SoundEffectsController : MonoBehaviour
 {
-    private const string PlayerPrefsSoundEffectsVolume = nameof(PlayerPrefsSoundEffectsVolume);
+    [SerializeField] private Slider _slider;
+    [SerializeField] private Saver _saver;
 
     [SerializeField] private List<AudioSource> _allSoundEffectsAudioSources;
 
-    [SerializeField] private Slider _slider;
-
-    private float _defaultSoundEffectVolumeValue = 0.5f;
-
     private void Awake()
     {
-        _slider.value = PlayerPrefs.GetFloat(PlayerPrefsSoundEffectsVolume, _defaultSoundEffectVolumeValue);
+        _slider.value = _saver.LoadSoundEffectVolume();
         ChangeVolumeForAllSoundEffectsAudioSources();
     }
 
     public void ChangeSoundEffectsVolume()
     {
         ChangeVolumeForAllSoundEffectsAudioSources();
-        PlayerPrefs.SetFloat(PlayerPrefsSoundEffectsVolume, _slider.value);
-        PlayerPrefs.Save();
+        _saver.SaveSoundEffectVolume(_slider.value);
     }
 
     private void ChangeVolumeForAllSoundEffectsAudioSources()

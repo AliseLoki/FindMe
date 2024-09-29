@@ -17,6 +17,8 @@ public class CanvasUIButtonsController : MonoBehaviour
 
     [SerializeField] private Button _showAdButton;
 
+    [SerializeField] private GameStatesSwitcher _gameStatesSwitcher;
+
     private YandexLeaderboard _yandexLeaderboard;
     private CanvasUI _canvasUI;
 
@@ -26,7 +28,7 @@ public class CanvasUIButtonsController : MonoBehaviour
         _yandexLeaderboard = GetComponent<YandexLeaderboard>();
 
         _firstStartPanelViewButton.onClick.AddListener(_canvasUI.OnFirstStartPanelViewButtonPressed);
-        _firstStartPanelViewButton.onClick.AddListener(GameManager.Instance.OnFirstStartPanelViewButtonPressed);
+        _firstStartPanelViewButton.onClick.AddListener(_gameStatesSwitcher.OnFirstStartPanelViewButtonPressed);
 
         _startEducationButton.onClick.AddListener(_canvasUI.OnStartEducationButtonPressed);
 

@@ -10,18 +10,15 @@ public class DeliveryServiceView : MonoBehaviour
     [SerializeField] private Transform _recipiesView;
     [SerializeField] private TMP_Text _destinationPointName;
 
-    private DeliveryService _deliveryService;
-    private CookingTable _cookingTable;
+    [SerializeField] private DeliveryService _deliveryService;
+    [SerializeField] private CookingTable _cookingTable;
+
+    [SerializeField] private Player _player;
+    [SerializeField] private TipsViewPanel _tipsViewPanel;
 
     private bool _hasRecievedOrders;
 
     public event Action<CookingRecipeSO> DishPrepared;
-
-    private void Awake()
-    {
-        _deliveryService = GameManager.Instance.GameEntryPoint.InitDeliveryService();
-        _cookingTable = GameManager.Instance.GameEntryPoint.InitCookingTable();
-    }
 
     private void OnEnable()
     {
@@ -40,6 +37,22 @@ public class DeliveryServiceView : MonoBehaviour
         _deliveryService.DishHasBeenDelivered -= OnDishHasBeenDelivered;
         _deliveryService.AllDishesHaveBeenDelivered -= OnAllDishesHaveBeenDelivered;
         _cookingTable.CanBeCookedCookingRecipeSO -= OnCanBeCookedCookingRecipeSO;
+    }
+
+    public void InitDishesFromSavedList(List<CookingRecipeSO> dishesList)
+    {
+
+        if (dishesList.Count > 0)
+        {
+            _hasRecievedOrders = true;
+        }
+
+        foreach (var dish in dishesList)
+        {
+            var newTemplate = Instantiate(_recipeTemplate, _recipesList);
+            newTemplate.InitLinks(_player, _tipsViewPanel);
+            newTemplate.SetCookingRecipeSO(dish);
+        }
     }
 
     private void OnDishHasBeenPacked(CookingRecipeSO cookingRecipeSO)
@@ -96,6 +109,7 @@ public class DeliveryServiceView : MonoBehaviour
             foreach (CookingRecipeSO cookingRecipeSO in ordersToShow)
             {
                 var newTemplate = Instantiate(_recipeTemplate, _recipesList);
+                newTemplate.InitLinks(_player, _tipsViewPanel);
                 newTemplate.SetCookingRecipeSO(cookingRecipeSO);
             }
 

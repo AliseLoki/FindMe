@@ -2,11 +2,15 @@ using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
+public class GameStatesSwitcher : MonoBehaviour
 {
-    public static GameManager Instance { get; private set; }
-
     private const string PlayerPrefsIsFirstStart = nameof(PlayerPrefsIsFirstStart);
+
+    [SerializeField] private Player _player;
+    [SerializeField] private TipsViewPanel _tipsViewPanel;
+
+    [SerializeField] private LastVillage _lastVillage;
+    [SerializeField] private EducationUI _educationUI;
 
     public enum GameState
     {
@@ -21,15 +25,7 @@ public class GameManager : MonoBehaviour
     private int _finalGameOverSceneIndex = 2;
     private int _winSceneIndex = 3;
 
-    private Player _player;
     private Witch _witch;
-    private TipsViewPanel _tipsViewPanel;
-
-    [SerializeField] private EntryPoint _gameEntryPoint;
-    [SerializeField] private LastVillage _lastVillage;
-    [SerializeField] private EducationUI _educationUI;
-
-    public EntryPoint GameEntryPoint => _gameEntryPoint;
 
     private GameState _gameState;
 
@@ -55,10 +51,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;
-        _player = _gameEntryPoint.InitPlayer();
         SetFirstStart(PlayerPrefs.GetInt(PlayerPrefsIsFirstStart, 1));
-        _tipsViewPanel = _gameEntryPoint.InitTipsViewPanel();
     }
 
     private void OnEnable()
@@ -147,14 +140,13 @@ public class GameManager : MonoBehaviour
             case GameState.GamePlaying:
 
                 _educationUI.gameObject.SetActive(false);
-
                 SaveState(0, false);
 
                 if (_isGameOver)
                 {
                     _gameState = GameState.GameOver;
                 }
-               
+
                 if (_hasWitchAppeared)
                 {
                     _gameState = GameState.WitchAppeared;
@@ -249,7 +241,6 @@ public class GameManager : MonoBehaviour
     {
         _isFirstStart = isTrue;
         PlayerPrefs.SetInt(PlayerPrefsIsFirstStart, value);
-        PlayerPrefs.Save();
     }
 
     private void SetFirstStart(int value)

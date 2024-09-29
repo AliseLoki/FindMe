@@ -6,12 +6,10 @@ public class InventoryView : MonoBehaviour
     [SerializeField] private InventoryCell _inventoryCell;
     [SerializeField] private Transform _listOfInventoryPrefabImages;
 
-    private PlayerInventory _playerInventory;
-
-    private void Awake()
-    {
-        _playerInventory = GameManager.Instance.GameEntryPoint.InitPlayerInventory();             
-    }
+    [SerializeField] private PlayerInventory _playerInventory;
+    [SerializeField] private Player _player;
+    [SerializeField] private GameStatesSwitcher _gameStatesSwitcher;
+    [SerializeField] private TipsViewPanel _tipsViewPanel;
 
     private void Start()
     {
@@ -32,6 +30,7 @@ public class InventoryView : MonoBehaviour
     private void OnInventoryPrefabSORecieved(InventoryPrefabSO inventoryPrefabSO)
     {
         var newInventoryCell = Instantiate(_inventoryCell, _listOfInventoryPrefabImages);
+        newInventoryCell.InitLinks(_player,_gameStatesSwitcher,_tipsViewPanel);
         newInventoryCell.SetInventoryCellImage(inventoryPrefabSO);
         newInventoryCell.InventoryCellButtonPressed += OnInventoryCellButtonPressed;
     }

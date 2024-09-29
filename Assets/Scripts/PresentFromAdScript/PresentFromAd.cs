@@ -6,7 +6,7 @@ public class PresentFromAd : InteractableObject
     [SerializeField] private ParticleSystem _confettiEffect;
 
     [SerializeField] private List<GameObject> _packing;
-    [SerializeField] private List<GameObject> _presentsList = new();
+    [SerializeField] private List<InteractableObject> _presentsList = new();
 
     protected override void UseObject()
     {
@@ -18,7 +18,8 @@ public class PresentFromAd : InteractableObject
     private void ChooseRandomPresent()
     {
         int index = Random.Range(0, _presentsList.Count);
-        Instantiate(_presentsList[index], transform.position, Quaternion.identity);
+        var randomPresent = Instantiate(_presentsList[index], transform.position, Quaternion.identity);
+        randomPresent.InitLinks(TipsViewPanel, Player, PlayerInventory);
     }
 
     private void PlayEffects()

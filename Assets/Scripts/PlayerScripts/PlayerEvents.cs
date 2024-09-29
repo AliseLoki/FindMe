@@ -6,9 +6,11 @@ public class PlayerEvents : MonoBehaviour
     private const string PlayerPrefsGoldAmount = nameof(PlayerPrefsGoldAmount);
     private const string PlayerPrefsHealthAmount = nameof(PlayerPrefsHealthAmount);
 
-    [SerializeField] private AudioClip _takingGoldSoundEffect;
-    [SerializeField] private PlayerAnimation _playerAnimation;
+    [SerializeField] private Player _player;
     [SerializeField] private PlayerRagdollController _playerRagdollController;
+
+    [SerializeField] private GameStatesSwitcher _gameStatesSwitcher;
+    [SerializeField] private TipsViewPanel _tipsViewPanel;
 
     private int _gold;
     private int _goldDefaultValue = 0;
@@ -16,9 +18,6 @@ public class PlayerEvents : MonoBehaviour
     private int _maxhealth = 10;
 
     private bool _isDead;
-
-    private Player _player;
-    private TipsViewPanel _tipsViewPanel;
 
     public int Health => _health;
 
@@ -44,15 +43,9 @@ public class PlayerEvents : MonoBehaviour
 
     public event Action WitchHasBeenAttacked;
 
-    private void Awake()
-    {
-        _player = GetComponent<Player>();
-        _tipsViewPanel = GameManager.Instance.GameEntryPoint.InitTipsViewPanel();
-    }
-
     private void Start()
     {
-        if (!GameManager.Instance.IsFirstStart)
+        if (!_gameStatesSwitcher.IsFirstStart)
         {
             _gold = PlayerPrefs.GetInt(PlayerPrefsGoldAmount, _goldDefaultValue);
             GoldAmountChanged?.Invoke(_gold);
@@ -60,7 +53,7 @@ public class PlayerEvents : MonoBehaviour
             _health = PlayerPrefs.GetInt(PlayerPrefsHealthAmount, _maxhealth);
             HealthChanged?.Invoke(_health);
         }
-        else if (GameManager.Instance.IsFirstStart)
+        else if (_gameStatesSwitcher.IsFirstStart)
         {
             _health = _maxhealth;
             HealthChanged?.Invoke(_health);
@@ -133,7 +126,7 @@ public class PlayerEvents : MonoBehaviour
 
     public void OnGoldAmountChanged(int gold)
     {
-        _player.PlaySoundEffect(_takingGoldSoundEffect);
+        _player.PlayerSoundEffects.PlayTakingGoldSoundEffect();
         _gold += gold;
         SaveGoldAmount(_gold);
     }
@@ -144,20 +137,20 @@ public class PlayerEvents : MonoBehaviour
 
         if (health < 0)
         {
-            _player.PlayHitEffects();
+            _player.PlayerSoundEffects.PlayHitEffects();
         }
 
-        if (_health == 0 && !_isDead && !GameManager.Instance.IsWitchAppeared())
+        if (_health == 0 && !_isDead && !_gameStatesSwitcher.IsWitchAppeared())
         {
-            _player.PlayDeathSound();
-            _playerAnimation.EnableDeathAnimation();
+            _player.PlayerSoundEffects.PlayDeathSound();
+            _player.PlayerAnimation.EnableDeathAnimation();
             _playerRagdollController.MakePhysical();
             PlayerHasDied?.Invoke();
             _isDead = true;
         }
-        else if (_health == 0 && !_isDead && GameManager.Instance.IsWitchAppeared())
+        else if (_health == 0 && !_isDead && _gameStatesSwitcher.IsWitchAppeared())
         {
-            GameManager.Instance.WitchKilledPlayer();
+            _gameStatesSwitcher.WitchKilledPlayer();
         }
         else if (_health > 0)
         {
@@ -182,13 +175,11 @@ public class PlayerEvents : MonoBehaviour
     private void SaveHealthAmount(int health)
     {
         PlayerPrefs.SetInt(PlayerPrefsHealthAmount, health);
-        PlayerPrefs.Save();
     }
 
     private void SaveGoldAmount(int gold)
     {
         PlayerPrefs.SetInt(PlayerPrefsGoldAmount, gold);
-        PlayerPrefs.Save();
         GoldAmountChanged?.Invoke(gold);
     }
 }

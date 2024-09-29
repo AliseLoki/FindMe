@@ -19,14 +19,14 @@ public class PlayerCollisions : MonoBehaviour
             interactableObject.EnableInteract();
         }
 
-        if (collision.collider.TryGetComponent(out Enemy enemy) && _player.HasSword)
+        if (collision.collider.TryGetComponent(out Enemy enemy) && _player.PlayerHands.HasSword)
         {
             _player.PlayerEventsHandler.OnWolfHasBeenKilled();
         }
 
         if (collision.collider.TryGetComponent(out Witch witch))
         {
-            if (_player.HasNecronomicon)
+            if (_player.PlayerHands.HasNecronomicon)
             {
                 _player.PlayerEventsHandler.OnWitchHasBeenAttacked();
             }

@@ -10,7 +10,7 @@ public class Container : InteractableObject
     {
         int gettingFoodSoundEffectIndex = 0;
 
-        if (!Player.HasSomethingInHands)
+        if (!Player.PlayerHands.HasSomethingInHands)
         {
             PlaySoundEffect(AudioClipsList[gettingFoodSoundEffectIndex]);
             Food = Instantiate(FoodSO.Prefab, Player.HandlePoint);

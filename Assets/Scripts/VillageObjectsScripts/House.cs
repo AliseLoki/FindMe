@@ -8,24 +8,19 @@ public class House : InteractableObject
     [SerializeField] private Transform _deliveredPackage;
     [SerializeField] private GoldCoins _goldCoins;
 
-    private bool _isDelivered;
+    [SerializeField] private DeliveredDishesCounter _deliveredDishesCounter;
 
-    private DeliveredDishesCounter _deliveredDishesCounter;
+    private bool _isDelivered;
 
     private StateOfReadyness _readyness = StateOfReadyness.Cooked;
 
     public bool IsDelivered => _isDelivered;
 
-    private void Start()
-    {
-        _deliveredDishesCounter = GameManager.Instance.GameEntryPoint.InitDeliveredDishesCounter();
-    }
-
     protected override void UseObject()
     {
         int puttingSoundEffectIndex = 0;
 
-        if (Player.HasBackPack)
+        if (Player.PlayerHands.HasBackPack)
         {
             var deliveredDish = DeliveryService.CheckEquality(_expectedCookingRecipeSO);
 

@@ -23,7 +23,7 @@ public class Patch : InteractableObject
         int wateringSoundEffectIndex = 0;
         int throwingSoundEffect = 1;
 
-        if (_seedIsLanded && Player.HasWater)
+        if (_seedIsLanded && Player.PlayerHands.HasWater)
         {
             PlaySoundEffect(AudioClipsList[wateringSoundEffectIndex]);
             Player.GiveWater();
@@ -31,7 +31,7 @@ public class Patch : InteractableObject
             _barrelWithIngredients.gameObject.SetActive(true);
             ShowYouHaveNewIngredientTips();
         }
-        else if (Player.HasSeed && Player.SetInventoryPrefabSO() == _inventoryPrefabSO)
+        else if (Player.PlayerHands.HasSeed && Player.SetInventoryPrefabSO() == _inventoryPrefabSO)
         {
             PlaySoundEffect(AudioClipsList[throwingSoundEffect]);
             Player.LandSeed();
@@ -40,7 +40,7 @@ public class Patch : InteractableObject
             DisableInteract();
             ShowBringWaterTip();
         }
-        else if (Player.HasWater)
+        else if (Player.PlayerHands.HasWater)
         {
             PlaySoundEffect(AudioClipsList[wateringSoundEffectIndex]);
             Player.GiveWater();

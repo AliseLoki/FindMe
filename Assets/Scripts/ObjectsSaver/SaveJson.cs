@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public class SaveJson 
+public class SaveJson
 {
-    public List<InventoryPrefabSO> SavedInventoryListJson =  new();
-    public List<CookingRecipeSO> SavedOrderedDishesListJson = new();
-    public List<CookingRecipeSO> SavedPackedDishesListJson = new();
+    public List<InventoryPrefabSO> SavedInventoryListJson;
+    public List<CookingRecipeSO> SavedOrderedDishesListJson;
+    public List<CookingRecipeSO> SavedPackedDishesListJson;
 
-    public Transform SavedPlayerPositionToJson;
+    public Vector3 SavedPlayerPositionToJson;
 }
 
 

@@ -1,4 +1,5 @@
 using System;
+using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,15 +17,16 @@ public class RecipeTemplateView : MonoBehaviour
     private bool _hasBeenPacked;
 
     private CookingRecipeSO _cookingRecipeSO;
-    private Player _player;
-    private TipsViewPanel _tipsViewPanel;
+
+   [SerializeField] private Player _player;
+   [SerializeField] private TipsViewPanel _tipsViewPanel;
 
     public event Action<CookingRecipeSO> DishPrepared;
 
-    private void Awake()
+    public void InitLinks(Player player,TipsViewPanel tipsViewPanel)
     {
-        _player = GameManager.Instance.GameEntryPoint.InitPlayer();
-        _tipsViewPanel = GameManager.Instance.GameEntryPoint.InitTipsViewPanel();
+        _player = player;
+        _tipsViewPanel = tipsViewPanel;
     }
 
     public void CookingRecipeSOHasBeenPacked(CookingRecipeSO cookingRecipeSO)

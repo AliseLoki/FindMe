@@ -4,17 +4,17 @@ using UnityEngine.UI;
 
 public class Cameras : MonoBehaviour
 {
-    private const string CameraZoomValue = nameof(CameraZoomValue);
-
     [SerializeField] private Slider _cameraSlider;
     [SerializeField] private Transform _outsideCamera;
     [SerializeField] private Transform _insideCamera;
     [SerializeField] private CinemachineVirtualCamera cinemachineVirtualCamera;
 
+    [SerializeField] private Saver _saver;
+
     private void Awake()
     {
-        _cameraSlider.value = PlayerPrefs.GetFloat(CameraZoomValue, 30f);
-        ChangeCameraZoom();
+        _cameraSlider.value = _saver.LoadCameraValue();
+        ChangeCameraZoom(_cameraSlider.value);
     }
 
     public void SwitchCameras()
@@ -31,15 +31,15 @@ public class Cameras : MonoBehaviour
         }
     }
 
+    //на слайдере камеры
     public void ZoomCamera()
     {
-        ChangeCameraZoom();
-        PlayerPrefs.SetFloat(CameraZoomValue, _cameraSlider.value);
-        PlayerPrefs.Save();
+        ChangeCameraZoom(_cameraSlider.value);
+        _saver.SaveCameraValue(_cameraSlider.value);
     }
 
-    private void ChangeCameraZoom()
+    private void ChangeCameraZoom(float cameraSliderValue)
     {
-        cinemachineVirtualCamera.m_Lens.FieldOfView = _cameraSlider.value;
+        cinemachineVirtualCamera.m_Lens.FieldOfView = cameraSliderValue;
     }
 }

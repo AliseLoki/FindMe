@@ -5,13 +5,8 @@ public class GoldView : MonoBehaviour
 {
     [SerializeField] private TMP_Text _goldAmountText;
 
-    private Player _player;
-
-    private void Awake()
-    {
-        _player = GameManager.Instance.GameEntryPoint.InitPlayer();
-    }
-
+   [SerializeField] private Player _player;
+   
     private void OnEnable()
     {
        _player.PlayerEventsHandler.GoldAmountChanged += OnGoldAmountChanged;

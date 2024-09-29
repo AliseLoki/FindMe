@@ -6,22 +6,24 @@ public abstract class InteractableObject : MonoBehaviour
 {
     [SerializeField] protected SelectedObject SelectedObject;
     [SerializeField] protected List<AudioClip> AudioClipsList;
+    [SerializeField] protected Player Player;
+    [SerializeField] protected PlayerInventory PlayerInventory;
+    [SerializeField] protected TipsViewPanel TipsViewPanel;
+    [SerializeField] protected DeliveryService DeliveryService;
+    [SerializeField] protected DeliveryServiceView DeliveryServiceView;
 
     protected AudioSource AudioSource;
-    protected Player Player;
-    protected PlayerInventory PlayerInventory;
-    protected TipsViewPanel TipsViewPanel;
-    protected DeliveryService DeliveryService;
-    protected DeliveryServiceView DeliveryServiceView;
 
     private void Awake()
     {
         AudioSource = GetComponent<AudioSource>();
-        Player = GameManager.Instance.GameEntryPoint.InitPlayer();
-        PlayerInventory = GameManager.Instance.GameEntryPoint.InitPlayerInventory();
-        TipsViewPanel = GameManager.Instance.GameEntryPoint.InitTipsViewPanel();
-        DeliveryService = GameManager.Instance.GameEntryPoint.InitDeliveryService();
-        DeliveryServiceView = GameManager.Instance.GameEntryPoint.InitDeliveryServiceView();
+    }
+
+    public void InitLinks(TipsViewPanel tipsViewPanel,Player player,PlayerInventory playerInventory)
+    {
+        TipsViewPanel = tipsViewPanel;
+        Player = player;
+        PlayerInventory = playerInventory;
     }
 
     public void EnableInteract()

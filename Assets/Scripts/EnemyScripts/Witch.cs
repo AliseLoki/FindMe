@@ -12,6 +12,9 @@ public class Witch : MonoBehaviour
     [SerializeField] private AudioClip _witchDeathScream;
     [SerializeField] private AudioClip _witchSteps;
 
+    [SerializeField] private Player _player;
+    [SerializeField] private Music _music;
+
     private float _timer;
     private float _timerDefaultValue = 1.5f;
     private float _moveSpeed = 0.5f;
@@ -20,8 +23,6 @@ public class Witch : MonoBehaviour
     private bool _isDying;
 
     private Animator _animator;
-    private Player _player;
-    private Music _music;
     private AudioSource _audioSource;
 
     public event Action WitchIsDead;
@@ -29,9 +30,8 @@ public class Witch : MonoBehaviour
     private void Awake()
     {
         _animator = GetComponent<Animator>();
-        _player = GameManager.Instance.GameEntryPoint.InitPlayer();
+        
         _timer = _timerDefaultValue;
-        _music = GameManager.Instance.GameEntryPoint.InitMusic();
         _audioSource = GetComponent<AudioSource>();
     }
 

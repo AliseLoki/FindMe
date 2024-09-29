@@ -49,7 +49,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: af62aff3db98e06428420d182b44e3b5, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.18542086
+  m_Volume: 0.05228354
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -147,18 +147,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SelectedObject: {fileID: 5979476064849079100}
   AudioClipsList: []
+  Player: {fileID: 0}
+  PlayerInventory: {fileID: 0}
+  TipsViewPanel: {fileID: 0}
+  DeliveryService: {fileID: 0}
+  DeliveryServiceView: {fileID: 0}
   _confettiEffect: {fileID: 8507269765057281281}
   _packing:
   - {fileID: 4633964846635019112}
   - {fileID: 5062490780087674808}
   _presentsList:
-  - {fileID: 5790544016765258183, guid: 43addb736571e7b4c8f327909c5bbd45, type: 3}
-  - {fileID: 1678065264194543890, guid: c7e29bd2b9a42d44facca63cb0aa342c, type: 3}
-  - {fileID: 2474984945966350204, guid: 60f13e09a0c06174e84337af29f677d7, type: 3}
-  - {fileID: 1310555921620295459, guid: 63bc1f7cada8ec14b94150348cebcc85, type: 3}
-  - {fileID: 5790544016765258183, guid: 43addb736571e7b4c8f327909c5bbd45, type: 3}
-  - {fileID: 2474984945966350204, guid: 60f13e09a0c06174e84337af29f677d7, type: 3}
-  - {fileID: 1310555921620295459, guid: 63bc1f7cada8ec14b94150348cebcc85, type: 3}
+  - {fileID: 5042949364447077059, guid: 60f13e09a0c06174e84337af29f677d7, type: 3}
+  - {fileID: 6134756894157038575, guid: 63bc1f7cada8ec14b94150348cebcc85, type: 3}
+  - {fileID: 1321640222737882926, guid: c7e29bd2b9a42d44facca63cb0aa342c, type: 3}
 --- !u!65 &6670438037082319321
 BoxCollider:
   m_ObjectHideFlags: 0

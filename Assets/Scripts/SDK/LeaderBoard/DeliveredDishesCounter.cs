@@ -4,7 +4,7 @@ using UnityEngine;
 public class DeliveredDishesCounter : MonoBehaviour
 {
     private const string LeaderboardName = "LeaderboardPlayers";
-    
+
     private const string PlayerPrefsDeliveredDishesNumber = nameof(PlayerPrefsDeliveredDishesNumber);
 
     private int _deliveredDishesNumber;
@@ -28,7 +28,8 @@ public class DeliveredDishesCounter : MonoBehaviour
 
     private void SetPlayerDeliveredDishesNumber(int deliveredDishesNumber)
     {
-        if (PlayerAccount.IsAuthorized == false)
+#if UNITY_WEBGL && !UNITY_EDITOR
+ if (PlayerAccount.IsAuthorized == false)
         {
             return;
         }
@@ -38,5 +39,7 @@ public class DeliveredDishesCounter : MonoBehaviour
             if (result == null || result.score < deliveredDishesNumber)
                 Leaderboard.SetScore(LeaderboardName, deliveredDishesNumber);
         });
+       
+#endif
     }
 }
