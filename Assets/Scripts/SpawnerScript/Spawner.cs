@@ -5,18 +5,19 @@ public class Spawner : MonoBehaviour
 {
     [SerializeField] private List<InteractableObject> _interactableObjects;
 
+    [SerializeField] private Transform _bucketOfWater;
     [SerializeField] private Wood _wood;
     [SerializeField] private Sword _sword;
     [SerializeField] private Cow _cow;
     [SerializeField] private CabbageForSeeds _cabbageForSeeds;
     [SerializeField] private TomatoForSeeds _tomatoForSeeds;
+    [SerializeField] private Necronomicon _necronomicon;
 
     [SerializeField] private Transform _spawnPlaces;
     [SerializeField] private Transform _woodSpawnPlace;
     [SerializeField] private PresentFromAd _presentFromAd;
 
     [SerializeField] private Player _player;
-    [SerializeField] private PlayerInventory _playerInventory;
     [SerializeField] private GameStatesSwitcher _gameStatesSwitcher;
     [SerializeField] private TipsViewPanel _tipsViewPanel;
 
@@ -41,10 +42,22 @@ public class Spawner : MonoBehaviour
         _player.PlayerEventsHandler.ExitGrannysHome -= SpawnObjects;
     }
 
+    public void SpawnBucketOfWater(Transform spawnPoint)
+    {
+        var waterInHands = Instantiate(_bucketOfWater, spawnPoint, true);
+        waterInHands.transform.position = spawnPoint.position;
+    }
+
+    public InventoryPrefabSO SpawnNecronomicon()
+    {
+        var necronomicon = Instantiate(_necronomicon);
+        return necronomicon.DisableCollider();
+    }
+
     public void SpawnWoodInHands()
     {
         var wood = Instantiate(_wood);
-        wood.DisableCollider();
+        //wood.DisableCollider();
     }
 
     public InventoryPrefabSO SpawnSwordInHands()
@@ -74,7 +87,7 @@ public class Spawner : MonoBehaviour
     public void GiveRewardForWatchingAd()
     {
         var presentFromAd = Instantiate(_presentFromAd, _player.HandlePoint.position + _offset, Quaternion.identity);
-        presentFromAd.InitLinks(_tipsViewPanel, _player, _playerInventory);
+        presentFromAd.InitLinks(_tipsViewPanel, _player, _player.PlayerInventory);
     }
 
     private void SpawnObjects()
@@ -86,7 +99,7 @@ public class Spawner : MonoBehaviour
                 foreach (var interactableObject in _interactableObjects)
                 {
                     var newSpawnedInteractableObject = Instantiate(interactableObject, CalculateSpawnPosition(spawnPlace), Quaternion.identity);
-                    newSpawnedInteractableObject.InitLinks(_tipsViewPanel, _player, _playerInventory);
+                    newSpawnedInteractableObject.InitLinks(_tipsViewPanel, _player, _player.PlayerInventory);
                 }
             }
 

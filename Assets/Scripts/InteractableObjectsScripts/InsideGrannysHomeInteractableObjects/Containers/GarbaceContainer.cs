@@ -20,7 +20,7 @@ public class GarbageContainer : InteractableObject
         else if (Player.PlayerHands.HasWood)
         {
             PlaySoundEffect(AudioClipsList[throwingFoodSoundEffectIndex]);
-            Player.ResetWoodPrefab();
+            Player.PlayerHands.ResetWoodPrefab();
             TipsViewPanel.ShowThrowFoodTip();
         }
         else if (!Player.PlayerHands.HasWood)

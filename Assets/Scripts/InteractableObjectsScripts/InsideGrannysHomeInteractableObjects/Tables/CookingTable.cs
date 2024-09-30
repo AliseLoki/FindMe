@@ -12,25 +12,16 @@ public class CookingTable : Table
 
     private CookingRecipeSO _cookingRecipeSO;
 
-    private List<CookingRecipeSO> _recipeListFromDeliveryService = new List<CookingRecipeSO>();
-
     public event Action<CookingRecipeSO> CanBeCookedCookingRecipeSO;
 
     private void OnEnable()
     {
-        DeliveryService.OrdersCanBeShown += OnOrdersCanBeChecked;
         DeliveryServiceView.DishPrepared += OnDishPrepared;
     }
 
     private void OnDisable()
     {
-        DeliveryService.OrdersCanBeShown -= OnOrdersCanBeChecked;
         DeliveryServiceView.DishPrepared -= OnDishPrepared;
-    }
-
-    private void OnOrdersCanBeChecked(string destinationPointName, List<CookingRecipeSO> recipeListFromDeliveryService)
-    {
-        _recipeListFromDeliveryService = recipeListFromDeliveryService;
     }
 
     protected override void DoSomething()
@@ -100,7 +91,7 @@ public class CookingTable : Table
         int gettingFoodSoundEffectIndex = 1;
         PlaySoundEffect(AudioClipsList[gettingFoodSoundEffectIndex]);
         Player.PlayerCookingModule.SetFood(Food, FoodSO);
-        Player.SetHasSomethingInHands(true);
+        Player.PlayerHands.SetHasSomethingInHands(true);
         Player.PlayerCookingModule.Food.SetInParent(Player.HandlePoint);
     }
 
@@ -140,7 +131,7 @@ public class CookingTable : Table
 
     private void CheckIfCanCook()
     {
-        foreach (CookingRecipeSO cookingRecipeSO in _recipeListFromDeliveryService)
+        foreach (CookingRecipeSO cookingRecipeSO in DeliveryService.OrderedDishies)
         {
             if (CheckIfEqual(cookingRecipeSO.IngredientsForRecipe, _onTheTableFoodSO))
             {

@@ -8105,7 +8105,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _handlePoint: {fileID: 6810968064220394174}
-  _backpack: {fileID: 7095681473806640549}
   _bucketOfWater: {fileID: 7849267197726783677, guid: 07f298a7a1f3680439aac98d8ad3c2cc, type: 3}
   _deliveryService: {fileID: 0}
   _tipsViewPanel: {fileID: 0}
@@ -8137,7 +8136,6 @@ MonoBehaviour:
   _rotateSpeed: 5
   _player: {fileID: 6987597894183563658}
   _gameStatesSwitcher: {fileID: 0}
-  _saveSystem: {fileID: 0}
 --- !u!114 &807253773857444312
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8193,7 +8191,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _recievedInventoryPrefabsSO: []
   _player: {fileID: 6987597894183563658}
-  _saveSystem: {fileID: 0}
+  _saver: {fileID: 0}
 --- !u!114 &6081364691475473300
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8231,10 +8229,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2e71a4189f3f8d4cae97440822a8852, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HasSomethingInHands: 0
+  _player: {fileID: 6987597894183563658}
+  _backpack: {fileID: 7095681473806640549}
+  _handlePoint: {fileID: 6810968064220394174}
   HasSeed: 0
-  HasBackPack: 0
-  HasWood: 0
   HasWater: 0
   HasSword: 0
   HasCow: 0

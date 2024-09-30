@@ -16,6 +16,17 @@ public class Saver : MonoBehaviour
     private const string SavedOrderedDishes = nameof(SavedOrderedDishes);
     private const string SavedPackedDishes = nameof(SavedPackedDishes);
 
+    private const string PlayerPrefsHasSomethingInHands = nameof(PlayerPrefsHasSomethingInHands);
+    private const string PlayerPrefsHasBackPack = nameof(PlayerPrefsHasBackPack);
+    private const string PlayerPrefsHasWood = nameof(PlayerPrefsHasWood);
+    private const string PlayerPrefsHasWater = nameof(PlayerPrefsHasWater);
+    private const string PlayerPrefsHasSeed = nameof(PlayerPrefsHasSeed);
+    private const string PlayerPrefsHasSword = nameof(PlayerPrefsHasSword);
+    private const string PlayerPrefsHasCow = nameof(PlayerPrefsHasCow);
+    private const string PlayerPrefsHasTomatoForSeeds = nameof(PlayerPrefsHasTomatoForSeeds);
+    private const string PlayerPrefsHasCabbageForSeeds = nameof(PlayerPrefsHasCabbageForSeeds);
+    private const string PlayerPrefsHasNecronomicon = nameof(PlayerPrefsHasNecronomicon);
+
     [SerializeField] private Player _player;
     [SerializeField] private Transform _defaultPlayerPosition;
     [SerializeField] private DeliveryService _deliveryService;
@@ -57,7 +68,7 @@ public class Saver : MonoBehaviour
         _saveJson.SavedOrderedDishesListJson.Clear();
         _saveJson.SavedPackedDishesListJson.Clear();
     }
-   
+
     // сохранение настроек камеры, музыки, звуковых эффектов. —охран€ютс€ при их изменении
 
     public float LoadCameraValue()
@@ -190,7 +201,8 @@ public class Saver : MonoBehaviour
             return new List<CookingRecipeSO>();
         }
     }
-    //
+
+    //сохранение позиции игрока
 
     public Vector3 LoadPlayerPosition()
     {
@@ -211,26 +223,96 @@ public class Saver : MonoBehaviour
     {
         _saveJson.SavedPlayerPositionToJson = playerPositionToSave;
         string Json = JsonUtility.ToJson(_saveJson);
-        PlayerPrefs.SetString(PlayerPosition, Json);      
+        PlayerPrefs.SetString(PlayerPosition, Json);
     }
 
+    //сохранение булок в плеерхэндс
 
+    public bool LoadHasSomethingInHans()
+    {
+        return ConvertIntToBool(PlayerPrefs.GetInt(PlayerPrefsHasSomethingInHands));
+    }
 
+    public bool LoadHasBackPack()
+    {
+        return ConvertIntToBool(PlayerPrefs.GetInt(PlayerPrefsHasBackPack));
+    }
+
+    public bool LoadHasWood()
+    {
+        return ConvertIntToBool(PlayerPrefs.GetInt(PlayerPrefsHasWood, 0));
+    }
+
+    public bool LoadHasWater()
+    {
+        return ConvertIntToBool(PlayerPrefs.GetInt(PlayerPrefsHasWater, 0));
+    }
+
+    public bool LoadHasSeed()
+    {
+        return ConvertIntToBool(PlayerPrefs.GetInt(PlayerPrefsHasSeed, 0));
+    }
+
+    public bool LoadHasSword()
+    {
+        return ConvertIntToBool(PlayerPrefs.GetInt(PlayerPrefsHasSword, 0));
+    }
+
+    public bool LoadHasCow()
+    {
+        return ConvertIntToBool(PlayerPrefs.GetInt(PlayerPrefsHasCow, 0));
+    }
+
+    public bool LoadHasTomatoForSeeds()
+    {
+        return ConvertIntToBool(PlayerPrefs.GetInt(PlayerPrefsHasTomatoForSeeds, 0));
+    }
+
+    public bool LoadHasCabbageForSeeds()
+    {
+        return ConvertIntToBool(PlayerPrefs.GetInt(PlayerPrefsHasCabbageForSeeds, 0));
+    }
+
+    public bool LoadHasNecronomicon()
+    {
+        return ConvertIntToBool(PlayerPrefs.GetInt(PlayerPrefsHasNecronomicon, 0));
+    }
+
+    //
     private void Save()
     {
         SavePlayerPosition(_player.transform.position);
+
         SaveLists(_player.PlayerInventory.GetRecievedInventoryPrefabSOList(), _deliveryService.GetOrderedDishiesList(),
     _deliveryService.GetPackedDishiesList());
+
         SaveState(PlayerPrefsOrderIsTaken, ConvertBoolToInt(_recievingOrdersPoint.OrderIsTaken));
+
+        SaveState(PlayerPrefsHasSomethingInHands, ConvertBoolToInt(_player.PlayerHands.HasSomethingInHands));
+        SaveState(PlayerPrefsHasBackPack, ConvertBoolToInt(_player.PlayerHands.HasBackPack));
+        SaveState(PlayerPrefsHasWood, ConvertBoolToInt(_player.PlayerHands.HasWood));
+        SaveState(PlayerPrefsHasWater, ConvertBoolToInt(_player.PlayerHands.HasWater));
+        SaveState(PlayerPrefsHasSeed, ConvertBoolToInt(_player.PlayerHands.HasSeed));
+        SaveState(PlayerPrefsHasSword, ConvertBoolToInt(_player.PlayerHands.HasSword));
+        SaveState(PlayerPrefsHasCow, ConvertBoolToInt(_player.PlayerHands.HasCow));
+        SaveState(PlayerPrefsHasTomatoForSeeds, ConvertBoolToInt(_player.PlayerHands.HasTomatoForSeeds));
+        SaveState(PlayerPrefsHasCabbageForSeeds, ConvertBoolToInt(_player.PlayerHands.HasCabbageForSeeds));
+        SaveState(PlayerPrefsHasNecronomicon, ConvertBoolToInt(_player.PlayerHands.HasNecronomicon));
     }
 
     //загружаем настройки камеры
     //загружаем настройки музыки
     //загружаем настройки саунд эффектов
 
+    //загружаем инвентарь
+    //загружаем заказанные блюда
+    //загружаем упакованные блюда
+
     //загружаем позицию игрока
 
-    //
+    //загружаем все булки в плеер’эндс
+
+
 
     // что делать с ферст стартом
 

@@ -7,14 +7,16 @@ public class DeliveryService : MonoBehaviour
     [SerializeField] private Saver _saver;
     [SerializeField] private DeliveryServiceView _deliveryServiceView;
 
-    private List<CookingRecipeSO> _orderedDishies = new List<CookingRecipeSO>();
-    private List<CookingRecipeSO> _packedDishes = new List<CookingRecipeSO>();
-
-    private MenuSO _menuSO;
-
     [SerializeField] private RecievingOrdersPoint _recievingOrdersPoint;
     [SerializeField] private PackingPlace _packingPlace;
     [SerializeField] private TipsViewPanel _tipsViewPanel;
+
+    private List<CookingRecipeSO> _orderedDishies = new List<CookingRecipeSO>();
+    private List<CookingRecipeSO> _packedDishes = new List<CookingRecipeSO>();
+
+    public List<CookingRecipeSO>OrderedDishies => _orderedDishies;
+
+    private MenuSO _menuSO;
 
     public MenuSO MenuSO => _menuSO;
 

@@ -18,7 +18,7 @@ public class InventoryPrefab : InteractableObject
         this.transform.position = Player.HandlePoint.position;
         GetComponent<Collider>().enabled = false;
         SelectedObject.Hide();
-        Player.SetHasSomethingInHands(true);
+        Player.PlayerHands.SetHasSomethingInHands(true);
         return _inventoryPrefabSO;
     }
 }

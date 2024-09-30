@@ -64,15 +64,15 @@ public class PlayerInventory : MonoBehaviour
         else if (inventoryPrefabSO.InventoryPrefab as TomatoForSeeds || inventoryPrefabSO.InventoryPrefab as CabbageForSeeds ||
             inventoryPrefabSO.InventoryPrefab as Cow)
         {
-            _player.TakeSeedInHands(inventoryPrefabSO);
+            _player.PlayerHands.TakeSeedInHands(inventoryPrefabSO);
         }
         else if (inventoryPrefabSO.InventoryPrefab as Sword)
         {
-            _player.TakeSwordInHands(inventoryPrefabSO);
+            _player.PlayerHands.TakeSwordInHands(inventoryPrefabSO);
         }
         else if (inventoryPrefabSO.InventoryPrefab as Necronomicon)
         {
-            _player.TakeNecronomiconInHands(inventoryPrefabSO);
+            _player.PlayerHands.TakeNecronomiconInHands(inventoryPrefabSO);
         }
 
         _recievedInventoryPrefabsSO.Remove(inventoryPrefabSO);

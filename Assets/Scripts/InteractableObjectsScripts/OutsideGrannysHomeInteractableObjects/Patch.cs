@@ -26,15 +26,15 @@ public class Patch : InteractableObject
         if (_seedIsLanded && Player.PlayerHands.HasWater)
         {
             PlaySoundEffect(AudioClipsList[wateringSoundEffectIndex]);
-            Player.GiveWater();
+            Player.PlayerHands.GiveWater();
             _vegetable.gameObject.SetActive(true);
             _barrelWithIngredients.gameObject.SetActive(true);
             ShowYouHaveNewIngredientTips();
         }
-        else if (Player.PlayerHands.HasSeed && Player.SetInventoryPrefabSO() == _inventoryPrefabSO)
+        else if (Player.PlayerHands.HasSeed && Player.PlayerHands.InventoryPrefabSO == _inventoryPrefabSO)
         {
             PlaySoundEffect(AudioClipsList[throwingSoundEffect]);
-            Player.LandSeed();
+            Player.PlayerHands.LandSeed();
             _seedIsLanded = true;
             _grass.gameObject.SetActive(true);
             DisableInteract();
@@ -43,7 +43,7 @@ public class Patch : InteractableObject
         else if (Player.PlayerHands.HasWater)
         {
             PlaySoundEffect(AudioClipsList[wateringSoundEffectIndex]);
-            Player.GiveWater();
+            Player.PlayerHands.GiveWater();
         }
     }
 

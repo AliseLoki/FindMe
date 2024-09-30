@@ -34,7 +34,7 @@ public class PlayerCookingModule : MonoBehaviour
     {
         _foodSO = foodSO;
         _food = food;
-        _player.SetHasSomethingInHands(true);
+        _player.PlayerHands.SetHasSomethingInHands(true);
     }
 
     public void GiveFood()
@@ -57,6 +57,6 @@ public class PlayerCookingModule : MonoBehaviour
         _food = null;
         _foodSO = null;
         _cookingRecipeSO = null;
-        _player.SetHasSomethingInHands(false);
+        _player.PlayerHands.SetHasSomethingInHands(false);
     }
 }

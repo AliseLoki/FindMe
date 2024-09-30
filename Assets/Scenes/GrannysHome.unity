@@ -9303,7 +9303,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 500
-  field of view: 59.4259
+  field of view: 70
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -9329,7 +9329,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 772431199}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.09205132, y: 0.03267443, z: -0.014610999, w: -0.99511075}
+  m_LocalRotation: {x: 0.06736048, y: 0.03547765, z: -0.018838476, w: -0.99691975}
   m_LocalPosition: {x: 55.55871, y: 215.16371, z: 168.29816}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -23035,16 +23035,17 @@ MonoBehaviour:
   - {fileID: 6134756894157038575, guid: 63bc1f7cada8ec14b94150348cebcc85, type: 3}
   - {fileID: 5042949364447077059, guid: 60f13e09a0c06174e84337af29f677d7, type: 3}
   - {fileID: 1321640222737882926, guid: c7e29bd2b9a42d44facca63cb0aa342c, type: 3}
+  _bucketOfWater: {fileID: 7849267197726783677, guid: 07f298a7a1f3680439aac98d8ad3c2cc, type: 3}
   _wood: {fileID: 1321640222737882926, guid: c7e29bd2b9a42d44facca63cb0aa342c, type: 3}
   _sword: {fileID: 6920706034367249219, guid: 2ebce1b9740f02b459dc1b3fdc623a65, type: 3}
   _cow: {fileID: 3934595705252057339, guid: cbc2162c81e852441a50326eac7019ba, type: 3}
   _cabbageForSeeds: {fileID: 3848650504862379040, guid: 7d9e7f48074757c4d80d0546ecc0244b, type: 3}
   _tomatoForSeeds: {fileID: 4007806401801285426, guid: 10acf4e6c86d10d4aaa093deea89b210, type: 3}
+  _necronomicon: {fileID: 8847300563622022960, guid: 538a350bb26ad904d8dcb130f6a00bfe, type: 3}
   _spawnPlaces: {fileID: 2044572483}
   _woodSpawnPlace: {fileID: 1058034142}
   _presentFromAd: {fileID: 4300071294927695617, guid: 781c9cc5b8c560d409bd2e31d6480f1b, type: 3}
   _player: {fileID: 684138395}
-  _playerInventory: {fileID: 2105934684}
   _gameStatesSwitcher: {fileID: 1695096658}
   _tipsViewPanel: {fileID: 489419950}
 --- !u!4 &2078751511
@@ -23078,6 +23079,22 @@ PrefabInstance:
       propertyPath: _saveSystem
       value: 
       objectReference: {fileID: 1477384430}
+    - target: {fileID: 4714304899007245062, guid: e2d50382f71f7484ab9db19e98035eae, type: 3}
+      propertyPath: _saver
+      value: 
+      objectReference: {fileID: 473768557}
+    - target: {fileID: 4714304899007245062, guid: e2d50382f71f7484ab9db19e98035eae, type: 3}
+      propertyPath: _player
+      value: 
+      objectReference: {fileID: 684138395}
+    - target: {fileID: 4714304899007245062, guid: e2d50382f71f7484ab9db19e98035eae, type: 3}
+      propertyPath: _spawner
+      value: 
+      objectReference: {fileID: 2078751510}
+    - target: {fileID: 4714304899007245062, guid: e2d50382f71f7484ab9db19e98035eae, type: 3}
+      propertyPath: _tipsViewPanel
+      value: 
+      objectReference: {fileID: 489419950}
     - target: {fileID: 5540119376543832588, guid: e2d50382f71f7484ab9db19e98035eae, type: 3}
       propertyPath: m_LocalPosition.x
       value: 57
@@ -29226,7 +29243,7 @@ PrefabInstance:
       objectReference: {fileID: 91126043}
     - target: {fileID: 438151464050510512, guid: faaeac109b112724c9dd992fdc642715, type: 3}
       propertyPath: m_Lens.FieldOfView
-      value: 59.4259
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 1725415032196383227, guid: faaeac109b112724c9dd992fdc642715, type: 3}
       propertyPath: m_Name
@@ -29246,19 +29263,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3006431010277591108, guid: faaeac109b112724c9dd992fdc642715, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.99511075
+      value: -0.99691975
       objectReference: {fileID: 0}
     - target: {fileID: 3006431010277591108, guid: faaeac109b112724c9dd992fdc642715, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.09205132
+      value: 0.06736048
       objectReference: {fileID: 0}
     - target: {fileID: 3006431010277591108, guid: faaeac109b112724c9dd992fdc642715, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.03267443
+      value: 0.03547765
       objectReference: {fileID: 0}
     - target: {fileID: 3006431010277591108, guid: faaeac109b112724c9dd992fdc642715, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.014610999
+      value: -0.018838476
       objectReference: {fileID: 0}
     - target: {fileID: 3006431010277591108, guid: faaeac109b112724c9dd992fdc642715, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

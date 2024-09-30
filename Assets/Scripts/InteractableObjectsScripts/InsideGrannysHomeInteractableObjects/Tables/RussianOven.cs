@@ -60,7 +60,7 @@ public class RussianOven : Table
             _hasFire = true;
             _placeForWood.LightFire(true);
             DisableInteract();
-            Player.ResetWoodPrefab();
+            Player.PlayerHands.ResetWoodPrefab();
             TipsViewPanel.ShowCanUseOvenTip();
         }
         else if (!_hasFire && !Player.PlayerHands.HasWood)
@@ -82,7 +82,7 @@ public class RussianOven : Table
         PlaySoundEffect(AudioClipsList[gettingFoodSoundEffectIndex]);
         Food.SetInParent(Player.HandlePoint);
         Player.PlayerCookingModule.SetFood(Food, FoodSO);
-        Player.SetHasSomethingInHands(true);
+        Player.PlayerHands.SetHasSomethingInHands(true);
         Player.PlayerCookingModule.SetCookingRecipe(_cookingRecipeSO);
         Player.PlayerCookingModule.SetCookingRecipeStateOfRedyness(_stateOfReadyness);
         _smokeEffect.gameObject.SetActive(false);

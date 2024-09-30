@@ -17,11 +17,11 @@ public class Wood : InteractableObject
     public void DisableCollider()
     {
         //очень странный метод
-        this.transform.parent = Player.HandlePoint.transform;
-        this.transform.position = Player.HandlePoint.position;
+        this.transform.parent = Player.PlayerHands.HandlePoint.transform;
+        this.transform.position = Player.PlayerHands.HandlePoint.position;
         GetComponent<Collider>().enabled = false;
         SelectedObject.Hide();
-        Player.SetHasSomethingInHands(true);
-        Player.SetHasWood(true);
+        Player.PlayerHands.SetHasSomethingInHands(true);
+        Player.PlayerHands.SetHasWood(true);
     }
 }

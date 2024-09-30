@@ -19,7 +19,7 @@ public class Well : InteractableObject
             {
                 PlaySoundEffect(AudioClipsList[payingForWaterSoundEffectIndex]);
                 _bucketOfWater.gameObject.SetActive(false);
-                Player.TakeWater();
+                Player.PlayerHands.TakeWater();
                 TipsViewPanel.ShowWaterPatchTip();
             }
 

@@ -41,7 +41,6 @@ public class DeliveryServiceView : MonoBehaviour
 
     public void InitDishesFromSavedList(List<CookingRecipeSO> dishesList)
     {
-
         if (dishesList.Count > 0)
         {
             _hasRecievedOrders = true;

@@ -37,50 +37,51 @@ public class SaveSystem : MonoBehaviour
        // _player.PlayerEventsHandler.EnteredSafeZone -= Save;
     }
 
-    public bool LoadHasWood()
-    {
-        return ConvertIntToBool(PlayerPrefs.GetInt(PlayerPrefsHasWood, 0));
-    }
 
-    public bool LoadHasBackPack()
-    {
-        return ConvertIntToBool(PlayerPrefs.GetInt(PlayerPrefsHasBackPack, 0));
-    }
+    //public bool LoadHasBackPack()
+    //{
+    //    return ConvertIntToBool(PlayerPrefs.GetInt(PlayerPrefsHasBackPack, 0));
+    //}
 
-    public bool LoadHasWater()
-    {
-        return ConvertIntToBool(PlayerPrefs.GetInt(PlayerPrefsHasWater, 0));
-    }
+    //public bool LoadHasWood()
+    //{
+    //    return ConvertIntToBool(PlayerPrefs.GetInt(PlayerPrefsHasWood, 0));
+    //}
 
-    public bool LoadHasSeed()
-    {
-        return ConvertIntToBool(PlayerPrefs.GetInt(PlayerPrefsHasSeed, 0));
-    }
+    //public bool LoadHasWater()
+    //{
+    //    return ConvertIntToBool(PlayerPrefs.GetInt(PlayerPrefsHasWater, 0));
+    //}
 
-    public bool LoadHasSword()
-    {
-        return ConvertIntToBool(PlayerPrefs.GetInt(PlayerPrefsHasSword, 0));
-    }
+    //public bool LoadHasSeed()
+    //{
+    //    return ConvertIntToBool(PlayerPrefs.GetInt(PlayerPrefsHasSeed, 0));
+    //}
 
-    public bool LoadHasCow()
-    {
-        return ConvertIntToBool(PlayerPrefs.GetInt(PlayerPrefsHasCow, 0));
-    }
+    //public bool LoadHasSword()
+    //{
+    //    return ConvertIntToBool(PlayerPrefs.GetInt(PlayerPrefsHasSword, 0));
+    //}
 
-    public bool LoadHasTomatoForSeeds()
-    {
-        return ConvertIntToBool(PlayerPrefs.GetInt(PlayerPrefsHasTomatoForSeeds, 0));
-    }
+    //public bool LoadHasCow()
+    //{
+    //    return ConvertIntToBool(PlayerPrefs.GetInt(PlayerPrefsHasCow, 0));
+    //}
 
-    public bool LoadHasCabbageForSeeds()
-    {
-        return ConvertIntToBool(PlayerPrefs.GetInt(PlayerPrefsHasCabbageForSeeds, 0));
-    }
+    //public bool LoadHasTomatoForSeeds()
+    //{
+    //    return ConvertIntToBool(PlayerPrefs.GetInt(PlayerPrefsHasTomatoForSeeds, 0));
+    //}
+
+    //public bool LoadHasCabbageForSeeds()
+    //{
+    //    return ConvertIntToBool(PlayerPrefs.GetInt(PlayerPrefsHasCabbageForSeeds, 0));
+    //}
   
-    private void SaveState(string nameOfState, int value)
-    {
-        PlayerPrefs.SetInt(nameOfState, value);
-    }
+    //private void SaveState(string nameOfState, int value)
+    //{
+    //    PlayerPrefs.SetInt(nameOfState, value);
+    //}
 
     private void Save()
     {
@@ -98,27 +99,27 @@ public class SaveSystem : MonoBehaviour
         //_objectSaver.SaveContainers();
     }
 
-    private bool ConvertIntToBool(int value)
-    {
-        if (value == 1)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
+    //private bool ConvertIntToBool(int value)
+    //{
+    //    if (value == 1)
+    //    {
+    //        return true;
+    //    }
+    //    else
+    //    {
+    //        return false;
+    //    }
+    //}
 
-    private int ConvertBoolToInt(bool isActive)
-    {
-        if (isActive == true)
-        {
-            return 1;
-        }
-        else
-        {
-            return 0;
-        }
-    }
+    //private int ConvertBoolToInt(bool isActive)
+    //{
+    //    if (isActive == true)
+    //    {
+    //        return 1;
+    //    }
+    //    else
+    //    {
+    //        return 0;
+    //    }
+    //}
 }

@@ -42,7 +42,7 @@ public class PackingPlace : GarbageContainer
         {
             PlaySoundEffect(AudioClipsList[puttingFoodSoundEffectIndex]);
             ShowPackage(false);
-            Player.ShowOrHideBackPack(true);
+            Player.PlayerHands.ShowOrHideBackPack(true);
             return;
         }
 
