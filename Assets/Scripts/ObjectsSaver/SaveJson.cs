@@ -10,6 +10,8 @@ public class SaveJson
     public List<CookingRecipeSO> SavedPackedDishesListJson;
 
     public Vector3 SavedPlayerPositionToJson;
+
+    public HoldableObjects SavedHoldableObject;
 }
 
 

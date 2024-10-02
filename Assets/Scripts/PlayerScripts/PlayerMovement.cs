@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private Player _player;
     [SerializeField] private GameStatesSwitcher _gameStatesSwitcher;
+    [SerializeField] private LastVillage _lastVillage;
 
     private NavMeshAgent _navMeshAgent;
 
@@ -34,11 +35,13 @@ public class PlayerMovement : MonoBehaviour
     private void OnEnable()
     {
         _player.PlayerInventory.UsedSpeedBoost += OnUsedSpeedBoost;
+        _lastVillage.WitchAppeared += LookAtTheWitch;
     }
 
     private void OnDisable()
     {
         _player.PlayerInventory.UsedSpeedBoost -= OnUsedSpeedBoost;
+        _lastVillage.WitchAppeared -= LookAtTheWitch;
     }
 
     private void Update()

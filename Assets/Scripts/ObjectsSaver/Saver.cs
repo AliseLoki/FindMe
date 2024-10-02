@@ -1,6 +1,5 @@
-using UnityEngine;
-using Agava.YandexGames;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class Saver : MonoBehaviour
 {
@@ -10,16 +9,16 @@ public class Saver : MonoBehaviour
 
     private const string PlayerPosition = nameof(PlayerPosition);
 
+    private const string PrefsHoldableObject = nameof(PrefsHoldableObject);
+
     private const string PlayerPrefsOrderIsTaken = nameof(PlayerPrefsOrderIsTaken);
 
     private const string SavedInventoryList = nameof(SavedInventoryList);
     private const string SavedOrderedDishes = nameof(SavedOrderedDishes);
     private const string SavedPackedDishes = nameof(SavedPackedDishes);
 
-    private const string PlayerPrefsHasSomethingInHands = nameof(PlayerPrefsHasSomethingInHands);
     private const string PlayerPrefsHasBackPack = nameof(PlayerPrefsHasBackPack);
-    private const string PlayerPrefsHasWood = nameof(PlayerPrefsHasWood);
-    private const string PlayerPrefsHasWater = nameof(PlayerPrefsHasWater);
+    
     private const string PlayerPrefsHasSeed = nameof(PlayerPrefsHasSeed);
     private const string PlayerPrefsHasSword = nameof(PlayerPrefsHasSword);
     private const string PlayerPrefsHasCow = nameof(PlayerPrefsHasCow);
@@ -31,6 +30,7 @@ public class Saver : MonoBehaviour
     [SerializeField] private Transform _defaultPlayerPosition;
     [SerializeField] private DeliveryService _deliveryService;
     [SerializeField] private RecievingOrdersPoint _recievingOrdersPoint;
+    [SerializeField] private ObjectsSaver _objectSaver;
 
     private float _defaultCameraZoomValue = 30f;
     private float _defaultMusicVolume = 0.3f;
@@ -226,28 +226,47 @@ public class Saver : MonoBehaviour
         PlayerPrefs.SetString(PlayerPosition, Json);
     }
 
+    // сохранение обджектИнХэндс в плеерХэндс
+
+    public HoldableObjects LoadObjectInHands()
+    {
+        string json = PlayerPrefs.GetString(PrefsHoldableObject);
+        SaveJson loadedObjectInHands = JsonUtility.FromJson<SaveJson>(json);
+
+        if (loadedObjectInHands != null)
+        {
+            return loadedObjectInHands.SavedHoldableObject;
+        }
+        else
+        {
+            return 0;
+        }
+    }
+
+    private void SaveObjectInHands(HoldableObjects objectInHandsToSave)
+    {
+        _saveJson.SavedHoldableObject = objectInHandsToSave;
+        string Json = JsonUtility.ToJson(_saveJson);
+        PlayerPrefs.SetString(PrefsHoldableObject , Json);
+    }
+
     //сохранение булок в плеерхэндс
 
-    public bool LoadHasSomethingInHans()
-    {
-        return ConvertIntToBool(PlayerPrefs.GetInt(PlayerPrefsHasSomethingInHands));
-    }
+   
+
+    //public bool GetInt(string key)
+    //{
+    //    return ConvertIntToBool(PlayerPrefs.GetInt(key));
+    //}
+
+
 
     public bool LoadHasBackPack()
     {
         return ConvertIntToBool(PlayerPrefs.GetInt(PlayerPrefsHasBackPack));
     }
 
-    public bool LoadHasWood()
-    {
-        return ConvertIntToBool(PlayerPrefs.GetInt(PlayerPrefsHasWood, 0));
-    }
-
-    public bool LoadHasWater()
-    {
-        return ConvertIntToBool(PlayerPrefs.GetInt(PlayerPrefsHasWater, 0));
-    }
-
+   
     public bool LoadHasSeed()
     {
         return ConvertIntToBool(PlayerPrefs.GetInt(PlayerPrefsHasSeed, 0));
@@ -282,22 +301,23 @@ public class Saver : MonoBehaviour
     private void Save()
     {
         SavePlayerPosition(_player.transform.position);
+        SaveObjectInHands(_player.PlayerHands.HoldableObject);
 
         SaveLists(_player.PlayerInventory.GetRecievedInventoryPrefabSOList(), _deliveryService.GetOrderedDishiesList(),
     _deliveryService.GetPackedDishiesList());
 
         SaveState(PlayerPrefsOrderIsTaken, ConvertBoolToInt(_recievingOrdersPoint.OrderIsTaken));
 
-        SaveState(PlayerPrefsHasSomethingInHands, ConvertBoolToInt(_player.PlayerHands.HasSomethingInHands));
         SaveState(PlayerPrefsHasBackPack, ConvertBoolToInt(_player.PlayerHands.HasBackPack));
-        SaveState(PlayerPrefsHasWood, ConvertBoolToInt(_player.PlayerHands.HasWood));
-        SaveState(PlayerPrefsHasWater, ConvertBoolToInt(_player.PlayerHands.HasWater));
+    
         SaveState(PlayerPrefsHasSeed, ConvertBoolToInt(_player.PlayerHands.HasSeed));
-        SaveState(PlayerPrefsHasSword, ConvertBoolToInt(_player.PlayerHands.HasSword));
+        
         SaveState(PlayerPrefsHasCow, ConvertBoolToInt(_player.PlayerHands.HasCow));
         SaveState(PlayerPrefsHasTomatoForSeeds, ConvertBoolToInt(_player.PlayerHands.HasTomatoForSeeds));
         SaveState(PlayerPrefsHasCabbageForSeeds, ConvertBoolToInt(_player.PlayerHands.HasCabbageForSeeds));
         SaveState(PlayerPrefsHasNecronomicon, ConvertBoolToInt(_player.PlayerHands.HasNecronomicon));
+
+        _objectSaver.SaveContainers();
     }
 
     //загружаем настройки камеры

@@ -64,14 +64,14 @@ public class PlayerEvents : MonoBehaviour
         }
     }
 
-    public void OnWitchHasBeenAttacked()
-    {
-        WitchHasBeenAttacked?.Invoke();
-    }
-
     public void OnWolfHasBeenKilled()
     {
         WolfHasBeenKilled?.Invoke();
+    }
+
+    public void OnWitchHasBeenAttacked()
+    {
+        WitchHasBeenAttacked?.Invoke();
     }
 
     public void OnEnteredGrannysHome()

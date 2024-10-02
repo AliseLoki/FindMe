@@ -68,6 +68,7 @@ public class PlayerInventory : MonoBehaviour
         }
         else if (inventoryPrefabSO.InventoryPrefab as Sword)
         {
+           // _player.PlayerHands.TakeObject(inventoryPrefabSO.InventoryPrefab.gameObject, inventoryPrefabSO.InventoryPrefab.HoldableObjects);
             _player.PlayerHands.TakeSwordInHands(inventoryPrefabSO);
         }
         else if (inventoryPrefabSO.InventoryPrefab as Necronomicon)

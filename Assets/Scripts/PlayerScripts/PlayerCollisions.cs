@@ -19,9 +19,10 @@ public class PlayerCollisions : MonoBehaviour
             interactableObject.EnableInteract();
         }
 
-        if (collision.collider.TryGetComponent(out Enemy enemy) && _player.PlayerHands.HasSword)
+        if (collision.collider.TryGetComponent(out Enemy enemy) && _player.PlayerHands.HoldableObject == HoldableObjects.Sword)
         {
-            _player.PlayerEventsHandler.OnWolfHasBeenKilled();
+             _player.PlayerEventsHandler.OnWolfHasBeenKilled();
+            _player.PlayerHands.GiveObject();
         }
 
         if (collision.collider.TryGetComponent(out Witch witch))

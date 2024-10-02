@@ -13,8 +13,8 @@ public class Container : InteractableObject
         if (!Player.PlayerHands.HasSomethingInHands)
         {
             PlaySoundEffect(AudioClipsList[gettingFoodSoundEffectIndex]);
-            Food = Instantiate(FoodSO.Prefab, Player.HandlePoint);
-            Player.PlayerHands.SetHasSomethingInHands(true);
+            Food = Instantiate(FoodSO.Prefab, Player.PlayerHands.HandlePoint);
+            //Player.PlayerHands.SetHasSomethingInHands(true);
             Player.PlayerCookingModule.SetFood(Food, FoodSO);
             TipsViewPanel.ShowFoodPickedTip();
         }

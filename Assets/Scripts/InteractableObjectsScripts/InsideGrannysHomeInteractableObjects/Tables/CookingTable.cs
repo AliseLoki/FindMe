@@ -91,8 +91,8 @@ public class CookingTable : Table
         int gettingFoodSoundEffectIndex = 1;
         PlaySoundEffect(AudioClipsList[gettingFoodSoundEffectIndex]);
         Player.PlayerCookingModule.SetFood(Food, FoodSO);
-        Player.PlayerHands.SetHasSomethingInHands(true);
-        Player.PlayerCookingModule.Food.SetInParent(Player.HandlePoint);
+        //Player.PlayerHands.SetHasSomethingInHands(true);
+        Player.PlayerCookingModule.Food.SetInParent(Player.PlayerHands.HandlePoint);
     }
 
     private void SetToTheTableListFoodSO(FoodSO playerFoodSO)

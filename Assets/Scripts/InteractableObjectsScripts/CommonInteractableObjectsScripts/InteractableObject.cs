@@ -12,6 +12,10 @@ public abstract class InteractableObject : MonoBehaviour
     [SerializeField] protected DeliveryService DeliveryService;
     [SerializeField] protected DeliveryServiceView DeliveryServiceView;
 
+    [SerializeField] protected HoldableObjects _holdableObjects;
+
+    public HoldableObjects HoldableObjects => _holdableObjects;
+
     protected AudioSource AudioSource;
 
     private void Awake()
@@ -19,7 +23,7 @@ public abstract class InteractableObject : MonoBehaviour
         AudioSource = GetComponent<AudioSource>();
     }
 
-    public void InitLinks(TipsViewPanel tipsViewPanel,Player player,PlayerInventory playerInventory)
+    public void InitLinks(TipsViewPanel tipsViewPanel, Player player, PlayerInventory playerInventory)
     {
         TipsViewPanel = tipsViewPanel;
         Player = player;
@@ -36,6 +40,19 @@ public abstract class InteractableObject : MonoBehaviour
     {
         SelectedObject.Hide();
         TipsViewPanel.EraseTip();
+    }
+
+    public void DisableCollider()
+    {
+        if (TryGetComponent(out Collider collider))
+        {
+            collider.enabled = false;
+        }
+
+        if (SelectedObject != null)
+        {
+            SelectedObject.Hide();
+        }
     }
 
     protected virtual void PlaySoundEffect(AudioClip audioClip)

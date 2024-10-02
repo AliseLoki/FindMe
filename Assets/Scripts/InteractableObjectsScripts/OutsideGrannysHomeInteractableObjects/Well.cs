@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Well : InteractableObject
 {
-    [SerializeField] private Transform _bucketOfWater;
+    [SerializeField] private BucketOfWater _bucketOfWater;
 
     private bool _isPaid;
     private int _price = 10;
@@ -18,13 +18,13 @@ public class Well : InteractableObject
             if (_isPaid)
             {
                 PlaySoundEffect(AudioClipsList[payingForWaterSoundEffectIndex]);
-                _bucketOfWater.gameObject.SetActive(false);
-                Player.PlayerHands.TakeWater();
+                Player.PlayerHands.TakeObject(_bucketOfWater.gameObject, _bucketOfWater.HoldableObjects);              
                 TipsViewPanel.ShowWaterPatchTip();
             }
 
             _isPaid = false;
-            _bucketOfWater.gameObject.SetActive(true);
+            //по идее должно появляться, когда игрок вылил воду
+           // _bucketOfWater.gameObject.SetActive(true);
         }
         else
         {

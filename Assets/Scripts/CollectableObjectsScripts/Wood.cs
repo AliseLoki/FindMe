@@ -7,21 +7,11 @@ public class Wood : InteractableObject
         if (!Player.PlayerHands.HasSomethingInHands)
         {
             DisableCollider();
+            Player.PlayerHands.TakeObject(this.gameObject,HoldableObjects);
         }
         else
         {
             TipsViewPanel.ShowHandsAreFullTip();
         }
-    }
-
-    public void DisableCollider()
-    {
-        //очень странный метод
-        this.transform.parent = Player.PlayerHands.HandlePoint.transform;
-        this.transform.position = Player.PlayerHands.HandlePoint.position;
-        GetComponent<Collider>().enabled = false;
-        SelectedObject.Hide();
-        Player.PlayerHands.SetHasSomethingInHands(true);
-        Player.PlayerHands.SetHasWood(true);
     }
 }

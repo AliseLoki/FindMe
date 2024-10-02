@@ -6,7 +6,7 @@ public class GarbageContainer : InteractableObject
     {
         int throwingFoodSoundEffectIndex = 0;
 
-        if (Player.PlayerHands.HasSomethingInHands && !Player.PlayerHands.HasWood)
+        if (Player.PlayerHands.HasSomethingInHands && Player.PlayerHands.HoldableObject != HoldableObjects.Wood)//!Player.PlayerHands.HasWood)
         {
             if (Player.PlayerCookingModule.CookingRecipeSO != null)
             {
@@ -17,13 +17,13 @@ public class GarbageContainer : InteractableObject
             Player.PlayerCookingModule.ThrowFood();
             TipsViewPanel.ShowThrowFoodTip();
         }
-        else if (Player.PlayerHands.HasWood)
+        else if (Player.PlayerHands.HoldableObject == HoldableObjects.Wood)
         {
             PlaySoundEffect(AudioClipsList[throwingFoodSoundEffectIndex]);
-            Player.PlayerHands.ResetWoodPrefab();
+            Player.PlayerHands.GiveObject();
             TipsViewPanel.ShowThrowFoodTip();
         }
-        else if (!Player.PlayerHands.HasWood)
+        else if (Player.PlayerHands.HoldableObject != HoldableObjects.Wood)
         {
             TipsViewPanel.ShowNothingInHandsTip();
         }

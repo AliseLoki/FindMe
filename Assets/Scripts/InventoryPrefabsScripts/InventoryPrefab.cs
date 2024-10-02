@@ -12,13 +12,13 @@ public class InventoryPrefab : InteractableObject
         }
     }
 
-    public InventoryPrefabSO DisableCollider()
+    public InventoryPrefabSO DisableColliders()
     {
-        this.transform.parent = Player.HandlePoint.transform;
-        this.transform.position = Player.HandlePoint.position;
+        this.transform.parent = Player.PlayerHands.HandlePoint.transform;
+        this.transform.position = Player.PlayerHands.HandlePoint.position;
         GetComponent<Collider>().enabled = false;
         SelectedObject.Hide();
-        Player.PlayerHands.SetHasSomethingInHands(true);
+        //Player.PlayerHands.SetHasSomethingInHands(true);
         return _inventoryPrefabSO;
     }
 }

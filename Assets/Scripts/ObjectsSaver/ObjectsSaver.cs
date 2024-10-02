@@ -12,10 +12,14 @@ public class ObjectsSaver : MonoBehaviour
     private const string PlayerPrefsGrassInCabbagePatch = nameof(PlayerPrefsGrassInCabbagePatch);
     private const string PlayerPrefsCowInCowPlace = nameof(PlayerPrefsCowInCowPlace);
 
-    //[SerializeField] private InteractableObject _meetHanger;
-    //[SerializeField] private InteractableObject _bowlWithCheese;
-    //[SerializeField] private InteractableObject _basketWithCabbages;
-    //[SerializeField] private InteractableObject _barrelWithTomatoes;
+    [SerializeField] private Transform _tomatoPatchWithoutWater;
+    [SerializeField] private Transform _cabbagePatchWithoutWater;
+    [SerializeField] private Transform _cowPatchWithoutWater;
+
+    [SerializeField] private Patch _tomato;
+    [SerializeField] private Patch _cabbage;
+    [SerializeField] private Patch _cow;
+
     [SerializeField] private Transform _meetHanger;
     [SerializeField] private Transform _bowlWithCheese;
     [SerializeField] private Transform _basketWithCabbages;
@@ -27,7 +31,6 @@ public class ObjectsSaver : MonoBehaviour
 
     [SerializeField] private GameStatesSwitcher _gameStatesSwitcher;
 
-    
     private void Start()
     {
         if (!_gameStatesSwitcher.IsFirstStart)
@@ -37,11 +40,15 @@ public class ObjectsSaver : MonoBehaviour
             GetContainerState(PlayerPrefsCabbageContainerState, 1, _basketWithCabbages);
             GetContainerState(PlayerPrefsTomatoContainerState, 1, _barrelWithTomatoes);
 
-
-
             ActivatePatch(_bowlWithCheese, _cowPatch);
             ActivatePatch(_basketWithCabbages, _cabbagePatch);
             ActivatePatch(_barrelWithTomatoes, _tomatoPatch);
+
+            GetContainerState(PlayerPrefsGrassInCabbagePatch, 1, _cabbagePatchWithoutWater);
+            GetContainerState(PlayerPrefsGrassInTomatoPatch, 1, _tomatoPatchWithoutWater);
+            GetContainerState(PlayerPrefsCowInCowPlace, 1, _cowPatchWithoutWater);
+
+            CheckPatches();
         }
         else
         {
@@ -56,9 +63,9 @@ public class ObjectsSaver : MonoBehaviour
         Save(_basketWithCabbages, PlayerPrefsCabbageContainerState);
         Save(_barrelWithTomatoes, PlayerPrefsTomatoContainerState);
 
-        //Save(_cabbagePatchWithoutWater,PlayerPrefsGrassInCabbagePatch);
-        //Save(_tomatoPatchWithoutWater, PlayerPrefsGrassInTomatoPatch);
-        //Save(_cowPatchWithoutWater, PlayerPrefsCowInCowPlace);
+        Save(_cabbagePatchWithoutWater, PlayerPrefsGrassInCabbagePatch);
+        Save(_tomatoPatchWithoutWater, PlayerPrefsGrassInTomatoPatch);
+        Save(_cowPatchWithoutWater, PlayerPrefsCowInCowPlace);
     }
 
     private void Reset()
@@ -78,6 +85,22 @@ public class ObjectsSaver : MonoBehaviour
         foreach (var transform in transformList)
         {
             transform.gameObject.SetActive(isActive);
+        }
+    }
+
+    private void CheckPatches()
+    {
+        if (_tomatoPatchWithoutWater.gameObject.activeSelf)
+        {
+            _tomato.SeedIsLanded();
+        }
+        if (_cabbagePatchWithoutWater.gameObject.activeSelf)
+        {
+            _cabbage.SeedIsLanded();
+        }
+        if (_cowPatchWithoutWater.gameObject.activeSelf)
+        {
+            _cow.SeedIsLanded();
         }
     }
 
@@ -104,17 +127,6 @@ public class ObjectsSaver : MonoBehaviour
             SetContainerState(containerState, false);
         }
     }
-    //private void Save(InteractableObject container, string containerState)
-    //{
-    //    if (container.isActiveAndEnabled)
-    //    {
-    //        SetContainerState(containerState, true);
-    //    }
-    //    else
-    //    {
-    //        SetContainerState(containerState, false);
-    //    }
-    //}
 
     private void GetContainerState(string containerState, int defaultValue, Transform container)
     {
@@ -125,7 +137,8 @@ public class ObjectsSaver : MonoBehaviour
 
     private void SetContainerState(string containerState, bool isActive)
     {
-        PlayerPrefs.SetInt(containerState, ConvertBoolToInt(isActive)); ;
+        PlayerPrefs.SetInt(containerState, ConvertBoolToInt(isActive)); 
+        // в документации
     }
 
     private bool ConvertIntToBool(int value)

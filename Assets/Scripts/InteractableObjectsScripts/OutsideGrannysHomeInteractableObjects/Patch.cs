@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Patch : InteractableObject
@@ -9,13 +8,10 @@ public class Patch : InteractableObject
     [SerializeField] private Container _barrelWithIngredients;
 
     private bool _seedIsLanded;
-
-    private void Start()
+   
+    public void SeedIsLanded()
     {
-        if (_grass.gameObject.activeSelf)
-        {
-            _seedIsLanded = true;
-        }
+        _seedIsLanded = true;
     }
 
     protected override void UseObject()
@@ -23,27 +19,27 @@ public class Patch : InteractableObject
         int wateringSoundEffectIndex = 0;
         int throwingSoundEffect = 1;
 
-        if (_seedIsLanded && Player.PlayerHands.HasWater)
+        if (_seedIsLanded && Player.PlayerHands.HoldableObject == HoldableObjects.Water)
         {
             PlaySoundEffect(AudioClipsList[wateringSoundEffectIndex]);
-            Player.PlayerHands.GiveWater();
+            Player.PlayerHands.GiveObject();
             _vegetable.gameObject.SetActive(true);
             _barrelWithIngredients.gameObject.SetActive(true);
             ShowYouHaveNewIngredientTips();
         }
-        else if (Player.PlayerHands.HasSeed && Player.PlayerHands.InventoryPrefabSO == _inventoryPrefabSO)
-        {
-            PlaySoundEffect(AudioClipsList[throwingSoundEffect]);
-            Player.PlayerHands.LandSeed();
-            _seedIsLanded = true;
-            _grass.gameObject.SetActive(true);
-            DisableInteract();
-            ShowBringWaterTip();
-        }
-        else if (Player.PlayerHands.HasWater)
+        //else if (Player.PlayerHands.HasSeed && Player.PlayerHands.InventoryPrefabSO == _inventoryPrefabSO)
+        //{
+        //    PlaySoundEffect(AudioClipsList[throwingSoundEffect]);
+        //    Player.PlayerHands.LandSeed();
+        //    _seedIsLanded = true;
+        //    _grass.gameObject.SetActive(true);
+        //    DisableInteract();
+        //    ShowBringWaterTip();
+        //}
+        else if (Player.PlayerHands.HoldableObject == HoldableObjects.Water)
         {
             PlaySoundEffect(AudioClipsList[wateringSoundEffectIndex]);
-            Player.PlayerHands.GiveWater();
+            Player.PlayerHands.GiveObject();
         }
     }
 

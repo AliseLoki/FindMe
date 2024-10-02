@@ -2,15 +2,10 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private Transform _handlePoint;
-   
     [SerializeField] private DeliveryService _deliveryService;
    
-    [SerializeField] private LastVillage _lastVillage;
-
     [SerializeField] private Saver _saver;
     [SerializeField] private GameStatesSwitcher _gameStatesSwitcher;
-
   
     [SerializeField] private PlayerEvents _playerEvents;
     [SerializeField] private PlayerCookingModule _playerCookingModule;
@@ -34,9 +29,6 @@ public class Player : MonoBehaviour
 
     public PlayerAnimation PlayerAnimation => _playerAnimation;
 
-    public Transform HandlePoint => _handlePoint;
-
-
     private void Start()
     {
         if (!_gameStatesSwitcher.IsFirstStart)
@@ -48,20 +40,13 @@ public class Player : MonoBehaviour
     private void OnEnable()
     {
         _deliveryService.AllDishesHaveBeenDelivered += OnAllDishesHaveBeenDelivered;
-        _lastVillage.WitchAppeared += OnWitchAppeared;
     }
 
     private void OnDisable()
     {
         _deliveryService.AllDishesHaveBeenDelivered -= OnAllDishesHaveBeenDelivered;
-        _lastVillage.WitchAppeared -= OnWitchAppeared;
     }
    
-    private void OnWitchAppeared(Witch witch)
-    {
-        _playerMovement.LookAtTheWitch(witch);
-    }
-
     private void OnAllDishesHaveBeenDelivered()
     {
         _playerHands.ShowOrHideBackPack(false);

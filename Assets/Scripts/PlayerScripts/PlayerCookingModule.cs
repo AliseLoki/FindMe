@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerCookingModule : MonoBehaviour
 {
-    [SerializeField] private Player _player;
+   // [SerializeField] private Player _player;
 
     private Food _food;
     private FoodSO _foodSO;
@@ -34,7 +34,7 @@ public class PlayerCookingModule : MonoBehaviour
     {
         _foodSO = foodSO;
         _food = food;
-        _player.PlayerHands.SetHasSomethingInHands(true);
+      //  _player.PlayerHands.SetHasSomethingInHands(true);
     }
 
     public void GiveFood()
@@ -57,6 +57,6 @@ public class PlayerCookingModule : MonoBehaviour
         _food = null;
         _foodSO = null;
         _cookingRecipeSO = null;
-        _player.PlayerHands.SetHasSomethingInHands(false);
+      //  _player.PlayerHands.SetHasSomethingInHands(false);
     }
 }

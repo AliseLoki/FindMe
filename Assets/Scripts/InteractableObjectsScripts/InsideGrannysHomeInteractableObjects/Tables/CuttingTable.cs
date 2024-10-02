@@ -30,9 +30,9 @@ public class CuttingTable : Table
             {
                 PlaySoundEffect(AudioClipsList[gettingFoodSoundEffectIndex]);
                 Player.PlayerCookingModule.SetFood(Food, FoodSO);
-                Player.PlayerHands.SetHasSomethingInHands(true);
+                //Player.PlayerHands.SetHasSomethingInHands(true);
                 ResetFoodAndFoodSO();
-                Player.PlayerCookingModule.Food.SetInParent(Player.HandlePoint);
+                Player.PlayerCookingModule.Food.SetInParent(Player.PlayerHands.HandlePoint);
                 IsChangedFood = false;
             }
         }

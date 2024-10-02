@@ -5,7 +5,7 @@ public class Spawner : MonoBehaviour
 {
     [SerializeField] private List<InteractableObject> _interactableObjects;
 
-    [SerializeField] private Transform _bucketOfWater;
+    [SerializeField] private BucketOfWater _bucketOfWater;
     [SerializeField] private Wood _wood;
     [SerializeField] private Sword _sword;
     [SerializeField] private Cow _cow;
@@ -18,75 +18,85 @@ public class Spawner : MonoBehaviour
     [SerializeField] private PresentFromAd _presentFromAd;
 
     [SerializeField] private Player _player;
-    [SerializeField] private GameStatesSwitcher _gameStatesSwitcher;
     [SerializeField] private TipsViewPanel _tipsViewPanel;
 
     private Vector3 _offset = new Vector3(0, -1.7f, 2);
     private bool _haveBeenSpawned;
-
-    private void OnEnable()
-    {
-        _player.PlayerEventsHandler.ExitGrannysHome += SpawnObjects;
-    }
-
+    
     private void Start()
     {
-        if (_gameStatesSwitcher.IsFirstStart)
-        {
-            Instantiate(_wood, _woodSpawnPlace.position, Quaternion.identity);
-        }
+        SpawnObjects();
+
+        //только если ферстстарт
+       // Instantiate(_wood, _woodSpawnPlace.position, Quaternion.identity);
     }
 
-    private void OnDisable()
-    {
-        _player.PlayerEventsHandler.ExitGrannysHome -= SpawnObjects;
-    }
 
-    public void SpawnBucketOfWater(Transform spawnPoint)
+    //не забыть заспаунить ведро в колодце
+    public void SpawnBucketOfWaterInHands()
     {
-        var waterInHands = Instantiate(_bucketOfWater, spawnPoint, true);
-        waterInHands.transform.position = spawnPoint.position;
-    }
-
-    public InventoryPrefabSO SpawnNecronomicon()
-    {
-        var necronomicon = Instantiate(_necronomicon);
-        return necronomicon.DisableCollider();
+        SpawnHoldableObject(_bucketOfWater);
     }
 
     public void SpawnWoodInHands()
     {
-        var wood = Instantiate(_wood);
-        //wood.DisableCollider();
+        SpawnHoldableObject(_wood);
     }
 
-    public InventoryPrefabSO SpawnSwordInHands()
+    public void SpawnSwordInHands()
+    {
+        SpawnHoldableObject(_sword);
+    }
+
+    public InventoryPrefabSO SpawnSwordInHandsss()
     {
         var sword = Instantiate(_sword);
-        return sword.DisableCollider();
+        sword.InitLinks(_tipsViewPanel, _player, _player.PlayerInventory);
+        return sword.DisableColliders();
     }
+
+    private void SpawnHoldableObject(InteractableObject objectInHands)
+    {
+        var spawnedObject = Instantiate(objectInHands);
+        spawnedObject.InitLinks(_tipsViewPanel, _player, _player.PlayerInventory);
+        spawnedObject.DisableCollider();
+        _player.PlayerHands.TakeObject(spawnedObject.gameObject,spawnedObject.HoldableObjects);
+    }
+
+
+    public InventoryPrefabSO SpawnNecronomicon()
+    {
+        var necronomicon = Instantiate(_necronomicon);
+        necronomicon.InitLinks(_tipsViewPanel, _player, _player.PlayerInventory);
+        return necronomicon.DisableColliders();
+    }
+
+
 
     public InventoryPrefabSO SpawnCowInHands()
     {
         var cow = Instantiate(_cow);
-        return cow.DisableCollider();
+        cow.InitLinks(_tipsViewPanel, _player, _player.PlayerInventory);
+        return cow.DisableColliders();
     }
 
     public InventoryPrefabSO SpawnCabbageForSeedsInHands()
     {
         var cabbageForSeeds = Instantiate(_cabbageForSeeds);
-        return cabbageForSeeds.DisableCollider();
+        cabbageForSeeds.InitLinks(_tipsViewPanel, _player, _player.PlayerInventory);
+        return cabbageForSeeds.DisableColliders();
     }
 
     public InventoryPrefabSO SpawnTomatoForSeedsInHands()
     {
         var tomatoForSeeds = Instantiate(_tomatoForSeeds);
-        return tomatoForSeeds.DisableCollider();
+        tomatoForSeeds.InitLinks(_tipsViewPanel, _player, _player.PlayerInventory);
+        return tomatoForSeeds.DisableColliders();
     }
 
     public void GiveRewardForWatchingAd()
     {
-        var presentFromAd = Instantiate(_presentFromAd, _player.HandlePoint.position + _offset, Quaternion.identity);
+        var presentFromAd = Instantiate(_presentFromAd, _player.PlayerHands.HandlePoint.position + _offset, Quaternion.identity);
         presentFromAd.InitLinks(_tipsViewPanel, _player, _player.PlayerInventory);
     }
 
