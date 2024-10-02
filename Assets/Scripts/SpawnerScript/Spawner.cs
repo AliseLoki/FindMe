@@ -48,13 +48,6 @@ public class Spawner : MonoBehaviour
         SpawnHoldableObject(_sword);
     }
 
-    public InventoryPrefabSO SpawnSwordInHandsss()
-    {
-        var sword = Instantiate(_sword);
-        sword.InitLinks(_tipsViewPanel, _player, _player.PlayerInventory);
-        return sword.DisableColliders();
-    }
-
     private void SpawnHoldableObject(InteractableObject objectInHands)
     {
         var spawnedObject = Instantiate(objectInHands);
@@ -63,15 +56,12 @@ public class Spawner : MonoBehaviour
         _player.PlayerHands.TakeObject(spawnedObject.gameObject,spawnedObject.HoldableObjects);
     }
 
-
     public InventoryPrefabSO SpawnNecronomicon()
     {
         var necronomicon = Instantiate(_necronomicon);
         necronomicon.InitLinks(_tipsViewPanel, _player, _player.PlayerInventory);
         return necronomicon.DisableColliders();
     }
-
-
 
     public InventoryPrefabSO SpawnCowInHands()
     {

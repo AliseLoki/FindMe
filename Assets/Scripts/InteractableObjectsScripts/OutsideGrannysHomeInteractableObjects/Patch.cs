@@ -27,15 +27,17 @@ public class Patch : InteractableObject
             _barrelWithIngredients.gameObject.SetActive(true);
             ShowYouHaveNewIngredientTips();
         }
-        //else if (Player.PlayerHands.HasSeed && Player.PlayerHands.InventoryPrefabSO == _inventoryPrefabSO)
-        //{
-        //    PlaySoundEffect(AudioClipsList[throwingSoundEffect]);
-        //    Player.PlayerHands.LandSeed();
-        //    _seedIsLanded = true;
-        //    _grass.gameObject.SetActive(true);
-        //    DisableInteract();
-        //    ShowBringWaterTip();
-        //}
+        else if (Player.PlayerHands.HoldableObject == HoldableObjects.CabbageForSeeds
+            || Player.PlayerHands.HoldableObject == HoldableObjects.TomatoForSeeds
+            && Player.PlayerHands.InventoryPrefabSO == _inventoryPrefabSO)
+        {
+            PlaySoundEffect(AudioClipsList[throwingSoundEffect]);
+            Player.PlayerHands.GiveObject();
+            _seedIsLanded = true;
+            _grass.gameObject.SetActive(true);
+            DisableInteract();
+            ShowBringWaterTip();
+        }
         else if (Player.PlayerHands.HoldableObject == HoldableObjects.Water)
         {
             PlaySoundEffect(AudioClipsList[wateringSoundEffectIndex]);

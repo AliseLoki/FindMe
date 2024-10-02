@@ -1,12 +1,15 @@
 public enum HoldableObjects
 {
     Wood = 1,
+
     Water = 2,
     Sword = 3,
-    Cow = 4,
+
     CabbageForSeeds = 5,
     TomatoForSeeds = 6,
+    Cow = 4,
     Necronomicon = 7,
+
     Flavour = 8,
     Tomato = 9,
     Cabbage = 10,

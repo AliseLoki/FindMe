@@ -19,8 +19,6 @@ public class Saver : MonoBehaviour
 
     private const string PlayerPrefsHasBackPack = nameof(PlayerPrefsHasBackPack);
     
-    private const string PlayerPrefsHasSeed = nameof(PlayerPrefsHasSeed);
-    private const string PlayerPrefsHasSword = nameof(PlayerPrefsHasSword);
     private const string PlayerPrefsHasCow = nameof(PlayerPrefsHasCow);
     private const string PlayerPrefsHasTomatoForSeeds = nameof(PlayerPrefsHasTomatoForSeeds);
     private const string PlayerPrefsHasCabbageForSeeds = nameof(PlayerPrefsHasCabbageForSeeds);
@@ -266,17 +264,6 @@ public class Saver : MonoBehaviour
         return ConvertIntToBool(PlayerPrefs.GetInt(PlayerPrefsHasBackPack));
     }
 
-   
-    public bool LoadHasSeed()
-    {
-        return ConvertIntToBool(PlayerPrefs.GetInt(PlayerPrefsHasSeed, 0));
-    }
-
-    public bool LoadHasSword()
-    {
-        return ConvertIntToBool(PlayerPrefs.GetInt(PlayerPrefsHasSword, 0));
-    }
-
     public bool LoadHasCow()
     {
         return ConvertIntToBool(PlayerPrefs.GetInt(PlayerPrefsHasCow, 0));
@@ -310,8 +297,6 @@ public class Saver : MonoBehaviour
 
         SaveState(PlayerPrefsHasBackPack, ConvertBoolToInt(_player.PlayerHands.HasBackPack));
     
-        SaveState(PlayerPrefsHasSeed, ConvertBoolToInt(_player.PlayerHands.HasSeed));
-        
         SaveState(PlayerPrefsHasCow, ConvertBoolToInt(_player.PlayerHands.HasCow));
         SaveState(PlayerPrefsHasTomatoForSeeds, ConvertBoolToInt(_player.PlayerHands.HasTomatoForSeeds));
         SaveState(PlayerPrefsHasCabbageForSeeds, ConvertBoolToInt(_player.PlayerHands.HasCabbageForSeeds));
