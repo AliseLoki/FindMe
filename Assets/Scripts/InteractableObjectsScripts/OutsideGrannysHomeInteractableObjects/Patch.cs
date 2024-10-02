@@ -29,7 +29,7 @@ public class Patch : InteractableObject
         }
         else if (Player.PlayerHands.HoldableObject == HoldableObjects.CabbageForSeeds
             || Player.PlayerHands.HoldableObject == HoldableObjects.TomatoForSeeds
-            && Player.PlayerHands.InventoryPrefabSO == _inventoryPrefabSO)
+            && Player.PlayerHands.InventoryPrefabSO == _inventoryPrefabSO && !_seedIsLanded)
         {
             PlaySoundEffect(AudioClipsList[throwingSoundEffect]);
             Player.PlayerHands.GiveObject();

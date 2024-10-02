@@ -20,8 +20,8 @@ public class Saver : MonoBehaviour
     private const string PlayerPrefsHasBackPack = nameof(PlayerPrefsHasBackPack);
     
     private const string PlayerPrefsHasCow = nameof(PlayerPrefsHasCow);
-    private const string PlayerPrefsHasTomatoForSeeds = nameof(PlayerPrefsHasTomatoForSeeds);
-    private const string PlayerPrefsHasCabbageForSeeds = nameof(PlayerPrefsHasCabbageForSeeds);
+   
+  
     private const string PlayerPrefsHasNecronomicon = nameof(PlayerPrefsHasNecronomicon);
 
     [SerializeField] private Player _player;
@@ -269,16 +269,6 @@ public class Saver : MonoBehaviour
         return ConvertIntToBool(PlayerPrefs.GetInt(PlayerPrefsHasCow, 0));
     }
 
-    public bool LoadHasTomatoForSeeds()
-    {
-        return ConvertIntToBool(PlayerPrefs.GetInt(PlayerPrefsHasTomatoForSeeds, 0));
-    }
-
-    public bool LoadHasCabbageForSeeds()
-    {
-        return ConvertIntToBool(PlayerPrefs.GetInt(PlayerPrefsHasCabbageForSeeds, 0));
-    }
-
     public bool LoadHasNecronomicon()
     {
         return ConvertIntToBool(PlayerPrefs.GetInt(PlayerPrefsHasNecronomicon, 0));
@@ -298,8 +288,7 @@ public class Saver : MonoBehaviour
         SaveState(PlayerPrefsHasBackPack, ConvertBoolToInt(_player.PlayerHands.HasBackPack));
     
         SaveState(PlayerPrefsHasCow, ConvertBoolToInt(_player.PlayerHands.HasCow));
-        SaveState(PlayerPrefsHasTomatoForSeeds, ConvertBoolToInt(_player.PlayerHands.HasTomatoForSeeds));
-        SaveState(PlayerPrefsHasCabbageForSeeds, ConvertBoolToInt(_player.PlayerHands.HasCabbageForSeeds));
+       
         SaveState(PlayerPrefsHasNecronomicon, ConvertBoolToInt(_player.PlayerHands.HasNecronomicon));
 
         _objectSaver.SaveContainers();

@@ -17,10 +17,9 @@ public class PlayerHands : MonoBehaviour
 
     //private bool _hasSomethingInHands;
     private bool _hasBackPack;
-   
+
+   // private bool _hasCabbageForSeeds;
     private bool _hasCow;
-    private bool _hasCabbageForSeeds;
-    private bool _hasTomatoForSeeds;
     private bool _hasNecronomicon;
 
     public InventoryPrefabSO InventoryPrefabSO => _inventoryPrefabSO;
@@ -31,9 +30,7 @@ public class PlayerHands : MonoBehaviour
 
     public bool HasCow => _hasCow;
 
-    public bool HasCabbageForSeeds => _hasCabbageForSeeds;
-
-    public bool HasTomatoForSeeds => _hasTomatoForSeeds;
+   // public bool HasCabbageForSeeds => _hasCabbageForSeeds;
 
     public bool HasNecronomicon => _hasNecronomicon;
 
@@ -43,7 +40,7 @@ public class PlayerHands : MonoBehaviour
 
     public Transform HandlePoint => _handlePoint;
 
-   
+
     private void Start()
     {
         InitAllBooleans();
@@ -69,7 +66,13 @@ public class PlayerHands : MonoBehaviour
     public void TakeObject(GameObject gameObject, HoldableObjects holdableObjects)
     {
         _objectInHands = gameObject;
-        _indexOfObjectInHands = holdableObjects;       
+        _indexOfObjectInHands = holdableObjects;
+
+        if (gameObject.TryGetComponent(out InventoryPrefab inventoryPrefab))
+        {
+            _inventoryPrefabSO = inventoryPrefab.ConnectedInentoryPrefabSO;
+        }
+
         _objectInHands.transform.parent = _handlePoint.transform;
         _objectInHands.transform.position = _handlePoint.position;
     }
@@ -90,8 +93,6 @@ public class PlayerHands : MonoBehaviour
         _indexOfObjectInHands = 0;
 
         _hasCow = false;
-        _hasCabbageForSeeds = false;
-        _hasTomatoForSeeds = false;
         _hasNecronomicon = false;
     }
 
@@ -100,10 +101,8 @@ public class PlayerHands : MonoBehaviour
     {
         _hasBackPack = _saver.LoadHasBackPack();
         _indexOfObjectInHands = _saver.LoadObjectInHands();
-        
+
         //    _hasCow = _saver.LoadHasCow();
-        //    _hasTomatoForSeeds = _saver.LoadHasTomatoForSeeds();
-        //    _hasCabbageForSeeds = _saver.LoadHasCabbageForSeeds();
         //    _hasNecronomicon = _saver.LoadHasNecronomicon();
     }
 
@@ -126,17 +125,17 @@ public class PlayerHands : MonoBehaviour
         {
             _spawner.SpawnSwordInHands();
         }
+        else if (_indexOfObjectInHands == HoldableObjects.TomatoForSeeds)
+        {
+            _spawner.SpawnTomatoForSeedsInHands();
+        }
+        else if (_indexOfObjectInHands == HoldableObjects.CabbageForSeeds)
+        {
+            _spawner.SpawnCabbageForSeedsInHands();
+        }
         else if (_hasCow == true)
         {
             _inventoryPrefabSO = _spawner.SpawnCowInHands();
-        }
-        else if (_hasTomatoForSeeds == true)
-        {
-            _inventoryPrefabSO = _spawner.SpawnTomatoForSeedsInHands();
-        }
-        else if (_hasCabbageForSeeds == true)
-        {
-            _inventoryPrefabSO = _spawner.SpawnCabbageForSeedsInHands();
         }
         else if (_hasNecronomicon == true)
         {
@@ -165,9 +164,6 @@ public class PlayerHands : MonoBehaviour
 
     private void TakeInvenoryPrefabInHands(InventoryPrefabSO inventoryPrefabSO)
     {
-        //для коровы и семян, надо от него избавиться
-        CheckWitchSeed(inventoryPrefabSO, true);
-
         //вот это тэйк
         var prefabInHands = Instantiate(inventoryPrefabSO.InventoryPrefab);
         TakeObject(prefabInHands.gameObject, prefabInHands.HoldableObjects);
@@ -182,22 +178,6 @@ public class PlayerHands : MonoBehaviour
         }
 
         _inventoryPrefabSO = inventoryPrefabSO;
-    }
-
-    private void CheckWitchSeed(InventoryPrefabSO inventoryPrefabSO, bool isTrue)
-    {
-        if (inventoryPrefabSO.InventoryPrefab as Cow)
-        {
-            _hasCow = isTrue;
-        }
-        else if (inventoryPrefabSO.InventoryPrefab as CabbageForSeeds)
-        {
-            _hasCabbageForSeeds = isTrue;
-        }
-        else if (inventoryPrefabSO.InventoryPrefab as TomatoForSeeds)
-        {
-            _hasTomatoForSeeds = isTrue;
-        }
     }
 
     private bool CheckIfCow(InventoryPrefabSO inventoryPrefabSO)

@@ -48,6 +48,16 @@ public class Spawner : MonoBehaviour
         SpawnHoldableObject(_sword);
     }
 
+    public void SpawnTomatoForSeedsInHands()
+    {
+        SpawnHoldableObject(_tomatoForSeeds);
+    }
+
+    public void SpawnCabbageForSeedsInHands()
+    {
+        SpawnHoldableObject(_cabbageForSeeds);
+    }
+
     private void SpawnHoldableObject(InteractableObject objectInHands)
     {
         var spawnedObject = Instantiate(objectInHands);
@@ -70,19 +80,13 @@ public class Spawner : MonoBehaviour
         return cow.DisableColliders();
     }
 
-    public InventoryPrefabSO SpawnCabbageForSeedsInHands()
-    {
-        var cabbageForSeeds = Instantiate(_cabbageForSeeds);
-        cabbageForSeeds.InitLinks(_tipsViewPanel, _player, _player.PlayerInventory);
-        return cabbageForSeeds.DisableColliders();
-    }
+    //public InventoryPrefabSO SpawnCabbageForSeedsInHands()
+    //{
+    //    var cabbageForSeeds = Instantiate(_cabbageForSeeds);
+    //    cabbageForSeeds.InitLinks(_tipsViewPanel, _player, _player.PlayerInventory);
+    //    return cabbageForSeeds.DisableColliders();
+    //}
 
-    public InventoryPrefabSO SpawnTomatoForSeedsInHands()
-    {
-        var tomatoForSeeds = Instantiate(_tomatoForSeeds);
-        tomatoForSeeds.InitLinks(_tipsViewPanel, _player, _player.PlayerInventory);
-        return tomatoForSeeds.DisableColliders();
-    }
 
     public void GiveRewardForWatchingAd()
     {
