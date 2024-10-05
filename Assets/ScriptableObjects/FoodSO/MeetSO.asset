@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70bd02c523c1a364b866ec18070bab08, type: 3}
   m_Name: MeetSO
   m_EditorClassIdentifier: 
+  Prefab: {fileID: 8876804200434291126, guid: a357edb38b7615b459f3eb6df0e96b7d, type: 3}
+  Type: 12
   Sprite: {fileID: 21300000, guid: aa1bacc24dde76e47b2ec0dd4e82385b, type: 3}
-  Prefab: {fileID: -2937513414930608912, guid: a357edb38b7615b459f3eb6df0e96b7d, type: 3}
   Name: Meet

@@ -3,9 +3,15 @@ using UnityEngine;
 public class Well : InteractableObject
 {
     [SerializeField] private BucketOfWater _bucketOfWater;
+    [SerializeField] private Spawner _spawner;
 
     private bool _isPaid;
     private int _price = 10;
+
+    public void DrawWater()
+    {
+        _bucketOfWater = _spawner.SpawnBucketOfWaterInWell();
+    }
 
     protected override void UseObject()
     {
@@ -23,8 +29,6 @@ public class Well : InteractableObject
             }
 
             _isPaid = false;
-            //по идее должно появляться, когда игрок вылил воду
-           // _bucketOfWater.gameObject.SetActive(true);
         }
         else
         {

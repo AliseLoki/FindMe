@@ -26,7 +26,7 @@ public class DeliveryService : MonoBehaviour
     public event Action AllDishesHaveBeenDelivered;
     public event Action TimeToGoHasCome;
 
-    private void Start()
+    private void Awake()
     {
         if (_recievingOrdersPoint.OrderIsTaken)
         {

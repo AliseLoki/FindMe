@@ -6,42 +6,37 @@ public class Patch : InteractableObject
     [SerializeField] private Transform _grass;
     [SerializeField] private Transform _vegetable;
     [SerializeField] private Container _barrelWithIngredients;
-
-    private bool _seedIsLanded;
-   
-    public void SeedIsLanded()
-    {
-        _seedIsLanded = true;
-    }
-
+    [SerializeField] private Well _well;
     protected override void UseObject()
     {
         int wateringSoundEffectIndex = 0;
         int throwingSoundEffect = 1;
 
-        if (_seedIsLanded && Player.PlayerHands.HoldableObject == HoldableObjects.Water)
+        if (Player.PlayerHands.HoldableObject == HoldableObjectType.Water)
         {
+            if (_grass.gameObject.activeSelf)
+            {
+                _vegetable.gameObject.SetActive(true);
+                _barrelWithIngredients.gameObject.SetActive(true);
+                ShowYouHaveNewIngredientTips();
+            }
+
+            Player.PlayerHands.GiveObject();
             PlaySoundEffect(AudioClipsList[wateringSoundEffectIndex]);
-            Player.PlayerHands.GiveObject();
-            _vegetable.gameObject.SetActive(true);
-            _barrelWithIngredients.gameObject.SetActive(true);
-            ShowYouHaveNewIngredientTips();
+            _well.DrawWater();
         }
-        else if (Player.PlayerHands.HoldableObject == HoldableObjects.CabbageForSeeds
-            || Player.PlayerHands.HoldableObject == HoldableObjects.TomatoForSeeds
-            && Player.PlayerHands.InventoryPrefabSO == _inventoryPrefabSO && !_seedIsLanded)
+        else if (Player.PlayerHands.HoldableObject == HoldableObjectType.CabbageForSeeds ||
+            Player.PlayerHands.HoldableObject == HoldableObjectType.TomatoForSeeds ||
+            Player.PlayerHands.HoldableObject == HoldableObjectType.Cow)
         {
-            PlaySoundEffect(AudioClipsList[throwingSoundEffect]);
-            Player.PlayerHands.GiveObject();
-            _seedIsLanded = true;
-            _grass.gameObject.SetActive(true);
-            DisableInteract();
-            ShowBringWaterTip();
-        }
-        else if (Player.PlayerHands.HoldableObject == HoldableObjects.Water)
-        {
-            PlaySoundEffect(AudioClipsList[wateringSoundEffectIndex]);
-            Player.PlayerHands.GiveObject();
+            if (!_grass.gameObject.activeSelf && _inventoryPrefabSO == Player.PlayerHands.InventoryPrefabSO)
+            {
+                PlaySoundEffect(AudioClipsList[throwingSoundEffect]);
+                Player.PlayerHands.GiveObject();
+                _grass.gameObject.SetActive(true);
+                DisableInteract();
+                ShowBringWaterTip();
+            }
         }
     }
 

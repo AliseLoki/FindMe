@@ -33,7 +33,7 @@ public class Player : MonoBehaviour
     {
         if (!_gameStatesSwitcher.IsFirstStart)
         {
-            transform.position = _saver.LoadPlayerPosition();
+            transform.position = _saver.LoadPlayerPosition();           
         }
     }
 

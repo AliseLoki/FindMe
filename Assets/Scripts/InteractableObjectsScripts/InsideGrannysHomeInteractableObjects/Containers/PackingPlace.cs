@@ -23,6 +23,42 @@ public class PackingPlace : GarbageContainer
         DeliveryService.AllDishesHaveBeenDelivered -= OnAllDishesHaveBeenDelivered;
     }
 
+    protected override void UseObject()
+    {
+        int puttingFoodSoundEffectIndex = 0;
+
+        if (_isFull)
+        {
+            GivePackage(puttingFoodSoundEffectIndex);
+            return;
+        }
+        else
+        {
+            PutDishInPackage(puttingFoodSoundEffectIndex);
+        }
+    }
+
+    private void GivePackage(int puttingFoodSoundEffectIndex)
+    {
+        PlaySoundEffect(AudioClipsList[puttingFoodSoundEffectIndex]);
+        ShowPackage(false);
+        Player.PlayerHands.ShowOrHideBackPack(true);
+    }
+
+    private void PutDishInPackage(int puttingFoodSoundEffectIndex)
+    {
+        foreach (var foodSO in _canBePackedRecipeSO)
+        {
+            if (Player.PlayerCookingModule.FoodSO == foodSO)
+            {
+                PlaySoundEffect(AudioClipsList[puttingFoodSoundEffectIndex]);
+                CookingRecipeSOHasBeenPacked?.Invoke(Player.PlayerCookingModule.CookingRecipeSO);
+                Player.PlayerCookingModule.GiveFood();
+                Player.PlayerHands.GiveObject();
+            }
+        }
+    }
+
     private void OnAllDishesHaveBeenDelivered()
     {
         ShowPackage(true);
@@ -32,29 +68,6 @@ public class PackingPlace : GarbageContainer
     private void ShowPackage(bool isShowed)
     {
         _package.gameObject.SetActive(isShowed);
-    }
-
-    protected override void UseObject()
-    {
-        int puttingFoodSoundEffectIndex = 0;
-
-        if (_isFull)
-        {
-            PlaySoundEffect(AudioClipsList[puttingFoodSoundEffectIndex]);
-            ShowPackage(false);
-            Player.PlayerHands.ShowOrHideBackPack(true);
-            return;
-        }
-
-        foreach (var foodSO in _canBePackedRecipeSO)
-        {
-            if (Player.PlayerCookingModule.FoodSO == foodSO)
-            {
-                PlaySoundEffect(AudioClipsList[puttingFoodSoundEffectIndex]);
-                CookingRecipeSOHasBeenPacked?.Invoke(Player.PlayerCookingModule.CookingRecipeSO);
-                Player.PlayerCookingModule.ThrowFood();
-            }
-        }
     }
 
     private void OnTimeToGoHasCome()

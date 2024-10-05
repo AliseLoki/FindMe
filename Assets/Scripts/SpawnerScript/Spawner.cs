@@ -4,15 +4,12 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     [SerializeField] private List<InteractableObject> _interactableObjects;
+    [SerializeField] private List<HoldableObjectSO> _holdableObjectsSO;
 
     [SerializeField] private BucketOfWater _bucketOfWater;
     [SerializeField] private Wood _wood;
-    [SerializeField] private Sword _sword;
-    [SerializeField] private Cow _cow;
-    [SerializeField] private CabbageForSeeds _cabbageForSeeds;
-    [SerializeField] private TomatoForSeeds _tomatoForSeeds;
-    [SerializeField] private Necronomicon _necronomicon;
-
+    
+    [SerializeField] private Transform _placeForBucketOfWaterInWell;
     [SerializeField] private Transform _spawnPlaces;
     [SerializeField] private Transform _woodSpawnPlace;
     [SerializeField] private PresentFromAd _presentFromAd;
@@ -22,71 +19,43 @@ public class Spawner : MonoBehaviour
 
     private Vector3 _offset = new Vector3(0, -1.7f, 2);
     private bool _haveBeenSpawned;
-    
+
     private void Start()
     {
         SpawnObjects();
 
         //только если ферстстарт
-       // Instantiate(_wood, _woodSpawnPlace.position, Quaternion.identity);
+        // Instantiate(_wood, _woodSpawnPlace.position, Quaternion.identity);
     }
 
-
-    //не забыть заспаунить ведро в колодце
-    public void SpawnBucketOfWaterInHands()
+    public BucketOfWater SpawnBucketOfWaterInWell()
     {
-        SpawnHoldableObject(_bucketOfWater);
+       return Instantiate(_bucketOfWater, _placeForBucketOfWaterInWell.position, Quaternion.identity);
     }
 
-    public void SpawnWoodInHands()
+    public void SpawnHoldableObjectInHands(HoldableObjectType holdableObjectType)
     {
-        SpawnHoldableObject(_wood);
+        foreach (var item in _holdableObjectsSO)
+        {
+            if (item.Type == holdableObjectType)
+            {
+                var spawnedObject = Instantiate(item.Prefab);
+
+                if (spawnedObject.TryGetComponent(out InteractableObject interactableObject))
+                {
+                    interactableObject.InitLinks(_tipsViewPanel, _player, _player.PlayerInventory);
+                    interactableObject.DisableCollider();
+                }
+                else if(spawnedObject.TryGetComponent(out Food food))
+                {
+                    _player.PlayerCookingModule.SetFood(food, food.ConnectedFoodSO);
+                }
+
+                    _player.PlayerHands.TakeObject(spawnedObject.gameObject, holdableObjectType);
+                    break;
+            }
+        }
     }
-
-    public void SpawnSwordInHands()
-    {
-        SpawnHoldableObject(_sword);
-    }
-
-    public void SpawnTomatoForSeedsInHands()
-    {
-        SpawnHoldableObject(_tomatoForSeeds);
-    }
-
-    public void SpawnCabbageForSeedsInHands()
-    {
-        SpawnHoldableObject(_cabbageForSeeds);
-    }
-
-    private void SpawnHoldableObject(InteractableObject objectInHands)
-    {
-        var spawnedObject = Instantiate(objectInHands);
-        spawnedObject.InitLinks(_tipsViewPanel, _player, _player.PlayerInventory);
-        spawnedObject.DisableCollider();
-        _player.PlayerHands.TakeObject(spawnedObject.gameObject,spawnedObject.HoldableObjects);
-    }
-
-    public InventoryPrefabSO SpawnNecronomicon()
-    {
-        var necronomicon = Instantiate(_necronomicon);
-        necronomicon.InitLinks(_tipsViewPanel, _player, _player.PlayerInventory);
-        return necronomicon.DisableColliders();
-    }
-
-    public InventoryPrefabSO SpawnCowInHands()
-    {
-        var cow = Instantiate(_cow);
-        cow.InitLinks(_tipsViewPanel, _player, _player.PlayerInventory);
-        return cow.DisableColliders();
-    }
-
-    //public InventoryPrefabSO SpawnCabbageForSeedsInHands()
-    //{
-    //    var cabbageForSeeds = Instantiate(_cabbageForSeeds);
-    //    cabbageForSeeds.InitLinks(_tipsViewPanel, _player, _player.PlayerInventory);
-    //    return cabbageForSeeds.DisableColliders();
-    //}
-
 
     public void GiveRewardForWatchingAd()
     {

@@ -16,10 +16,6 @@ public class ObjectsSaver : MonoBehaviour
     [SerializeField] private Transform _cabbagePatchWithoutWater;
     [SerializeField] private Transform _cowPatchWithoutWater;
 
-    [SerializeField] private Patch _tomato;
-    [SerializeField] private Patch _cabbage;
-    [SerializeField] private Patch _cow;
-
     [SerializeField] private Transform _meetHanger;
     [SerializeField] private Transform _bowlWithCheese;
     [SerializeField] private Transform _basketWithCabbages;
@@ -47,8 +43,6 @@ public class ObjectsSaver : MonoBehaviour
             GetContainerState(PlayerPrefsGrassInCabbagePatch, 1, _cabbagePatchWithoutWater);
             GetContainerState(PlayerPrefsGrassInTomatoPatch, 1, _tomatoPatchWithoutWater);
             GetContainerState(PlayerPrefsCowInCowPlace, 1, _cowPatchWithoutWater);
-
-            CheckPatches();
         }
         else
         {
@@ -86,23 +80,7 @@ public class ObjectsSaver : MonoBehaviour
         {
             transform.gameObject.SetActive(isActive);
         }
-    }
-
-    private void CheckPatches()
-    {
-        if (_tomatoPatchWithoutWater.gameObject.activeSelf)
-        {
-            _tomato.SeedIsLanded();
-        }
-        if (_cabbagePatchWithoutWater.gameObject.activeSelf)
-        {
-            _cabbage.SeedIsLanded();
-        }
-        if (_cowPatchWithoutWater.gameObject.activeSelf)
-        {
-            _cow.SeedIsLanded();
-        }
-    }
+    }  
 
     private void ActivatePatch(Transform container, List<Transform> transformList)
     {

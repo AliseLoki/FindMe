@@ -84,6 +84,10 @@ PrefabInstance:
       propertyPath: _foodSO
       value: 
       objectReference: {fileID: 11400000, guid: c3d9024faf7a195409577a9efa3977c1, type: 2}
+    - target: {fileID: 5465372597002421079, guid: 0b4e0fd81296f774eb00037ecc60f2ab, type: 3}
+      propertyPath: _holdableObject
+      value: 18
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

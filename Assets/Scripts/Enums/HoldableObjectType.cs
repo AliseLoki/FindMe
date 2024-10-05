@@ -1,10 +1,10 @@
-public enum HoldableObjects
+public enum HoldableObjectType
 {
     Wood = 1,
 
     Water = 2,
-    Sword = 3,
 
+    Sword = 3,
     CabbageForSeeds = 5,
     TomatoForSeeds = 6,
     Cow = 4,

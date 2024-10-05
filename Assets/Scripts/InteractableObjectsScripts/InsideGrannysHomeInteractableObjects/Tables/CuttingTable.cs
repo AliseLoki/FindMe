@@ -13,27 +13,11 @@ public class CuttingTable : Table
         {
             if (!IsChangedFood)
             {
-                foreach (var recipe in _allCuttingRecipesSO)
-                {
-                    if (recipe.Input == FoodSO)
-                    {
-                        PlaySoundEffect(AudioClipsList[cuttingSoundEffectIndex]);
-                        FoodSO = recipe.Output;
-                        Destroy(PlaceForFood.GetChild(0).gameObject);
-                        Food = Instantiate(FoodSO.Prefab, PlaceForFood);
-                        IsChangedFood = true;
-                        TipsViewPanel.ShowBringToCookingTableTip();
-                    }
-                }
+                CutFood(cuttingSoundEffectIndex);               
             }
             else
             {
-                PlaySoundEffect(AudioClipsList[gettingFoodSoundEffectIndex]);
-                Player.PlayerCookingModule.SetFood(Food, FoodSO);
-                //Player.PlayerHands.SetHasSomethingInHands(true);
-                ResetFoodAndFoodSO();
-                Player.PlayerCookingModule.Food.SetInParent(Player.PlayerHands.HandlePoint);
-                IsChangedFood = false;
+                TakeChoppedFood(gettingFoodSoundEffectIndex);
             }
         }
     }
@@ -43,23 +27,54 @@ public class CuttingTable : Table
         bool hasMatch = false;
         int puttingFoodSoundEffectIndex = 2;
 
+        CheckIfCanBeCut(hasMatch, puttingFoodSoundEffectIndex);
+        
+        if (!hasMatch)
+        {
+            TipsViewPanel.ShowCantCutItTip();
+        }
+    }
+
+    private void TakeChoppedFood(int gettingFoodSoundEffectIndex)
+    {
+        Player.PlayerCookingModule.SetFood(Food, FoodSO);
+        Player.PlayerHands.TakeObject(Food.gameObject, Food.ConnectedFoodSO.Type);
+        ResetFoodAndFoodSO();
+        IsChangedFood = false;
+        PlaySoundEffect(AudioClipsList[gettingFoodSoundEffectIndex]);
+    }
+
+    private void CutFood(int cuttingSoundEffectIndex)
+    {
+        foreach (var recipe in _allCuttingRecipesSO)
+        {
+            if (recipe.Input == FoodSO)
+            {
+                FoodSO = recipe.Output;
+                Destroy(PlaceForFood.GetChild(0).gameObject);
+                Food = Instantiate(FoodSO.Prefab, PlaceForFood).GetComponent<Food>();
+                IsChangedFood = true;
+                TipsViewPanel.ShowBringToCookingTableTip();
+                PlaySoundEffect(AudioClipsList[cuttingSoundEffectIndex]);
+            }
+        }
+    }
+
+    private void CheckIfCanBeCut(bool hasMatch, int puttingFoodSoundEffectIndex)
+    {
         foreach (var recipe in _allCuttingRecipesSO)
         {
             if (recipe.Input == Player.PlayerCookingModule.FoodSO)
             {
-                PlaySoundEffect(AudioClipsList[puttingFoodSoundEffectIndex]);
                 FoodSO = Player.PlayerCookingModule.FoodSO;
-                Food = FoodSO.Prefab;
+                Food = FoodSO.Prefab.GetComponent<Food>();
                 Player.PlayerCookingModule.Food.SetInParent(PlaceForFood);
                 Player.PlayerCookingModule.GiveFood();
+                Player.PlayerHands.GiveObject();
+                PlaySoundEffect(AudioClipsList[puttingFoodSoundEffectIndex]);
                 TipsViewPanel.ShowCutItTip();
                 hasMatch = true;
             }
-        }
-
-        if (!hasMatch)
-        {
-            TipsViewPanel.ShowCantCutItTip();
         }
     }
 }

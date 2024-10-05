@@ -39,18 +39,8 @@ public class CookingTable : Table
     {
         bool hasMatch = false;
         int puttingFoodSoundEffectIndex = 0;
-
-        foreach (ChangingFoodRecipeSO changingFoodRecipeSO in _ingredientsForCooking)
-        {
-            if (changingFoodRecipeSO.Output == Player.PlayerCookingModule.FoodSO)
-            {
-                PlaySoundEffect(AudioClipsList[puttingFoodSoundEffectIndex]);
-                ShowFoodOnTheTable();
-                SetToTheTableListFoodSO(Player.PlayerCookingModule.FoodSO);
-                Player.PlayerCookingModule.ThrowFood();
-                hasMatch = true;
-            }
-        }
+       
+        CheckIfCanPutFoodOnTheTable(hasMatch, puttingFoodSoundEffectIndex);
 
         if (!hasMatch && Player.PlayerCookingModule.Food != null)
         {
@@ -62,6 +52,22 @@ public class CookingTable : Table
         }
 
         CheckIfCanCook();
+    }
+
+    private void CheckIfCanPutFoodOnTheTable(bool hasMatch, int puttingFoodSoundEffectIndex)
+    {
+        foreach (ChangingFoodRecipeSO changingFoodRecipeSO in _ingredientsForCooking)
+        {
+            if (changingFoodRecipeSO.Output == Player.PlayerCookingModule.FoodSO)
+            {
+                ShowFoodOnTheTable();
+                SetToTheTableListFoodSO(Player.PlayerCookingModule.FoodSO);
+                Player.PlayerHands.GiveObject();
+                Player.PlayerCookingModule.GiveFood();
+                PlaySoundEffect(AudioClipsList[puttingFoodSoundEffectIndex]);
+                hasMatch = true;
+            }
+        }
     }
 
     private void OnDishPrepared(CookingRecipeSO cookingRecipeSO)
@@ -89,10 +95,9 @@ public class CookingTable : Table
     private void GivePotToPlayer()
     {
         int gettingFoodSoundEffectIndex = 1;
-        PlaySoundEffect(AudioClipsList[gettingFoodSoundEffectIndex]);
         Player.PlayerCookingModule.SetFood(Food, FoodSO);
-        //Player.PlayerHands.SetHasSomethingInHands(true);
-        Player.PlayerCookingModule.Food.SetInParent(Player.PlayerHands.HandlePoint);
+        Player.PlayerHands.TakeObject(Food.gameObject, FoodSO.Type);
+        PlaySoundEffect(AudioClipsList[gettingFoodSoundEffectIndex]);
     }
 
     private void SetToTheTableListFoodSO(FoodSO playerFoodSO)

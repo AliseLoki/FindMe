@@ -1,12 +1,14 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerCookingModule : MonoBehaviour
 {
-   // [SerializeField] private Player _player;
-
     private Food _food;
     private FoodSO _foodSO;
     private CookingRecipeSO _cookingRecipeSO;
+
+    [SerializeField] private Saver _saver;
+    [SerializeField] private List<CookingRecipeSO> _allCookingRecipesSO;
 
     public Food Food => _food;
 
@@ -14,15 +16,15 @@ public class PlayerCookingModule : MonoBehaviour
 
     public CookingRecipeSO CookingRecipeSO => _cookingRecipeSO;
 
+    private void Start()
+    {
+        SetCookingRecipe(FindRecipeByName(_saver.LoadRecipeName()));
+    }
+
     public void SetCookingRecipe(CookingRecipeSO cookingRecipeSO)
     {
        if (_cookingRecipeSO == null)
             _cookingRecipeSO = cookingRecipeSO;
-    }
-
-    public void ResetCookingRecipeSO()
-    {
-        _cookingRecipeSO = null;
     }
 
     public void SetCookingRecipeStateOfRedyness(StateOfReadyness readyness)
@@ -34,29 +36,25 @@ public class PlayerCookingModule : MonoBehaviour
     {
         _foodSO = foodSO;
         _food = food;
-      //  _player.PlayerHands.SetHasSomethingInHands(true);
     }
 
     public void GiveFood()
     {
-        ResetFoodAndFoodSO();
-    }
-
-    public void ThrowFood()
-    {
-        if (_food != null)
-        {
-            Destroy(_food.gameObject);
-        }
-
-        ResetFoodAndFoodSO();
-    }
-
-    private void ResetFoodAndFoodSO()
-    {
         _food = null;
         _foodSO = null;
-        _cookingRecipeSO = null;
-      //  _player.PlayerHands.SetHasSomethingInHands(false);
+        _cookingRecipeSO = null;      
+    }
+
+    private CookingRecipeSO FindRecipeByName(string recipeName)
+    {
+        foreach (var item in _allCookingRecipesSO)
+        {
+            if(item.RecipeName == recipeName)
+            {
+                return item;
+            }
+        }
+
+        return null;
     }
 }

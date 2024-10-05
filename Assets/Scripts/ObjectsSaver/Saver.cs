@@ -11,6 +11,8 @@ public class Saver : MonoBehaviour
 
     private const string PrefsHoldableObject = nameof(PrefsHoldableObject);
 
+    private const string PrefsRecipeName = nameof(PrefsRecipeName);
+
     private const string PlayerPrefsOrderIsTaken = nameof(PlayerPrefsOrderIsTaken);
 
     private const string SavedInventoryList = nameof(SavedInventoryList);
@@ -18,11 +20,6 @@ public class Saver : MonoBehaviour
     private const string SavedPackedDishes = nameof(SavedPackedDishes);
 
     private const string PlayerPrefsHasBackPack = nameof(PlayerPrefsHasBackPack);
-    
-    private const string PlayerPrefsHasCow = nameof(PlayerPrefsHasCow);
-   
-  
-    private const string PlayerPrefsHasNecronomicon = nameof(PlayerPrefsHasNecronomicon);
 
     [SerializeField] private Player _player;
     [SerializeField] private Transform _defaultPlayerPosition;
@@ -226,7 +223,7 @@ public class Saver : MonoBehaviour
 
     // сохранение обджект»н’эндс в плеер’эндс
 
-    public HoldableObjects LoadObjectInHands()
+    public HoldableObjectType LoadObjectInHands()
     {
         string json = PlayerPrefs.GetString(PrefsHoldableObject);
         SaveJson loadedObjectInHands = JsonUtility.FromJson<SaveJson>(json);
@@ -241,44 +238,38 @@ public class Saver : MonoBehaviour
         }
     }
 
-    private void SaveObjectInHands(HoldableObjects objectInHandsToSave)
+    private void SaveObjectInHands(HoldableObjectType objectInHandsToSave)
     {
         _saveJson.SavedHoldableObject = objectInHandsToSave;
         string Json = JsonUtility.ToJson(_saveJson);
-        PlayerPrefs.SetString(PrefsHoldableObject , Json);
+        PlayerPrefs.SetString(PrefsHoldableObject, Json);
     }
 
-    //сохранение булок в плеерхэндс
+    // сохранение имени кукинг–есипи в ѕлеер укингћодуль
 
-   
+    private void SaveRecipeName(string recipeName)
+    {
+        PlayerPrefs.SetString(PrefsRecipeName, recipeName);
+    }
 
-    //public bool GetInt(string key)
-    //{
-    //    return ConvertIntToBool(PlayerPrefs.GetInt(key));
-    //}
+    public string LoadRecipeName()
+    {
+        return PlayerPrefs.GetString(PrefsRecipeName);
+    }
 
-
+    // загрузка булки бэкпэк
 
     public bool LoadHasBackPack()
     {
         return ConvertIntToBool(PlayerPrefs.GetInt(PlayerPrefsHasBackPack));
     }
 
-    public bool LoadHasCow()
-    {
-        return ConvertIntToBool(PlayerPrefs.GetInt(PlayerPrefsHasCow, 0));
-    }
-
-    public bool LoadHasNecronomicon()
-    {
-        return ConvertIntToBool(PlayerPrefs.GetInt(PlayerPrefsHasNecronomicon, 0));
-    }
-
-    //
     private void Save()
     {
         SavePlayerPosition(_player.transform.position);
         SaveObjectInHands(_player.PlayerHands.HoldableObject);
+
+        SaveRecipeName(_player.PlayerCookingModule.CookingRecipeSO.RecipeName);
 
         SaveLists(_player.PlayerInventory.GetRecievedInventoryPrefabSOList(), _deliveryService.GetOrderedDishiesList(),
     _deliveryService.GetPackedDishiesList());
@@ -286,31 +277,7 @@ public class Saver : MonoBehaviour
         SaveState(PlayerPrefsOrderIsTaken, ConvertBoolToInt(_recievingOrdersPoint.OrderIsTaken));
 
         SaveState(PlayerPrefsHasBackPack, ConvertBoolToInt(_player.PlayerHands.HasBackPack));
-    
-        SaveState(PlayerPrefsHasCow, ConvertBoolToInt(_player.PlayerHands.HasCow));
-       
-        SaveState(PlayerPrefsHasNecronomicon, ConvertBoolToInt(_player.PlayerHands.HasNecronomicon));
 
         _objectSaver.SaveContainers();
     }
-
-    //загружаем настройки камеры
-    //загружаем настройки музыки
-    //загружаем настройки саунд эффектов
-
-    //загружаем инвентарь
-    //загружаем заказанные блюда
-    //загружаем упакованные блюда
-
-    //загружаем позицию игрока
-
-    //загружаем все булки в плеер’эндс
-
-
-
-    // что делать с ферст стартом
-
-    // вызываем метод инит в плеере
-
-
 }

@@ -24,6 +24,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5185491379580667768}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -31,7 +32,6 @@ Transform:
   m_Children:
   - {fileID: 8948315093937820839}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &-8734590566487287397
 MonoBehaviour:
@@ -45,7 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 024508a38af894743a3e7ce148d21f5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _foodSO: {fileID: 11400000, guid: 51d9f08a0684c744cb1d24922c0e8bde, type: 2}
+  _foodSO: {fileID: 11400000, guid: 094b6faa8ec686847ac6768159d8ce85, type: 2}
+  _holdableObject: 14
 --- !u!1001 &5243529317242536487
 PrefabInstance:
   m_ObjectHideFlags: 0

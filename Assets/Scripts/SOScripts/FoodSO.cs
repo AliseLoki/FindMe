@@ -1,9 +1,8 @@
 using UnityEngine;
 
 [CreateAssetMenu()]
-public class FoodSO : ScriptableObject
+public class FoodSO : HoldableObjectSO
 {
     public Sprite Sprite;
-    public Food Prefab;
     public string Name;
 }

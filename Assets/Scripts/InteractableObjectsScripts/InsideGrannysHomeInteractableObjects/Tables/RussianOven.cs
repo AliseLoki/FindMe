@@ -46,25 +46,27 @@ public class RussianOven : Table
 
         if ((_hasFire) && _uncookedFoodInPotFoodSO == Player.PlayerCookingModule.FoodSO)
         {
-            PlaySoundEffect(AudioClipsList[cookingSoundEffectIndex]);
-            FoodSO = Player.PlayerCookingModule.FoodSO;
-            Food = Player.PlayerCookingModule.Food;
+            IniTFoodAndFoodSO(Player.PlayerCookingModule.Food, Player.PlayerCookingModule.FoodSO);            
             _cookingRecipeSO = Player.PlayerCookingModule.CookingRecipeSO;
             Player.PlayerCookingModule.Food.SetInParent(PlaceForFood.transform);
             Player.PlayerCookingModule.GiveFood();
+            Player.PlayerHands.GiveObject();
+
             _cookCoroutine = StartCoroutine(CookingCountDownRoutine());
             TipsViewPanel.ShowReadynessInstruction();
+            PlaySoundEffect(AudioClipsList[cookingSoundEffectIndex]);
         }
-        else if (!_hasFire && Player.PlayerHands.HoldableObject == HoldableObjects.Wood)
+        else if (!_hasFire && Player.PlayerHands.HoldableObject == HoldableObjectType.Wood)
         {
             _hasFire = true;
             _placeForWood.LightFire(true);
             DisableInteract();
             Player.PlayerHands.GiveObject();
+
             Player.PlayerSoundEffects.PlayTakingWoodSoundEffect();
             TipsViewPanel.ShowCanUseOvenTip();
         }
-        else if (!_hasFire && Player.PlayerHands.HoldableObject != HoldableObjects.Wood)
+        else if (!_hasFire && Player.PlayerHands.HoldableObject != HoldableObjectType.Wood)
         {
             TipsViewPanel.ShowNoWoodsTip();
         }
@@ -80,14 +82,14 @@ public class RussianOven : Table
     {
         int gettingFoodSoundEffectIndex = 1;
 
-        PlaySoundEffect(AudioClipsList[gettingFoodSoundEffectIndex]);
         Food.SetInParent(Player.PlayerHands.HandlePoint);
+        Player.PlayerHands.TakeObject(Food.gameObject, Food.ConnectedFoodSO.Type);
         Player.PlayerCookingModule.SetFood(Food, FoodSO);
-       // Player.PlayerHands.SetHasSomethingInHands(true);
         Player.PlayerCookingModule.SetCookingRecipe(_cookingRecipeSO);
         Player.PlayerCookingModule.SetCookingRecipeStateOfRedyness(_stateOfReadyness);
-        _smokeEffect.gameObject.SetActive(false);
         ResetFoodAndFoodSO();
+        _smokeEffect.gameObject.SetActive(false);
+        PlaySoundEffect(AudioClipsList[gettingFoodSoundEffectIndex]);
         TipsViewPanel.ShowTimeToPack();
     }
 
@@ -111,6 +113,6 @@ public class RussianOven : Table
     {
         Destroy(Food.gameObject);
         FoodSO = newFoodSO;
-        Food = Instantiate(newFoodSO.Prefab, PlaceForFood);
+        Food = Instantiate(newFoodSO.Prefab, PlaceForFood).GetComponent<Food>();
     }
 }

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70bd02c523c1a364b866ec18070bab08, type: 3}
   m_Name: UnCookedSO
   m_EditorClassIdentifier: 
+  Prefab: {fileID: 3165137738585561567, guid: 0b4e0fd81296f774eb00037ecc60f2ab, type: 3}
+  Type: 16
   Sprite: {fileID: 0}
-  Prefab: {fileID: 5465372597002421079, guid: 0b4e0fd81296f774eb00037ecc60f2ab, type: 3}
   Name: UncookedFood

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70bd02c523c1a364b866ec18070bab08, type: 3}
   m_Name: BurnedSO
   m_EditorClassIdentifier: 
+  Prefab: {fileID: 1763664053084073472, guid: 712139d3697e17744864c32b5110a018, type: 3}
+  Type: 18
   Sprite: {fileID: 0}
-  Prefab: {fileID: 8668858051364336776, guid: 712139d3697e17744864c32b5110a018, type: 3}
   Name: BurnedFood

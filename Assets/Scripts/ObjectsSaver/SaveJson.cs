@@ -11,7 +11,9 @@ public class SaveJson
 
     public Vector3 SavedPlayerPositionToJson;
 
-    public HoldableObjects SavedHoldableObject;
+    public HoldableObjectType SavedHoldableObject;
+
+    public StateOfReadyness SavedStateOfReadyness;
 }
 
 

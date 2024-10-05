@@ -34,5 +34,11 @@ public abstract class Table : Container
     {
         Food = null;
         FoodSO = null;
+    }    
+
+    protected void IniTFoodAndFoodSO(Food food,FoodSO foodSO)
+    {
+        Food = food;
+        FoodSO = foodSO; 
     }
 }

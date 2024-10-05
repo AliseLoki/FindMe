@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70bd02c523c1a364b866ec18070bab08, type: 3}
   m_Name: FlourSO
   m_EditorClassIdentifier: 
+  Prefab: {fileID: 986610560894282871, guid: d5d5d09fc7ff0a84d8a52f492cb6b1d1, type: 3}
+  Type: 8
   Sprite: {fileID: 21300000, guid: a554c7631dfcaae44a1263ac2a5d737e, type: 3}
-  Prefab: {fileID: -7017924190126139315, guid: d5d5d09fc7ff0a84d8a52f492cb6b1d1, type: 3}
   Name: Flour

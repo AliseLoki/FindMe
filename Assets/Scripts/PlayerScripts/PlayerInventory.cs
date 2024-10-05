@@ -5,31 +5,19 @@ using UnityEngine;
 public class PlayerInventory : MonoBehaviour
 {
     [SerializeField] private List<InventoryPrefabSO> _recievedInventoryPrefabsSO;
-
+    
     [SerializeField] private Player _player;
     [SerializeField] private Saver _saver;
 
     private int _maxCells = 5;
-    
+
     public event Action<InventoryPrefabSO> InventoryPrefabSORecieved;
+   
     public event Action UsedSpeedBoost;
 
-    private void Start()
+    private void Awake()
     {
         _recievedInventoryPrefabsSO = _saver.LoadInventory();
-    }
-
-    public bool CheckIfHasSeeds(InventoryPrefabSO inventoryPrefabSO)
-    {
-        foreach (var item in _recievedInventoryPrefabsSO)
-        {
-            if (item == inventoryPrefabSO)
-            {
-                return true;
-            }
-        }
-
-        return false;
     }
 
     public List<InventoryPrefabSO> GetRecievedInventoryPrefabSOList()
@@ -42,6 +30,7 @@ public class PlayerInventory : MonoBehaviour
         if (_recievedInventoryPrefabsSO.Count < _maxCells)
         {
             _player.PlayerSoundEffects.PlayTakingInventoryPrefabSoundEffect();
+
             _recievedInventoryPrefabsSO.Add(inventoryPrefabSO);
             InventoryPrefabSORecieved?.Invoke(inventoryPrefabSO);
             return true;
@@ -49,7 +38,7 @@ public class PlayerInventory : MonoBehaviour
 
         return false;
     }
-
+   
     public void RemoveInventoryPrefabSO(InventoryPrefabSO inventoryPrefabSO)
     {
         if (inventoryPrefabSO.InventoryPrefab as RedMushroom)
@@ -61,19 +50,9 @@ public class PlayerInventory : MonoBehaviour
         {
             UsedSpeedBoost?.Invoke();
         }
-        else if (inventoryPrefabSO.InventoryPrefab as TomatoForSeeds || inventoryPrefabSO.InventoryPrefab as CabbageForSeeds ||
-            inventoryPrefabSO.InventoryPrefab as Cow)
+        else
         {
-            _player.PlayerHands.TakeSeedInHands(inventoryPrefabSO);
-        }
-        else if (inventoryPrefabSO.InventoryPrefab as Sword)
-        {
-           // _player.PlayerHands.TakeObject(inventoryPrefabSO.InventoryPrefab.gameObject, inventoryPrefabSO.InventoryPrefab.HoldableObjects);
-            _player.PlayerHands.TakeSwordInHands(inventoryPrefabSO);
-        }
-        else if (inventoryPrefabSO.InventoryPrefab as Necronomicon)
-        {
-            _player.PlayerHands.TakeNecronomiconInHands(inventoryPrefabSO);
+            _player.PlayerHands.TakeInvenoryPrefabInHands(inventoryPrefabSO);
         }
 
         _recievedInventoryPrefabsSO.Remove(inventoryPrefabSO);

@@ -12,9 +12,9 @@ public abstract class InteractableObject : MonoBehaviour
     [SerializeField] protected DeliveryService DeliveryService;
     [SerializeField] protected DeliveryServiceView DeliveryServiceView;
 
-    [SerializeField] protected HoldableObjects _holdableObjects;
+    [SerializeField] protected HoldableObjectType _holdableObjects;
 
-    public HoldableObjects HoldableObjects => _holdableObjects;
+    public HoldableObjectType HoldableObjects => _holdableObjects;
 
     protected AudioSource AudioSource;
 

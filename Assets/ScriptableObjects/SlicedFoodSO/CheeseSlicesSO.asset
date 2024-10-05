@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70bd02c523c1a364b866ec18070bab08, type: 3}
   m_Name: CheeseSlicesSO
   m_EditorClassIdentifier: 
+  Prefab: {fileID: 5185491379580667768, guid: 4131bc51208245441a3da8a43a3abf71, type: 3}
+  Type: 15
   Sprite: {fileID: 21300000, guid: 549cb4f2b86d1b84d8cd41c1cfde26c8, type: 3}
-  Prefab: {fileID: -8734590566487287397, guid: 4131bc51208245441a3da8a43a3abf71, type: 3}
   Name: CheeseSlices
