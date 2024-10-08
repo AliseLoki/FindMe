@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -7,8 +8,9 @@ public class House : InteractableObject
     [SerializeField] private Transform _placeForSpawnedObject;
     [SerializeField] private Transform _deliveredPackage;
     [SerializeField] private GoldCoins _goldCoins;
-
     [SerializeField] private DeliveredDishesCounter _deliveredDishesCounter;
+
+    [SerializeField] private Village _village;
 
     private bool _isDelivered;
 
@@ -27,9 +29,10 @@ public class House : InteractableObject
             if (deliveredDish != null)
             {
                 PlaySoundEffect(AudioClipsList[puttingSoundEffectIndex]);
-                SpawnObject(_deliveredPackage);
+                SpawnObject(_deliveredPackage.gameObject);
                 StartCoroutine(CheckReadynessOfDishe(deliveredDish));
                 _isDelivered = true;
+                _village.AddHouseInList(this);
             }
             else
             {
@@ -47,7 +50,7 @@ public class House : InteractableObject
         if (cookingRecipeSO.Readyness == _readyness)
         {
             PlaySoundEffect(AudioClipsList[goldAppearSoundEffectIndex]);
-            SpawnObject(_goldCoins);
+            SpawnObject(_goldCoins.gameObject);
             _deliveredDishesCounter.AddDeliveredDish();
         }
         else
@@ -55,10 +58,12 @@ public class House : InteractableObject
             TipsViewPanel.ShowDishIsPreparedBadlyTip();
         }
 
+        // пока для тестов
+        _deliveredDishesCounter.AddDeliveredDish();
         DeliveryService.RemoveDeliveredDish(cookingRecipeSO);
     }
 
-    private void SpawnObject(Object spawnedObject)
+    private void SpawnObject(GameObject spawnedObject)
     {
         Instantiate(spawnedObject, _placeForSpawnedObject);
     }

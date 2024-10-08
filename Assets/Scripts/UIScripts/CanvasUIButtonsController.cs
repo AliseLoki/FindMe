@@ -1,12 +1,14 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using Agava.YandexGames;
+using YG;
 
 [RequireComponent(typeof(YandexLeaderboard))]
 [RequireComponent(typeof(CanvasUI))]
 public class CanvasUIButtonsController : MonoBehaviour
 {
+    private const string LeaderboardName = "LeaderboardPlayers";
+
     [SerializeField] private Slider _cameraSlider;
     [SerializeField] private Slider _musicVolumeSlider;
     [SerializeField] private Slider _soundEffectsVolumeSlider;
@@ -35,16 +37,6 @@ public class CanvasUIButtonsController : MonoBehaviour
         _skipEducationButton.onClick.AddListener(_canvasUI.OnSkipeducationButtonPressed);
     }
 
-    public void ActivateShowAdButton()
-    {
-        _showAdButton.gameObject.SetActive(true);
-    }
-
-    public void DeactivateShowAdButton()
-    {
-        _showAdButton.gameObject.SetActive(false);
-    }
-
     public void OnCloseLeaderboardButtonPressed()
     {
         _canvasUI.CloseLeaderboardView();
@@ -52,13 +44,14 @@ public class CanvasUIButtonsController : MonoBehaviour
 
     public void OnLeaderboardButtonPressed()
     {
-        if (PlayerAccount.IsAuthorized == false)
+        if (YandexGame.auth == false)
         {
             _canvasUI.ShowAuthorisePanel();
         }
-        else if (PlayerAccount.IsAuthorized)
+        else
         {
-            PlayerAccount.RequestPersonalProfileDataPermission();
+            YandexGame.GetLeaderboard(LeaderboardName, 10, 3, 3, "small");
+            // PlayerAccount.RequestPersonalProfileDataPermission();
             _canvasUI.ShowLeaderboardView();
             _yandexLeaderboard.Fill();
         }
@@ -67,7 +60,7 @@ public class CanvasUIButtonsController : MonoBehaviour
     public void OnRestartButtonPresed()
     {
         _canvasUI.ShowInterstitialAd();
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(0);
     }
 
     public void OnCameraViewChangeButtonPressed()
@@ -85,12 +78,10 @@ public class CanvasUIButtonsController : MonoBehaviour
         ShowOrHideObject(_soundEffectsVolumeSlider.gameObject);
     }
 
+    //на кнопке подарка
     public void OnShowVideoAdButtonPressed()
     {
-        if (_canvasUI.IsAdPlaying == false)
-        {
-            _canvasUI.ShowRewardedVideoAd();
-        }
+        _canvasUI.ShowRewardedVideoAd();
     }
 
     private void ShowOrHideObject(GameObject gameObject)

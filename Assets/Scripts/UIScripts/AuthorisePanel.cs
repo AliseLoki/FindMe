@@ -1,7 +1,6 @@
-using Agava.YandexGames;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
+using YG;
 
 [RequireComponent(typeof(TextEqualizer))]
 public class AuthorisePanel : MonoBehaviour
@@ -31,11 +30,7 @@ public class AuthorisePanel : MonoBehaviour
 
     public void OnAuthorizeButtonPressed()
     {
-#if UNITY_WEBGL && !UNITY_EDITOR
-        
-        PlayerAccount.Authorize();
-#endif
-        this.gameObject.SetActive(false);
+        YandexGame.AuthDialog();
     }
 
     private void InitButtonsText()

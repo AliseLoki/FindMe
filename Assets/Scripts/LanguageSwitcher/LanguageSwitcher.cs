@@ -1,4 +1,4 @@
-using Agava.YandexGames;
+using YG;
 using System;
 using UnityEngine;
 
@@ -42,12 +42,8 @@ public class LanguageSwitcher : MonoBehaviour
 
     private void Awake()
     {
-        InitCurrentLanguage(Russian);
-
-#if UNITY_WEBGL && !UNITY_EDITOR
-        string lang = YandexGamesSdk.Environment.i18n.lang;
-        InitCurrentLanguage(lang);
-#endif
+        // InitCurrentLanguage(Russian);
+        InitCurrentLanguage(YandexGame.EnvironmentData.language);
     }
 
     private void Start()

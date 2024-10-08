@@ -4,7 +4,7 @@ using UnityEngine;
 public class GameStartCountdownUI : MonoBehaviour
 {
     [SerializeField] private TMP_Text _countdownText;
-    [SerializeField] private TMP_Text _remainingTimeText;
+    //[SerializeField] private TMP_Text _remainingTimeText;
 
     [SerializeField] private GameStatesSwitcher _gameStatesSwitcher;
 
@@ -18,14 +18,14 @@ public class GameStartCountdownUI : MonoBehaviour
 
     private void Update()
     {
-        if (_remainingTimeText.isActiveAndEnabled)
-        {
-            CountDownToAd();
-        }
-        else
-        {
+        //if (_remainingTimeText.isActiveAndEnabled)
+        //{
+        //    CountDownToAd();
+        //}
+        //else
+        //{
             CountdownToStart();
-        }
+        //}
     }
 
     public void InitText(FirstStartTextSO firstStartTextSO)
@@ -35,12 +35,12 @@ public class GameStartCountdownUI : MonoBehaviour
 
     public void ShowBeforeAdWarning()
     {
-        _remainingTimeText.gameObject.SetActive(true);
+      //  _remainingTimeText.gameObject.SetActive(true);
     }
 
     private void ChangeLanguage()
     {
-        _remainingTimeText.text = _firstStartTextSO.RemainingTimeText;
+      //  _remainingTimeText.text = _firstStartTextSO.RemainingTimeText;
     }
 
     private void CountDownToAd()

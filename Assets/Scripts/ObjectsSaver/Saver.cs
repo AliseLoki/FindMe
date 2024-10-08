@@ -19,6 +19,12 @@ public class Saver : MonoBehaviour
     private const string SavedOrderedDishes = nameof(SavedOrderedDishes);
     private const string SavedPackedDishes = nameof(SavedPackedDishes);
 
+    private const string SavedListFirstVillage = nameof(SavedListFirstVillage);
+    private const string SavedListSecondVillage = nameof(SavedListSecondVillage);
+    private const string SavedListThirdVillage = nameof(SavedListThirdVillage);
+    private const string SavedListFourthVillage = nameof(SavedListFourthVillage);
+    private const string SavedListLastVillage = nameof(SavedListLastVillage);
+
     private const string PlayerPrefsHasBackPack = nameof(PlayerPrefsHasBackPack);
 
     [SerializeField] private Player _player;
@@ -26,6 +32,12 @@ public class Saver : MonoBehaviour
     [SerializeField] private DeliveryService _deliveryService;
     [SerializeField] private RecievingOrdersPoint _recievingOrdersPoint;
     [SerializeField] private ObjectsSaver _objectSaver;
+
+    [SerializeField] private Village _firstVillage;
+    [SerializeField] private Village _secondVillage;
+    [SerializeField] private Village _thirdVillage;
+    [SerializeField] private Village _fourthVillage;
+    [SerializeField] private Village _fifthVillage;
 
     private float _defaultCameraZoomValue = 30f;
     private float _defaultMusicVolume = 0.3f;
@@ -41,11 +53,17 @@ public class Saver : MonoBehaviour
     private void OnEnable()
     {
         _player.PlayerEventsHandler.EnteredSafeZone += Save;
+
     }
 
     private void OnDisable()
     {
         _player.PlayerEventsHandler.EnteredSafeZone -= Save;
+    }
+
+    private void Start()
+    {
+        Load();
     }
 
     private void Update()
@@ -146,6 +164,57 @@ public class Saver : MonoBehaviour
         PlayerPrefs.SetString(SavedInventoryList, outputString);
         PlayerPrefs.SetString(SavedOrderedDishes, outputString2);
         PlayerPrefs.SetString(SavedPackedDishes, outputString3);
+    }
+
+    private void SaveListsInAllVillages()
+    {
+        SaveListInVillage(_firstVillage.HousesWithDeliveredDish, _saveJson.SavedFirstVillageHouses, SavedListFirstVillage);
+        SaveListInVillage(_secondVillage.HousesWithDeliveredDish, _saveJson.SavedSecondVillageHouses, SavedListSecondVillage);
+        SaveListInVillage(_thirdVillage.HousesWithDeliveredDish, _saveJson.SavedThirdVillageHouses, SavedListThirdVillage);
+        SaveListInVillage(_fourthVillage.HousesWithDeliveredDish, _saveJson.SavedFourthVillageHouses, SavedListFourthVillage);
+        SaveListInVillage(_fifthVillage.HousesWithDeliveredDish, _saveJson.SavedFifthVillageHouses, SavedListLastVillage);
+    }
+
+    private void SaveListInVillage(List<House> housesToSave, List<House> saveJsonHousesToSave, string key)
+    {
+        saveJsonHousesToSave = housesToSave;
+        var outputString = JsonUtility.ToJson(_saveJson);
+        PlayerPrefs.SetString(key, outputString);
+    }
+
+    private List<House> Test()
+    {
+        string globalDataJSON = PlayerPrefs.GetString(SavedListFirstVillage);
+        SaveJson loadedList = JsonUtility.FromJson<SaveJson>(globalDataJSON);
+
+        foreach (var item in loadedList.SavedFirstVillageHouses)
+        {
+            print(item.name);
+        }
+
+        if (loadedList != null)
+        {
+            return loadedList.SavedFirstVillageHouses;
+        }
+        else
+        {
+            return new List<House>();
+        }
+    }
+
+    private List<House> LoadHousesWithDeliveredDishes()
+    {
+        string dataJson = PlayerPrefs.GetString(SavedListFirstVillage);
+        SaveJson loadedList = JsonUtility.FromJson<SaveJson>(dataJson);
+
+        if (loadedList != null)
+        {
+            return loadedList.SavedFirstVillageHouses;
+        }
+        else
+        {
+            return new List<House>();
+        }
     }
 
     // Инвентарь игрока
@@ -269,7 +338,10 @@ public class Saver : MonoBehaviour
         SavePlayerPosition(_player.transform.position);
         SaveObjectInHands(_player.PlayerHands.HoldableObject);
 
-        SaveRecipeName(_player.PlayerCookingModule.CookingRecipeSO.RecipeName);
+        if (_player.PlayerCookingModule.CookingRecipeSO != null)
+        {
+            SaveRecipeName(_player.PlayerCookingModule.CookingRecipeSO.RecipeName);
+        }
 
         SaveLists(_player.PlayerInventory.GetRecievedInventoryPrefabSOList(), _deliveryService.GetOrderedDishiesList(),
     _deliveryService.GetPackedDishiesList());
@@ -278,6 +350,22 @@ public class Saver : MonoBehaviour
 
         SaveState(PlayerPrefsHasBackPack, ConvertBoolToInt(_player.PlayerHands.HasBackPack));
 
+        SaveListsInAllVillages();
+
         _objectSaver.SaveContainers();
+    }
+
+    private void Load()
+    {
+        // _firstVillage.LoadHousesWithDeliveredDish(LoadHousesWithDeliveredDishes());
+
+        List<House> temp = Test();
+
+        foreach (var item in temp)
+        {
+            print(item.name);
+        }
+
+        _firstVillage.LoadHousesWithDeliveredDish(temp);
     }
 }

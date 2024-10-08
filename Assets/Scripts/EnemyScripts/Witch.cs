@@ -40,15 +40,9 @@ public class Witch : MonoBehaviour
         _music.PlayWitchAppearMusic();
     }
 
-    private void OnEnable()
-    {
-        _player.PlayerEventsHandler.WitchHasBeenAttacked += Die;
-    }
-
-    private void OnDisable()
-    {
-        _player.PlayerEventsHandler.WitchHasBeenAttacked -= Die;
-    }
+    private void OnEnable() => _player.PlayerEventsHandler.WitchHasBeenAttacked += Die;
+    
+    private void OnDisable() => _player.PlayerEventsHandler.WitchHasBeenAttacked -= Die;
 
     private void Update()
     {
