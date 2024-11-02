@@ -38,7 +38,7 @@ public class Well : InteractableObject
 
     private void PayForBucketOfWater()
     {
-        if (Player.PlayerEventsHandler.CheckIfCanPay(_price))
+        if (Player.PlayerGold.CheckIfCanPay(_price))
         {
             _isPaid = true;
         }

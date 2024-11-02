@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[RequireComponent (typeof(Player))]
 [RequireComponent (typeof(AudioSource))]
 public class PlayerSoundEffects : MonoBehaviour
 {

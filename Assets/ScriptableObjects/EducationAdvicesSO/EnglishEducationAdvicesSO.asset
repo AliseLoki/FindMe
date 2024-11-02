@@ -17,13 +17,13 @@ MonoBehaviour:
   SkipEducationButtonText: skip training
   Advices:
   - to go to the next tip, click the green arrow under the text
-  - you can change the camera view, click on the red magnifying glass on the right
-    and adjust the zoom
-  - in the same way you can change the volume of the music, click on the notes
-  - in the same way you can change the sound effects volume,  click on the speaker
-    icon
-  - 'click on the present in the bottom right corner, you will watch add and get
-    present: coin or mushroom or wood'
+  - you can change the camera view and volume, click on the black gear on the right
+  - n the window that appears, the magnifying glass is responsible for zooming in
+    on the camera, the speaker is responsible for the volume of sounds, and the notes
+    are responsible for the volume of background music
+  - just drag the slider to the right to increase, to the left to decrease
+  - 'click on the present on the right, you will watch add and get present:  mushroom
+    or wood'
   - there are a lot of objects in the game that you can interact with
   - they light up gray when you approach
   - go to the bird's house, at the entrance to grandma's house
@@ -45,6 +45,7 @@ MonoBehaviour:
     until the sign
   - don't leave the road, otherwise the wolf will eat you
   - near the signpost there are plum trees, in such trees you can hide from the wolf
+    and save progress
   - also there are mushrooms, you can eat them, go to the mushroom and click on it
   - after this the mushroom will appear in your inventory, click on it
   - yellow mushrooms increase speed, red mushrooms increase health

@@ -1,4 +1,7 @@
 ﻿
+using System.Collections.Generic;
+using UnityEngine;
+
 namespace YG
 {
     [System.Serializable]
@@ -17,6 +20,37 @@ namespace YG
         public bool[] openLevels = new bool[3];
 
         // Ваши сохранения
+
+        public int Gold = 0;
+        public int Health = 10;
+
+        public Vector3 PlayerPosition = new Vector3(57, 0, 283);
+
+        public bool IsFirstStart = true;
+        public bool HasBackPack = false;
+
+        public HoldableObjectType HoldableObject = 0;
+
+        public List<InventoryPrefabSO> InventoryList = new();
+
+        public bool OrderIsTaken = false;
+
+        public List<CookingRecipeSO> SavedOrderedDishesListJson = new();
+        public List<CookingRecipeSO> SavedPackedDishesListJson = new();
+        public List<StateOfReadyness> SavedStatesOfReadyness = new(); 
+
+        public string RecipeName = string.Empty;
+
+        public string VillageName = string.Empty;
+
+        public List<ActivableObjectType> ActiveContainers = new();
+
+        public List<ActivableObjectType> ActivePatches = new();
+
+        public List<HouseIndex> HouseIndexes = new();
+     
+        public List<VillageIndex> VillagesThatGaveReward = new();
+        public List<VillageIndex> VillagesWhereRewardIsntPicked = new();
 
         // ...
 

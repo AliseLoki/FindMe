@@ -7,7 +7,7 @@ public class LastVillage : Village
 
     public event Action <Witch> WitchAppeared;
 
-    protected override void GiveReward()
+    public override void GiveReward()
     {
         Witch witch = Instantiate(_witch, transform.position, Quaternion.identity);
         WitchAppeared?.Invoke(witch);

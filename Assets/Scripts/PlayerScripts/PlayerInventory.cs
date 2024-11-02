@@ -2,27 +2,29 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Player))]
 public class PlayerInventory : MonoBehaviour
 {
     [SerializeField] private List<InventoryPrefabSO> _recievedInventoryPrefabsSO;
-    
+
     [SerializeField] private Player _player;
-    [SerializeField] private Saver _saver;
 
     private int _maxCells = 5;
 
+    public List<InventoryPrefabSO> RecievedInventoryPrefabSO => _recievedInventoryPrefabsSO;
+
     public event Action<InventoryPrefabSO> InventoryPrefabSORecieved;
-   
+
     public event Action UsedSpeedBoost;
 
-    private void Awake()
+    public void GetInventoryList(List<InventoryPrefabSO> inventoryList)
     {
-        _recievedInventoryPrefabsSO = _saver.LoadInventory();
-    }
+        _recievedInventoryPrefabsSO = inventoryList;
 
-    public List<InventoryPrefabSO> GetRecievedInventoryPrefabSOList()
-    {
-        return _recievedInventoryPrefabsSO;
+        foreach (var item in _recievedInventoryPrefabsSO)
+        {
+            InventoryPrefabSORecieved?.Invoke(item);
+        }
     }
 
     public bool AddInventoryPrefabSO(InventoryPrefabSO inventoryPrefabSO)
@@ -38,13 +40,13 @@ public class PlayerInventory : MonoBehaviour
 
         return false;
     }
-   
+
     public void RemoveInventoryPrefabSO(InventoryPrefabSO inventoryPrefabSO)
     {
         if (inventoryPrefabSO.InventoryPrefab as RedMushroom)
         {
             int mushroomHealing = 1;
-            _player.PlayerEventsHandler.OnHealthChanged(mushroomHealing);
+            _player.PlayerHealth.OnHealthChanged(mushroomHealing);
         }
         else if (inventoryPrefabSO.InventoryPrefab as GoldMushroom)
         {

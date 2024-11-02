@@ -7,6 +7,10 @@ public class Patch : InteractableObject
     [SerializeField] private Transform _vegetable;
     [SerializeField] private Container _barrelWithIngredients;
     [SerializeField] private Well _well;
+    
+    public Container BarrelWithIngredients => _barrelWithIngredients;
+    public Transform Grass => _grass;
+
     protected override void UseObject()
     {
         int wateringSoundEffectIndex = 0;

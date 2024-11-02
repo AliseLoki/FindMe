@@ -8,14 +8,17 @@ public class Spawner : MonoBehaviour
 
     [SerializeField] private BucketOfWater _bucketOfWater;
     [SerializeField] private Wood _wood;
-    
+    [SerializeField] private Necronomicon _necronomicon;
+
     [SerializeField] private Transform _placeForBucketOfWaterInWell;
     [SerializeField] private Transform _spawnPlaces;
     [SerializeField] private Transform _woodSpawnPlace;
+    [SerializeField] private Transform _necronomiconSpawnPlace;
     [SerializeField] private PresentFromAd _presentFromAd;
 
     [SerializeField] private Player _player;
     [SerializeField] private TipsViewPanel _tipsViewPanel;
+    [SerializeField] private GameStatesSwitcher _gameStatesSwitcher;
 
     private Vector3 _offset = new Vector3(0, -1.7f, 2);
     private bool _haveBeenSpawned;
@@ -23,14 +26,18 @@ public class Spawner : MonoBehaviour
     private void Start()
     {
         SpawnObjects();
+        SpawnNecronomicon();
 
-        //только если ферстстарт
-        // Instantiate(_wood, _woodSpawnPlace.position, Quaternion.identity);
+        if (_gameStatesSwitcher.IsFirstStart)
+        {
+            var wood = Instantiate(_wood, _woodSpawnPlace.position, Quaternion.identity);
+            wood.InitLinks(_tipsViewPanel, _player, _player.PlayerInventory);
+        }
     }
 
     public BucketOfWater SpawnBucketOfWaterInWell()
     {
-       return Instantiate(_bucketOfWater, _placeForBucketOfWaterInWell.position, Quaternion.identity);
+        return Instantiate(_bucketOfWater, _placeForBucketOfWaterInWell.position, Quaternion.identity);
     }
 
     public void SpawnHoldableObjectInHands(HoldableObjectType holdableObjectType)
@@ -46,13 +53,13 @@ public class Spawner : MonoBehaviour
                     interactableObject.InitLinks(_tipsViewPanel, _player, _player.PlayerInventory);
                     interactableObject.DisableCollider();
                 }
-                else if(spawnedObject.TryGetComponent(out Food food))
+                else if (spawnedObject.TryGetComponent(out Food food))
                 {
                     _player.PlayerCookingModule.SetFood(food, food.ConnectedFoodSO);
                 }
 
-                    _player.PlayerHands.TakeObject(spawnedObject.gameObject, holdableObjectType);
-                    break;
+                _player.PlayerHands.TakeObject(spawnedObject.gameObject, holdableObjectType);
+                break;
             }
         }
     }
@@ -61,6 +68,15 @@ public class Spawner : MonoBehaviour
     {
         var presentFromAd = Instantiate(_presentFromAd, _player.PlayerHands.HandlePoint.position + _offset, Quaternion.identity);
         presentFromAd.InitLinks(_tipsViewPanel, _player, _player.PlayerInventory);
+    }
+
+    private void SpawnNecronomicon()
+    {
+        if (_player.PlayerInventory.RecievedInventoryPrefabSO.Contains(_necronomicon.ConnectedInentoryPrefabSO) == false)
+        {
+            var necronomicon = Instantiate(_necronomicon, _necronomiconSpawnPlace.position, Quaternion.identity);
+            necronomicon.InitLinks(_tipsViewPanel, _player, _player.PlayerInventory);
+        }
     }
 
     private void SpawnObjects()

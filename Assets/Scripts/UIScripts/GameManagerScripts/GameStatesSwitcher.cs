@@ -1,14 +1,12 @@
 using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using YG;
 
 public class GameStatesSwitcher : MonoBehaviour
 {
-    private const string PlayerPrefsIsFirstStart = nameof(PlayerPrefsIsFirstStart);
-
     [SerializeField] private Player _player;
     [SerializeField] private TipsViewPanel _tipsViewPanel;
-
     [SerializeField] private LastVillage _lastVillage;
     [SerializeField] private EducationUI _educationUI;
 
@@ -22,8 +20,8 @@ public class GameStatesSwitcher : MonoBehaviour
         GameOver
     }
 
-    private int _finalGameOverSceneIndex = 2;
-    private int _winSceneIndex = 3;
+    private int _finalGameOverSceneIndex = 1;
+    private int _winSceneIndex = 2;
 
     private Witch _witch;
 
@@ -49,35 +47,16 @@ public class GameStatesSwitcher : MonoBehaviour
 
     public bool IsFirstStart => _isFirstStart;
 
-    private void Awake()
-    {
-        SetFirstStart(PlayerPrefs.GetInt(PlayerPrefsIsFirstStart, 1));
-    }
-
     private void OnEnable()
-    {
-        _player.PlayerEventsHandler.EnteredGrannysHome += OnPlayerEnteredGrannysHome;
-        _player.PlayerEventsHandler.PlayerHasDied += OnPlayerHasDied;
+    {       
+        _player.PlayerHealth.PlayerHasDied += OnPlayerHasDied;
         _lastVillage.WitchAppeared += OnWitchAppeared;
     }
 
     private void OnDisable()
     {
-        _player.PlayerEventsHandler.EnteredGrannysHome -= OnPlayerEnteredGrannysHome;
-        _player.PlayerEventsHandler.PlayerHasDied -= OnPlayerHasDied;
+        _player.PlayerHealth.PlayerHasDied -= OnPlayerHasDied;
         _lastVillage.WitchAppeared -= OnWitchAppeared;
-    }
-
-    private void Start()
-    {
-        if (_isFirstStart)
-        {
-            _gameState = GameState.WaitingToStart;
-        }
-        else
-        {
-            _gameState = GameState.GamePlaying;
-        }
     }
 
     private void Update()
@@ -140,7 +119,7 @@ public class GameStatesSwitcher : MonoBehaviour
             case GameState.GamePlaying:
 
                 _educationUI.gameObject.SetActive(false);
-                SaveState(0, false);
+                _isFirstStart = false;
 
                 if (_isGameOver)
                 {
@@ -160,23 +139,35 @@ public class GameStatesSwitcher : MonoBehaviour
 
                 if (_witchIsDead)
                 {
-                    SaveState(1, true);
+                    YandexGame.ResetSaveProgress();
+                    YandexGame.SaveProgress();
                     SceneManager.LoadScene(_winSceneIndex);
                 }
 
                 break;
 
             case GameState.GameOver:
-
-                SaveState(1, true);
-
+                
                 break;
+        }
+    }
+
+    public void SetFirstStart(bool isTrue)
+    {
+        _isFirstStart = isTrue;
+
+        if (_isFirstStart)
+        {
+            _gameState = GameState.WaitingToStart;
+        }
+        else
+        {
+            _gameState = GameState.GamePlaying;
         }
     }
 
     public void WitchKilledPlayer()
     {
-        SaveState(1, true);
         SceneManager.LoadScene(_finalGameOverSceneIndex);
     }
 
@@ -235,23 +226,5 @@ public class GameStatesSwitcher : MonoBehaviour
     private void OnWitchIsDead()
     {
         _witchIsDead = true;
-    }
-
-    private void SaveState(int value, bool isTrue)
-    {
-        _isFirstStart = isTrue;
-        PlayerPrefs.SetInt(PlayerPrefsIsFirstStart, value);
-    }
-
-    private void SetFirstStart(int value)
-    {
-        if (value == 1)
-        {
-            _isFirstStart = true;
-        }
-        else if (value == 0)
-        {
-            _isFirstStart = false;
-        }
     }
 }

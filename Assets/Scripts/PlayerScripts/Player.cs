@@ -2,22 +2,20 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private DeliveryService _deliveryService;
-   
-    [SerializeField] private Saver _saver;
-    [SerializeField] private GameStatesSwitcher _gameStatesSwitcher;
-  
-    [SerializeField] private PlayerEvents _playerEvents;
     [SerializeField] private PlayerCookingModule _playerCookingModule;
     [SerializeField] private PlayerInventory _playerInventory;
     [SerializeField] private PlayerMovement _playerMovement;
     [SerializeField] private PlayerHands _playerHands;
     [SerializeField] private PlayerSoundEffects _playerSoundEffects;
     [SerializeField] private PlayerAnimation _playerAnimation;
+    [SerializeField] private PlayerRagdollController _playerRagdollController;
+    [SerializeField] private PlayerHealth _playerHealth;
+    [SerializeField] private PlayerGold _playerGold;
+    [SerializeField] private PlayerCollisions _playerCollisions;
+ 
+    public PlayerCollisions PlayerCollisions => _playerCollisions;
 
     public PlayerMovement PlayerMovement => _playerMovement;
-
-    public PlayerEvents PlayerEventsHandler => _playerEvents;
 
     public PlayerCookingModule PlayerCookingModule => _playerCookingModule;
 
@@ -29,26 +27,9 @@ public class Player : MonoBehaviour
 
     public PlayerAnimation PlayerAnimation => _playerAnimation;
 
-    private void Start()
-    {
-        if (!_gameStatesSwitcher.IsFirstStart)
-        {
-            transform.position = _saver.LoadPlayerPosition();           
-        }
-    }
+    public PlayerRagdollController PlayerRagdollController => _playerRagdollController;
 
-    private void OnEnable()
-    {
-        _deliveryService.AllDishesHaveBeenDelivered += OnAllDishesHaveBeenDelivered;
-    }
+    public PlayerHealth PlayerHealth => _playerHealth;
 
-    private void OnDisable()
-    {
-        _deliveryService.AllDishesHaveBeenDelivered -= OnAllDishesHaveBeenDelivered;
-    }
-   
-    private void OnAllDishesHaveBeenDelivered()
-    {
-        _playerHands.ShowOrHideBackPack(false);
-    }
+    public PlayerGold PlayerGold => _playerGold;
 }

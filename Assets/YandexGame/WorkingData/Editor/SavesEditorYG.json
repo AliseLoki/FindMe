@@ -1,0 +1,35 @@
+{
+    "idSave": 2667,
+    "isFirstSession": false,
+    "language": "ru",
+    "promptDone": false,
+    "money": 1,
+    "newPlayerName": "Hello!",
+    "openLevels": [
+        false,
+        true,
+        false
+    ],
+    "Gold": 0,
+    "Health": 10,
+    "PlayerPosition": {
+        "x": 57.0,
+        "y": 0.0,
+        "z": 283.0
+    },
+    "IsFirstStart": true,
+    "HasBackPack": false,
+    "HoldableObject": 0,
+    "InventoryList": [],
+    "OrderIsTaken": false,
+    "SavedOrderedDishesListJson": [],
+    "SavedPackedDishesListJson": [],
+    "SavedStatesOfReadyness": [],
+    "RecipeName": "",
+    "VillageName": "",
+    "ActiveContainers": [],
+    "ActivePatches": [],
+    "HouseIndexes": [],
+    "VillagesThatGaveReward": [],
+    "VillagesWhereRewardIsntPicked": []
+}

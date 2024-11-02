@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
+[RequireComponent(typeof(Player))]
 [RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerMovement : MonoBehaviour
@@ -62,7 +63,6 @@ public class PlayerMovement : MonoBehaviour
            StopMoving();
         }
     }
-
 
     public void LookAtTheWitch(Witch witch)
     {

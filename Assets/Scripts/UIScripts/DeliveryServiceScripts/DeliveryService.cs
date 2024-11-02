@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class DeliveryService : MonoBehaviour
 {
-    [SerializeField] private Saver _saver;
     [SerializeField] private DeliveryServiceView _deliveryServiceView;
 
     [SerializeField] private RecievingOrdersPoint _recievingOrdersPoint;
@@ -13,8 +12,13 @@ public class DeliveryService : MonoBehaviour
 
     private List<CookingRecipeSO> _orderedDishies = new List<CookingRecipeSO>();
     private List<CookingRecipeSO> _packedDishes = new List<CookingRecipeSO>();
+    private List<StateOfReadyness>_packedDishesStates = new List<StateOfReadyness>();
 
-    public List<CookingRecipeSO>OrderedDishies => _orderedDishies;
+    public List<CookingRecipeSO> OrderedDishies => _orderedDishies;
+
+    public List<CookingRecipeSO> PackedDishies => _packedDishes;
+
+    public List<StateOfReadyness> PackedDishesStates => _packedDishesStates;
 
     private MenuSO _menuSO;
 
@@ -25,17 +29,6 @@ public class DeliveryService : MonoBehaviour
     public event Action<CookingRecipeSO> DishHasBeenDelivered;
     public event Action AllDishesHaveBeenDelivered;
     public event Action TimeToGoHasCome;
-
-    private void Awake()
-    {
-        if (_recievingOrdersPoint.OrderIsTaken)
-        {
-            _orderedDishies = _saver.LoadOrderedDishies();
-            _packedDishes = _saver.LoadPackedDishies();
-            InitLists();
-            SortSavedDishies();
-        }
-    }
 
     private void OnEnable()
     {
@@ -49,19 +42,15 @@ public class DeliveryService : MonoBehaviour
         _packingPlace.CookingRecipeSOHasBeenPacked -= OnCookingRecipeSOHasBeenPacked;
     }
 
-    public void InitLists()
+    public void GetLists(List<CookingRecipeSO> orderedDishies, List<CookingRecipeSO> packedDishies,List<StateOfReadyness> states)
     {
-        _deliveryServiceView.InitDishesFromSavedList(_orderedDishies);
-    }
+        _orderedDishies = orderedDishies;
+        _packedDishes = packedDishies;
+        _packedDishesStates = states;
 
-    public List<CookingRecipeSO> GetOrderedDishiesList()
-    {
-        return _orderedDishies;
-    }
-
-    public List<CookingRecipeSO> GetPackedDishiesList()
-    {
-        return _packedDishes;
+        InitLists();
+        SortSavedDishies();
+        SetStateofReadyness();
     }
 
     public CookingRecipeSO CheckEquality(CookingRecipeSO cookingRecipeSO)
@@ -86,6 +75,11 @@ public class DeliveryService : MonoBehaviour
         CheckPackedDishesCount();
     }
 
+    private void InitLists()
+    {
+        _deliveryServiceView.InitDishesFromSavedList(_orderedDishies);
+    }
+
     private void CheckPackedDishesCount()
     {
         if (_packedDishes.Count == 0)
@@ -98,6 +92,7 @@ public class DeliveryService : MonoBehaviour
     {
         DishHasBeenPacked?.Invoke(cookingRecipeSO);
         _packedDishes.Add(cookingRecipeSO);
+        _packedDishesStates.Add(cookingRecipeSO.Readyness);
 
         if (CheckIfOrdersAndPakcedDishesAreEqual())
         {
@@ -111,7 +106,7 @@ public class DeliveryService : MonoBehaviour
         {
             if (CheckEquality(recipe))
             {
-                DishHasBeenPacked?.Invoke(recipe);
+                DishHasBeenPacked?.Invoke(recipe);               
             }
         }
     }
@@ -130,8 +125,12 @@ public class DeliveryService : MonoBehaviour
     private void OnOrdersAreTaken(string destinationPointName, MenuSO menuSO)
     {
         _menuSO = menuSO;
-        TakeOrders();
-        OrdersCanBeShown?.Invoke(destinationPointName, _orderedDishies);
+
+        if (_orderedDishies.Count < 1)
+        {
+            TakeOrders();
+            OrdersCanBeShown?.Invoke(destinationPointName, _orderedDishies);
+        }
     }
 
     private void TakeOrders()
@@ -140,6 +139,17 @@ public class DeliveryService : MonoBehaviour
         {
             CookingRecipeSO cookingRecipeSO = _menuSO.MenuList[i];
             _orderedDishies.Add(cookingRecipeSO);
+        }
+    }
+
+    private void SetStateofReadyness()
+    {
+        foreach (var item in _packedDishes)
+        {
+            foreach (var state in _packedDishesStates)
+            {
+                item.Readyness = state;
+            }
         }
     }
 }

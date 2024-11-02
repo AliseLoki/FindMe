@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class InventoryView : MonoBehaviour
@@ -10,11 +9,6 @@ public class InventoryView : MonoBehaviour
     [SerializeField] private Player _player;
     [SerializeField] private GameStatesSwitcher _gameStatesSwitcher;
     [SerializeField] private TipsViewPanel _tipsViewPanel;
-
-    private void Start()
-    {
-        InitInventoryList(_playerInventory.GetRecievedInventoryPrefabSOList());
-    }
 
     private void OnEnable()
     {
@@ -30,7 +24,7 @@ public class InventoryView : MonoBehaviour
     private void OnInventoryPrefabSORecieved(InventoryPrefabSO inventoryPrefabSO)
     {
         var newInventoryCell = Instantiate(_inventoryCell, _listOfInventoryPrefabImages);
-        newInventoryCell.InitLinks(_player,_gameStatesSwitcher,_tipsViewPanel);
+        newInventoryCell.InitLinks(_player, _gameStatesSwitcher, _tipsViewPanel);
         newInventoryCell.SetInventoryCellImage(inventoryPrefabSO);
         newInventoryCell.InventoryCellButtonPressed += OnInventoryCellButtonPressed;
     }
@@ -38,13 +32,5 @@ public class InventoryView : MonoBehaviour
     private void OnInventoryCellButtonPressed(InventoryPrefabSO inventoryPrefabSO)
     {
         _playerInventory.RemoveInventoryPrefabSO(inventoryPrefabSO);
-    }
-
-    private void InitInventoryList(List<InventoryPrefabSO> list)
-    {
-        foreach (var item in list)
-        {
-            OnInventoryPrefabSORecieved(item);
-        }
     }
 }

@@ -18,6 +18,8 @@ public class DeliveryServiceView : MonoBehaviour
 
     private bool _hasRecievedOrders;
 
+    public string DestinationPointName => _destinationPointName.text;
+
     public event Action<CookingRecipeSO> DishPrepared;
 
     private void OnEnable()
@@ -37,6 +39,11 @@ public class DeliveryServiceView : MonoBehaviour
         _deliveryService.DishHasBeenDelivered -= OnDishHasBeenDelivered;
         _deliveryService.AllDishesHaveBeenDelivered -= OnAllDishesHaveBeenDelivered;
         _cookingTable.CanBeCookedCookingRecipeSO -= OnCanBeCookedCookingRecipeSO;
+    }
+
+    public void SetDestinationPointName(string villageName)
+    {
+        _destinationPointName.text = villageName.ToString();
     }
 
     public void InitDishesFromSavedList(List<CookingRecipeSO> dishesList)
@@ -112,7 +119,7 @@ public class DeliveryServiceView : MonoBehaviour
                 newTemplate.SetCookingRecipeSO(cookingRecipeSO);
             }
 
-            _destinationPointName.text = destinationPointName.ToString();
+            SetDestinationPointName(destinationPointName);
             _hasRecievedOrders = true;
         }
     }

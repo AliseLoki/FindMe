@@ -26,13 +26,13 @@ RectTransform:
   m_GameObject: {fileID: 2583194852681490695}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_ConstrainProportionsScale: 1
   m_Children:
-  - {fileID: 5688351517636431046}
-  - {fileID: 7439617262758802247}
   - {fileID: 1993684218461917503}
   - {fileID: 921512594053027172}
+  - {fileID: 5688351517636431046}
+  - {fileID: 7439617262758802247}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.10272924}
@@ -57,6 +57,8 @@ MonoBehaviour:
   _ingredientsContainer: {fileID: 921512594053027172}
   _ingredient: {fileID: 8093099978397485304, guid: 85d267e19fca7e743872ecd04b357101, type: 3}
   _canCookButton: {fileID: 1993436738321013658}
+  _player: {fileID: 0}
+  _tipsViewPanel: {fileID: 0}
 --- !u!1 &4375676242186124941
 GameObject:
   m_ObjectHideFlags: 0
@@ -153,7 +155,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 271.17627, y: -2.344696}
+  m_AnchoredPosition: {x: -48, y: -2}
   m_SizeDelta: {x: -209.246, y: -6.4322}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4851834139205448268
@@ -304,7 +306,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 418.1818, y: -54.216084}
+  m_AnchoredPosition: {x: 99.005554, y: -53.871403}
   m_SizeDelta: {x: 91.3846, y: 93.5678}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4884442813462830267

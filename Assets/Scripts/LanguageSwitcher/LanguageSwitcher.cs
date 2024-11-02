@@ -44,6 +44,7 @@ public class LanguageSwitcher : MonoBehaviour
     {
         // InitCurrentLanguage(Russian);
         InitCurrentLanguage(YandexGame.EnvironmentData.language);
+        InitSO();
     }
 
     private void Start()

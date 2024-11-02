@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 
@@ -9,14 +8,20 @@ public class House : InteractableObject
     [SerializeField] private Transform _deliveredPackage;
     [SerializeField] private GoldCoins _goldCoins;
     [SerializeField] private DeliveredDishesCounter _deliveredDishesCounter;
-
-    [SerializeField] private Village _village;
+    [SerializeField] private HouseIndex _houseIndex;
 
     private bool _isDelivered;
 
     private StateOfReadyness _readyness = StateOfReadyness.Cooked;
 
     public bool IsDelivered => _isDelivered;
+
+    public HouseIndex Index => _houseIndex;
+
+    public void InitIsDelivered()
+    {
+        _isDelivered = true;
+    }
 
     protected override void UseObject()
     {
@@ -32,7 +37,6 @@ public class House : InteractableObject
                 SpawnObject(_deliveredPackage.gameObject);
                 StartCoroutine(CheckReadynessOfDishe(deliveredDish));
                 _isDelivered = true;
-                _village.AddHouseInList(this);
             }
             else
             {
@@ -58,7 +62,6 @@ public class House : InteractableObject
             TipsViewPanel.ShowDishIsPreparedBadlyTip();
         }
 
-        // пока для тестов
         _deliveredDishesCounter.AddDeliveredDish();
         DeliveryService.RemoveDeliveredDish(cookingRecipeSO);
     }

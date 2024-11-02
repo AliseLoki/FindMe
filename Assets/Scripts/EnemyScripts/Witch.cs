@@ -15,6 +15,8 @@ public class Witch : MonoBehaviour
     [SerializeField] private Player _player;
     [SerializeField] private Music _music;
 
+    private int _damage = -1;
+
     private float _timer;
     private float _timerDefaultValue = 1.5f;
     private float _moveSpeed = 0.5f;
@@ -39,10 +41,6 @@ public class Witch : MonoBehaviour
     {
         _music.PlayWitchAppearMusic();
     }
-
-    private void OnEnable() => _player.PlayerEventsHandler.WitchHasBeenAttacked += Die;
-    
-    private void OnDisable() => _player.PlayerEventsHandler.WitchHasBeenAttacked -= Die;
 
     private void Update()
     {
@@ -69,6 +67,17 @@ public class Witch : MonoBehaviour
         }
     }
 
+    public void Die()
+    {
+        _audioSource.loop = false;
+        _audioSource.clip = _witchDeathScream;
+        _audioSource.Play();
+        _isDying = true;
+        _pentagram.gameObject.SetActive(true);
+        _animator.SetTrigger(IsDying);
+        WitchIsDead?.Invoke();
+    }
+
     private void Move()
     {
         transform.position += (_player.transform.position - transform.position).normalized * _moveSpeed * Time.deltaTime;
@@ -81,19 +90,8 @@ public class Witch : MonoBehaviour
 
         if (_timer <= 0)
         {
-            _player.PlayerEventsHandler.OnHealthChanged(-1);
+            _player.PlayerHealth.OnHealthChanged(_damage);
             _timer = _timerDefaultValue;
         }
-    }
-
-    private void Die()
-    {
-        _audioSource.loop = false;
-        _audioSource.clip = _witchDeathScream;
-        _audioSource.Play();
-        _isDying = true;
-        _pentagram.gameObject.SetActive(true);
-        _animator.SetTrigger(IsDying);
-        WitchIsDead?.Invoke();
     }
 }

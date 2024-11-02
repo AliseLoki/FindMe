@@ -18,7 +18,7 @@ public class GameOverCanvasUI : MonoBehaviour
 
     public void OnRestartButtonClick()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(0);
     }
 
     private void ChangeLanguage()

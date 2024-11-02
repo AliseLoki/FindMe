@@ -1,17 +1,19 @@
+using System;
 using UnityEngine;
 
-[RequireComponent(typeof(Player))]
 public class PlayerCollisions : MonoBehaviour
 {
-    private int _coinsValue = 1;
+    [SerializeField] private Player _player;
+    [SerializeField] private TipsViewPanel _tipsViewPanel;
+    [SerializeField] private Music _music;
+    [SerializeField] private GameStatesSwitcher _gameStatesSwitcher;
+    [SerializeField] private SaveData _saveData;
 
-    private Player _player;
+    public event Action EnteredTheForest;
+    public event Action EnteredSafeZone;
 
-    private void Awake()
-    {
-        _player = GetComponent<Player>();
-    }
-
+    public event Action WolfHasBeenKilled;
+   
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.TryGetComponent(out InteractableObject interactableObject))
@@ -21,7 +23,7 @@ public class PlayerCollisions : MonoBehaviour
 
         if (collision.collider.TryGetComponent(out Enemy enemy) && _player.PlayerHands.HoldableObject == HoldableObjectType.Sword)
         {
-             _player.PlayerEventsHandler.OnWolfHasBeenKilled();
+            WolfHasBeenKilled?.Invoke();
             _player.PlayerHands.GiveObject();
         }
 
@@ -29,7 +31,7 @@ public class PlayerCollisions : MonoBehaviour
         {
             if (_player.PlayerHands.HoldableObject == HoldableObjectType.Necronomicon)
             {
-                _player.PlayerEventsHandler.OnWitchHasBeenAttacked();
+                witch.Die();
             }
         }
     }
@@ -47,32 +49,40 @@ public class PlayerCollisions : MonoBehaviour
         if (other.TryGetComponent(out GoldCoins goldCoins))
         {
             goldCoins.PickUpCoins();
-            _player.PlayerEventsHandler.OnGoldAmountChanged(_coinsValue);
+            _player.PlayerGold.OnGoldAmountChanged(goldCoins.CoinsValue);
         }
 
         if (other.TryGetComponent(out ForestTrigger forestTrigger))
         {
-            _player.PlayerEventsHandler.OnEnteredTheForest();
+            _music.PlayForestMusic();
+            EnteredTheForest?.Invoke();
         }
 
         if (other.TryGetComponent(out GrannysHomeTrigger grannysHomeTrigger))
         {
-            _player.PlayerEventsHandler.OnEnteredGrannysHome();
+            EnteredSafeZone?.Invoke();
+            _tipsViewPanel.gameObject.SetActive(true);
+            _tipsViewPanel.ShowYouAreSafeTip();
+            _music.PlayGrannysHomeMusic();
+            _gameStatesSwitcher.OnPlayerEnteredGrannysHome();
         }
 
         if (other.TryGetComponent(out VillageZoneTrigger villageZoneTrigger))
         {
-            _player.PlayerEventsHandler.OnEnteredVillage();
+            _music.PlayVilageMusic();
+            EnteredSafeZone?.Invoke();
         }
 
         if (other.TryGetComponent(out SafeZoneTrigger safeZoneTrigger))
         {
-            _player.PlayerEventsHandler.OnEnteredSafeZone();
+            _music.PlaySafeZoneMusic();
+            _saveData.Save();
+            EnteredSafeZone?.Invoke();
         }
 
         if (other.TryGetComponent(out PlaceForPentagramTrigger placeForPentagramTrigger))
         {
-            _player.PlayerEventsHandler.OnEnteredPentagramZone();
+            _music.PlayPentagramMusic();
         }
     }
 
@@ -80,22 +90,25 @@ public class PlayerCollisions : MonoBehaviour
     {
         if (other.TryGetComponent(out GrannysHomeTrigger grannysHomeTrigger))
         {
-            _player.PlayerEventsHandler.OnExitGrannysHome();
+            _tipsViewPanel.ShowYouAreNotSafeTip();
+            _music.PlayRoadMusic();          
         }
 
         if (other.TryGetComponent(out VillageZoneTrigger villageZoneTrigger))
         {
-            _player.PlayerEventsHandler.OnExitVillage();
+            _tipsViewPanel.ShowYouAreNotSafeTip();
+            
         }
 
         if (other.TryGetComponent(out SafeZoneTrigger safeZoneTrigger))
         {
-            _player.PlayerEventsHandler.OnExitSafeZone();
+            _tipsViewPanel.ShowYouAreNotSafeTip();
+            _music.PlayRoadMusic();
         }
 
         if (other.TryGetComponent(out PlaceForPentagramTrigger placeForPentagramTrigger))
         {
-            _player.PlayerEventsHandler.OnExitPentagramZone();
+            _music.PlayRoadMusic();
         }
     }
 }

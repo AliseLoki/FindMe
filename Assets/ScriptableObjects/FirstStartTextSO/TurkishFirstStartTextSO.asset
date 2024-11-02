@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WelcomeTex: "maceraya haz\u0131r m\u0131s\u0131n ?"
   RunText: "b\xFCy\xFCk annenin evine do\u011Fru ko\u015F, hareket etmek i\xE7in
-    W,A,S,D tu\u015Flar\u0131n\u0131 kullan\u0131n"
+    W,A,S,D tu\u015Flar\u0131n\u0131 kullan, kameray\u0131 yak\u0131nla\u015Ft\u0131rmak
+    i\xE7in fare tekerle\u011Fini kullan"
   YesButtonText: evet
   RemainingTimeText: "reklam g\xF6sterilene kadar kalan s\xFCre"
   LeaderbordName: en iyi oyuncular
@@ -27,3 +28,4 @@ MonoBehaviour:
     gerekir"
   AnonymousName: anonim
   SaveGameText: oyun kaydedildi
+  FullRestartButtonText: "ba\u015Ftan ba\u015Fla - R t\u0131kla"

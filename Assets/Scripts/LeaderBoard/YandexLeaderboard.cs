@@ -5,7 +5,6 @@ using YG.Utils.LB;
 
 public class YandexLeaderboard : MonoBehaviour
 {
-    private const string LeaderboardName = "LeaderboardPlayers";
     private string AnonymousName;
     private LBData _lb;
 
@@ -56,14 +55,6 @@ public class YandexLeaderboard : MonoBehaviour
                 name = AnonymousName;
             }
         }
-
-        // Leaderboard.GetEntries(LeaderboardName, (result) =>
-        //{
-        //    foreach (var entry in result.entries)
-        //    {
-        //        int rank = entry.rank;
-        //        int score = entry.score;
-        //        string name = entry.player.publicName;
 
         _leaderboardView.ConstructLeaderboard(_leaderboardPlayers);
     }

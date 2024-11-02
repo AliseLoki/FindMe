@@ -19,4 +19,6 @@ public class FirstStartTextSO : ScriptableObject
     public string AnonymousName;
 
     public string SaveGameText;
+
+    public string FullRestartButtonText;
 }

@@ -22,41 +22,12 @@ public class Music : MonoBehaviour
 
     private void OnEnable()
     {
-        _player.PlayerEventsHandler.EnteredGrannysHome += PlayGrannysHomeMusic;
-        _player.PlayerEventsHandler.ExitGrannysHome += PlayRoadMusic;
-
-        _player.PlayerEventsHandler.EnteredTheForest += PlayForestMusic;
-
-        _player.PlayerEventsHandler.EnteredSafeZone += PlaySafeZoneMusic;
-        _player.PlayerEventsHandler.ExitSafeZone += PlayRoadMusic;
-
-        _player.PlayerEventsHandler.EnteredVillage += PlayVilageMusic;
-        _player.PlayerEventsHandler.ExitVillage += PlayRoadMusic;
-
-        _player.PlayerEventsHandler.EnteredPentagramZone += PlayPentagramMusic;
-        _player.PlayerEventsHandler.ExitPentagramZone += PlayRoadMusic;
-
-        _player.PlayerEventsHandler.PlayerHasDied += PlayGameOverMusic;
+        _player.PlayerHealth.PlayerHasDied += PlayGameOverMusic;
     }
 
     private void OnDisable()
     {
-        _player.PlayerEventsHandler.EnteredGrannysHome -= PlayGrannysHomeMusic;
-        _player.PlayerEventsHandler.ExitGrannysHome -= PlayRoadMusic;
-
-        _player.PlayerEventsHandler.EnteredTheForest -= PlayForestMusic;
-
-        _player.PlayerEventsHandler.EnteredSafeZone -= PlaySafeZoneMusic;
-        _player.PlayerEventsHandler.ExitSafeZone -= PlayRoadMusic;
-
-        _player.PlayerEventsHandler.EnteredVillage -= PlayVilageMusic;
-        _player.PlayerEventsHandler.ExitVillage -= PlayRoadMusic;
-
-        _player.PlayerEventsHandler.EnteredPentagramZone -= PlayPentagramMusic;
-        _player.PlayerEventsHandler.ExitPentagramZone -= PlayRoadMusic;
-
-        _player.PlayerEventsHandler.PlayerHasDied -= PlayGameOverMusic;
-
+        _player.PlayerHealth.PlayerHasDied -= PlayGameOverMusic;
     }
 
     public void ChangeMusicVolume()
@@ -75,7 +46,7 @@ public class Music : MonoBehaviour
         _audioSource.volume = _musicVolumeSlider.value;
     }
 
-    private void PlayForestMusic()
+    public void PlayForestMusic()
     {
         if (!_isForestMusicPlaying)
         {
@@ -84,37 +55,37 @@ public class Music : MonoBehaviour
         }
     }
 
-    private void PlaySafeZoneMusic()
+    public void PlaySafeZoneMusic()
     {
         PlayMusic(_musicSO.SafeZoneMusic);
     }
 
-    private void PlayRoadMusic()
+    public void PlayRoadMusic()
     {
         PlayMusic(_musicSO.RoadMusic);
     }
 
-    private void PlayGrannysHomeMusic()
+    public void PlayGrannysHomeMusic()
     {
         PlayMusic(_musicSO.GrannysHomeMusic);
     }
 
-    private void PlayVilageMusic()
+    public void PlayVilageMusic()
     {
         PlayMusic(_musicSO.VillageMusic);
     }
 
-    private void PlayStartMusic()
+    public void PlayStartMusic()
     {
         PlayMusic(_musicSO.StartMusic);
     }
 
-    private void PlayGameOverMusic()
+    public void PlayGameOverMusic()
     {
         PlayMusic(_musicSO.GameOverMusic);
     }
 
-    private void PlayPentagramMusic()
+    public void PlayPentagramMusic()
     {
         PlayMusic(_musicSO.PentagramMusic);
     }

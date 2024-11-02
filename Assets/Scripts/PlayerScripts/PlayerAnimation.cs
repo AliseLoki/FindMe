@@ -8,7 +8,6 @@ public class PlayerAnimation : MonoBehaviour
     private const string IsDying = nameof(IsDying);
     private const string IsWitchAppeared = nameof(IsWitchAppeared);
     
-
     [SerializeField] private Player _player;
 
     private Animator _animatior;

@@ -11,8 +11,6 @@ public class RecievingOrdersPoint : InteractableObject
     [SerializeField] private Container _bowlWithCheese;
     [SerializeField] private Container _meetHanger;
 
-    [SerializeField] private Saver _saver;
-
     [SerializeField] private LanguageSwitcher _languageSwitcher;
     [SerializeField] private GameStatesSwitcher _gameStatesSwitcher;
 
@@ -35,36 +33,27 @@ public class RecievingOrdersPoint : InteractableObject
     {
         _languageSwitcher.VillageNamesGiven += InitVillageNamesSO;
         DeliveryService.AllDishesHaveBeenDelivered += OnAllDishesHaveBeenDelivered;
-        Player.PlayerEventsHandler.WolfHasBeenKilled += OnWolfHasBeenKilled;
-        _orderIsTaken = _saver.LoadOrderIsTakenState();     
+        Player.PlayerCollisions.WolfHasBeenKilled += OnWolfHasBeenKilled; 
     }
 
-    private void Start()
-    {
-        if (_orderIsTaken == true)
-        {
-            ChooseMenuSO();
-        }
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            _orderIsTaken = false;
-        }
-    }
-   
-    private void OnWolfHasBeenKilled()
-    {
-        _meetHanger.gameObject.SetActive(true);
-    }
+    //private void Start()
+    //{
+    //    if (_orderIsTaken == true)
+    //    {
+    //        ChooseMenuSO();
+    //    }
+    //}
 
     private void OnDisable()
     {
         DeliveryService.AllDishesHaveBeenDelivered -= OnAllDishesHaveBeenDelivered;
         _languageSwitcher.VillageNamesGiven -= InitVillageNamesSO;
-        Player.PlayerEventsHandler.WolfHasBeenKilled -= OnWolfHasBeenKilled;
+        Player.PlayerCollisions.WolfHasBeenKilled -= OnWolfHasBeenKilled;
+    }
+
+    public void GetOrderIsTaken(bool isTaken)
+    {
+        _orderIsTaken = isTaken;
     }
 
     public void OnAllDishesHaveBeenDelivered()
@@ -87,6 +76,11 @@ public class RecievingOrdersPoint : InteractableObject
         {
             TipsViewPanel.ShowFirstCompleteOldOrdersTip();
         }
+    }
+
+    private void OnWolfHasBeenKilled()
+    {
+        _meetHanger.gameObject.SetActive(true);
     }
 
     private void ChooseMenuSO()

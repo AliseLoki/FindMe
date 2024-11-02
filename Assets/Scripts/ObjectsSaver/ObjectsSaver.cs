@@ -1,145 +1,196 @@
 using System.Collections.Generic;
+using System.Xml.Schema;
 using UnityEngine;
 
 public class ObjectsSaver : MonoBehaviour
 {
-    private const string PlayerPrefsMeetContainerState = nameof(PlayerPrefsMeetContainerState);
-    private const string PlayerPrefsCheeseContainerState = nameof(PlayerPrefsCheeseContainerState);
-    private const string PlayerPrefsCabbageContainerState = nameof(PlayerPrefsCabbageContainerState);
-    private const string PlayerPrefsTomatoContainerState = nameof(PlayerPrefsTomatoContainerState);
+    [SerializeField] private List<Container> _allContainers;
+    [SerializeField] private List<ActivableObjectType> _activeContainers;
 
-    private const string PlayerPrefsGrassInTomatoPatch = nameof(PlayerPrefsGrassInTomatoPatch);
-    private const string PlayerPrefsGrassInCabbagePatch = nameof(PlayerPrefsGrassInCabbagePatch);
-    private const string PlayerPrefsCowInCowPlace = nameof(PlayerPrefsCowInCowPlace);
+    [SerializeField] private List<Patch> _allPatches;
+    [SerializeField] private List<ActivableObjectType> _activePatches;
 
-    [SerializeField] private Transform _tomatoPatchWithoutWater;
-    [SerializeField] private Transform _cabbagePatchWithoutWater;
-    [SerializeField] private Transform _cowPatchWithoutWater;
+    [SerializeField] private List<House> _allHouses;
+    [SerializeField] private List<HouseIndex> _housesThatRecivedOrders;
 
-    [SerializeField] private Transform _meetHanger;
-    [SerializeField] private Transform _bowlWithCheese;
-    [SerializeField] private Transform _basketWithCabbages;
-    [SerializeField] private Transform _barrelWithTomatoes;
+    [SerializeField] private List<Transform> _allPlacesWithReward;
+    [SerializeField] private List<InventoryPrefabSO> _givenRewards;
 
-    [SerializeField] private List<Transform> _tomatoPatch;
-    [SerializeField] private List<Transform> _cabbagePatch;
-    [SerializeField] private List<Transform> _cowPatch;
+    [SerializeField] private List<Village> _allVillages;
 
-    [SerializeField] private GameStatesSwitcher _gameStatesSwitcher;
+    [SerializeField] private List<VillageIndex> _villagesThatGaveReward;
+    [SerializeField] private List<VillageIndex> _villagesWhereRewardIsntPickedUp;
 
-    private void Start()
+    public void InitAllVillagesThatGaveReward(List<VillageIndex> villagesThatGaveReward)
     {
-        if (!_gameStatesSwitcher.IsFirstStart)
-        {
-            GetContainerState(PlayerPrefsMeetContainerState, 1, _meetHanger);
-            GetContainerState(PlayerPrefsCheeseContainerState, 1, _bowlWithCheese);
-            GetContainerState(PlayerPrefsCabbageContainerState, 1, _basketWithCabbages);
-            GetContainerState(PlayerPrefsTomatoContainerState, 1, _barrelWithTomatoes);
+        _villagesThatGaveReward = villagesThatGaveReward;
 
-            ActivatePatch(_bowlWithCheese, _cowPatch);
-            ActivatePatch(_basketWithCabbages, _cabbagePatch);
-            ActivatePatch(_barrelWithTomatoes, _tomatoPatch);
-
-            GetContainerState(PlayerPrefsGrassInCabbagePatch, 1, _cabbagePatchWithoutWater);
-            GetContainerState(PlayerPrefsGrassInTomatoPatch, 1, _tomatoPatchWithoutWater);
-            GetContainerState(PlayerPrefsCowInCowPlace, 1, _cowPatchWithoutWater);
-        }
-        else
+        foreach (var index in _villagesThatGaveReward)
         {
-            Reset();
+            foreach (var village in _allVillages)
+            {
+                if (index == village.Index)
+                {
+                    village.SetIsGivenReward(true);
+                }
+            }
         }
     }
 
-    public void SaveContainers()
+    public List<VillageIndex> SaveRewardIsGiven()
     {
-        Save(_meetHanger, PlayerPrefsMeetContainerState);
-        Save(_bowlWithCheese, PlayerPrefsCheeseContainerState);
-        Save(_basketWithCabbages, PlayerPrefsCabbageContainerState);
-        Save(_barrelWithTomatoes, PlayerPrefsTomatoContainerState);
+        foreach (var village in _allVillages)
+        {
+            if (village.IsGivenReward)
+            {
+                _villagesThatGaveReward.Add(village.Index);
+            }
+        }
 
-        Save(_cabbagePatchWithoutWater, PlayerPrefsGrassInCabbagePatch);
-        Save(_tomatoPatchWithoutWater, PlayerPrefsGrassInTomatoPatch);
-        Save(_cowPatchWithoutWater, PlayerPrefsCowInCowPlace);
+        return _villagesThatGaveReward;
+    }
+   
+    public void InitNotPickedRewards(List<VillageIndex> villagesWithNotPickedUpReward)
+    {
+        _villagesWhereRewardIsntPickedUp = villagesWithNotPickedUpReward;
+
+        foreach (var index in _villagesWhereRewardIsntPickedUp)
+        {
+            foreach (var village in _allVillages)
+            {
+                if (index == village.Index)
+                {
+                    village.GiveReward();
+                }
+            }
+        }
+
     }
 
-    private void Reset()
+    public List<VillageIndex> SaveNotPickedRewards()
     {
-        _meetHanger.gameObject.SetActive(false);
-        _bowlWithCheese.gameObject.SetActive(false);
-        _basketWithCabbages.gameObject.SetActive(false);
-        _barrelWithTomatoes.gameObject.SetActive(false);
+        foreach (Village village in _allVillages)
+        {
+            if (village.SpawnPoint.childCount > 0)
+            {
+                _villagesWhereRewardIsntPickedUp.Add(village.Index);
+            }
+        }
 
-        CheckAllTransforms(_cowPatch, false);
-        CheckAllTransforms(_cabbagePatch, false);
-        CheckAllTransforms(_tomatoPatch, false);
+        return _villagesWhereRewardIsntPickedUp;
     }
 
-    private void CheckAllTransforms(List<Transform> transformList, bool isActive)
+    public void InitAllHouses(List<HouseIndex> houseIndexes)
     {
-        foreach (var transform in transformList)
-        {
-            transform.gameObject.SetActive(isActive);
-        }
-    }  
+        _housesThatRecivedOrders = houseIndexes;
 
-    private void ActivatePatch(Transform container, List<Transform> transformList)
-    {
-        if (container.gameObject.activeSelf)
+        foreach (var item in _housesThatRecivedOrders)
         {
-            CheckAllTransforms(transformList, true);
-        }
-        else
-        {
-            CheckAllTransforms(transformList, false);
-        }
-    }
-
-    private void Save(Transform container, string containerState)
-    {
-        if (container.gameObject.activeSelf)
-        {
-            SetContainerState(containerState, true);
-        }
-        else
-        {
-            SetContainerState(containerState, false);
-        }
-    }
-
-    private void GetContainerState(string containerState, int defaultValue, Transform container)
-    {
-        int savedValue = PlayerPrefs.GetInt(containerState, defaultValue);
-        bool isActive = ConvertIntToBool(savedValue);
-        container.gameObject.SetActive(isActive);
-    }
-
-    private void SetContainerState(string containerState, bool isActive)
-    {
-        PlayerPrefs.SetInt(containerState, ConvertBoolToInt(isActive)); 
-        // в документации
-    }
-
-    private bool ConvertIntToBool(int value)
-    {
-        if (value == 1)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
+            foreach (House house in _allHouses)
+            {
+                if (house.Index == item)
+                {
+                    house.InitIsDelivered();
+                }
+            }
         }
     }
 
-    private int ConvertBoolToInt(bool isActive)
+    public List<HouseIndex> SaveAllHousesThatRecivedOrders()
     {
-        if (isActive == true)
+        foreach (House house in _allHouses)
         {
-            return 1;
+            if (house.IsDelivered && !_housesThatRecivedOrders.Contains(house.Index))
+            {
+                _housesThatRecivedOrders.Add(house.Index);
+            }
         }
-        else
+
+        return _housesThatRecivedOrders;
+    }
+
+    public void InitAllActivePatches(List<ActivableObjectType> activableObjectTypes)
+    {
+        _activePatches = activableObjectTypes;
+
+        EnablePatches();
+    }
+
+    public List<ActivableObjectType> SaveAllActivePatches()
+    {
+        foreach (Patch patch in _allPatches)
         {
-            return 0;
+            if (patch.Grass.gameObject.activeSelf && !_activePatches.Contains(patch.ActivableObject))
+            {
+                _activePatches.Add(patch.ActivableObject);
+            }
+        }
+
+        return _activePatches;
+    }
+
+    public void InitAllActiveContainers(List<ActivableObjectType> activableObjectTypes)
+    {
+        _activeContainers = activableObjectTypes;
+
+        EnableContainers();
+        // сделать проверку в ресивингордерзпоинт
+    }
+
+    public List<ActivableObjectType> SaveAllActiveContainers()
+    {
+        foreach (Container container in _allContainers)
+        {
+            if (container.gameObject.activeSelf && !_activeContainers.Contains(container.ActivableObject))
+            {
+                _activeContainers.Add(container.ActivableObject);
+            }
+        }
+
+        return _activeContainers;
+    }
+
+    private void EnablePatches()
+    {
+        foreach (var item in _activePatches)
+        {
+            foreach (Patch patch in _allPatches)
+            {
+                if (patch.ActivableObject == item)
+                {
+                    patch.Grass.gameObject.SetActive(true);
+                }
+            }
+        }
+    }
+
+    private void EnableContainers()
+    {
+        foreach (var item in _activeContainers)
+        {
+            foreach (Container container in _allContainers)
+            {
+                if (container.ActivableObject == item)
+                {
+                    container.gameObject.SetActive(true);
+                    EnablePatchChildObjects(container);
+                }
+            }
+        }
+    }
+
+    private void EnablePatchChildObjects(Container container)
+    {
+        foreach (Patch patch in _allPatches)
+        {
+            if (patch.BarrelWithIngredients == container)
+            {
+                foreach (Transform child in patch.transform)
+                {
+                    child.gameObject.SetActive(true);
+                    patch.DisableInteract();
+                }
+            }
         }
     }
 }

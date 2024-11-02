@@ -16,7 +16,9 @@ public class CanvasUI : MonoBehaviour
     [SerializeField] private AuthorisePanel _authorisePanel;
     [SerializeField] private LeaderboardView _leaderboardView;
     [SerializeField] private SaveGameView _saveGameView;
+    [SerializeField] private GameObject _settingView;
     [SerializeField] private YandexGame _yandexGame;
+    [SerializeField] private SettingsView _settingsView;
 
     private bool _shouldFadeToBlack;
     private bool _shouldFadeFromBlack;
@@ -30,12 +32,12 @@ public class CanvasUI : MonoBehaviour
     [SerializeField] private GameStatesSwitcher _gameStatesSwitcher;
 
     private YandexLeaderboard _yandexLeaderboard;
-   
+
     public bool IsAdPlaying => _isAdPlaying;
 
     private void Awake()
     {
-       _yandexLeaderboard = GetComponent<YandexLeaderboard>();
+        _yandexLeaderboard = GetComponent<YandexLeaderboard>();
         _languageSwitcher.AllSOWereGiven += OnAllSOWereGiven;
     }
 
@@ -46,8 +48,7 @@ public class CanvasUI : MonoBehaviour
         _gameStatesSwitcher.EducationPlayingEnabled += OnEducationPlayingEnabled;
         _gameStatesSwitcher.EducationStarted += OnEducationStarted;
 
-        _player.PlayerEventsHandler.PlayerHasDied += OnPlayerhasDied;
-        _player.PlayerEventsHandler.EnteredGrannysHome += PlayerEnteredGrannysHome;
+        _player.PlayerHealth.PlayerHasDied += OnPlayerhasDied;
     }
 
     private void OnDisable()
@@ -59,8 +60,7 @@ public class CanvasUI : MonoBehaviour
 
         _languageSwitcher.AllSOWereGiven -= OnAllSOWereGiven;
 
-        _player.PlayerEventsHandler.PlayerHasDied -= OnPlayerhasDied;
-        _player.PlayerEventsHandler.EnteredGrannysHome -= PlayerEnteredGrannysHome;
+        _player.PlayerHealth.PlayerHasDied -= OnPlayerhasDied;
     }
 
     public void ShowRewardedVideoAd()
@@ -115,6 +115,18 @@ public class CanvasUI : MonoBehaviour
         }
     }
 
+    public void OnSettingViewButtonPressed()
+    {
+        _settingView.gameObject.SetActive(true);
+        Time.timeScale = 0;
+    }
+
+    public void OnCloseSettingViewButtonPressed()
+    {
+        _settingView.gameObject.SetActive(false);
+        Time.timeScale = 1;
+    }
+
     public void FadeToBlack()
     {
         _fadeScreen.gameObject.SetActive(true);
@@ -165,6 +177,7 @@ public class CanvasUI : MonoBehaviour
         _leaderboardView.InitFirstStartTextSO(firstStartTextSO);
         _yandexLeaderboard.InitFirstStartTextSO(firstStartTextSO);
         _saveGameView.InitFirstStartTextSO(firstStartTextSO);
+        _settingsView.InitButtonText(firstStartTextSO.FullRestartButtonText);
     }
 
     private IEnumerator FadeRoutine()
@@ -198,10 +211,8 @@ public class CanvasUI : MonoBehaviour
 
             yield return null;
         }
-    }
 
-    private void PlayerEnteredGrannysHome()
-    {
-        _tipsViewPanel.gameObject.SetActive(true);
+        StopCoroutine(FadeRoutine());
+        StopCoroutine(LightRoutine());
     }
 }

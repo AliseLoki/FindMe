@@ -1,13 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Player))]
 public class PlayerCookingModule : MonoBehaviour
 {
     private Food _food;
     private FoodSO _foodSO;
     private CookingRecipeSO _cookingRecipeSO;
 
-    [SerializeField] private Saver _saver;
     [SerializeField] private List<CookingRecipeSO> _allCookingRecipesSO;
 
     public Food Food => _food;
@@ -15,11 +15,6 @@ public class PlayerCookingModule : MonoBehaviour
     public FoodSO FoodSO => _foodSO;
 
     public CookingRecipeSO CookingRecipeSO => _cookingRecipeSO;
-
-    private void Start()
-    {
-        SetCookingRecipe(FindRecipeByName(_saver.LoadRecipeName()));
-    }
 
     public void SetCookingRecipe(CookingRecipeSO cookingRecipeSO)
     {
@@ -45,7 +40,7 @@ public class PlayerCookingModule : MonoBehaviour
         _cookingRecipeSO = null;      
     }
 
-    private CookingRecipeSO FindRecipeByName(string recipeName)
+    public CookingRecipeSO FindRecipeByName(string recipeName)
     {
         foreach (var item in _allCookingRecipesSO)
         {

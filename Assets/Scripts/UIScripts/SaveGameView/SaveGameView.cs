@@ -5,23 +5,12 @@ using UnityEngine;
 public class SaveGameView : MonoBehaviour
 {
     [SerializeField] private TMP_Text _gameSavedText;
-    [SerializeField] private Player _player;
-
+    
     private FirstStartTextSO _firstStartTextSO;
 
     private void Awake()
     {
         _gameSavedText.gameObject.SetActive(false);
-    }
-
-    private void OnEnable()
-    {
-        _player.PlayerEventsHandler.EnteredSafeZone += ShowText;
-    }
-
-    private void OnDisable()
-    {
-        _player.PlayerEventsHandler.EnteredSafeZone -= ShowText;
     }
 
     public void InitFirstStartTextSO(FirstStartTextSO firstStartTextSO)
@@ -30,15 +19,15 @@ public class SaveGameView : MonoBehaviour
         InitText();
     }
 
-    private void InitText()
-    {
-        _gameSavedText.text = _firstStartTextSO.SaveGameText;
-    }
-
-    private void ShowText()
+    public void ShowText()
     {
         _gameSavedText.gameObject.SetActive(true);
         StartCoroutine(Timer());
+    }
+
+    private void InitText()
+    {
+        _gameSavedText.text = _firstStartTextSO.SaveGameText;
     }
 
     private IEnumerator Timer()

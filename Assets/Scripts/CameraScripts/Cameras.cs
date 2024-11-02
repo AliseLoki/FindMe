@@ -11,10 +11,18 @@ public class Cameras : MonoBehaviour
 
     [SerializeField] private Saver _saver;
 
+    private float _minValue = 20f;
+    private float _maxValue = 70f;
+
     private void Awake()
     {
         _cameraSlider.value = _saver.LoadCameraValue();
         ChangeCameraZoom(_cameraSlider.value);
+    }
+
+    private void Update()
+    {
+        ZoomCameraWithMouseWheel();
     }
 
     public void SwitchCameras()
@@ -41,5 +49,12 @@ public class Cameras : MonoBehaviour
     private void ChangeCameraZoom(float cameraSliderValue)
     {
         cinemachineVirtualCamera.m_Lens.FieldOfView = cameraSliderValue;
+    }
+
+    private void ZoomCameraWithMouseWheel()
+    {
+        cinemachineVirtualCamera.m_Lens.FieldOfView =
+            Mathf.Clamp(cinemachineVirtualCamera.m_Lens.FieldOfView - Input.mouseScrollDelta.y, _minValue, _maxValue);
+        _saver.SaveCameraValue(_cameraSlider.value);
     }
 }

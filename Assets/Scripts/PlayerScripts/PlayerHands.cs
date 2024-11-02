@@ -1,12 +1,13 @@
 using UnityEngine;
 
+[RequireComponent (typeof(Player))]
 public class PlayerHands : MonoBehaviour
 {
     [SerializeField] private Transform _backpack;
     [SerializeField] private Transform _handlePoint;
 
     [SerializeField] private Spawner _spawner;
-    [SerializeField] private Saver _saver;
+    [SerializeField] private DeliveryService _deliveryService;
 
     private bool _hasBackPack;
 
@@ -26,18 +27,26 @@ public class PlayerHands : MonoBehaviour
 
     public Transform HandlePoint => _handlePoint;
 
-    private void Start()
+    private void OnEnable()
     {
-        InitSavedData();
-        Load();
+        _deliveryService.AllDishesHaveBeenDelivered += OnAllDishesHaveBeenDelivered;
     }
 
-    private void Update()
+    private void OnDisable()
     {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            Reset();
-        }
+        _deliveryService.AllDishesHaveBeenDelivered -= OnAllDishesHaveBeenDelivered;
+    }
+
+    public void InitHoldableObjectType(HoldableObjectType holdableObjectType)
+    {
+        _indexOfObjectInHands = holdableObjectType;
+        _spawner.SpawnHoldableObjectInHands(_indexOfObjectInHands);
+    }
+   
+    public void InitHasBackPack(bool hasBackPack)
+    {
+        _hasBackPack = hasBackPack;
+        ShowOrHideBackPack(_hasBackPack);
     }
 
     public void GiveObject()
@@ -82,6 +91,11 @@ public class PlayerHands : MonoBehaviour
         }
     }
 
+    private void OnAllDishesHaveBeenDelivered()
+    {
+        ShowOrHideBackPack(false);
+    }
+
     public void ShowOrHideBackPack(bool isActive)
     {
         _backpack.gameObject.SetActive(isActive);
@@ -94,21 +108,5 @@ public class PlayerHands : MonoBehaviour
 
         _objectInHands = null;
         _indexOfObjectInHands = 0;
-    }
-
-    private void InitSavedData()
-    {
-        _hasBackPack = _saver.LoadHasBackPack();
-        _indexOfObjectInHands = _saver.LoadObjectInHands();
-    }
-
-    private void Load()
-    {
-        if (_hasBackPack == true)
-        {
-            ShowOrHideBackPack(true);
-        }
-
-        _spawner.SpawnHoldableObjectInHands(_indexOfObjectInHands);
     }
 }

@@ -21,6 +21,8 @@ public class Enemy : MonoBehaviour
     private EnemySoundEffects _enemySoundEffects;
 
     private int _pointIndex;
+    private int _damage = -1;
+
     private float _minDistance = 0.2f;
     private float _distanceToPlayer = 8f;
     private float _runSpeed = 20f;
@@ -41,7 +43,7 @@ public class Enemy : MonoBehaviour
 
     private void Awake()
     {
-        _enemySoundEffects = GetComponent<EnemySoundEffects>(); 
+        _enemySoundEffects = GetComponent<EnemySoundEffects>();
         _agent = GetComponent<NavMeshAgent>();
         _animator = GetComponent<Animator>();
         InitializeTargetPoints();
@@ -49,22 +51,18 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
-        _player.PlayerEventsHandler.EnteredTheForest += OnPlayerEnteredTheForest;
-        _player.PlayerEventsHandler.EnteredSafeZone += OnPlayerEnteredSafeZone;
-        _player.PlayerEventsHandler.EnteredGrannysHome += OnEnteredGrannysHome;
-        _player.PlayerEventsHandler.EnteredVillage += OnEnteredVillage;
-        _player.PlayerEventsHandler.WolfHasBeenKilled += OnWolfHasBeenKilled;
+        _player.PlayerCollisions.EnteredTheForest += OnPlayerEnteredTheForest;
+        _player.PlayerCollisions.EnteredSafeZone += OnPlayerEnteredSafeZone;
+        _player.PlayerCollisions.WolfHasBeenKilled += OnWolfHasBeenKilled;
 
         _patrolCoroutine = StartCoroutine(Patrolling());
     }
 
     private void OnDisable()
     {
-        _player.PlayerEventsHandler.EnteredTheForest -= OnPlayerEnteredTheForest;
-        _player.PlayerEventsHandler.EnteredSafeZone -= OnPlayerEnteredSafeZone;
-        _player.PlayerEventsHandler.EnteredGrannysHome -= OnEnteredGrannysHome;
-        _player.PlayerEventsHandler.EnteredVillage -= OnEnteredVillage;
-        _player.PlayerEventsHandler.WolfHasBeenKilled -= OnWolfHasBeenKilled;
+        _player.PlayerCollisions.EnteredTheForest -= OnPlayerEnteredTheForest;
+        _player.PlayerCollisions.EnteredSafeZone -= OnPlayerEnteredSafeZone;
+        _player.PlayerCollisions.WolfHasBeenKilled -= OnWolfHasBeenKilled;
     }
 
     private void OnWolfHasBeenKilled()
@@ -131,16 +129,6 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void OnEnteredGrannysHome()
-    {
-        OnPlayerEnteredSafeZone();
-    }
-
-    private void OnEnteredVillage()
-    {
-        OnPlayerEnteredSafeZone();
-    }
-
     private void MoveToNextPoint()
     {
         SetNavMeshAgentParametres(0, _patrolSpeed, IsWalking);
@@ -188,8 +176,8 @@ public class Enemy : MonoBehaviour
             if (_agent.remainingDistance < _minDistance && !_agent.pathPending)
             {
                 yield return Waiting();
-             
-              //  MoveToNextPoint();
+
+                //  MoveToNextPoint();
             }
 
             yield return null;
@@ -236,7 +224,7 @@ public class Enemy : MonoBehaviour
 
         if (CheckDistanceToPlayer() && _isAttacking)
         {
-            _player.PlayerEventsHandler.OnHealthChanged(-1);
+            _player.PlayerHealth.OnHealthChanged(_damage);
         }
 
         _isAttacking = false;
