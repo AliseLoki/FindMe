@@ -3,13 +3,12 @@ using UnityEngine;
 
 public class LastVillage : Village
 {
-    [SerializeField] private Witch _witch;
+    [SerializeField] private Spawner _spawner;
 
     public event Action <Witch> WitchAppeared;
 
     public override void GiveReward()
     {
-        Witch witch = Instantiate(_witch, transform.position, Quaternion.identity);
-        WitchAppeared?.Invoke(witch);
+        WitchAppeared?.Invoke(_spawner.SpawnWitch());
     }
 }

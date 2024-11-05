@@ -9405,7 +9405,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 500
-  field of view: 65
+  field of view: 70
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -23556,14 +23556,17 @@ MonoBehaviour:
   _bucketOfWater: {fileID: -9129419571681769992, guid: 07f298a7a1f3680439aac98d8ad3c2cc, type: 3}
   _wood: {fileID: 1321640222737882926, guid: c7e29bd2b9a42d44facca63cb0aa342c, type: 3}
   _necronomicon: {fileID: 8847300563622022960, guid: 538a350bb26ad904d8dcb130f6a00bfe, type: 3}
+  _witch: {fileID: -4836551725316553799, guid: e4ad7b68def966344900a8fe97bf4c65, type: 3}
   _placeForBucketOfWaterInWell: {fileID: 3902323783786722104}
   _spawnPlaces: {fileID: 2044572483}
   _woodSpawnPlace: {fileID: 1058034142}
   _necronomiconSpawnPlace: {fileID: 914490600}
+  _witchSpawnPlace: {fileID: 6692536881538758237}
   _presentFromAd: {fileID: 4300071294927695617, guid: 781c9cc5b8c560d409bd2e31d6480f1b, type: 3}
   _player: {fileID: 684138395}
   _tipsViewPanel: {fileID: 489419950}
   _gameStatesSwitcher: {fileID: 1695096658}
+  _music: {fileID: 140229233}
 --- !u!4 &2078751511
 Transform:
   m_ObjectHideFlags: 0
@@ -24412,6 +24415,46 @@ MonoBehaviour:
   - {fileID: 957723730}
   - {fileID: -2049067297805556161, guid: e4ad7b68def966344900a8fe97bf4c65, type: 3}
   - {fileID: 5392553023710115274, guid: 781c9cc5b8c560d409bd2e31d6480f1b, type: 3}
+  - {fileID: 6692536881235992741}
+  - {fileID: 6692536881990937376}
+  - {fileID: 6692536881967628714}
+  - {fileID: 6692536881323469964}
+  - {fileID: 6692536881538758239}
+  - {fileID: 5839608177040318389}
+  - {fileID: 7515091394211460643}
+  - {fileID: 8423487216530730364}
+  - {fileID: 8749037145532223169}
+  - {fileID: 7588055500350817480}
+  - {fileID: 6678682749728774806}
+  - {fileID: 8756601098094905298}
+  - {fileID: 5839608178432857104}
+  - {fileID: 7515091393355791770}
+  - {fileID: 8423487215641503425}
+  - {fileID: 8749037144273962364}
+  - {fileID: 7588055501240045437}
+  - {fileID: 6678682748973764911}
+  - {fileID: 8756601097339964523}
+  - {fileID: 5839608178187206330}
+  - {fileID: 7515091393249122096}
+  - {fileID: 8423487215551614071}
+  - {fileID: 8749037144313524174}
+  - {fileID: 7588055501015360971}
+  - {fileID: 6678682749084695449}
+  - {fileID: 8756601097362745053}
+  - {fileID: 5839608178832937884}
+  - {fileID: 7515091392686225934}
+  - {fileID: 8423487214970888533}
+  - {fileID: 8749037143870702320}
+  - {fileID: 7588055500569561321}
+  - {fileID: 6678682748571686587}
+  - {fileID: 8756601096933723135}
+  - {fileID: 5839608178884512078}
+  - {fileID: 7515091392834920668}
+  - {fileID: 8423487215154199427}
+  - {fileID: 8749037143620425786}
+  - {fileID: 7588055500584440383}
+  - {fileID: 6678682748418788461}
+  - {fileID: 8756601096717914409}
 --- !u!4 &2135899232
 Transform:
   m_ObjectHideFlags: 0
@@ -29791,7 +29834,7 @@ PrefabInstance:
       objectReference: {fileID: 91126043}
     - target: {fileID: 438151464050510512, guid: faaeac109b112724c9dd992fdc642715, type: 3}
       propertyPath: m_Lens.FieldOfView
-      value: 65
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 1725415032196383227, guid: faaeac109b112724c9dd992fdc642715, type: 3}
       propertyPath: m_Name
@@ -36910,6 +36953,10 @@ PrefabInstance:
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: d8f44af08e33d1244b94a5e6f4a19fce, type: 3}
+    - target: {fileID: 4891541998571999630, guid: 99f275208437f4243933992f308cd908, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4998928156380952458, guid: 99f275208437f4243933992f308cd908, type: 3}
       propertyPath: Player
       value: 
@@ -36958,6 +37005,10 @@ PrefabInstance:
       propertyPath: _activableObjectType
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 5136490744840003070, guid: 99f275208437f4243933992f308cd908, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5343058525240066172, guid: 99f275208437f4243933992f308cd908, type: 3}
       propertyPath: Player
       value: 
@@ -36978,6 +37029,14 @@ PrefabInstance:
       propertyPath: DeliveryServiceView
       value: 
       objectReference: {fileID: 7986593586040543765}
+    - target: {fileID: 5862111267031444547, guid: 99f275208437f4243933992f308cd908, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5897461861333889543, guid: 99f275208437f4243933992f308cd908, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6382285106796061788, guid: 99f275208437f4243933992f308cd908, type: 3}
       propertyPath: Player
       value: 
@@ -37125,6 +37184,10 @@ PrefabInstance:
     - target: {fileID: 8591306550279140877, guid: 99f275208437f4243933992f308cd908, type: 3}
       propertyPath: _activableObjectType
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9152433884776243438, guid: 99f275208437f4243933992f308cd908, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -52926,6 +52989,10 @@ PrefabInstance:
       propertyPath: rolloffMode
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3772275772938391301, guid: 37fc977c5b48ca54eb23badf9616e0a8, type: 3}
+      propertyPath: _tipsViewPanel
+      value: 
+      objectReference: {fileID: 489419950}
     - target: {fileID: 4245567694648730126, guid: 37fc977c5b48ca54eb23badf9616e0a8, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -57378,6 +57445,10 @@ PrefabInstance:
       propertyPath: _points
       value: 
       objectReference: {fileID: 1365212282}
+    - target: {fileID: 1414814269774204381, guid: fcfad5e19eb7824429cf417dadf06dae, type: 3}
+      propertyPath: _tipsViewPanel
+      value: 
+      objectReference: {fileID: 489419950}
     - target: {fileID: 4396494635045872165, guid: fcfad5e19eb7824429cf417dadf06dae, type: 3}
       propertyPath: m_Name
       value: RedEyesWolf
@@ -65811,7 +65882,7 @@ MonoBehaviour:
   _player: {fileID: 684138395}
   _playerInventory: {fileID: 2105934684}
   _villageIndex: 5
-  _witch: {fileID: -4836551725316553799, guid: e4ad7b68def966344900a8fe97bf4c65, type: 3}
+  _spawner: {fileID: 2078751510}
 --- !u!82 &6692536881538758239
 AudioSource:
   m_ObjectHideFlags: 0

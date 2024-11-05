@@ -12,8 +12,8 @@ public class Witch : MonoBehaviour
     [SerializeField] private AudioClip _witchDeathScream;
     [SerializeField] private AudioClip _witchSteps;
 
-    [SerializeField] private Player _player;
-    [SerializeField] private Music _music;
+    private Player _player;
+    private Music _music;
 
     private int _damage = -1;
 
@@ -32,7 +32,7 @@ public class Witch : MonoBehaviour
     private void Awake()
     {
         _animator = GetComponent<Animator>();
-        
+
         _timer = _timerDefaultValue;
         _audioSource = GetComponent<AudioSource>();
     }
@@ -65,6 +65,12 @@ public class Witch : MonoBehaviour
             _animator.SetTrigger(IsAttacking);
             _isAttacking = true;
         }
+    }
+
+    public void InitLinks(Music music, Player player)
+    {
+        _player = player;
+        _music = music;
     }
 
     public void Die()

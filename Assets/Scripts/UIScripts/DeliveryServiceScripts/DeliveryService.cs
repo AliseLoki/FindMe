@@ -144,11 +144,22 @@ public class DeliveryService : MonoBehaviour
 
     private void SetStateofReadyness()
     {
-        foreach (var item in _packedDishes)
+    //    foreach (var item in _packedDishes)
+    //    {
+    //        foreach (var state in _packedDishesStates)
+    //        {
+    //            item.Readyness = state;
+    //            print(item.Readyness);
+    //        }
+    //    }
+
+
+        for (int i = 0; i < _packedDishesStates.Count; i++)
         {
-            foreach (var state in _packedDishesStates)
+            for (int j = 0; j <_packedDishes.Count; j++)
             {
-                item.Readyness = state;
+                _packedDishes[j].Readyness = _packedDishesStates[i];
+                i++;
             }
         }
     }

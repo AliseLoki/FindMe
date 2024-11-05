@@ -9,16 +9,19 @@ public class Spawner : MonoBehaviour
     [SerializeField] private BucketOfWater _bucketOfWater;
     [SerializeField] private Wood _wood;
     [SerializeField] private Necronomicon _necronomicon;
+    [SerializeField] private Witch _witch;
 
     [SerializeField] private Transform _placeForBucketOfWaterInWell;
     [SerializeField] private Transform _spawnPlaces;
     [SerializeField] private Transform _woodSpawnPlace;
     [SerializeField] private Transform _necronomiconSpawnPlace;
+    [SerializeField] private Transform _witchSpawnPlace;
     [SerializeField] private PresentFromAd _presentFromAd;
 
     [SerializeField] private Player _player;
     [SerializeField] private TipsViewPanel _tipsViewPanel;
     [SerializeField] private GameStatesSwitcher _gameStatesSwitcher;
+    [SerializeField] private Music _music;
 
     private Vector3 _offset = new Vector3(0, -1.7f, 2);
     private bool _haveBeenSpawned;
@@ -68,6 +71,14 @@ public class Spawner : MonoBehaviour
     {
         var presentFromAd = Instantiate(_presentFromAd, _player.PlayerHands.HandlePoint.position + _offset, Quaternion.identity);
         presentFromAd.InitLinks(_tipsViewPanel, _player, _player.PlayerInventory);
+    }
+
+    public Witch SpawnWitch()
+    {
+        Witch witch = Instantiate(_witch, _witchSpawnPlace.position, Quaternion.identity);
+        witch.InitLinks(_music, _player);
+
+        return witch;
     }
 
     private void SpawnNecronomicon()
