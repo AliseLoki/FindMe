@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Trigger;
 
 public class PlayerCollisions : MonoBehaviour
 {
@@ -96,8 +97,7 @@ public class PlayerCollisions : MonoBehaviour
 
         if (other.TryGetComponent(out VillageZoneTrigger villageZoneTrigger))
         {
-            _tipsViewPanel.ShowYouAreNotSafeTip();
-            
+            _tipsViewPanel.ShowYouAreNotSafeTip();           
         }
 
         if (other.TryGetComponent(out SafeZoneTrigger safeZoneTrigger))

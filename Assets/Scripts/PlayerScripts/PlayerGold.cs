@@ -7,9 +7,9 @@ public class PlayerGold : MonoBehaviour
     
     [SerializeField] private Player _player;
     
-    public int Gold => _gold;
-
     public event Action<int> GoldAmountChanged;
+
+    public int Gold => _gold;
 
     public void GetGold(int gold)
     {

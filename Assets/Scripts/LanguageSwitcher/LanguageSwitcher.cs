@@ -34,15 +34,14 @@ public class LanguageSwitcher : MonoBehaviour
     [SerializeField] private GameOverSO _russianGameOverSO;
     [SerializeField] private GameOverSO _turkishGameOverSO;
 
-    public GameOverSO GameOverSO { get; private set; }
-
     public event Action<TipsSO, EducationAdvicesSO, FirstStartTextSO, GameOverSO> AllSOWereGiven;
     public event Action<VillageNamesSO> VillageNamesGiven;
     public event Action<SignSO> SignSOGiven;
 
+    public GameOverSO GameOverSO { get; private set; }
+
     private void Awake()
     {
-        // InitCurrentLanguage(Russian);
         InitCurrentLanguage(YandexGame.EnvironmentData.language);
         InitSO();
     }

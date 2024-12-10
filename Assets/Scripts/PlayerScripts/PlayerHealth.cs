@@ -12,11 +12,11 @@ public class PlayerHealth : MonoBehaviour
 
     private bool _isDead;
 
-    public int Health => _health;
-
     public event Action<int> HealthChanged;
 
     public event Action PlayerHasDied;
+
+    public int Health => _health;
 
     private void Awake()
     {

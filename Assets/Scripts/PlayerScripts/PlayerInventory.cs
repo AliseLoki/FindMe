@@ -11,11 +11,11 @@ public class PlayerInventory : MonoBehaviour
 
     private int _maxCells = 5;
 
-    public List<InventoryPrefabSO> RecievedInventoryPrefabSO => _recievedInventoryPrefabsSO;
-
     public event Action<InventoryPrefabSO> InventoryPrefabSORecieved;
 
     public event Action UsedSpeedBoost;
+
+    public List<InventoryPrefabSO> RecievedInventoryPrefabSO => _recievedInventoryPrefabsSO;
 
     public void GetInventoryList(List<InventoryPrefabSO> inventoryList)
     {

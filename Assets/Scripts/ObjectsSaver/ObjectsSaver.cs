@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Xml.Schema;
 using UnityEngine;
 
 public class ObjectsSaver : MonoBehaviour
@@ -64,7 +63,6 @@ public class ObjectsSaver : MonoBehaviour
                 }
             }
         }
-
     }
 
     public List<VillageIndex> SaveNotPickedRewards()
@@ -132,9 +130,7 @@ public class ObjectsSaver : MonoBehaviour
     public void InitAllActiveContainers(List<ActivableObjectType> activableObjectTypes)
     {
         _activeContainers = activableObjectTypes;
-
         EnableContainers();
-        // сделать проверку в ресивингордерзпоинт
     }
 
     public List<ActivableObjectType> SaveAllActiveContainers()

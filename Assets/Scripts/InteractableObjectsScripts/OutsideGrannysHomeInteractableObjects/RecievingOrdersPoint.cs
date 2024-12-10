@@ -25,9 +25,9 @@ public class RecievingOrdersPoint : InteractableObject
 
     private VillageNamesSO _villageNamesSO;
 
-    public bool OrderIsTaken => _orderIsTaken;
-
     public event Action<string, MenuSO> OrdersAreTaken;
+
+    public bool OrderIsTaken => _orderIsTaken;
 
     private void OnEnable()
     {
