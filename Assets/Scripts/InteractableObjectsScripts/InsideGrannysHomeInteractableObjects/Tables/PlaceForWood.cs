@@ -1,23 +1,26 @@
 using UnityEngine;
 
-public class PlaceForWood : MonoBehaviour
+namespace Interactables
 {
-    [SerializeField] private Transform _woodInOven;
-    [SerializeField] private ParticleSystem _fireEffect;
-    [SerializeField] private AudioSource _audioSource;
-
-    public void LightFire(bool isBurn)
+    public class PlaceForWood : MonoBehaviour
     {
-        _woodInOven.gameObject.SetActive(isBurn);
-        _fireEffect.gameObject.SetActive(isBurn);
+        [SerializeField] private Transform _woodInOven;
+        [SerializeField] private ParticleSystem _fireEffect;
+        [SerializeField] private AudioSource _audioSource;
 
-        if (isBurn == true)
+        public void LightFire(bool isBurn)
         {
-            _audioSource.Play();
-        }
-        else
-        {
-            _audioSource.Stop();
+            _woodInOven.gameObject.SetActive(isBurn);
+            _fireEffect.gameObject.SetActive(isBurn);
+
+            if (isBurn == true)
+            {
+                _audioSource.Play();
+            }
+            else
+            {
+                _audioSource.Stop();
+            }
         }
     }
 }

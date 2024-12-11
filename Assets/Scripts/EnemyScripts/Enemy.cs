@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using PlayerController;
 
 [RequireComponent(typeof(EnemySoundEffects))]
 [RequireComponent(typeof(Animator))]

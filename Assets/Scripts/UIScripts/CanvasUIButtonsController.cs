@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using YG;
+using SaveSystem;
 
 [RequireComponent(typeof(YandexLeaderboard))]
 [RequireComponent(typeof(CanvasUI))]

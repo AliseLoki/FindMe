@@ -1,4 +1,5 @@
 using UnityEngine;
+using Interactables.InventoryPrefabs;
 
 [CreateAssetMenu()]
 public class InventoryPrefabSO : ScriptableObject

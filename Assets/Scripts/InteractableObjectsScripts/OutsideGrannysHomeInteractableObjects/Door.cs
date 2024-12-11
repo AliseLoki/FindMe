@@ -1,27 +1,30 @@
 using UnityEngine;
 
-public class Door : InteractableObject
+namespace Interactables
 {
-    [SerializeField] private Transform _newPosition;
-    [SerializeField] private CanvasUI _canvasUI;
-    [SerializeField] private Cameras _cameras;
-
-    private void OnEnable()
+    public class Door : InteractableObject
     {
-        SelectedObject.Hide();
-    }
+        [SerializeField] private Transform _newPosition;
+        [SerializeField] private CanvasUI _canvasUI;
+        [SerializeField] private Cameras _cameras;
 
-    protected override void UseObject()
-    {        
-        TeleportPlayer();
-    }
+        private void OnEnable()
+        {
+            SelectedObject.Hide();
+        }
 
-    private void TeleportPlayer()
-    {
-        int openingDoorSoundEffectIndex = 0;
-        PlaySoundEffect(AudioClipsList[openingDoorSoundEffectIndex]);
-        _canvasUI.FadeToBlack();
-        _cameras.SwitchCameras();
-        Player.PlayerMovement.Teleport(_newPosition);
+        protected override void UseObject()
+        {
+            TeleportPlayer();
+        }
+
+        private void TeleportPlayer()
+        {
+            int openingDoorSoundEffectIndex = 0;
+            PlaySoundEffect(AudioClipsList[openingDoorSoundEffectIndex]);
+            _canvasUI.FadeToBlack();
+            _cameras.SwitchCameras();
+            Player.PlayerMovement.Teleport(_newPosition);
+        }
     }
 }

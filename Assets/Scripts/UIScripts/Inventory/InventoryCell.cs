@@ -1,6 +1,8 @@
 using System;
 using UnityEngine;
 using UnityEngine.UI;
+using Interactables.InventoryPrefabs;
+using PlayerController;
 
 [RequireComponent(typeof(Button))]
 public class InventoryCell : MonoBehaviour

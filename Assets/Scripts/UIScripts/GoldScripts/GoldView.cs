@@ -1,6 +1,6 @@
 using TMPro;
 using UnityEngine;
-
+using PlayerController;
 public class GoldView : MonoBehaviour
 {
     [SerializeField] private TMP_Text _goldAmountText;

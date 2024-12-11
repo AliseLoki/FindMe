@@ -2,76 +2,79 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PackingPlace : GarbageContainer
+namespace Interactables.Containers
 {
-    [SerializeField] private List<FoodSO> _canBePackedRecipeSO;
-    [SerializeField] private Transform _package;
-
-    private bool _isFull;
-
-    public event Action<CookingRecipeSO> CookingRecipeSOHasBeenPacked;
-
-    private void OnEnable()
+    public class PackingPlace : GarbageContainer
     {
-        DeliveryService.TimeToGoHasCome += OnTimeToGoHasCome;
-        DeliveryService.AllDishesHaveBeenDelivered += OnAllDishesHaveBeenDelivered;
-    }
+        [SerializeField] private List<FoodSO> _canBePackedRecipeSO;
+        [SerializeField] private Transform _package;
 
-    private void OnDisable()
-    {
-        DeliveryService.TimeToGoHasCome -= OnTimeToGoHasCome;
-        DeliveryService.AllDishesHaveBeenDelivered -= OnAllDishesHaveBeenDelivered;
-    }
+        private bool _isFull;
 
-    protected override void UseObject()
-    {
-        int puttingFoodSoundEffectIndex = 0;
+        public event Action<CookingRecipeSO> CookingRecipeSOHasBeenPacked;
 
-        if (_isFull)
+        private void OnEnable()
         {
-            GivePackage(puttingFoodSoundEffectIndex);
-            return;
+            DeliveryService.TimeToGoHasCome += OnTimeToGoHasCome;
+            DeliveryService.AllDishesHaveBeenDelivered += OnAllDishesHaveBeenDelivered;
         }
-        else
+
+        private void OnDisable()
         {
-            PutDishInPackage(puttingFoodSoundEffectIndex);
+            DeliveryService.TimeToGoHasCome -= OnTimeToGoHasCome;
+            DeliveryService.AllDishesHaveBeenDelivered -= OnAllDishesHaveBeenDelivered;
         }
-    }
 
-    private void GivePackage(int puttingFoodSoundEffectIndex)
-    {
-        PlaySoundEffect(AudioClipsList[puttingFoodSoundEffectIndex]);
-        ShowPackage(false);
-        Player.PlayerHands.ShowOrHideBackPack(true);
-    }
-
-    private void PutDishInPackage(int puttingFoodSoundEffectIndex)
-    {
-        foreach (var foodSO in _canBePackedRecipeSO)
+        protected override void UseObject()
         {
-            if (Player.PlayerCookingModule.FoodSO == foodSO)
+            int puttingFoodSoundEffectIndex = 0;
+
+            if (_isFull)
             {
-                PlaySoundEffect(AudioClipsList[puttingFoodSoundEffectIndex]);
-                CookingRecipeSOHasBeenPacked?.Invoke(Player.PlayerCookingModule.CookingRecipeSO);
-                Player.PlayerCookingModule.GiveFood();
-                Player.PlayerHands.GiveObject();
+                GivePackage(puttingFoodSoundEffectIndex);
+                return;
+            }
+            else
+            {
+                PutDishInPackage(puttingFoodSoundEffectIndex);
             }
         }
-    }
 
-    private void OnAllDishesHaveBeenDelivered()
-    {
-        ShowPackage(true);
-        _isFull = false;
-    }
+        private void GivePackage(int puttingFoodSoundEffectIndex)
+        {
+            PlaySoundEffect(AudioClipsList[puttingFoodSoundEffectIndex]);
+            ShowPackage(false);
+            Player.PlayerHands.ShowOrHideBackPack(true);
+        }
 
-    private void ShowPackage(bool isShowed)
-    {
-        _package.gameObject.SetActive(isShowed);
-    }
+        private void PutDishInPackage(int puttingFoodSoundEffectIndex)
+        {
+            foreach (var foodSO in _canBePackedRecipeSO)
+            {
+                if (Player.PlayerCookingModule.FoodSO == foodSO)
+                {
+                    PlaySoundEffect(AudioClipsList[puttingFoodSoundEffectIndex]);
+                    CookingRecipeSOHasBeenPacked?.Invoke(Player.PlayerCookingModule.CookingRecipeSO);
+                    Player.PlayerCookingModule.GiveFood();
+                    Player.PlayerHands.GiveObject();
+                }
+            }
+        }
 
-    private void OnTimeToGoHasCome()
-    {
-        _isFull = true;
+        private void OnAllDishesHaveBeenDelivered()
+        {
+            ShowPackage(true);
+            _isFull = false;
+        }
+
+        private void ShowPackage(bool isShowed)
+        {
+            _package.gameObject.SetActive(isShowed);
+        }
+
+        private void OnTimeToGoHasCome()
+        {
+            _isFull = true;
+        }
     }
 }

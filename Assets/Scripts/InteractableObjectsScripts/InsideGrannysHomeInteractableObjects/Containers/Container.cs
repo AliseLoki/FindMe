@@ -1,28 +1,31 @@
 using UnityEngine;
 
-public class Container : InteractableObject
+namespace Interactables.Containers
 {
-    [SerializeField] protected FoodSO FoodSO;
-
-    protected Food Food;
-
-    protected override void UseObject()
+    public class Container : InteractableObject
     {
-        int gettingFoodSoundEffectIndex = 0;
+        [SerializeField] protected FoodSO FoodSO;
 
-        if (!Player.PlayerHands.HasSomethingInHands)
+        protected Food Food;
+
+        protected override void UseObject()
         {
-            var spawnedFood = Instantiate(FoodSO.Prefab).GetComponent<Food>();
-            Player.PlayerHands.TakeObject(spawnedFood.gameObject, spawnedFood.ConnectedFoodSO.Type);
+            int gettingFoodSoundEffectIndex = 0;
 
-            Player.PlayerCookingModule.SetFood(spawnedFood, FoodSO);
+            if (!Player.PlayerHands.HasSomethingInHands)
+            {
+                var spawnedFood = Instantiate(FoodSO.Prefab).GetComponent<Food>();
+                Player.PlayerHands.TakeObject(spawnedFood.gameObject, spawnedFood.ConnectedFoodSO.Type);
 
-            TipsViewPanel.ShowFoodPickedTip();
-            PlaySoundEffect(AudioClipsList[gettingFoodSoundEffectIndex]);
-        }
-        else
-        {
-            TipsViewPanel.ShowHandsAreFullTip();
+                Player.PlayerCookingModule.SetFood(spawnedFood, FoodSO);
+
+                TipsViewPanel.ShowFoodPickedTip();
+                PlaySoundEffect(AudioClipsList[gettingFoodSoundEffectIndex]);
+            }
+            else
+            {
+                TipsViewPanel.ShowHandsAreFullTip();
+            }
         }
     }
 }

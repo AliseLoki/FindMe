@@ -1,5 +1,7 @@
 using System;
 using UnityEngine;
+using SoundSystem;
+using PlayerController;
 
 [RequireComponent(typeof(AudioSource))]
 [RequireComponent(typeof(Animator))]

@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class BucketOfWater : InteractableObject
+namespace Interactables
 {
-    protected override void UseObject() { }
+    public class BucketOfWater : InteractableObject
+    {
+        protected override void UseObject() { }
+    }
 }

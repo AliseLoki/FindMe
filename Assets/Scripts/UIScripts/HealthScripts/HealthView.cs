@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using PlayerController;
 
 public class HealthView : MonoBehaviour
 {

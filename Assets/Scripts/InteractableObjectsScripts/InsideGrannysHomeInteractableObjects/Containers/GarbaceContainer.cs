@@ -1,27 +1,28 @@
-using UnityEngine;
-
-public class GarbageContainer : InteractableObject
+namespace Interactables.Containers
 {
-    protected override void UseObject()
+    public class GarbageContainer : InteractableObject
     {
-        int throwingFoodSoundEffectIndex = 0;
-
-        if (Player.PlayerHands.HasSomethingInHands && Player.PlayerHands.InventoryPrefabSO == null)
+        protected override void UseObject()
         {
-            if (Player.PlayerCookingModule.CookingRecipeSO != null)
+            int throwingFoodSoundEffectIndex = 0;
+
+            if (Player.PlayerHands.HasSomethingInHands && Player.PlayerHands.InventoryPrefabSO == null)
             {
-                DeliveryServiceView.SetHasBeenCooked(Player.PlayerCookingModule.CookingRecipeSO);
+                if (Player.PlayerCookingModule.CookingRecipeSO != null)
+                {
+                    DeliveryServiceView.SetHasBeenCooked(Player.PlayerCookingModule.CookingRecipeSO);
+                }
+
+                Player.PlayerCookingModule.GiveFood();
+                Player.PlayerHands.GiveObject();
+
+                PlaySoundEffect(AudioClipsList[throwingFoodSoundEffectIndex]);
+                TipsViewPanel.ShowThrowFoodTip();
             }
-
-            Player.PlayerCookingModule.GiveFood();
-            Player.PlayerHands.GiveObject();
-
-            PlaySoundEffect(AudioClipsList[throwingFoodSoundEffectIndex]);
-            TipsViewPanel.ShowThrowFoodTip();
-        }
-        else
-        {
-            TipsViewPanel.ShowNothingInHandsTip();
+            else
+            {
+                TipsViewPanel.ShowNothingInHandsTip();
+            }
         }
     }
 }

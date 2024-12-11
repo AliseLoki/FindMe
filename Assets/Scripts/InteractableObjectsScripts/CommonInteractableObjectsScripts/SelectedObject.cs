@@ -1,14 +1,17 @@
 using UnityEngine;
 
-public class SelectedObject : MonoBehaviour
+namespace Interactables
 {
-    public void Show()
+    public class SelectedObject : MonoBehaviour
     {
-        this.gameObject.SetActive(true);
-    }
+        public void Show()
+        {
+            this.gameObject.SetActive(true);
+        }
 
-    public void Hide()
-    {
-        this .gameObject.SetActive(false);
+        public void Hide()
+        {
+            this.gameObject.SetActive(false);
+        }
     }
 }

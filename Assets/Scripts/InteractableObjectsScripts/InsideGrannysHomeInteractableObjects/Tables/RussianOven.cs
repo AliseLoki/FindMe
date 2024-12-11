@@ -1,118 +1,121 @@
 using System.Collections;
 using UnityEngine;
 
-public class RussianOven : Table
+namespace Interactables.Containers.Tables
 {
-    [SerializeField] private bool _hasFire;
-
-    [SerializeField] private FoodSO _uncookedFoodInPotFoodSO;
-    [SerializeField] private FoodSO _cookedFoodInPotFoodSO;
-    [SerializeField] private FoodSO _burnedFoodInPot;
-
-    [SerializeField] private PlaceForWood _placeForWood;
-    [SerializeField] private ParticleSystem _smokeEffect;
-
-    private CookingRecipeSO _cookingRecipeSO;
-    private StateOfReadyness _stateOfReadyness;
-    private Coroutine _cookCoroutine;
-
-    private void OnEnable()
+    public class RussianOven : Table
     {
-        DeliveryService.AllDishesHaveBeenDelivered += PutOutTheFire;
-    }
+        [SerializeField] private bool _hasFire;
 
-    private void OnDisable()
-    {
-        DeliveryService.AllDishesHaveBeenDelivered -= PutOutTheFire;
-    }
+        [SerializeField] private FoodSO _uncookedFoodInPotFoodSO;
+        [SerializeField] private FoodSO _cookedFoodInPotFoodSO;
+        [SerializeField] private FoodSO _burnedFoodInPot;
 
-    protected override void DoSomething()
-    {
-        if (Input.GetMouseButtonDown(0))
+        [SerializeField] private PlaceForWood _placeForWood;
+        [SerializeField] private ParticleSystem _smokeEffect;
+
+        private CookingRecipeSO _cookingRecipeSO;
+        private StateOfReadyness _stateOfReadyness;
+        private Coroutine _cookCoroutine;
+
+        private void OnEnable()
         {
-            if (_cookCoroutine != null)
+            DeliveryService.AllDishesHaveBeenDelivered += PutOutTheFire;
+        }
+
+        private void OnDisable()
+        {
+            DeliveryService.AllDishesHaveBeenDelivered -= PutOutTheFire;
+        }
+
+        protected override void DoSomething()
+        {
+            if (Input.GetMouseButtonDown(0))
             {
-                StopCoroutine(_cookCoroutine);
-                _cookCoroutine = null;
+                if (_cookCoroutine != null)
+                {
+                    StopCoroutine(_cookCoroutine);
+                    _cookCoroutine = null;
+                }
+
+                TakePot();
             }
-
-            TakePot();
         }
-    }
 
-    protected override void PutFood()
-    {
-        int cookingSoundEffectIndex = 0;
-
-        if ((_hasFire) && _uncookedFoodInPotFoodSO == Player.PlayerCookingModule.FoodSO)
+        protected override void PutFood()
         {
-            IniTFoodAndFoodSO(Player.PlayerCookingModule.Food, Player.PlayerCookingModule.FoodSO);            
-            _cookingRecipeSO = Player.PlayerCookingModule.CookingRecipeSO;
-            Player.PlayerCookingModule.Food.SetInParent(PlaceForFood.transform);
-            Player.PlayerCookingModule.GiveFood();
-            Player.PlayerHands.GiveObject();
+            int cookingSoundEffectIndex = 0;
 
-            _cookCoroutine = StartCoroutine(CookingCountDownRoutine());
-            TipsViewPanel.ShowReadynessInstruction();
-            PlaySoundEffect(AudioClipsList[cookingSoundEffectIndex]);
+            if ((_hasFire) && _uncookedFoodInPotFoodSO == Player.PlayerCookingModule.FoodSO)
+            {
+                IniTFoodAndFoodSO(Player.PlayerCookingModule.Food, Player.PlayerCookingModule.FoodSO);
+                _cookingRecipeSO = Player.PlayerCookingModule.CookingRecipeSO;
+                Player.PlayerCookingModule.Food.SetInParent(PlaceForFood.transform);
+                Player.PlayerCookingModule.GiveFood();
+                Player.PlayerHands.GiveObject();
+
+                _cookCoroutine = StartCoroutine(CookingCountDownRoutine());
+                TipsViewPanel.ShowReadynessInstruction();
+                PlaySoundEffect(AudioClipsList[cookingSoundEffectIndex]);
+            }
+            else if (!_hasFire && Player.PlayerHands.HoldableObject == HoldableObjectType.Wood)
+            {
+                _hasFire = true;
+                _placeForWood.LightFire(true);
+                DisableInteract();
+                Player.PlayerHands.GiveObject();
+
+                Player.PlayerSoundEffects.PlayTakingWoodSoundEffect();
+                TipsViewPanel.ShowCanUseOvenTip();
+            }
+            else if (!_hasFire && Player.PlayerHands.HoldableObject != HoldableObjectType.Wood)
+            {
+                TipsViewPanel.ShowNoWoodsTip();
+            }
         }
-        else if (!_hasFire && Player.PlayerHands.HoldableObject == HoldableObjectType.Wood)
+
+        private void PutOutTheFire()
         {
-            _hasFire = true;
-            _placeForWood.LightFire(true);
-            DisableInteract();
-            Player.PlayerHands.GiveObject();
-
-            Player.PlayerSoundEffects.PlayTakingWoodSoundEffect();
-            TipsViewPanel.ShowCanUseOvenTip();
+            _placeForWood.LightFire(false);
+            _hasFire = false;
         }
-        else if (!_hasFire && Player.PlayerHands.HoldableObject != HoldableObjectType.Wood)
+
+        private void TakePot()
         {
-            TipsViewPanel.ShowNoWoodsTip();
+            int gettingFoodSoundEffectIndex = 1;
+
+            Food.SetInParent(Player.PlayerHands.HandlePoint);
+            Player.PlayerHands.TakeObject(Food.gameObject, Food.ConnectedFoodSO.Type);
+            Player.PlayerCookingModule.SetFood(Food, FoodSO);
+            Player.PlayerCookingModule.SetCookingRecipe(_cookingRecipeSO);
+            Player.PlayerCookingModule.SetCookingRecipeStateOfRedyness(_stateOfReadyness);
+            ResetFoodAndFoodSO();
+            _smokeEffect.gameObject.SetActive(false);
+            PlaySoundEffect(AudioClipsList[gettingFoodSoundEffectIndex]);
+            TipsViewPanel.ShowTimeToPack();
         }
-    }
 
-    private void PutOutTheFire()
-    {
-        _placeForWood.LightFire(false);
-        _hasFire = false;
-    }
+        private IEnumerator CookingCountDownRoutine()
+        {
+            int pause = 4;
+            _stateOfReadyness = 0;
+            yield return new WaitForSeconds(pause);
 
-    private void TakePot()
-    {
-        int gettingFoodSoundEffectIndex = 1;
+            _stateOfReadyness++;
+            ChangeOnePoTToAnother(_cookedFoodInPotFoodSO);
+            yield return new WaitForSeconds(pause);
 
-        Food.SetInParent(Player.PlayerHands.HandlePoint);
-        Player.PlayerHands.TakeObject(Food.gameObject, Food.ConnectedFoodSO.Type);
-        Player.PlayerCookingModule.SetFood(Food, FoodSO);
-        Player.PlayerCookingModule.SetCookingRecipe(_cookingRecipeSO);
-        Player.PlayerCookingModule.SetCookingRecipeStateOfRedyness(_stateOfReadyness);
-        ResetFoodAndFoodSO();
-        _smokeEffect.gameObject.SetActive(false);
-        PlaySoundEffect(AudioClipsList[gettingFoodSoundEffectIndex]);
-        TipsViewPanel.ShowTimeToPack();
-    }
+            _stateOfReadyness++;
+            ChangeOnePoTToAnother(_burnedFoodInPot);
+            _smokeEffect.gameObject.SetActive(true);
+            _cookCoroutine = null;
+        }
 
-    private IEnumerator CookingCountDownRoutine()
-    {
-        int pause = 4;
-        _stateOfReadyness = 0;
-        yield return new WaitForSeconds(pause);
-
-        _stateOfReadyness++;
-        ChangeOnePoTToAnother(_cookedFoodInPotFoodSO);
-        yield return new WaitForSeconds(pause);
-
-        _stateOfReadyness++;
-        ChangeOnePoTToAnother(_burnedFoodInPot);
-        _smokeEffect.gameObject.SetActive(true);
-        _cookCoroutine = null;
-    }
-
-    private void ChangeOnePoTToAnother(FoodSO newFoodSO)
-    {
-        Destroy(Food.gameObject);
-        FoodSO = newFoodSO;
-        Food = Instantiate(newFoodSO.Prefab, PlaceForFood).GetComponent<Food>();
+        private void ChangeOnePoTToAnother(FoodSO newFoodSO)
+        {
+            Destroy(Food.gameObject);
+            FoodSO = newFoodSO;
+            Food = Instantiate(newFoodSO.Prefab, PlaceForFood).GetComponent<Food>();
+        }
     }
 }

@@ -1,50 +1,54 @@
 using UnityEngine;
 
-public class Well : InteractableObject
+
+namespace Interactables
 {
-    [SerializeField] private BucketOfWater _bucketOfWater;
-    [SerializeField] private Spawner _spawner;
-
-    private bool _isPaid;
-    private int _price = 10;
-
-    public void DrawWater()
+    public class Well : InteractableObject
     {
-        _bucketOfWater = _spawner.SpawnBucketOfWaterInWell();
-    }
+        [SerializeField] private BucketOfWater _bucketOfWater;
+        [SerializeField] private Spawner _spawner;
 
-    protected override void UseObject()
-    {
-        int payingForWaterSoundEffectIndex = 0;
+        private bool _isPaid;
+        private int _price = 10;
 
-        if (!Player.PlayerHands.HasSomethingInHands)
+        public void DrawWater()
         {
-            PayForBucketOfWater();
+            _bucketOfWater = _spawner.SpawnBucketOfWaterInWell();
+        }
 
-            if (_isPaid)
+        protected override void UseObject()
+        {
+            int payingForWaterSoundEffectIndex = 0;
+
+            if (!Player.PlayerHands.HasSomethingInHands)
             {
-                PlaySoundEffect(AudioClipsList[payingForWaterSoundEffectIndex]);
-                Player.PlayerHands.TakeObject(_bucketOfWater.gameObject, _bucketOfWater.HoldableObjects);              
-                TipsViewPanel.ShowWaterPatchTip();
+                PayForBucketOfWater();
+
+                if (_isPaid)
+                {
+                    PlaySoundEffect(AudioClipsList[payingForWaterSoundEffectIndex]);
+                    Player.PlayerHands.TakeObject(_bucketOfWater.gameObject, _bucketOfWater.HoldableObjects);
+                    TipsViewPanel.ShowWaterPatchTip();
+                }
+
+                _isPaid = false;
             }
+            else
+            {
+                TipsViewPanel.ShowHandsAreFullTip();
+            }
+        }
 
-            _isPaid = false;
-        }
-        else
+        private void PayForBucketOfWater()
         {
-            TipsViewPanel.ShowHandsAreFullTip();
-        }
-    }
-
-    private void PayForBucketOfWater()
-    {
-        if (Player.PlayerGold.CheckIfCanPay(_price))
-        {
-            _isPaid = true;
-        }
-        else
-        {
-            TipsViewPanel.ShowNotEnoughMoneyTip();
+            if (Player.PlayerGold.CheckIfCanPay(_price))
+            {
+                _isPaid = true;
+            }
+            else
+            {
+                TipsViewPanel.ShowNotEnoughMoneyTip();
+            }
         }
     }
 }

@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using YG;
+using PlayerController;
 
 public class GameStatesSwitcher : MonoBehaviour
 {
@@ -9,16 +10,6 @@ public class GameStatesSwitcher : MonoBehaviour
     [SerializeField] private TipsViewPanel _tipsViewPanel;
     [SerializeField] private LastVillage _lastVillage;
     [SerializeField] private EducationUI _educationUI;
-
-    public enum GameState
-    {
-        WaitingToStart,
-        CountdownToStart,
-        EducationPlaying,
-        GamePlaying,
-        WitchAppeared,
-        GameOver
-    }
 
     private int _finalGameOverSceneIndex = 1;
     private int _winSceneIndex = 2;
@@ -226,5 +217,15 @@ public class GameStatesSwitcher : MonoBehaviour
     private void OnWitchIsDead()
     {
         _witchIsDead = true;
+    }
+
+    public enum GameState
+    {
+        WaitingToStart,
+        CountdownToStart,
+        EducationPlaying,
+        GamePlaying,
+        WitchAppeared,
+        GameOver
     }
 }
