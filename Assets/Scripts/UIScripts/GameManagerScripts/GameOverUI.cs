@@ -1,6 +1,6 @@
 using TMPro;
 using UnityEngine;
-
+using SO;
 public class GameOverUI : MonoBehaviour
 {
     [SerializeField] private TMP_Text _text;

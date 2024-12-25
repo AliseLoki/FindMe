@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using YG;
 using SaveSystem;
+using LeaderboardSystem;
 
 [RequireComponent(typeof(YandexLeaderboard))]
 [RequireComponent(typeof(CanvasUI))]

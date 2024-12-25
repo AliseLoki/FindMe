@@ -4,6 +4,8 @@ using Trigger;
 using Interactables;
 using SoundSystem;
 using SaveSystem;
+using Enemies;
+using Indexes;
 
 namespace PlayerController
 {

@@ -3,6 +3,9 @@ using UnityEngine;
 using Interactables;
 using Interactables.Containers;
 using Interactables.Patches;
+using Indexes;
+using Villages;
+using SO;
 
 namespace SaveSystem
 {

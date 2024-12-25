@@ -7,6 +7,7 @@ using Interactables.Containers.Tables;
 using Interactables.Patches;
 using Interactables.InventoryPrefabs.Mushrooms;
 using PlayerController;
+using Indexes;
 
 namespace Interactables
 {

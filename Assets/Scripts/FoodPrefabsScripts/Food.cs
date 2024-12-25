@@ -1,4 +1,5 @@
 using UnityEngine;
+using SO;
 
 public class Food : MonoBehaviour
 {

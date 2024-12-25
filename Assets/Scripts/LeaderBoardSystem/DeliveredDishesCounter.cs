@@ -1,37 +1,40 @@
 using UnityEngine;
 using YG;
 
-public class DeliveredDishesCounter : MonoBehaviour
+namespace LeaderboardSystem
 {
-    private const string LeaderboardName = "LeaderboardPlayers";
-
-    private const string PlayerPrefsDeliveredDishesNumber = nameof(PlayerPrefsDeliveredDishesNumber);
-
-    private int _deliveredDishesNumber;
-
-    public int DeliveredDishesNumber => _deliveredDishesNumber;
-
-    private void Awake()
+    public class DeliveredDishesCounter : MonoBehaviour
     {
-        _deliveredDishesNumber = PlayerPrefs.GetInt(PlayerPrefsDeliveredDishesNumber, 0);
-        PlayerPrefs.SetInt(PlayerPrefsDeliveredDishesNumber, _deliveredDishesNumber);
-    }
+        private const string LeaderboardName = "LeaderboardPlayers";
 
-    public void AddDeliveredDish()
-    {
-        _deliveredDishesNumber++;
-        PlayerPrefs.SetInt(PlayerPrefsDeliveredDishesNumber, _deliveredDishesNumber);
-        YandexGame.GetLeaderboard(LeaderboardName, 10, 3, 3, "small");
-        SetPlayerDeliveredDishesNumber(_deliveredDishesNumber);
-    }
+        private const string PlayerPrefsDeliveredDishesNumber = nameof(PlayerPrefsDeliveredDishesNumber);
 
-    private void SetPlayerDeliveredDishesNumber(int deliveredDishesNumber)
-    {
-        if (YandexGame.auth == false)
+        private int _deliveredDishesNumber;
+
+        public int DeliveredDishesNumber => _deliveredDishesNumber;
+
+        private void Awake()
         {
-            return;
+            _deliveredDishesNumber = PlayerPrefs.GetInt(PlayerPrefsDeliveredDishesNumber, 0);
+            PlayerPrefs.SetInt(PlayerPrefsDeliveredDishesNumber, _deliveredDishesNumber);
         }
 
+        public void AddDeliveredDish()
+        {
+            _deliveredDishesNumber++;
+            PlayerPrefs.SetInt(PlayerPrefsDeliveredDishesNumber, _deliveredDishesNumber);
+            YandexGame.GetLeaderboard(LeaderboardName, 10, 3, 3, "small");
+            SetPlayerDeliveredDishesNumber(_deliveredDishesNumber);
+        }
+
+        private void SetPlayerDeliveredDishesNumber(int deliveredDishesNumber)
+        {
+            if (YandexGame.auth == false)
+            {
+                return;
+            }
+
             YandexGame.NewLeaderboardScores(LeaderboardName, deliveredDishesNumber);
+        }
     }
 }

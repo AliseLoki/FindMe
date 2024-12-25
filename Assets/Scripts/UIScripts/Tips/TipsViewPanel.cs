@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using SO;
 
 public class TipsViewPanel : MonoBehaviour
 {

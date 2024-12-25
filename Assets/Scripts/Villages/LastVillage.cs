@@ -1,0 +1,18 @@
+using System;
+using UnityEngine;
+using Enemies;
+
+namespace Villages
+{
+    public class LastVillage : Village
+    {
+        [SerializeField] private Spawner _spawner;
+
+        public event Action<Witch> WitchAppeared;
+
+        public override void GiveReward()
+        {
+            WitchAppeared?.Invoke(_spawner.SpawnWitch());
+        }
+    }
+}

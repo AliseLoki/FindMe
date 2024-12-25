@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using YG;
+using SO;
 
 [RequireComponent(typeof(TextEqualizer))]
 public class AuthorisePanel : MonoBehaviour

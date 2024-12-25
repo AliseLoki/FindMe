@@ -1,5 +1,6 @@
 using UnityEngine;
 using PlayerController;
+using SO;
 
 public class InventoryView : MonoBehaviour
 {

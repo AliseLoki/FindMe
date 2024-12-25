@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-
+using SO;
 public class FirstStartPanelView : MonoBehaviour
 {
     [SerializeField] private TMP_Text _text;

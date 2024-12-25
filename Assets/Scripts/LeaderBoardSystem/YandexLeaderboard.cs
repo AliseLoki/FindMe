@@ -2,70 +2,74 @@ using System.Collections.Generic;
 using UnityEngine;
 using YG;
 using YG.Utils.LB;
+using SO;
 
-public class YandexLeaderboard : MonoBehaviour
+namespace LeaderboardSystem
 {
-    private string AnonymousName;
-    private LBData _lb;
-
-    private List<LeaderboardPlayer> _leaderboardPlayers = new();
-
-    [SerializeField] private LeaderboardView _leaderboardView;
-
-    private FirstStartTextSO _firstStartTextSO;
-
-    private void Start()
+    public class YandexLeaderboard : MonoBehaviour
     {
-        InitAnonymousTranslation();
-    }
+        private string AnonymousName;
+        private LBData _lb;
 
-    private void OnEnable()
-    {
-        YandexGame.onGetLeaderboard += OnGetLeaderboard;
-    }
+        private List<LeaderboardPlayer> _leaderboardPlayers = new();
 
-    private void OnDisable()
-    {
-        YandexGame.onGetLeaderboard -= OnGetLeaderboard;
-    }
+        [SerializeField] private LeaderboardView _leaderboardView;
 
-    public void InitFirstStartTextSO(FirstStartTextSO firstStartTextSO)
-    {
-        _firstStartTextSO = firstStartTextSO;
-    }
+        private FirstStartTextSO _firstStartTextSO;
 
-    public void Fill()
-    {
-        if (YandexGame.auth == false)
+        private void Start()
         {
-            return;
+            InitAnonymousTranslation();
         }
 
-        _leaderboardPlayers.Clear();
-
-        foreach (var item in _lb.players)
+        private void OnEnable()
         {
-            int rank = item.rank;
-            int score = item.score;
-            string name = item.name;
-            _leaderboardPlayers.Add(new LeaderboardPlayer(rank, name, score));
+            YandexGame.onGetLeaderboard += OnGetLeaderboard;
+        }
 
-            if (string.IsNullOrEmpty(name))
+        private void OnDisable()
+        {
+            YandexGame.onGetLeaderboard -= OnGetLeaderboard;
+        }
+
+        public void InitFirstStartTextSO(FirstStartTextSO firstStartTextSO)
+        {
+            _firstStartTextSO = firstStartTextSO;
+        }
+
+        public void Fill()
+        {
+            if (YandexGame.auth == false)
             {
-                name = AnonymousName;
+                return;
             }
+
+            _leaderboardPlayers.Clear();
+
+            foreach (var item in _lb.players)
+            {
+                int rank = item.rank;
+                int score = item.score;
+                string name = item.name;
+                _leaderboardPlayers.Add(new LeaderboardPlayer(rank, name, score));
+
+                if (string.IsNullOrEmpty(name))
+                {
+                    name = AnonymousName;
+                }
+            }
+
+            _leaderboardView.ConstructLeaderboard(_leaderboardPlayers);
         }
 
-        _leaderboardView.ConstructLeaderboard(_leaderboardPlayers);
-    }
+        private void OnGetLeaderboard(LBData lb)
+        {
+            _lb = lb;
+        }
 
-    private void OnGetLeaderboard(LBData lb)
-    {
-        _lb = lb;
-    }
-
-    private void InitAnonymousTranslation()
-    {
-        AnonymousName = _firstStartTextSO.AnonymousName;
+        private void InitAnonymousTranslation()
+        {
+            AnonymousName = _firstStartTextSO.AnonymousName;
+        }
     }
 }

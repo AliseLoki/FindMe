@@ -3,6 +3,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using YG;
 using PlayerController;
+using LeaderboardSystem;
+using SettingsForYG;
+using SO;
 
 [RequireComponent(typeof(YandexLeaderboard))]
 [RequireComponent(typeof(CanvasUIButtonsController))]
@@ -167,7 +170,8 @@ public class CanvasUI : MonoBehaviour
         _gameOverUI.gameObject.SetActive(true);
     }
 
-    private void OnAllSOWereGiven(TipsSO tipsSO, EducationAdvicesSO educationAdvicesSO, FirstStartTextSO firstStartTextSO, GameOverSO gameOverSO)
+    private void OnAllSOWereGiven(TipsSO tipsSO, EducationAdvicesSO educationAdvicesSO,
+        FirstStartTextSO firstStartTextSO, GameOverSO gameOverSO)
     {
         _firstStartPanelView.InitFirstStartTextSO(firstStartTextSO);
         _tipsViewPanel.InitTipsSO(tipsSO);

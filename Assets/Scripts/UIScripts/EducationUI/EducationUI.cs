@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using SO;
 
 [RequireComponent(typeof(TextEqualizer))]
 public class EducationUI : MonoBehaviour

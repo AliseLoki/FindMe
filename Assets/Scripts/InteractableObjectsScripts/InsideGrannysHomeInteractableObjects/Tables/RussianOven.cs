@@ -1,5 +1,7 @@
 using System.Collections;
 using UnityEngine;
+using Indexes;
+using SO;
 
 namespace Interactables.Containers.Tables
 {

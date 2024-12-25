@@ -1,0 +1,41 @@
+namespace Indexes
+{
+    public enum HouseIndex
+    {
+        Village1House1 = 1,
+        Village1House2 = 2,
+        Village1House3 = 3,
+        Village1House4 = 4,
+        Village1House5 = 5,
+        Village1House6 = 6,
+        Village1House7 = 7,
+        Village2House1 = 8,
+        Village2House2 = 9,
+        Village2House3 = 10,
+        Village2House4 = 11,
+        Village2House5 = 12,
+        Village2House6 = 13,
+        Village2House7 = 14,
+        Village3House1 = 15,
+        Village3House2 = 16,
+        Village3House3 = 17,
+        Village3House4 = 18,
+        Village3House5 = 19,
+        Village3House6 = 20,
+        Village3House7 = 21,
+        Village4House1 = 22,
+        Village4House2 = 23,
+        Village4House3 = 24,
+        Village4House4 = 25,
+        Village4House5 = 26,
+        Village4House6 = 27,
+        Village4House7 = 28,
+        Village5House1 = 29,
+        Village5House2 = 30,
+        Village5House3 = 31,
+        Village5House4 = 32,
+        Village5House5 = 33,
+        Village5House6 = 34,
+        Village5House7 = 35
+    }
+}

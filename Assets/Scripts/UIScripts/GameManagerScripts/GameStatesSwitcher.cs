@@ -3,6 +3,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using YG;
 using PlayerController;
+using Enemies;
+using Villages;
 
 public class GameStatesSwitcher : MonoBehaviour
 {

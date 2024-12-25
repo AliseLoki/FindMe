@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Interactables.Containers;
+using SettingsForYG;
+using SO;
 
 namespace Interactables
 {

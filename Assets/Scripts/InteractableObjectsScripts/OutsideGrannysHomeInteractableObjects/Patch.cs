@@ -1,6 +1,8 @@
 using UnityEngine;
 using Interactables.Containers;
 using Interactables.InventoryPrefabs;
+using Indexes;
+using SO;
 
 namespace Interactables.Patches
 {
