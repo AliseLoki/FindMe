@@ -1,11 +1,11 @@
-using System.Collections.Generic;
-using UnityEngine;
+using Indexes;
 using Interactables;
 using Interactables.Containers;
 using Interactables.Patches;
-using Indexes;
-using Villages;
 using SO;
+using System.Collections.Generic;
+using UnityEngine;
+using Villages;
 
 namespace SaveSystem
 {
@@ -118,7 +118,6 @@ namespace SaveSystem
         public void InitAllActivePatches(List<ActivableObjectType> activableObjectTypes)
         {
             _activePatches = activableObjectTypes;
-
             EnablePatches();
         }
 

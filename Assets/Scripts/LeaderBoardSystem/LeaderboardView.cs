@@ -1,7 +1,8 @@
+using SO;
 using System.Collections.Generic;
 using TMPro;
+using UIPanels;
 using UnityEngine;
-using SO;
 
 namespace LeaderboardSystem
 {
@@ -16,7 +17,6 @@ namespace LeaderboardSystem
 
         private FirstStartTextSO _firstStartTextSO;
         private TextEqualizer _textEqualizer;
-
         private List<LeaderboardElement> _spawnedElements = new();
 
         private void Awake()

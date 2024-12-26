@@ -1,7 +1,7 @@
+using SO;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using SO;
 
 namespace Interactables.Containers.Tables
 {

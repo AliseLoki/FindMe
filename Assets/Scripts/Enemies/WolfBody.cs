@@ -1,3 +1,4 @@
+using UIPanels;
 using UnityEngine;
 
 namespace Enemies

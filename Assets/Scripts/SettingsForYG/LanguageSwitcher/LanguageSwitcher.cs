@@ -1,17 +1,17 @@
-using YG;
+using SO;
 using System;
 using UnityEngine;
-using SO;
+using YG;
 
 namespace SettingsForYG
 {
     public class LanguageSwitcher : MonoBehaviour
     {
-        private string _currentLanguage;
-
         private const string English = "en";
         private const string Russian = "ru";
         private const string Turkish = "tr";
+
+        private string _currentLanguage;
 
         [SerializeField] private TipsSO _englishTipsSO;
         [SerializeField] private TipsSO _russianTipsSO;

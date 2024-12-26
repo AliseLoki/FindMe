@@ -1,8 +1,9 @@
-using UnityEngine;
 using DeliveryServiceHandler;
-using Interactables.InventoryPrefabs;
 using Indexes;
+using Interactables.InventoryPrefabs;
+using SaveSystem;
 using SO;
+using UnityEngine;
 
 namespace PlayerController
 {
@@ -111,7 +112,6 @@ namespace PlayerController
         private void Reset()
         {
             _hasBackPack = false;
-
             _objectInHands = null;
             _indexOfObjectInHands = 0;
         }

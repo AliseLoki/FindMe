@@ -1,18 +1,16 @@
-using System.Collections;
-using UnityEngine;
 using Indexes;
 using SO;
+using System.Collections;
+using UnityEngine;
 
 namespace Interactables.Containers.Tables
 {
     public class RussianOven : Table
     {
         [SerializeField] private bool _hasFire;
-
         [SerializeField] private FoodSO _uncookedFoodInPotFoodSO;
         [SerializeField] private FoodSO _cookedFoodInPotFoodSO;
         [SerializeField] private FoodSO _burnedFoodInPot;
-
         [SerializeField] private PlaceForWood _placeForWood;
         [SerializeField] private ParticleSystem _smokeEffect;
 
@@ -48,14 +46,13 @@ namespace Interactables.Containers.Tables
         {
             int cookingSoundEffectIndex = 0;
 
-            if ((_hasFire) && _uncookedFoodInPotFoodSO == Player.PlayerCookingModule.FoodSO)
+            if (_hasFire && _uncookedFoodInPotFoodSO == Player.PlayerCookingModule.FoodSO)
             {
                 IniTFoodAndFoodSO(Player.PlayerCookingModule.Food, Player.PlayerCookingModule.FoodSO);
                 _cookingRecipeSO = Player.PlayerCookingModule.CookingRecipeSO;
                 Player.PlayerCookingModule.Food.SetInParent(PlaceForFood.transform);
                 Player.PlayerCookingModule.GiveFood();
                 Player.PlayerHands.GiveObject();
-
                 _cookCoroutine = StartCoroutine(CookingCountDownRoutine());
                 TipsViewPanel.ShowReadynessInstruction();
                 PlaySoundEffect(AudioClipsList[cookingSoundEffectIndex]);
@@ -66,7 +63,6 @@ namespace Interactables.Containers.Tables
                 _placeForWood.LightFire(true);
                 DisableInteract();
                 Player.PlayerHands.GiveObject();
-
                 Player.PlayerSoundEffects.PlayTakingWoodSoundEffect();
                 TipsViewPanel.ShowCanUseOvenTip();
             }

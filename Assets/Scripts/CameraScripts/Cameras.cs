@@ -1,60 +1,59 @@
 using Cinemachine;
+using SaveSystem;
 using UnityEngine;
 using UnityEngine.UI;
-using SaveSystem;
 
-    public class Cameras : MonoBehaviour
+public class Cameras : MonoBehaviour
+{
+    [SerializeField] private Slider _cameraSlider;
+    [SerializeField] private Transform _outsideCamera;
+    [SerializeField] private Transform _insideCamera;
+    [SerializeField] private CinemachineVirtualCamera cinemachineVirtualCamera;
+    [SerializeField] private Saver _saver;
+
+    private float _minValue = 20f;
+    private float _maxValue = 70f;
+
+    private void Awake()
     {
-        [SerializeField] private Slider _cameraSlider;
-        [SerializeField] private Transform _outsideCamera;
-        [SerializeField] private Transform _insideCamera;
-        [SerializeField] private CinemachineVirtualCamera cinemachineVirtualCamera;
+        _cameraSlider.value = _saver.LoadCameraValue();
+        ChangeCameraZoom(_cameraSlider.value);
+    }
 
-        [SerializeField] private Saver _saver;
+    private void Update()
+    {
+        ZoomCameraWithMouseWheel();
+    }
 
-        private float _minValue = 20f;
-        private float _maxValue = 70f;
-
-        private void Awake()
+    public void SwitchCameras()
+    {
+        if (_outsideCamera.gameObject.activeInHierarchy)
         {
-            _cameraSlider.value = _saver.LoadCameraValue();
-            ChangeCameraZoom(_cameraSlider.value);
+            _outsideCamera.gameObject.SetActive(false);
+            _insideCamera.gameObject.SetActive(true);
         }
-
-        private void Update()
+        else
         {
-            ZoomCameraWithMouseWheel();
-        }
-
-        public void SwitchCameras()
-        {
-            if (_outsideCamera.gameObject.activeInHierarchy)
-            {
-                _outsideCamera.gameObject.SetActive(false);
-                _insideCamera.gameObject.SetActive(true);
-            }
-            else
-            {
-                _outsideCamera.gameObject.SetActive(true);
-                _insideCamera.gameObject.SetActive(false);
-            }
-        }
-
-        public void ZoomCamera()
-        {
-            ChangeCameraZoom(_cameraSlider.value);
-            _saver.SaveCameraValue(_cameraSlider.value);
-        }
-
-        private void ChangeCameraZoom(float cameraSliderValue)
-        {
-            cinemachineVirtualCamera.m_Lens.FieldOfView = cameraSliderValue;
-        }
-
-        private void ZoomCameraWithMouseWheel()
-        {
-            cinemachineVirtualCamera.m_Lens.FieldOfView =
-                Mathf.Clamp(cinemachineVirtualCamera.m_Lens.FieldOfView - Input.mouseScrollDelta.y, _minValue, _maxValue);
-            _saver.SaveCameraValue(_cameraSlider.value);
+            _outsideCamera.gameObject.SetActive(true);
+            _insideCamera.gameObject.SetActive(false);
         }
     }
+
+    public void ZoomCamera()
+    {
+        ChangeCameraZoom(_cameraSlider.value);
+        _saver.SaveCameraValue(_cameraSlider.value);
+    }
+
+    private void ChangeCameraZoom(float cameraSliderValue)
+    {
+        cinemachineVirtualCamera.m_Lens.FieldOfView = cameraSliderValue;
+    }
+
+    private void ZoomCameraWithMouseWheel()
+    {
+        cinemachineVirtualCamera.m_Lens.FieldOfView =
+            Mathf.Clamp(cinemachineVirtualCamera.m_Lens.FieldOfView - Input.mouseScrollDelta.y, _minValue, _maxValue);
+        _saver.SaveCameraValue(_cameraSlider.value);
+    }
+}

@@ -1,7 +1,7 @@
+using SaveSystem;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using SaveSystem;
 
 namespace SoundSystem
 {
@@ -9,7 +9,6 @@ namespace SoundSystem
     {
         [SerializeField] private Slider _slider;
         [SerializeField] private Saver _saver;
-
         [SerializeField] private List<AudioSource> _allSoundEffectsAudioSources;
 
         private void Awake()

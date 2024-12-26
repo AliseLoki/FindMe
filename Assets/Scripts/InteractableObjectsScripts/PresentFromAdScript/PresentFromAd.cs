@@ -6,7 +6,6 @@ namespace Interactables
     public class PresentFromAd : InteractableObject
     {
         [SerializeField] private ParticleSystem _confettiEffect;
-
         [SerializeField] private List<GameObject> _packing;
         [SerializeField] private List<InteractableObject> _presentsList = new();
 

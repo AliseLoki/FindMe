@@ -6,6 +6,6 @@ namespace Indexes
         Village2 = 2,
         Village3 = 3,
         Village4 = 4,
-        Village5 = 5
+        Village5 = 5,
     }
 }

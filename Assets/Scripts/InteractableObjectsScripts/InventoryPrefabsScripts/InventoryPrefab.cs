@@ -1,5 +1,5 @@
-using UnityEngine;
 using SO;
+using UnityEngine;
 
 namespace Interactables.InventoryPrefabs
 {

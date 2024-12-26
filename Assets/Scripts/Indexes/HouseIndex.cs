@@ -36,6 +36,6 @@ namespace Indexes
         Village5House4 = 32,
         Village5House5 = 33,
         Village5House6 = 34,
-        Village5House7 = 35
+        Village5House7 = 35,
     }
 }

@@ -1,21 +1,19 @@
+using SO;
 using System.Collections.Generic;
 using UnityEngine;
 using YG;
 using YG.Utils.LB;
-using SO;
 
 namespace LeaderboardSystem
 {
     public class YandexLeaderboard : MonoBehaviour
     {
-        private string AnonymousName;
-        private LBData _lb;
-
-        private List<LeaderboardPlayer> _leaderboardPlayers = new();
-
         [SerializeField] private LeaderboardView _leaderboardView;
 
+        private string AnonymousName;
+        private LBData _lb;
         private FirstStartTextSO _firstStartTextSO;
+        private List<LeaderboardPlayer> _leaderboardPlayers = new();
 
         private void Start()
         {

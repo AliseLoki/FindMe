@@ -1,4 +1,5 @@
 using UnityEngine;
+using MainCanvas;
 
 namespace Interactables
 {

@@ -1,9 +1,11 @@
+using DeliveryServiceHandler;
+using GameControllers;
+using Interactables;
+using PlayerController;
+using UIPanels;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using YG;
-using DeliveryServiceHandler;
-using Interactables;
-using PlayerController;
 
 namespace SaveSystem
 {
@@ -16,7 +18,6 @@ namespace SaveSystem
         [SerializeField] private ObjectsSaver _objectsSaver;
         [SerializeField] private GameStatesSwitcher _gameStatesSwitcher;
         [SerializeField] private SaveGameView _saveGameView;
-
         [SerializeField] private Transform _defaultPlayerPosition;
 
         private bool _isInitialized = false;
@@ -69,24 +70,16 @@ namespace SaveSystem
             _player.PlayerInventory.GetInventoryList(YandexGame.savesData.InventoryList);
             _player.PlayerHands.InitHasBackPack(YandexGame.savesData.HasBackPack);
             _player.PlayerHands.InitHoldableObjectType(YandexGame.savesData.HoldableObject);
-
             _recievingOrdersPoint.GetOrderIsTaken(YandexGame.savesData.OrderIsTaken);
-
             _deliveryService.GetLists(YandexGame.savesData.SavedOrderedDishesListJson, YandexGame.savesData.SavedPackedDishesListJson,
                 YandexGame.savesData.SavedStatesOfReadyness);
-
             _deliveryServiceView.SetDestinationPointName(YandexGame.savesData.VillageName);
-
             _player.PlayerCookingModule.SetCookingRecipe(_player.PlayerCookingModule.FindRecipeByName(YandexGame.savesData.RecipeName));
-
             _objectsSaver.InitAllActiveContainers(YandexGame.savesData.ActiveContainers);
             _objectsSaver.InitAllActivePatches(YandexGame.savesData.ActivePatches);
-
             _objectsSaver.InitAllHouses(YandexGame.savesData.HouseIndexes);
-
             _objectsSaver.InitAllVillagesThatGaveReward(YandexGame.savesData.VillagesThatGaveReward);
             _objectsSaver.InitNotPickedRewards(YandexGame.savesData.VillagesWhereRewardIsntPicked);
-
             _isInitialized = true;
         }
 
@@ -98,12 +91,9 @@ namespace SaveSystem
             YandexGame.savesData.Health = _player.PlayerHealth.Health;
             YandexGame.savesData.PlayerPosition = _player.transform.position;
             YandexGame.savesData.InventoryList = _player.PlayerInventory.RecievedInventoryPrefabSO;
-
             YandexGame.savesData.HasBackPack = _player.PlayerHands.HasBackPack;
             YandexGame.savesData.HoldableObject = _player.PlayerHands.HoldableObject;
-
             YandexGame.savesData.OrderIsTaken = _recievingOrdersPoint.OrderIsTaken;
-
             YandexGame.savesData.SavedOrderedDishesListJson = _deliveryService.OrderedDishies;
             YandexGame.savesData.SavedPackedDishesListJson = _deliveryService.PackedDishies;
             YandexGame.savesData.SavedStatesOfReadyness = _deliveryService.PackedDishesStates;
@@ -115,15 +105,11 @@ namespace SaveSystem
 
             YandexGame.savesData.ActiveContainers = _objectsSaver.SaveAllActiveContainers();
             YandexGame.savesData.ActivePatches = _objectsSaver.SaveAllActivePatches();
-
             YandexGame.savesData.HouseIndexes = _objectsSaver.SaveAllHousesThatRecivedOrders();
-
             YandexGame.savesData.VillageName = _deliveryServiceView.DestinationPointName;
-
             YandexGame.savesData.VillagesThatGaveReward = _objectsSaver.SaveRewardIsGiven();
             YandexGame.savesData.VillagesWhereRewardIsntPicked = _objectsSaver.SaveNotPickedRewards();
             YandexGame.savesData.IsFirstStart = _gameStatesSwitcher.IsFirstStart;
-
             YandexGame.SaveProgress();
         }
     }

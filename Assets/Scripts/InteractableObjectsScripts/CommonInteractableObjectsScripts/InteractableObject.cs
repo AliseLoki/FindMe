@@ -1,13 +1,14 @@
-using System.Collections.Generic;
-using UnityEngine;
 using DeliveryServiceHandler;
-using Interactables.Containers;
-using Interactables.InventoryPrefabs;
-using Interactables.Containers.Tables;
-using Interactables.Patches;
-using Interactables.InventoryPrefabs.Mushrooms;
-using PlayerController;
 using Indexes;
+using Interactables.Containers;
+using Interactables.Containers.Tables;
+using Interactables.InventoryPrefabs;
+using Interactables.InventoryPrefabs.Mushrooms;
+using Interactables.Patches;
+using PlayerController;
+using System.Collections.Generic;
+using UIPanels;
+using UnityEngine;
 
 namespace Interactables
 {
@@ -21,7 +22,6 @@ namespace Interactables
         [SerializeField] protected TipsViewPanel TipsViewPanel;
         [SerializeField] protected DeliveryService DeliveryService;
         [SerializeField] protected DeliveryServiceView DeliveryServiceView;
-
         [SerializeField] protected ActivableObjectType _activableObjectType;
         [SerializeField] protected HoldableObjectType _holdableObjects;
 

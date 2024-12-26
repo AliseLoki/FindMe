@@ -1,11 +1,13 @@
-using System;
-using UnityEngine;
-using Trigger;
-using Interactables;
-using SoundSystem;
-using SaveSystem;
 using Enemies;
+using GameControllers;
 using Indexes;
+using Interactables;
+using SaveSystem;
+using SoundSystem;
+using System;
+using Trigger;
+using UIPanels;
+using UnityEngine;
 
 namespace PlayerController
 {
@@ -19,7 +21,6 @@ namespace PlayerController
 
         public event Action EnteredTheForest;
         public event Action EnteredSafeZone;
-
         public event Action WolfHasBeenKilled;
 
         private void OnCollisionEnter(Collision collision)

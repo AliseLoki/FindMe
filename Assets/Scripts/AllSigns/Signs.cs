@@ -1,16 +1,16 @@
-using System.Collections.Generic;
-using UnityEngine;
 using SettingsForYG;
 using SO;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace AllSigns
 {
     public class Signs : MonoBehaviour
     {
-        private SignSO _signSO;
-
         [SerializeField] private List<Sign> _signs;
         [SerializeField] private LanguageSwitcher _languageSwitcher;
+
+        private SignSO _signSO;
 
         private void OnEnable()
         {

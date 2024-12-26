@@ -1,6 +1,6 @@
+using Indexes;
 using System.Collections.Generic;
 using UnityEngine;
-using Indexes;
 
 namespace SO
 {

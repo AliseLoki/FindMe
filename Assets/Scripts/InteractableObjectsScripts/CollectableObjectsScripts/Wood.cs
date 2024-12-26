@@ -1,3 +1,5 @@
+using UIPanels;
+
 namespace Interactables
 {
     public class Wood : InteractableObject

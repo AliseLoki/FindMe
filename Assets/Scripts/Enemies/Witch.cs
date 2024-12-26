@@ -1,7 +1,7 @@
+using PlayerController;
+using SoundSystem;
 using System;
 using UnityEngine;
-using SoundSystem;
-using PlayerController;
 
 namespace Enemies
 {

@@ -4,7 +4,7 @@ namespace Indexes
     {
         Uncooked,
         Cooked,
-        Burned
+        Burned,
     }
 }
 

@@ -1,8 +1,8 @@
+using PlayerController;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using PlayerController;
 
 namespace Enemies
 {
@@ -57,7 +57,6 @@ namespace Enemies
             _player.PlayerCollisions.EnteredTheForest += OnPlayerEnteredTheForest;
             _player.PlayerCollisions.EnteredSafeZone += OnPlayerEnteredSafeZone;
             _player.PlayerCollisions.WolfHasBeenKilled += OnWolfHasBeenKilled;
-
             _patrolCoroutine = StartCoroutine(Patrolling());
         }
 
@@ -144,7 +143,6 @@ namespace Enemies
             SetNavMeshAgentParametres(_distanceToPlayer, _runSpeed, IsRunning);
             _agent.destination = _player.transform.position;
             HasStepsSound = true;
-
             CheckDistanceToPlayer();
         }
 

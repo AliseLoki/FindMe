@@ -1,7 +1,8 @@
+using Indexes;
+using Interactables;
+using SO;
 using System.Collections.Generic;
 using UnityEngine;
-using Indexes;
-using SO;
 
 namespace PlayerController
 {

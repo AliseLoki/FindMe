@@ -1,8 +1,8 @@
+using Interactables.InventoryPrefabs.Mushrooms;
+using SO;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using Interactables.InventoryPrefabs.Mushrooms;
-using SO;
 
 namespace PlayerController
 {

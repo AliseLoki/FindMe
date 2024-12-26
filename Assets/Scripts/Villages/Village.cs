@@ -1,10 +1,11 @@
 using DeliveryServiceHandler;
+using Indexes;
 using Interactables;
 using Interactables.InventoryPrefabs;
-using System.Collections.Generic;
-using UnityEngine;
 using PlayerController;
-using Indexes;
+using System.Collections.Generic;
+using UIPanels;
+using UnityEngine;
 
 namespace Villages
 {
