@@ -65,7 +65,7 @@ namespace SaveSystem
                 _player.transform.position = YandexGame.savesData.PlayerPosition;
             }
 
-            _player.PlayerHealth.GetHealth(YandexGame.savesData.Health);
+            _player.PlayerHealth.InitHealth(YandexGame.savesData.Health);
             _player.PlayerGold.GetGold(YandexGame.savesData.Gold);
             _player.PlayerInventory.GetInventoryList(YandexGame.savesData.InventoryList);
             _player.PlayerHands.InitHasBackPack(YandexGame.savesData.HasBackPack);

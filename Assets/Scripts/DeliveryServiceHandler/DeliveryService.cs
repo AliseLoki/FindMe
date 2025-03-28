@@ -56,7 +56,7 @@ namespace DeliveryServiceHandler
 
             InitLists();
             SortSavedDishies();
-            SetStateofReadyness();
+            SetStateOfReadyness();
         }
 
         public CookingRecipeSO CheckEquality(CookingRecipeSO cookingRecipeSO)
@@ -148,7 +148,7 @@ namespace DeliveryServiceHandler
             }
         }
 
-        private void SetStateofReadyness()
+        private void SetStateOfReadyness()
         {
             for (int i = 0; i < _packedDishesStates.Count; i++)
             {

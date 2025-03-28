@@ -50,7 +50,7 @@ namespace PlayerController
             if (inventoryPrefabSO.InventoryPrefab as RedMushroom)
             {
                 int mushroomHealing = 1;
-                _player.PlayerHealth.OnHealthChanged(mushroomHealing);
+                _player.PlayerHealth.ChangeHealthValue(mushroomHealing);
             }
             else if (inventoryPrefabSO.InventoryPrefab as GoldMushroom)
             {
@@ -65,5 +65,3 @@ namespace PlayerController
         }
     }
 }
-
-

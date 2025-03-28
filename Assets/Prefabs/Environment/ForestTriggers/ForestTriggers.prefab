@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1362369230636581773}
-  - component: {fileID: 3403473098354879125}
   - component: {fileID: 7135112055172587197}
+  - component: {fileID: 1511888645416848697}
   m_Layer: 0
   m_Name: ForestTrigger22
   m_TagString: Untagged
@@ -25,26 +25,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 724722460179981121}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 272.7853, y: 0, z: 223.2096}
   m_LocalScale: {x: 2.7060716, y: 1, z: 3.3769422}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4944661187470591726}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!114 &3403473098354879125
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 724722460179981121}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65a4e77f056667d47b579f31f4629a03, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &7135112055172587197
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -66,6 +54,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 10.000002, y: 2.220446e-16, z: 10.000002}
   m_Center: {x: -0.0000076293945, y: 0, z: 0}
+--- !u!114 &1511888645416848697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 724722460179981121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f59cebaac7a49054ab2aacbd4892330c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _triggerType: 1
 --- !u!1 &824429958410136147
 GameObject:
   m_ObjectHideFlags: 0
@@ -75,8 +76,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2027002841365871786}
-  - component: {fileID: 1784844419303580238}
   - component: {fileID: 7956866316845049603}
+  - component: {fileID: 689309771943340722}
   m_Layer: 0
   m_Name: ForestTrigger13
   m_TagString: Untagged
@@ -91,26 +92,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 824429958410136147}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 109.91641, y: 0, z: 54.877594}
   m_LocalScale: {x: 2.2124927, y: 1, z: 5.7407684}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4944661187470591726}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1784844419303580238
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 824429958410136147}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65a4e77f056667d47b579f31f4629a03, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &7956866316845049603
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -132,6 +121,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 10.000001, y: 2.220446e-16, z: 10}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &689309771943340722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 824429958410136147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f59cebaac7a49054ab2aacbd4892330c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _triggerType: 1
 --- !u!1 &885409787116611899
 GameObject:
   m_ObjectHideFlags: 0
@@ -141,8 +143,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 282529130236827463}
-  - component: {fileID: 5667056864164178585}
   - component: {fileID: 5015761163088361393}
+  - component: {fileID: 3372652284443950193}
   m_Layer: 0
   m_Name: ForestTrigger14
   m_TagString: Untagged
@@ -157,26 +159,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 885409787116611899}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 170.6, y: 0, z: 77.16579}
   m_LocalScale: {x: 2.1840162, y: 1, z: 4.0129147}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4944661187470591726}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5667056864164178585
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 885409787116611899}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65a4e77f056667d47b579f31f4629a03, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &5015761163088361393
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -198,6 +188,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 10, y: 2.220446e-16, z: 10}
   m_Center: {x: 0, y: 0, z: 0.0000019073486}
+--- !u!114 &3372652284443950193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 885409787116611899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f59cebaac7a49054ab2aacbd4892330c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _triggerType: 1
 --- !u!1 &1202980361211717577
 GameObject:
   m_ObjectHideFlags: 0
@@ -221,6 +224,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1202980361211717577}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -253,7 +257,6 @@ Transform:
   - {fileID: 5454967310694907210}
   - {fileID: 3394389676087023225}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1475843835383484656
 GameObject:
@@ -264,8 +267,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7717738296802098669}
-  - component: {fileID: 649201642142763210}
   - component: {fileID: 8342297948321955195}
+  - component: {fileID: 2429293333384801230}
   m_Layer: 0
   m_Name: ForestTrigger6
   m_TagString: Untagged
@@ -280,26 +283,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1475843835383484656}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 92.152214, y: 0, z: 243.87549}
   m_LocalScale: {x: 14.651775, y: 1, z: 1.0297425}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4944661187470591726}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &649201642142763210
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1475843835383484656}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65a4e77f056667d47b579f31f4629a03, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &8342297948321955195
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -321,6 +312,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 10, y: 2.220446e-16, z: 10}
   m_Center: {x: 0.00000047683716, y: 0, z: 0}
+--- !u!114 &2429293333384801230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1475843835383484656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f59cebaac7a49054ab2aacbd4892330c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _triggerType: 1
 --- !u!1 &1700582972258999852
 GameObject:
   m_ObjectHideFlags: 0
@@ -330,8 +334,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6640375304213220316}
-  - component: {fileID: 6477187923356892245}
   - component: {fileID: 6449004994088817225}
+  - component: {fileID: 4149803691459285295}
   m_Layer: 0
   m_Name: ForestTrigger19
   m_TagString: Untagged
@@ -346,26 +350,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1700582972258999852}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 261.71313, y: 0, z: 66.66728}
   m_LocalScale: {x: 5.379727, y: 1, z: 3.2356129}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4944661187470591726}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!114 &6477187923356892245
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1700582972258999852}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65a4e77f056667d47b579f31f4629a03, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &6449004994088817225
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -387,6 +379,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 10.000001, y: 2.220446e-16, z: 10.000002}
   m_Center: {x: -0.000002861023, y: 0, z: 0.0000076293945}
+--- !u!114 &4149803691459285295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1700582972258999852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f59cebaac7a49054ab2aacbd4892330c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _triggerType: 1
 --- !u!1 &2083285753442543765
 GameObject:
   m_ObjectHideFlags: 0
@@ -396,8 +401,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5266358435458464589}
-  - component: {fileID: 3592656687011742711}
   - component: {fileID: 4351170143407378562}
+  - component: {fileID: 2290871763921745156}
   m_Layer: 0
   m_Name: ForestTrigger21
   m_TagString: Untagged
@@ -412,26 +417,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2083285753442543765}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 269.5869, y: 0, z: 124.52179}
   m_LocalScale: {x: 1.0171335, y: 1, z: 5.1436305}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4944661187470591726}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!114 &3592656687011742711
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2083285753442543765}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65a4e77f056667d47b579f31f4629a03, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &4351170143407378562
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -453,6 +446,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 10.000002, y: 2.220446e-16, z: 10.000002}
   m_Center: {x: -0.0000076293945, y: 0, z: 0}
+--- !u!114 &2290871763921745156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2083285753442543765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f59cebaac7a49054ab2aacbd4892330c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _triggerType: 1
 --- !u!1 &2170743749358833036
 GameObject:
   m_ObjectHideFlags: 0
@@ -462,8 +468,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6101496703242242988}
-  - component: {fileID: 8419132506921544618}
   - component: {fileID: 2683789204726884424}
+  - component: {fileID: 4666226503561459143}
   m_Layer: 0
   m_Name: ForestTrigger12
   m_TagString: Untagged
@@ -478,26 +484,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2170743749358833036}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 139.49222, y: 0, z: 67.70839}
   m_LocalScale: {x: 1.3804871, y: 1, z: 6.027538}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4944661187470591726}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8419132506921544618
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2170743749358833036}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65a4e77f056667d47b579f31f4629a03, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &2683789204726884424
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -519,6 +513,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 10, y: 2.220446e-16, z: 10}
   m_Center: {x: 0.0000076293945, y: 0, z: 0.0000019073486}
+--- !u!114 &4666226503561459143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2170743749358833036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f59cebaac7a49054ab2aacbd4892330c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _triggerType: 1
 --- !u!1 &2879217211853333604
 GameObject:
   m_ObjectHideFlags: 0
@@ -528,8 +535,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2106254596190487703}
-  - component: {fileID: 604720934686976553}
   - component: {fileID: 5930775675716353734}
+  - component: {fileID: 2233333399006043975}
   m_Layer: 0
   m_Name: ForestTrigger24
   m_TagString: Untagged
@@ -544,26 +551,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2879217211853333604}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 294.672, y: 0, z: 335.93118}
   m_LocalScale: {x: 1.0795699, y: 1, z: 7.0253515}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4944661187470591726}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &604720934686976553
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2879217211853333604}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65a4e77f056667d47b579f31f4629a03, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &5930775675716353734
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -585,6 +580,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 10, y: 2.220446e-16, z: 10.000001}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2233333399006043975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2879217211853333604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f59cebaac7a49054ab2aacbd4892330c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _triggerType: 1
 --- !u!1 &3383403362681317061
 GameObject:
   m_ObjectHideFlags: 0
@@ -594,8 +602,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4037185331526030789}
-  - component: {fileID: 7575960652208940230}
   - component: {fileID: 2167734304869550955}
+  - component: {fileID: 5365551731569383361}
   m_Layer: 0
   m_Name: ForestTrigger2
   m_TagString: Untagged
@@ -610,26 +618,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3383403362681317061}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 98.20001, y: 0, z: 328}
   m_LocalScale: {x: 4.1951737, y: 1, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4944661187470591726}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!114 &7575960652208940230
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3383403362681317061}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65a4e77f056667d47b579f31f4629a03, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &2167734304869550955
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -651,6 +647,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 10.000002, y: 2.220446e-16, z: 10.000002}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5365551731569383361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3383403362681317061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f59cebaac7a49054ab2aacbd4892330c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _triggerType: 1
 --- !u!1 &4030530498356014148
 GameObject:
   m_ObjectHideFlags: 0
@@ -660,8 +669,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2518692099634420199}
-  - component: {fileID: 6595498917736890082}
   - component: {fileID: 8549281271178459506}
+  - component: {fileID: 303980290689215553}
   m_Layer: 0
   m_Name: ForestTrigger17
   m_TagString: Untagged
@@ -676,26 +685,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4030530498356014148}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 268, y: 0, z: 312.464}
   m_LocalScale: {x: 2.0414786, y: 1, z: 7.3967695}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4944661187470591726}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6595498917736890082
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4030530498356014148}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65a4e77f056667d47b579f31f4629a03, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &8549281271178459506
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -717,6 +714,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 9.999999, y: 2.220446e-16, z: 10}
   m_Center: {x: -0.000015258789, y: 0, z: 0}
+--- !u!114 &303980290689215553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4030530498356014148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f59cebaac7a49054ab2aacbd4892330c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _triggerType: 1
 --- !u!1 &4152599148304213845
 GameObject:
   m_ObjectHideFlags: 0
@@ -726,8 +736,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 635963459219199323}
-  - component: {fileID: 8090120665318715975}
   - component: {fileID: 6211111839756406373}
+  - component: {fileID: 21383096015831053}
   m_Layer: 0
   m_Name: ForestTrigger18
   m_TagString: Untagged
@@ -742,26 +752,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4152599148304213845}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 232.3704, y: 0, z: 346.5719}
   m_LocalScale: {x: 2.3313262, y: 1, z: 2.3139095}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4944661187470591726}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!114 &8090120665318715975
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4152599148304213845}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65a4e77f056667d47b579f31f4629a03, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &6211111839756406373
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -783,6 +781,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 10.000002, y: 2.220446e-16, z: 10.000002}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &21383096015831053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4152599148304213845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f59cebaac7a49054ab2aacbd4892330c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _triggerType: 1
 --- !u!1 &4572654595783458981
 GameObject:
   m_ObjectHideFlags: 0
@@ -792,8 +803,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3775207922941753188}
-  - component: {fileID: 173335860012285747}
   - component: {fileID: 7240333402261105991}
+  - component: {fileID: 8819788447419888287}
   m_Layer: 0
   m_Name: ForestTrigger11
   m_TagString: Untagged
@@ -808,26 +819,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4572654595783458981}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 154.78732, y: 0, z: 134.7544}
   m_LocalScale: {x: 2.0414786, y: 1, z: 5.289452}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4944661187470591726}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &173335860012285747
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4572654595783458981}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65a4e77f056667d47b579f31f4629a03, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &7240333402261105991
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -849,6 +848,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 9.999999, y: 2.220446e-16, z: 10}
   m_Center: {x: 0, y: 0, z: 0.0000019073486}
+--- !u!114 &8819788447419888287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4572654595783458981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f59cebaac7a49054ab2aacbd4892330c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _triggerType: 1
 --- !u!1 &5293835407098045391
 GameObject:
   m_ObjectHideFlags: 0
@@ -858,8 +870,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2526063142426060174}
-  - component: {fileID: 9026281876029612362}
   - component: {fileID: 7545641415074005802}
+  - component: {fileID: 4285777396625182379}
   m_Layer: 0
   m_Name: ForestTrigger23
   m_TagString: Untagged
@@ -874,26 +886,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5293835407098045391}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 277.94043, y: 0, z: 254.7835}
   m_LocalScale: {x: 1.7827603, y: 1, z: 7.012652}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4944661187470591726}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!114 &9026281876029612362
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5293835407098045391}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65a4e77f056667d47b579f31f4629a03, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &7545641415074005802
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -915,6 +915,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 10.000004, y: 2.220446e-16, z: 10.000001}
   m_Center: {x: -0.000015258789, y: 0, z: 0.0000038146973}
+--- !u!114 &4285777396625182379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5293835407098045391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f59cebaac7a49054ab2aacbd4892330c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _triggerType: 1
 --- !u!1 &5381976850971963228
 GameObject:
   m_ObjectHideFlags: 0
@@ -924,8 +937,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 706183274743555603}
-  - component: {fileID: 4051668107810355475}
   - component: {fileID: 3778219178017768001}
+  - component: {fileID: 2507283441513439397}
   m_Layer: 0
   m_Name: ForestTrigger25
   m_TagString: Untagged
@@ -940,26 +953,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5381976850971963228}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 335.88983, y: 0, z: 272.68698}
   m_LocalScale: {x: 1.3134136, y: 1, z: 4.8636785}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4944661187470591726}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!114 &4051668107810355475
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5381976850971963228}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65a4e77f056667d47b579f31f4629a03, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &3778219178017768001
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -981,6 +982,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 10.000004, y: 2.220446e-16, z: 2.6937113}
   m_Center: {x: -0.000015248175, y: 0, z: -3.653139}
+--- !u!114 &2507283441513439397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5381976850971963228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f59cebaac7a49054ab2aacbd4892330c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _triggerType: 1
 --- !u!1 &5849469280835377649
 GameObject:
   m_ObjectHideFlags: 0
@@ -990,8 +1004,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3394389676087023225}
-  - component: {fileID: 3396699721976571664}
   - component: {fileID: 7449943601329293454}
+  - component: {fileID: 8265595749158844657}
   m_Layer: 0
   m_Name: ForestTrigger27
   m_TagString: Untagged
@@ -1006,26 +1020,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5849469280835377649}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 345.6729, y: 0, z: 248.2125}
   m_LocalScale: {x: 0.9234971, y: 1, z: 4.092348}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4944661187470591726}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!114 &3396699721976571664
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5849469280835377649}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65a4e77f056667d47b579f31f4629a03, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &7449943601329293454
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1047,6 +1049,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 10.000004, y: 2.220446e-16, z: 10.000002}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8265595749158844657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5849469280835377649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f59cebaac7a49054ab2aacbd4892330c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _triggerType: 1
 --- !u!1 &6196282780008402934
 GameObject:
   m_ObjectHideFlags: 0
@@ -1056,8 +1071,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7289923665802851847}
-  - component: {fileID: 5353462256841004946}
   - component: {fileID: 4813690276991475952}
+  - component: {fileID: 2222522964360117250}
   m_Layer: 0
   m_Name: ForestTrigger7
   m_TagString: Untagged
@@ -1072,26 +1087,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6196282780008402934}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 57.70101, y: 0, z: 218.63968}
   m_LocalScale: {x: 5.7090883, y: 1, z: 1.792}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4944661187470591726}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5353462256841004946
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6196282780008402934}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65a4e77f056667d47b579f31f4629a03, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &4813690276991475952
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1113,6 +1116,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 9.999999, y: 2.220446e-16, z: 10.000001}
   m_Center: {x: 0, y: 0, z: -0.0000076293945}
+--- !u!114 &2222522964360117250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6196282780008402934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f59cebaac7a49054ab2aacbd4892330c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _triggerType: 1
 --- !u!1 &6244518720160119423
 GameObject:
   m_ObjectHideFlags: 0
@@ -1122,8 +1138,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 724056871855331377}
-  - component: {fileID: 3290233339511273346}
   - component: {fileID: 9044135850663419575}
+  - component: {fileID: 7918327303345527832}
   m_Layer: 0
   m_Name: ForestTrigger5
   m_TagString: Untagged
@@ -1138,26 +1154,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6244518720160119423}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 106.78021, y: 0, z: 268.9}
   m_LocalScale: {x: 15.013113, y: 1, z: 1.7296374}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4944661187470591726}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3290233339511273346
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6244518720160119423}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65a4e77f056667d47b579f31f4629a03, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &9044135850663419575
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1179,6 +1183,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 10, y: 2.220446e-16, z: 10}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7918327303345527832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6244518720160119423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f59cebaac7a49054ab2aacbd4892330c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _triggerType: 1
 --- !u!1 &6646926539618517707
 GameObject:
   m_ObjectHideFlags: 0
@@ -1188,8 +1205,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3159200063407758458}
-  - component: {fileID: 1657164234205341584}
   - component: {fileID: 1279464476747370372}
+  - component: {fileID: 6370706998896058992}
   m_Layer: 0
   m_Name: ForestTrigger4
   m_TagString: Untagged
@@ -1204,26 +1221,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6646926539618517707}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 154.1, y: 0, z: 328.5217}
   m_LocalScale: {x: 2.165694, y: 1, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4944661187470591726}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!114 &1657164234205341584
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6646926539618517707}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65a4e77f056667d47b579f31f4629a03, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &1279464476747370372
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1245,6 +1250,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 10.000002, y: 2.220446e-16, z: 10.000002}
   m_Center: {x: -0.000015258789, y: 0, z: -0.0000076293945}
+--- !u!114 &6370706998896058992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6646926539618517707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f59cebaac7a49054ab2aacbd4892330c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _triggerType: 1
 --- !u!1 &6858472330291184618
 GameObject:
   m_ObjectHideFlags: 0
@@ -1254,8 +1272,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3085760500613005061}
-  - component: {fileID: 1732243792193776415}
   - component: {fileID: 6800723141152417231}
+  - component: {fileID: 710842309466547013}
   m_Layer: 0
   m_Name: ForestTrigger9
   m_TagString: Untagged
@@ -1270,26 +1288,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6858472330291184618}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 54.28431, y: 0, z: 129.70448}
   m_LocalScale: {x: 4.0906577, y: 1, z: 3.593129}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4944661187470591726}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!114 &1732243792193776415
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6858472330291184618}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65a4e77f056667d47b579f31f4629a03, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &6800723141152417231
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1311,6 +1317,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 10.000002, y: 2.220446e-16, z: 10.000002}
   m_Center: {x: -0.000005722046, y: 0, z: -0.0000009536743}
+--- !u!114 &710842309466547013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6858472330291184618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f59cebaac7a49054ab2aacbd4892330c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _triggerType: 1
 --- !u!1 &7152405088846096047
 GameObject:
   m_ObjectHideFlags: 0
@@ -1320,8 +1339,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1269923162112510912}
-  - component: {fileID: 2258131999685418740}
   - component: {fileID: 5098403627792727409}
+  - component: {fileID: 4319643642990902839}
   m_Layer: 0
   m_Name: ForestTrigger15
   m_TagString: Untagged
@@ -1336,26 +1355,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7152405088846096047}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 232.07132, y: 0, z: 255.87149}
   m_LocalScale: {x: 12.406841, y: 1, z: 2.0238492}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4944661187470591726}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!114 &2258131999685418740
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7152405088846096047}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65a4e77f056667d47b579f31f4629a03, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &5098403627792727409
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1377,6 +1384,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 10.000002, y: 2.220446e-16, z: 10.000002}
   m_Center: {x: 0, y: 0, z: 0.0000076293945}
+--- !u!114 &4319643642990902839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7152405088846096047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f59cebaac7a49054ab2aacbd4892330c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _triggerType: 1
 --- !u!1 &7161621485752572839
 GameObject:
   m_ObjectHideFlags: 0
@@ -1386,8 +1406,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4834186067277435012}
-  - component: {fileID: 109377192712924531}
   - component: {fileID: 5877290566738200876}
+  - component: {fileID: 2207997757971879570}
   m_Layer: 0
   m_Name: ForestTrigger16
   m_TagString: Untagged
@@ -1402,26 +1422,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7161621485752572839}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 271.1531, y: 0, z: 166.79999}
   m_LocalScale: {x: 4.0906577, y: 1, z: 4.562555}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4944661187470591726}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!114 &109377192712924531
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7161621485752572839}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65a4e77f056667d47b579f31f4629a03, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &5877290566738200876
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1443,6 +1451,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 10.000002, y: 2.220446e-16, z: 10.000002}
   m_Center: {x: -0.0000076293945, y: 0, z: 0.0000038146973}
+--- !u!114 &2207997757971879570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7161621485752572839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f59cebaac7a49054ab2aacbd4892330c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _triggerType: 1
 --- !u!1 &7559899616315560843
 GameObject:
   m_ObjectHideFlags: 0
@@ -1452,8 +1473,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7400629980493889535}
-  - component: {fileID: 7997250951961919633}
   - component: {fileID: 7174701515103740251}
+  - component: {fileID: 2803712586090609380}
   m_Layer: 0
   m_Name: ForestTrigger1
   m_TagString: Untagged
@@ -1468,26 +1489,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7559899616315560843}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 95.25971, y: 0, z: 297.8087}
   m_LocalScale: {x: 14.69606, y: 1, z: 1.743979}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4944661187470591726}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7997250951961919633
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7559899616315560843}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65a4e77f056667d47b579f31f4629a03, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &7174701515103740251
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1509,6 +1518,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 10.000001, y: 2.220446e-16, z: 10}
   m_Center: {x: 0.00000047683716, y: 0, z: 0}
+--- !u!114 &2803712586090609380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7559899616315560843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f59cebaac7a49054ab2aacbd4892330c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _triggerType: 1
 --- !u!1 &7801386731291204790
 GameObject:
   m_ObjectHideFlags: 0
@@ -1518,8 +1540,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1122506588008133932}
-  - component: {fileID: 6856900175497045006}
   - component: {fileID: 8513685634853651486}
+  - component: {fileID: 6489705370750243190}
   m_Layer: 0
   m_Name: ForestTrigger10
   m_TagString: Untagged
@@ -1534,26 +1556,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7801386731291204790}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 107.46591, y: 0, z: 123.80739}
   m_LocalScale: {x: 2.1840167, y: 1, z: 4.166233}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4944661187470591726}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!114 &6856900175497045006
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7801386731291204790}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65a4e77f056667d47b579f31f4629a03, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &8513685634853651486
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1575,6 +1585,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 10.000002, y: 2.220446e-16, z: 10.000001}
   m_Center: {x: 0.0000038146973, y: 0, z: 0}
+--- !u!114 &6489705370750243190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7801386731291204790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f59cebaac7a49054ab2aacbd4892330c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _triggerType: 1
 --- !u!1 &7814888751649905689
 GameObject:
   m_ObjectHideFlags: 0
@@ -1584,8 +1607,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5454967310694907210}
-  - component: {fileID: 2733796798192580323}
   - component: {fileID: 7112777909327852880}
+  - component: {fileID: 8004072263891118227}
   m_Layer: 0
   m_Name: ForestTrigger26
   m_TagString: Untagged
@@ -1600,26 +1623,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7814888751649905689}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 346.1, y: 0, z: 299.4427}
   m_LocalScale: {x: 1.4249225, y: 1, z: 4.8636785}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4944661187470591726}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!114 &2733796798192580323
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7814888751649905689}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65a4e77f056667d47b579f31f4629a03, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &7112777909327852880
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1641,6 +1652,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 10.000001, y: 2.220446e-16, z: 10.000002}
   m_Center: {x: -0.000015258789, y: 0, z: 0}
+--- !u!114 &8004072263891118227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7814888751649905689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f59cebaac7a49054ab2aacbd4892330c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _triggerType: 1
 --- !u!1 &8672892916370681855
 GameObject:
   m_ObjectHideFlags: 0
@@ -1650,8 +1674,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6005399932233278764}
-  - component: {fileID: 5694654881450601767}
   - component: {fileID: 7192218193011908691}
+  - component: {fileID: 6531208097243793624}
   m_Layer: 0
   m_Name: ForestTrigger20
   m_TagString: Untagged
@@ -1666,26 +1690,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8672892916370681855}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 332.3308, y: 0, z: 126.173386}
   m_LocalScale: {x: 3.525329, y: 1, z: 4.148731}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4944661187470591726}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!114 &5694654881450601767
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8672892916370681855}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65a4e77f056667d47b579f31f4629a03, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &7192218193011908691
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1707,6 +1719,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 10.000001, y: 2.220446e-16, z: 10.000002}
   m_Center: {x: -0.0000076293945, y: 0, z: 0.0000076293945}
+--- !u!114 &6531208097243793624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8672892916370681855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f59cebaac7a49054ab2aacbd4892330c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _triggerType: 1
 --- !u!1 &9190990344620880215
 GameObject:
   m_ObjectHideFlags: 0
@@ -1716,8 +1741,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8206010682352528472}
-  - component: {fileID: 4227180468557072831}
   - component: {fileID: 2943767576459624695}
+  - component: {fileID: 5070471365506454409}
   m_Layer: 0
   m_Name: ForestTrigger8
   m_TagString: Untagged
@@ -1732,26 +1757,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9190990344620880215}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 49.013714, y: 0, z: 179.1077}
   m_LocalScale: {x: 5.2995887, y: 1, z: 2.941527}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4944661187470591726}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4227180468557072831
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9190990344620880215}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65a4e77f056667d47b579f31f4629a03, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &2943767576459624695
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1773,3 +1786,16 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 9.999999, y: 2.220446e-16, z: 10}
   m_Center: {x: 0, y: 0, z: 0.0000038146973}
+--- !u!114 &5070471365506454409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9190990344620880215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f59cebaac7a49054ab2aacbd4892330c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _triggerType: 1

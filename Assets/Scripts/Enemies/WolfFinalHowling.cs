@@ -5,7 +5,6 @@ namespace Enemies
     [RequireComponent(typeof(AudioSource))]
     public class WolfFinalHowling : MonoBehaviour
     {
-
         private float _howlTimer = 2;
         private float _maxHowlTimer = 4;
 

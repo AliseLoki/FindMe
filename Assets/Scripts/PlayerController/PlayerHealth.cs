@@ -29,13 +29,13 @@ namespace PlayerController
             }
         }
 
-        public void GetHealth(int health)
+        public void InitHealth(int health)
         {
             _health = health;
             HealthChanged?.Invoke(_health);
         }
 
-        public void OnHealthChanged(int healthChangeValue)
+        public void ChangeHealthValue(int healthChangeValue)
         {
             _health = Mathf.Clamp(_health + healthChangeValue, 0, _maxhealth);
 

@@ -100,7 +100,7 @@ namespace Enemies
 
             if (_timer <= 0)
             {
-                _player.PlayerHealth.OnHealthChanged(_damage);
+                _player.PlayerHealth.ChangeHealthValue(_damage);
                 _timer = _timerDefaultValue;
             }
         }

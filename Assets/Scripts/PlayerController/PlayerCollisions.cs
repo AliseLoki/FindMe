@@ -5,7 +5,7 @@ using Interactables;
 using SaveSystem;
 using SoundSystem;
 using System;
-using Trigger;
+using Triggers;
 using UIPanels;
 using UnityEngine;
 
@@ -18,6 +18,8 @@ namespace PlayerController
         [SerializeField] private Music _music;
         [SerializeField] private GameStatesSwitcher _gameStatesSwitcher;
         [SerializeField] private SaveData _saveData;
+
+        private TriggerTypes _triggerType;
 
         public event Action EnteredTheForest;
         public event Action EnteredSafeZone;
@@ -61,62 +63,67 @@ namespace PlayerController
                 _player.PlayerGold.OnGoldAmountChanged(goldCoins.CoinsValue);
             }
 
-            if (other.TryGetComponent(out ForestTrigger forestTrigger))
+            if (other.TryGetComponent(out Trigger trigger))
             {
-                _music.PlayForestMusic();
-                EnteredTheForest?.Invoke();
-            }
+                switch (trigger.TriggerType)
+                {
+                    case TriggerTypes.Forest:
+                        {
+                            _music.PlayForestMusic();
+                            EnteredTheForest?.Invoke();
+                        }
+                        break;
 
-            if (other.TryGetComponent(out GrannysHomeTrigger grannysHomeTrigger))
-            {
-                EnteredSafeZone?.Invoke();
-                _tipsViewPanel.gameObject.SetActive(true);
-                _tipsViewPanel.ShowYouAreSafeTip();
-                _music.PlayGrannysHomeMusic();
-                _gameStatesSwitcher.OnPlayerEnteredGrannysHome();
-            }
+                    case TriggerTypes.GrannysHome:
+                        {
+                            EnteredSafeZone?.Invoke();
+                            _tipsViewPanel.gameObject.SetActive(true);
+                            _tipsViewPanel.ShowYouAreSafeTip();
+                            _music.PlayGrannysHomeMusic();
+                            _gameStatesSwitcher.OnPlayerEnteredGrannysHome();
+                        }
+                        break;
 
-            if (other.TryGetComponent(out VillageZoneTrigger villageZoneTrigger))
-            {
-                _music.PlayVilageMusic();
-                EnteredSafeZone?.Invoke();
-            }
+                    case TriggerTypes.PlaceWithPentagram:
+                        {
+                            _music.PlayPentagramMusic();
+                        }
+                        break;
 
-            if (other.TryGetComponent(out SafeZoneTrigger safeZoneTrigger))
-            {
-                _music.PlaySafeZoneMusic();
-                _saveData.Save();
-                EnteredSafeZone?.Invoke();
-            }
+                    case TriggerTypes.SafeZone:
+                        {
+                            _music.PlaySafeZoneMusic();
+                            _saveData.Save();
+                            EnteredSafeZone?.Invoke();
+                        }
+                        break;
 
-            if (other.TryGetComponent(out PlaceForPentagramTrigger placeForPentagramTrigger))
-            {
-                _music.PlayPentagramMusic();
+                    case TriggerTypes.VillageZone:
+                        {
+                            _music.PlayVilageMusic();
+                            EnteredSafeZone?.Invoke();
+                        }
+                        break;
+                }
             }
         }
 
         private void OnTriggerExit(Collider other)
         {
-            if (other.TryGetComponent(out GrannysHomeTrigger grannysHomeTrigger))
+            if (other.TryGetComponent(out Trigger trigger))
             {
-                _tipsViewPanel.ShowYouAreNotSafeTip();
-                _music.PlayRoadMusic();
-            }
-
-            if (other.TryGetComponent(out VillageZoneTrigger villageZoneTrigger))
-            {
-                _tipsViewPanel.ShowYouAreNotSafeTip();
-            }
-
-            if (other.TryGetComponent(out SafeZoneTrigger safeZoneTrigger))
-            {
-                _tipsViewPanel.ShowYouAreNotSafeTip();
-                _music.PlayRoadMusic();
-            }
-
-            if (other.TryGetComponent(out PlaceForPentagramTrigger placeForPentagramTrigger))
-            {
-                _music.PlayRoadMusic();
+                switch (trigger.TriggerType)
+                {
+                    case TriggerTypes.GrannysHome:
+                    case TriggerTypes.SafeZone:
+                    case TriggerTypes.VillageZone:
+                    case TriggerTypes.PlaceWithPentagram:
+                        {
+                            _tipsViewPanel.ShowYouAreNotSafeTip();
+                            _music.PlayRoadMusic();
+                        }
+                        break;
+                }
             }
         }
     }

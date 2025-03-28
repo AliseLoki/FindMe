@@ -222,7 +222,7 @@ namespace Enemies
 
             if (CheckDistanceToPlayer() && _isAttacking)
             {
-                _player.PlayerHealth.OnHealthChanged(_damage);
+                _player.PlayerHealth.ChangeHealthValue(_damage);
             }
 
             _isAttacking = false;

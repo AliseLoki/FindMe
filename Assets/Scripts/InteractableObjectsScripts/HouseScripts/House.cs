@@ -1,8 +1,8 @@
+using Indexes;
+using LeaderboardSystem;
+using SO;
 using System.Collections;
 using UnityEngine;
-using LeaderboardSystem;
-using Indexes;
-using SO;
 
 namespace Interactables
 {

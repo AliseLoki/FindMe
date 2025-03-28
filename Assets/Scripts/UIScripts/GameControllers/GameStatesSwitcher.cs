@@ -20,7 +20,7 @@ namespace GameControllers
         private int _winSceneIndex = 2;
 
         private Witch _witch;
-        private GameState _gameState;
+        private GameStates _gameState;
 
         private float _waitingToStartTimer = 4f;
         private float _countdownToStartTimer = 5f;
@@ -57,7 +57,7 @@ namespace GameControllers
         {
             switch (_gameState)
             {
-                case GameState.WaitingToStart:
+                case GameStates.WaitingToStart:
 
                     WaitingToStartEnabled?.Invoke();
 
@@ -67,26 +67,26 @@ namespace GameControllers
 
                         if (_waitingToStartTimer < 0f)
                         {
-                            _gameState = GameState.CountdownToStart;
+                            _gameState = GameStates.CountdownToStart;
                             CountdownToStartEnabled?.Invoke();
                         }
                     }
 
                     break;
 
-                case GameState.CountdownToStart:
+                case GameStates.CountdownToStart:
 
                     _countdownToStartTimer -= Time.deltaTime;
 
                     if (_countdownToStartTimer < 0f)
                     {
-                        _gameState = GameState.EducationPlaying;
+                        _gameState = GameStates.EducationPlaying;
                         EducationPlayingEnabled?.Invoke();
                     }
 
                     break;
 
-                case GameState.EducationPlaying:
+                case GameStates.EducationPlaying:
 
                     if (_isEnteredGrannysHome)
                     {
@@ -100,34 +100,34 @@ namespace GameControllers
 
                     if (_isEducationCancelled)
                     {
-                        _gameState = GameState.GamePlaying;
+                        _gameState = GameStates.GamePlaying;
                     }
 
                     if (_isGameOver)
                     {
-                        _gameState = GameState.GameOver;
+                        _gameState = GameStates.GameOver;
                     }
 
                     break;
 
-                case GameState.GamePlaying:
+                case GameStates.GamePlaying:
 
                     _educationUI.gameObject.SetActive(false);
                     _isFirstStart = false;
 
                     if (_isGameOver)
                     {
-                        _gameState = GameState.GameOver;
+                        _gameState = GameStates.GameOver;
                     }
 
                     if (_hasWitchAppeared)
                     {
-                        _gameState = GameState.WitchAppeared;
+                        _gameState = GameStates.WitchAppeared;
                     }
 
                     break;
 
-                case GameState.WitchAppeared:
+                case GameStates.WitchAppeared:
 
                     _tipsViewPanel.ShowUseNecronomikonTip();
 
@@ -140,7 +140,7 @@ namespace GameControllers
 
                     break;
 
-                case GameState.GameOver:
+                case GameStates.GameOver:
 
                     break;
             }
@@ -152,11 +152,11 @@ namespace GameControllers
 
             if (_isFirstStart)
             {
-                _gameState = GameState.WaitingToStart;
+                _gameState = GameStates.WaitingToStart;
             }
             else
             {
-                _gameState = GameState.GamePlaying;
+                _gameState = GameStates.GamePlaying;
             }
         }
 
@@ -187,22 +187,22 @@ namespace GameControllers
 
         public bool IsGamePlaying()
         {
-            return _gameState == GameState.GamePlaying || _gameState == GameState.EducationPlaying;
+            return _gameState == GameStates.GamePlaying || _gameState == GameStates.EducationPlaying;
         }
 
         public bool IsEducationPlaying()
         {
-            return _gameState == GameState.EducationPlaying;
+            return _gameState == GameStates.EducationPlaying;
         }
 
         public bool IsGameFinished()
         {
-            return _gameState == GameState.GameOver || _gameState == GameState.WitchAppeared;
+            return _gameState == GameStates.GameOver || _gameState == GameStates.WitchAppeared;
         }
 
         public bool IsWitchAppeared()
         {
-            return _gameState == GameState.WitchAppeared;
+            return _gameState == GameStates.WitchAppeared;
         }
 
         private void OnPlayerHasDied()
@@ -220,16 +220,6 @@ namespace GameControllers
         private void OnWitchIsDead()
         {
             _witchIsDead = true;
-        }
-
-        public enum GameState
-        {
-            WaitingToStart,
-            CountdownToStart,
-            EducationPlaying,
-            GamePlaying,
-            WitchAppeared,
-            GameOver
         }
     }
 }

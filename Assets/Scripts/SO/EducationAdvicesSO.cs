@@ -12,5 +12,3 @@ namespace SO
         public List<string> Advices = new List<string>(33) { };
     }
 }
-
-

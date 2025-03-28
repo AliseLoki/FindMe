@@ -77,14 +77,7 @@ namespace DeliveryServiceHandler
         {
             if (_hasRecievedOrders)
             {
-                if (_recipiesView.gameObject.activeSelf)
-                {
-                    _recipiesView.gameObject.SetActive(false);
-                }
-                else
-                {
-                    _recipiesView.gameObject.SetActive(true);
-                }
+                _recipiesView.gameObject.SetActive(_recipiesView.gameObject.activeSelf ? false : true);
             }
         }
 

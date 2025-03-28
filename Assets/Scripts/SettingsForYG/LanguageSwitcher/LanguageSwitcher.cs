@@ -63,25 +63,24 @@ namespace SettingsForYG
         {
             if (_currentLanguage == English)
             {
-                AllSOWereGiven?.Invoke(_englishTipsSO, _englishEducationAdvicesSO, _englishFirstStartTextSO, _englishGameOverSO);
-                VillageNamesGiven?.Invoke(_englishVillageNamesSO);
-                SignSOGiven?.Invoke(_englishSignSO);
-                GameOverSO = _englishGameOverSO;
+                SetLanguage(_englishTipsSO, _englishEducationAdvicesSO, _englishFirstStartTextSO, _englishGameOverSO, _englishVillageNamesSO, _englishSignSO);
             }
             else if (_currentLanguage == Russian)
             {
-                AllSOWereGiven?.Invoke(_russianTipsSO, _russianEducationAdvicesSO, _russianFirstStartTextSO, _russianGameOverSO);
-                VillageNamesGiven?.Invoke(_russianVillageNamesSO);
-                SignSOGiven?.Invoke(_russianSignSO);
-                GameOverSO = _russianGameOverSO;
+                SetLanguage(_russianTipsSO, _russianEducationAdvicesSO, _russianFirstStartTextSO, _russianGameOverSO, _russianVillageNamesSO, _russianSignSO);
             }
             else if (_currentLanguage == Turkish)
             {
-                AllSOWereGiven?.Invoke(_turkishTipsSO, _turkishEducationAdvicesSO, _turkishFirstStartTextSO, _turkishGameOverSO);
-                VillageNamesGiven?.Invoke(_turkishVillageNamesSO);
-                SignSOGiven?.Invoke(_turkishSignSO);
-                GameOverSO = _turkishGameOverSO;
+                SetLanguage(_turkishTipsSO, _turkishEducationAdvicesSO, _turkishFirstStartTextSO, _turkishGameOverSO, _turkishVillageNamesSO, _turkishSignSO);
             }
+        }
+
+        private void SetLanguage(TipsSO tips, EducationAdvicesSO advices, FirstStartTextSO startText, GameOverSO gameOver, VillageNamesSO name, SignSO sign)
+        {
+            AllSOWereGiven?.Invoke(tips, advices, startText, gameOver);
+            VillageNamesGiven?.Invoke(name);
+            SignSOGiven?.Invoke(sign);
+            GameOverSO = gameOver;
         }
     }
 }
