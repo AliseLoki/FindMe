@@ -1,4 +1,4 @@
-using Indexes;
+using Indexies;
 using SO;
 using UnityEngine;
 

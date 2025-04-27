@@ -1,4 +1,4 @@
-using Indexes;
+using Indexies;
 using UnityEngine;
 
 namespace SO

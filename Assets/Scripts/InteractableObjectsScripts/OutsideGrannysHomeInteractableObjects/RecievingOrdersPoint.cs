@@ -1,5 +1,7 @@
 using GameControllers;
+using Indexies;
 using Interactables.Containers;
+using MainCanvas;
 using SettingsForYG;
 using SO;
 using System;
@@ -15,19 +17,12 @@ namespace Interactables
         [SerializeField] private Container _basketWithCabbages;
         [SerializeField] private Container _bowlWithCheese;
         [SerializeField] private Container _meetHanger;
-        [SerializeField] private LanguageSwitcher _languageSwitcher;
         [SerializeField] private GameStatesSwitcher _gameStatesSwitcher;
-
-        private int _woodCuterHomeIndex = 0;
-        private int _firstVillageGrushevkaIndex = 1;
-        private int _secondVillageYablonevkaIndex = 2;
-        private int _thirdVillageKorovinoIndex = 3;
-        private int _fourthVillageZelenovkaIndex = 4;
-        private int _lastVillageZarechyeIndex = 5;
+        [SerializeField] private CanvasUI _canvasUI;
 
         private bool _orderIsTaken;
 
-        private VillageNamesSO _villageNamesSO;
+        private Dictionary<NamesOfVillages, string> _namesOfVillages;
 
         public event Action<string, MenuSO> OrdersAreTaken;
 
@@ -35,15 +30,14 @@ namespace Interactables
 
         private void OnEnable()
         {
-            _languageSwitcher.VillageNamesGiven += InitVillageNamesSO;
+            _canvasUI.LanguageSetter.LanguageInitialized += OnLanguageInitialized;
             DeliveryService.AllDishesHaveBeenDelivered += OnAllDishesHaveBeenDelivered;
             Player.PlayerCollisions.WolfHasBeenKilled += OnWolfHasBeenKilled;
         }
-
         private void OnDisable()
         {
+            _canvasUI.LanguageSetter.LanguageInitialized -= OnLanguageInitialized;
             DeliveryService.AllDishesHaveBeenDelivered -= OnAllDishesHaveBeenDelivered;
-            _languageSwitcher.VillageNamesGiven -= InitVillageNamesSO;
             Player.PlayerCollisions.WolfHasBeenKilled -= OnWolfHasBeenKilled;
         }
 
@@ -61,7 +55,7 @@ namespace Interactables
         {
             int recievingOrdersSoundEffectIndex = 0;
 
-           // PlaySoundEffect(AudioClipsList[recievingOrdersSoundEffectIndex]);
+            // PlaySoundEffect(AudioClipsList[recievingOrdersSoundEffectIndex]);
 
             if (!_orderIsTaken)
             {
@@ -70,8 +64,13 @@ namespace Interactables
             }
             else
             {
-               // TipsViewPanel.ShowFirstCompleteOldOrdersTip();
+                // TipsViewPanel.ShowFirstCompleteOldOrdersTip();
             }
+        }
+
+        private void OnLanguageInitialized(AllPhrases text)
+        {
+            _namesOfVillages = text.VillagesNames;
         }
 
         private void OnWolfHasBeenKilled()
@@ -83,36 +82,31 @@ namespace Interactables
         {
             if (_gameStatesSwitcher.IsEducationPlaying())
             {
-                OrdersAreTaken?.Invoke(_villageNamesSO.Woodcutter, _allMenusSO[_woodCuterHomeIndex]);
+                OrdersAreTaken?.Invoke(_namesOfVillages[NamesOfVillages.Woodcutter], _allMenusSO[(int)NamesOfVillages.Woodcutter]);
             }
             else if (_gameStatesSwitcher.IsGamePlaying())
             {
                 if (_meetHanger.isActiveAndEnabled)
                 {
-                    OrdersAreTaken?.Invoke(_villageNamesSO.LastVillageName, _allMenusSO[_lastVillageZarechyeIndex]);
+                    OrdersAreTaken?.Invoke(_namesOfVillages[NamesOfVillages.LastVillageName], _allMenusSO[(int)NamesOfVillages.LastVillageName]);
                 }
                 else if (_bowlWithCheese.isActiveAndEnabled)
                 {
-                    OrdersAreTaken?.Invoke(_villageNamesSO.FourthVillageName, _allMenusSO[_fourthVillageZelenovkaIndex]);
+                    OrdersAreTaken?.Invoke(_namesOfVillages[NamesOfVillages.FourthVillageName], _allMenusSO[(int)NamesOfVillages.FourthVillageName]);
                 }
                 else if (_basketWithCabbages.isActiveAndEnabled)
                 {
-                    OrdersAreTaken?.Invoke(_villageNamesSO.ThirdVillageName, _allMenusSO[_thirdVillageKorovinoIndex]);
+                    OrdersAreTaken?.Invoke(_namesOfVillages[NamesOfVillages.ThirdVillageName], _allMenusSO[(int)NamesOfVillages.ThirdVillageName]);
                 }
                 else if (_barrelWithTomatoes.isActiveAndEnabled)
                 {
-                    OrdersAreTaken?.Invoke(_villageNamesSO.SecondVillageName, _allMenusSO[_secondVillageYablonevkaIndex]);
+                    OrdersAreTaken?.Invoke(_namesOfVillages[NamesOfVillages.SecondVillageName], _allMenusSO[(int)NamesOfVillages.SecondVillageName]);
                 }
                 else
                 {
-                    OrdersAreTaken?.Invoke(_villageNamesSO.FirstVillageName, _allMenusSO[_firstVillageGrushevkaIndex]);
+                    OrdersAreTaken?.Invoke(_namesOfVillages[NamesOfVillages.FirstVillageName], _allMenusSO[(int)NamesOfVillages.FirstVillageName]);
                 }
             }
-        }
-
-        private void InitVillageNamesSO(VillageNamesSO villageNamesSO)
-        {
-            _villageNamesSO = villageNamesSO;
         }
     }
 }

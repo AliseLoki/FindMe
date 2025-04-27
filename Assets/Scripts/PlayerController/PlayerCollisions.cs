@@ -1,6 +1,6 @@
 using Enemies;
 using GameControllers;
-using Indexes;
+using Indexies;
 using Interactables;
 using SaveSystem;
 using SoundSystem;

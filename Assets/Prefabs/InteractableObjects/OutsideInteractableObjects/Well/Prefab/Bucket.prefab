@@ -310,10 +310,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SelectedObject: {fileID: 0}
-  AudioClipsList: []
+  _clip: {fileID: 0}
+  _tip: 0
+  _tipsViewPanel: {fileID: 0}
   Player: {fileID: 0}
   PlayerInventory: {fileID: 0}
-  TipsViewPanel: {fileID: 0}
   DeliveryService: {fileID: 0}
   DeliveryServiceView: {fileID: 0}
+  _activableObjectType: 0
   _holdableObjects: 2

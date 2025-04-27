@@ -1,4 +1,4 @@
-namespace Indexes
+namespace Indexies
 {
     public enum VillageIndex
     {

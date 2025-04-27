@@ -1,4 +1,4 @@
-using Indexes;
+using Indexies;
 using Interactables;
 using SO;
 using System.Collections.Generic;

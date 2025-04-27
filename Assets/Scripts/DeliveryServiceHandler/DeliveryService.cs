@@ -1,4 +1,4 @@
-using Indexes;
+using Indexies;
 using Interactables;
 using Interactables.Containers;
 using SO;

@@ -1,4 +1,4 @@
-using Indexes;
+using Indexies;
 using Interactables.Containers;
 using Interactables.InventoryPrefabs;
 using SO;

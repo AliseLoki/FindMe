@@ -1,7 +1,9 @@
 using DeliveryServiceHandler;
 using GameControllers;
 using Interactables;
+using MainCanvas;
 using PlayerController;
+using SettingsForYG;
 using UIPanels;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -20,7 +22,14 @@ namespace SaveSystem
         [SerializeField] private SaveGameView _saveGameView;
         [SerializeField] private Transform _defaultPlayerPosition;
 
+        [SerializeField] private CanvasUI _canvasUI;
+
         private bool _isInitialized = false;
+
+        private void Awake()
+        {
+            // _canvasUI.LanguageSetter.SetCurrentLanguage(YandexGame.EnvironmentData.language);
+        }
 
         private void OnEnable()
         {
@@ -55,6 +64,7 @@ namespace SaveSystem
             if (_isInitialized) return;
 
             _gameStatesSwitcher.SetFirstStart(YandexGame.savesData.IsFirstStart);
+            _canvasUI.LanguageSetter.SetCurrentLanguage(YandexGame.EnvironmentData.language);
 
             if (YandexGame.savesData.IsFirstStart)
             {

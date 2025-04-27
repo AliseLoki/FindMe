@@ -1,4 +1,4 @@
-using Indexes;
+using Indexies;
 using LeaderboardSystem;
 using SO;
 using System.Collections;

@@ -162,6 +162,7 @@ Transform:
   - {fileID: 6211472877407366383}
   - {fileID: 6605311293646377225}
   - {fileID: 2054225974453516290}
+  - {fileID: 7023094906636313609}
   m_Father: {fileID: 481462605230248125}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1742296416531244765
@@ -230,6 +231,73 @@ Transform:
   - {fileID: 4707309569894590343}
   m_Father: {fileID: 4957430312976931505}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3463394729130998788
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7023094906636313609}
+  - component: {fileID: 4526979297908368493}
+  - component: {fileID: 7247078542425187070}
+  m_Layer: 0
+  m_Name: GrannysHomeTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 2147483647
+  m_IsActive: 1
+--- !u!4 &7023094906636313609
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3463394729130998788}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 47.6, y: 1, z: 341.2413}
+  m_LocalScale: {x: 4.5, y: 4.5, z: 4.57155}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 9184436824753202334}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &4526979297908368493
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3463394729130998788}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 10.000001, y: 0, z: 10}
+  m_Center: {x: 0, y: -0.17718382, z: 0}
+--- !u!114 &7247078542425187070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3463394729130998788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f59cebaac7a49054ab2aacbd4892330c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _triggerType: 2
 --- !u!1 &7928230397616900113
 GameObject:
   m_ObjectHideFlags: 0
@@ -566,6 +634,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 687625981208990816, guid: 8f213ad9914b55045a202dd7ed7440cd, type: 3}
+    - {fileID: 8354726697011287941, guid: 8f213ad9914b55045a202dd7ed7440cd, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 4970716202008694660, guid: 8f213ad9914b55045a202dd7ed7440cd, type: 3}
@@ -574,7 +643,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1695438224115962107, guid: 8f213ad9914b55045a202dd7ed7440cd, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6934115896018301629}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5825712094893725176, guid: 8f213ad9914b55045a202dd7ed7440cd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 710798215967521133}
   m_SourcePrefab: {fileID: 100100000, guid: 8f213ad9914b55045a202dd7ed7440cd, type: 3}
 --- !u!4 &1707062732981962190 stripped
 Transform:
@@ -586,6 +658,38 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4970716202008694660, guid: 8f213ad9914b55045a202dd7ed7440cd, type: 3}
   m_PrefabInstance: {fileID: 15723661054940469}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &5831821625886621901 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5825712094893725176, guid: 8f213ad9914b55045a202dd7ed7440cd, type: 3}
+  m_PrefabInstance: {fileID: 15723661054940469}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &710798215967521133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5831821625886621901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f0a62832487a5f409759ca89ee77856, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SelectedObject: {fileID: 0}
+  _clip: {fileID: 0}
+  _tip: 0
+  _tipsViewPanel: {fileID: 0}
+  Player: {fileID: 0}
+  PlayerInventory: {fileID: 0}
+  DeliveryService: {fileID: 0}
+  DeliveryServiceView: {fileID: 0}
+  _activableObjectType: 0
+  _holdableObjects: 0
+  _inventoryPrefabSO: {fileID: 0}
+  _grass: {fileID: 0}
+  _vegetable: {fileID: 0}
+  _barrelWithIngredients: {fileID: 0}
+  _well: {fileID: 0}
 --- !u!4 &7792720515110600010 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7787447866920757375, guid: 8f213ad9914b55045a202dd7ed7440cd, type: 3}

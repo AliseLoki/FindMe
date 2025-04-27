@@ -31,6 +31,10 @@ namespace MainCanvas
         [SerializeField] private LanguageSwitcher _languageSwitcher;
         [SerializeField] private GameStatesSwitcher _gameStatesSwitcher;
 
+        [SerializeField] private CanvasUILanguageSetter _languageSetter;
+
+        public CanvasUILanguageSetter LanguageSetter => _languageSetter;
+
         private bool _shouldFadeToBlack;
         private bool _shouldFadeFromBlack;
         private bool _isAdPlaying;
@@ -154,10 +158,11 @@ namespace MainCanvas
 
         private void OnAllSOWereGiven(TipsSO tipsSO, EducationAdvicesSO educationAdvicesSO, FirstStartTextSO firstStartTextSO, GameOverSO gameOverSO)
         {
-            _firstStartPanelView.InitFirstStartTextSO(firstStartTextSO);
-
-            _tipsViewPanel.InitTipsSO(tipsSO);
             _educationUI.InitEducationAdvicesSO(educationAdvicesSO);
+
+
+            _firstStartPanelView.InitFirstStartTextSO(firstStartTextSO);
+            _tipsViewPanel.InitTipsSO(tipsSO);
             _gameOverUI.InitGameOverSO(gameOverSO);
             _gameStartCountdownUI.InitText(firstStartTextSO);
             _authorisePanel.InitFirstStartTextSO(firstStartTextSO);

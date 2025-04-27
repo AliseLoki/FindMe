@@ -10,7 +10,7 @@ namespace UIPanels
         [SerializeField] private TMP_Text _tipsText;
 
         // передаем словарь из общего текстового со
-        public Dictionary<Tips, string> AllTips = new Dictionary<Tips, string>()
+        public Dictionary<Tips, string> Names = new Dictionary<Tips, string>()
     {   //inventory prefabs
         {Tips.MushroomTip,"съешь меня" },
         {Tips.SeedTip,"возьми меня и отнеси на грядку" },
@@ -35,24 +35,12 @@ namespace UIPanels
         {Tips.TomatoPatchTip,"здесь можно выращивать помидоры" },
         //patch for cabbage
         {Tips.CabbagePatchTip,"здесь можно выращивать  капусту" },
-
-
         //place for cow
         {Tips.CowPlaceTip,"Это место для коровы" },
-
-        //!!!! как то убрать скрипт место для коровы и бакет оф вотер
         //house
         {Tips.HouseTip,"это дом, нажми на дверь, чтобы доставить заказ" },
         //well
         {Tips.WellTip,"кинь в меня 10 золотых и получишь воду" },
-
-
-
-        {Tips.YouAreSafeTip,"у домика бабушки ты в безопасности, волк тебя не съест" },
-        {Tips.YouAreNotSafeTip,"не сходи с дороги, хотя дрова для печки есть только в лесу..." },
-        {Tips.ApproachObjectForInteractionTip,"если хочешь использовать предмет, надо к нему подойти" },
-        {Tips.TapTheObjectTip,"предмет выбран, нажми на него"},
-        {Tips.HandsAreFullTip,"руки заняты" },
     };
 
         private TipsSO _tipsSO;
@@ -341,7 +329,7 @@ namespace UIPanels
 
         public void ShowTip(Tips tip)
         {
-            _tipsText.text = AllTips[tip];
+            _tipsText.text = Names[tip];
         }
     }
 }
