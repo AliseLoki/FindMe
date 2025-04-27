@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a07b126a9171b749a607833948a3a79, type: 3}
+  m_Name: New Audio Effects SO
+  m_EditorClassIdentifier: 
+  CookingFood: {fileID: 0}
+  CuttingFood: {fileID: 0}
+  DeathCry: {fileID: 0}
+  GetHurt: {fileID: 0}
+  GettingFood: {fileID: 0}
+  PuttingFood: {fileID: 0}
+  GoldAppearing: {fileID: 0}
+  MixingIngredients: {fileID: 0}
+  OpeningTheDoor: {fileID: 0}
+  PayingForWater: {fileID: 0}
+  PresentFromAddOpen: {fileID: 0}
+  RecievingOrders: {fileID: 0}
+  TakingGold: {fileID: 0}
+  TakingInventoryPrefab: {fileID: 0}
+  TakingSword: {fileID: 0}
+  TakingWood: {fileID: 0}
+  ThrowingFood: {fileID: 0}
+  WateringPlants: {fileID: 0}

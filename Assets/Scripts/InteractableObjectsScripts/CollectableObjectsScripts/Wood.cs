@@ -13,7 +13,7 @@ namespace Interactables
             }
             else
             {
-                TipsViewPanel.ShowHandsAreFullTip();
+              // TipsViewPanel.ShowHandsAreFullTip();
             }
         }
     }

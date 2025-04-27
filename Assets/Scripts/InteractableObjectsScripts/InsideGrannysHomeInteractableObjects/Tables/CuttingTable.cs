@@ -34,7 +34,7 @@ namespace Interactables.Containers.Tables
 
             if (!hasMatch)
             {
-                TipsViewPanel.ShowCantCutItTip();
+              //  TipsViewPanel.ShowCantCutItTip();
             }
         }
 
@@ -44,7 +44,7 @@ namespace Interactables.Containers.Tables
             Player.PlayerHands.TakeObject(Food.gameObject, Food.ConnectedFoodSO.Type);
             ResetFoodAndFoodSO();
             IsChangedFood = false;
-            PlaySoundEffect(AudioClipsList[gettingFoodSoundEffectIndex]);
+           // PlaySoundEffect(AudioClipsList[gettingFoodSoundEffectIndex]);
         }
 
         private void CutFood(int cuttingSoundEffectIndex)
@@ -57,8 +57,8 @@ namespace Interactables.Containers.Tables
                     Destroy(PlaceForFood.GetChild(0).gameObject);
                     Food = Instantiate(FoodSO.Prefab, PlaceForFood).GetComponent<Food>();
                     IsChangedFood = true;
-                    TipsViewPanel.ShowBringToCookingTableTip();
-                    PlaySoundEffect(AudioClipsList[cuttingSoundEffectIndex]);
+                   // TipsViewPanel.ShowBringToCookingTableTip();
+                  //  PlaySoundEffect(AudioClipsList[cuttingSoundEffectIndex]);
                 }
             }
         }
@@ -74,8 +74,8 @@ namespace Interactables.Containers.Tables
                     Player.PlayerCookingModule.Food.SetInParent(PlaceForFood);
                     Player.PlayerCookingModule.GiveFood();
                     Player.PlayerHands.GiveObject();
-                    PlaySoundEffect(AudioClipsList[puttingFoodSoundEffectIndex]);
-                    TipsViewPanel.ShowCutItTip();
+                    //PlaySoundEffect(AudioClipsList[puttingFoodSoundEffectIndex]);
+                  //  TipsViewPanel.ShowCutItTip();
                     hasMatch = true;
                 }
             }

@@ -11,6 +11,8 @@ namespace SoundSystem
         [SerializeField] private Saver _saver;
         [SerializeField] private List<AudioSource> _allSoundEffectsAudioSources;
 
+        
+
         private void Awake()
         {
             _slider.value = _saver.LoadSoundEffectVolume();

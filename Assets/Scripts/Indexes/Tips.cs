@@ -2,37 +2,62 @@ using UnityEngine;
 
 public enum Tips
 {
+    //inventoryPrefabs
+    MushroomTip,
+    SeedTip,
+    SwordTip,
+    NecronomiconTip,
+    CowTip,
+    //wood
+    WoodTip,
+    //containers
+    ContainerTip,
+    GarbageContainerTip,
+    PackingPlaceTip,
+    //tables
+    CuttingTableTip,
+    CookingTableTip,
+    OvenTip,
+    //door
+    DoorTip,
+    //reciving orders point
+    RecievingOrdersPointTip,
+    //well
+    WellTip,
+    //house
+    HouseTip,
+    //patch for tomato
+    TomatoPatchTip,
+    //patch for cabbage
+    CabbagePatchTip,
+    //cow place
+    CowPlaceTip,
+
+
     YouAreSafeTip,
     YouAreNotSafeTip,
     ApproachObjectForInteractionTip,
     TapTheObjectTip,
     HandsAreFullTip,
-    ThisIsGarbageTip,
     ThrowFoodTip,
     NothingInHandsTip,
-    ThisIsCuttingTableTip,
     CutItTip,
     CantCutItTip,
-    ThisIsContainerTip,
     FoodPickedTip,
     BringToCookingTableTip,
     BringToOvenTip,
-    ThisIsOvenTip,
     NoWoodsTip,
     CantLightFireTip,
     CanUseOvenTip,
     ReadynessInstruction,
     TimeToPack,
-    ThisIsCookingTableTip,
     FirstCutItTip,
     ShowRecipesTip,
     CanCookTip,
-    ThisIsPackingPlaceTip,
     DishIsPackedTip,
     NoPlaceTip,
-    ThisIsRecievingOrdersPointTip,
     FirstCompleteOldOrdersTip,
-    ThisIsHouseTip,
+    
     IDidntOrderThisTip,
     DishIsPreparedBadly,
     PutGoldInMe,
@@ -46,8 +71,7 @@ public enum Tips
     NowYouHaveCheese,
     PutWoodInOvenTip,
     TakeBackpackTip,
-    EatMeTip,
-    TakeMeTip,
+   
     KillTheWolfTip,
     KillTheWitchTip,
     TakeRewardTip,

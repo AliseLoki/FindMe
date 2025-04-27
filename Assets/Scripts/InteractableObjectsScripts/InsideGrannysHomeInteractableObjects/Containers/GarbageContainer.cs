@@ -16,12 +16,12 @@ namespace Interactables.Containers
                 Player.PlayerCookingModule.GiveFood();
                 Player.PlayerHands.GiveObject();
 
-                PlaySoundEffect(AudioClipsList[throwingFoodSoundEffectIndex]);
-                TipsViewPanel.ShowThrowFoodTip();
+               // PlaySoundEffect(AudioClipsList[throwingFoodSoundEffectIndex]);
+               // TipsViewPanel.ShowThrowFoodTip();
             }
             else
             {
-                TipsViewPanel.ShowNothingInHandsTip();
+               // TipsViewPanel.ShowNothingInHandsTip();
             }
         }
     }

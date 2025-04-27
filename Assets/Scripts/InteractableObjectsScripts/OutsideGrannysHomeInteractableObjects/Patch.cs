@@ -32,7 +32,7 @@ namespace Interactables.Patches
                 }
 
                 Player.PlayerHands.GiveObject();
-                PlaySoundEffect(AudioClipsList[wateringSoundEffectIndex]);
+              //  PlaySoundEffect(AudioClipsList[wateringSoundEffectIndex]);
                 _well.DrawWater();
             }
             else if (Player.PlayerHands.HoldableObject == HoldableObjectType.CabbageForSeeds ||
@@ -41,7 +41,7 @@ namespace Interactables.Patches
             {
                 if (!_grass.gameObject.activeSelf && _inventoryPrefabSO == Player.PlayerHands.InventoryPrefabSO)
                 {
-                    PlaySoundEffect(AudioClipsList[throwingSoundEffect]);
+                  //  PlaySoundEffect(AudioClipsList[throwingSoundEffect]);
                     Player.PlayerHands.GiveObject();
                     _grass.gameObject.SetActive(true);
                     DisableInteract();
@@ -54,11 +54,11 @@ namespace Interactables.Patches
         {
             if (_inventoryPrefabSO.InventoryPrefab.Type == InventoryPrefabType.Cow)
             {
-                TipsViewPanel.ShowNowYouHaveCheeseTip();
+             //   TipsViewPanel.ShowNowYouHaveCheeseTip();
             }
             else if (_inventoryPrefabSO.InventoryPrefab.Type == InventoryPrefabType.CabbageForSeeds || _inventoryPrefabSO.InventoryPrefab.Type == InventoryPrefabType.TomatoForSeeds)
             {
-                TipsViewPanel.ShowNowYouHaveNewVegetableTip();
+               // TipsViewPanel.ShowNowYouHaveNewVegetableTip();
             }
         }
 
@@ -66,11 +66,11 @@ namespace Interactables.Patches
         {
             if (_inventoryPrefabSO.InventoryPrefab.Type == InventoryPrefabType.Cow)
             {
-                TipsViewPanel.ShowGiveMeAWaterTip();
+               // TipsViewPanel.ShowGiveMeAWaterTip();
             }
             else if (_inventoryPrefabSO.InventoryPrefab.Type == InventoryPrefabType.CabbageForSeeds || _inventoryPrefabSO.InventoryPrefab.Type == InventoryPrefabType.TomatoForSeeds)
             {
-                TipsViewPanel.ShowBringWaterHere();
+               // TipsViewPanel.ShowBringWaterHere();
             }
         }
     }

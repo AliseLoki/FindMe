@@ -38,14 +38,14 @@ namespace Interactables
 
                 if (deliveredDish != null)
                 {
-                    PlaySoundEffect(AudioClipsList[puttingSoundEffectIndex]);
+                   // PlaySoundEffect(AudioClipsList[puttingSoundEffectIndex]);
                     SpawnObject(_deliveredPackage.gameObject);
                     StartCoroutine(CheckReadynessOfDishe(deliveredDish));
                     _isDelivered = true;
                 }
                 else
                 {
-                    TipsViewPanel.ShowIDidntOrderThisTip();
+                  //  TipsViewPanel.ShowIDidntOrderThisTip();
                 }
             }
         }
@@ -58,13 +58,13 @@ namespace Interactables
 
             if (cookingRecipeSO.Readyness == _readyness)
             {
-                PlaySoundEffect(AudioClipsList[goldAppearSoundEffectIndex]);
+                //PlaySoundEffect(AudioClipsList[goldAppearSoundEffectIndex]);
                 SpawnObject(_goldCoins.gameObject);
                 _deliveredDishesCounter.AddDeliveredDish();
             }
             else
             {
-                TipsViewPanel.ShowDishIsPreparedBadlyTip();
+               // TipsViewPanel.ShowDishIsPreparedBadlyTip();
             }
 
             _deliveredDishesCounter.AddDeliveredDish();

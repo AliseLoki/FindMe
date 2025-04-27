@@ -22,7 +22,7 @@ namespace Interactables
         private void TeleportPlayer()
         {
             int openingDoorSoundEffectIndex = 0;
-            PlaySoundEffect(AudioClipsList[openingDoorSoundEffectIndex]);
+           // PlaySoundEffect(AudioClipsList[openingDoorSoundEffectIndex]);//
             _canvasUI.FadeToBlack();
             _cameras.SwitchCameras();
             Player.PlayerMovement.Teleport(_newPosition);

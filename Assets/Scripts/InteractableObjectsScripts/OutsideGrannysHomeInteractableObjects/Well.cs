@@ -26,16 +26,16 @@ namespace Interactables
 
                 if (_isPaid)
                 {
-                    PlaySoundEffect(AudioClipsList[payingForWaterSoundEffectIndex]);
+                   // PlaySoundEffect(AudioClipsList[payingForWaterSoundEffectIndex]);
                     Player.PlayerHands.TakeObject(_bucketOfWater.gameObject, _bucketOfWater.HoldableObjects);
-                    TipsViewPanel.ShowWaterPatchTip();
+                 //   TipsViewPanel.ShowWaterPatchTip();
                 }
 
                 _isPaid = false;
             }
             else
             {
-                TipsViewPanel.ShowHandsAreFullTip();
+              //  TipsViewPanel.ShowHandsAreFullTip();
             }
         }
 
@@ -47,7 +47,7 @@ namespace Interactables
             }
             else
             {
-                TipsViewPanel.ShowNotEnoughMoneyTip();
+              //  TipsViewPanel.ShowNotEnoughMoneyTip();
             }
         }
     }

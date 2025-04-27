@@ -1,4 +1,5 @@
 using SO;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -8,11 +9,57 @@ namespace UIPanels
     {
         [SerializeField] private TMP_Text _tipsText;
 
+        // передаем словарь из общего текстового со
+        public Dictionary<Tips, string> AllTips = new Dictionary<Tips, string>()
+    {   //inventory prefabs
+        {Tips.MushroomTip,"съешь меня" },
+        {Tips.SeedTip,"возьми меня и отнеси на грядку" },
+        {Tips.SwordTip,"возьми меня и убей волка" },
+        {Tips.NecronomiconTip,"возьми меня, я тебе пригожусь" },
+        {Tips.CowTip,"возьми меня и отнеси домой" },
+        //wood
+        {Tips.WoodTip,"эти дрова можно положить в печь" },
+        //containers
+        {Tips.ContainerTip,"здесь лежат ингредиенты для блюд" },
+        {Tips.GarbageContainerTip,"это мусорка" },
+        {Tips.PackingPlaceTip,"это место для упаковки готовых блюд" },
+        //tables
+        {Tips.CuttingTableTip,"здесь можно порезать продукты" },
+        {Tips.CookingTableTip,"это стол для готовки, здесь можно смешать ингредиенты" },
+        {Tips.OvenTip,"это печь, в ней можно готовить" },
+        //door
+        {Tips.DoorTip," это дверь" },
+        //recieving orders point
+        {Tips.RecievingOrdersPointTip,"здесь можно получить заказ" },
+        //patch for tomato
+        {Tips.TomatoPatchTip,"здесь можно выращивать помидоры" },
+        //patch for cabbage
+        {Tips.CabbagePatchTip,"здесь можно выращивать  капусту" },
+
+
+        //place for cow
+        {Tips.CowPlaceTip,"Это место для коровы" },
+
+        //!!!! как то убрать скрипт место для коровы и бакет оф вотер
+        //house
+        {Tips.HouseTip,"это дом, нажми на дверь, чтобы доставить заказ" },
+        //well
+        {Tips.WellTip,"кинь в меня 10 золотых и получишь воду" },
+
+
+
+        {Tips.YouAreSafeTip,"у домика бабушки ты в безопасности, волк тебя не съест" },
+        {Tips.YouAreNotSafeTip,"не сходи с дороги, хотя дрова для печки есть только в лесу..." },
+        {Tips.ApproachObjectForInteractionTip,"если хочешь использовать предмет, надо к нему подойти" },
+        {Tips.TapTheObjectTip,"предмет выбран, нажми на него"},
+        {Tips.HandsAreFullTip,"руки заняты" },
+    };
+
         private TipsSO _tipsSO;
 
         private void Start()
         {
-            ShowYouAreSafeTip();
+            // ShowYouAreSafeTip();
         }
 
         public void InitTipsSO(TipsSO tipsSO)
@@ -50,10 +97,6 @@ namespace UIPanels
             ShowTips(_tipsSO.UseNecronomiconTip);
         }
 
-        public void ShowKillTheWitchTip()
-        {
-            ShowTips(_tipsSO.KillTheWitchTip);
-        }
 
         public void ShowKillTheWolfTip()
         {
@@ -120,15 +163,6 @@ namespace UIPanels
             ShowTips(_tipsSO.WaterPatch);
         }
 
-        public void ShowTakeMeTip()
-        {
-            ShowTips(_tipsSO.TakeMeTip);
-        }
-
-        public void ShowEatMeTip()
-        {
-            ShowTips(_tipsSO.EatMeTip);
-        }
 
         public void ShowYouAreSafeTip()
         {
@@ -300,9 +334,14 @@ namespace UIPanels
             ShowTips(_tipsSO.DishIsPreparedBadly);
         }
 
-        private void ShowTips(string tips)
+        public void ShowTips(string tips)
         {
             _tipsText.text = tips;
+        }
+
+        public void ShowTip(Tips tip)
+        {
+            _tipsText.text = AllTips[tip];
         }
     }
 }

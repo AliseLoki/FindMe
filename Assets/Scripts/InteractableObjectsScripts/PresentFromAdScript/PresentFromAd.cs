@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UIPanels;
 using UnityEngine;
 
 namespace Interactables
@@ -20,13 +21,13 @@ namespace Interactables
         {
             int index = Random.Range(0, _presentsList.Count);
             var randomPresent = Instantiate(_presentsList[index], transform.position, Quaternion.identity);
-            randomPresent.InitLinks(TipsViewPanel, Player, PlayerInventory);
+            randomPresent.InitLinks(_tipsViewPanel, Player, PlayerInventory);
         }
 
         private void PlayEffects()
         {
             _confettiEffect.Play();
-            AudioSource.Play();
+            //AudioSource.Play();
         }
 
         private void DestroyOpenedPresent()

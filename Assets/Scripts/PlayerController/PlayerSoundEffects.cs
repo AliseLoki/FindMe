@@ -2,24 +2,18 @@ using UnityEngine;
 
 namespace PlayerController
 {
-    [RequireComponent(typeof(Player))]
     [RequireComponent(typeof(AudioSource))]
     public class PlayerSoundEffects : MonoBehaviour
     {
         [SerializeField] private AudioClip _getHurt;
         [SerializeField] private AudioClip _deathCry;
+
         [SerializeField] private AudioClip _takingWoodSoundEffect;
-        [SerializeField] private AudioClip _takingInventoryPrefabSoundEffect;
+      
         [SerializeField] private AudioClip _takingGoldSoundEffect;
 
         [SerializeField] private ParticleSystem _hitEffect;
-
-        private AudioSource _audioSource;
-
-        private void Awake()
-        {
-            _audioSource = GetComponent<AudioSource>();
-        }
+        [SerializeField] private AudioSource _audioSource;
 
         public void PlayDeathSound()
         {
@@ -37,17 +31,12 @@ namespace PlayerController
             PlaySoundEffect(_takingWoodSoundEffect);
         }
 
-        public void PlayTakingInventoryPrefabSoundEffect()
-        {
-            PlaySoundEffect(_takingInventoryPrefabSoundEffect);
-        }
-
         public void PlayTakingGoldSoundEffect()
         {
             PlaySoundEffect(_takingGoldSoundEffect);
         }
 
-        private void PlaySoundEffect(AudioClip audioClip)
+        public void PlaySoundEffect(AudioClip audioClip)
         {
             _audioSource.PlayOneShot(audioClip);
         }

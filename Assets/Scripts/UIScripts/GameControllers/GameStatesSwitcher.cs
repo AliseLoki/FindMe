@@ -1,5 +1,4 @@
 using Enemies;
-using MainCanvas;
 using PlayerController;
 using System;
 using UIPanels;

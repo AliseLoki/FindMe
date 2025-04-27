@@ -19,8 +19,6 @@ namespace PlayerController
         [SerializeField] private GameStatesSwitcher _gameStatesSwitcher;
         [SerializeField] private SaveData _saveData;
 
-        private TriggerTypes _triggerType;
-
         public event Action EnteredTheForest;
         public event Action EnteredSafeZone;
         public event Action WolfHasBeenKilled;

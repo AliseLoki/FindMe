@@ -16,16 +16,18 @@ namespace Interactables.Containers
             if (!Player.PlayerHands.HasSomethingInHands)
             {
                 var spawnedFood = Instantiate(FoodSO.Prefab).GetComponent<Food>();
+                //Food newFood = Instantiate(FoodSO.Prefab);
+
                 Player.PlayerHands.TakeObject(spawnedFood.gameObject, spawnedFood.ConnectedFoodSO.Type);
 
                 Player.PlayerCookingModule.SetFood(spawnedFood, FoodSO);
+                Player.PlayerSoundEffects.PlaySoundEffect(Clip);
+               // TipsViewPanel.ShowFoodPickedTip();
 
-                TipsViewPanel.ShowFoodPickedTip();
-                PlaySoundEffect(AudioClipsList[gettingFoodSoundEffectIndex]);
             }
             else
             {
-                TipsViewPanel.ShowHandsAreFullTip();
+               // TipsViewPanel.ShowHandsAreFullTip();
             }
         }
     }

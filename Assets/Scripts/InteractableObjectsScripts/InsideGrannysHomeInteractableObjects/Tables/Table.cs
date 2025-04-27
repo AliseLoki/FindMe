@@ -21,11 +21,11 @@ namespace Interactables.Containers.Tables
             }
             else if (FoodSO != null && Player.PlayerHands.HasSomethingInHands)
             {
-                TipsViewPanel.ShowHandsAreFullTip();
+               // TipsViewPanel.ShowHandsAreFullTip();
             }
             else if (FoodSO == null && !Player.PlayerHands.HasSomethingInHands)
             {
-                TipsViewPanel.ShowNothingInHandsTip();
+               // TipsViewPanel.ShowNothingInHandsTip();
             }
         }
 

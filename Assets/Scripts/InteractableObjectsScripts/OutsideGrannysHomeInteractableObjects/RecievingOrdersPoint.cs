@@ -61,7 +61,7 @@ namespace Interactables
         {
             int recievingOrdersSoundEffectIndex = 0;
 
-            PlaySoundEffect(AudioClipsList[recievingOrdersSoundEffectIndex]);
+           // PlaySoundEffect(AudioClipsList[recievingOrdersSoundEffectIndex]);
 
             if (!_orderIsTaken)
             {
@@ -70,7 +70,7 @@ namespace Interactables
             }
             else
             {
-                TipsViewPanel.ShowFirstCompleteOldOrdersTip();
+               // TipsViewPanel.ShowFirstCompleteOldOrdersTip();
             }
         }
 

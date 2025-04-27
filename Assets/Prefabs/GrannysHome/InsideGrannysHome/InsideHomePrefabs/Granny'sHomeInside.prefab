@@ -1378,9 +1378,17 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 4233733976452094630, guid: 0e72b35399523ea49a3f8e83d1abc3c4, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: d8f44af08e33d1244b94a5e6f4a19fce, type: 3}
     - target: {fileID: 4982961521248713539, guid: 0e72b35399523ea49a3f8e83d1abc3c4, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 5050876502058043316, guid: 0e72b35399523ea49a3f8e83d1abc3c4, type: 3}
+      propertyPath: _tip
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 5320053946726528533, guid: 0e72b35399523ea49a3f8e83d1abc3c4, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -1402,7 +1410,8 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 251090890857728689, guid: 0e72b35399523ea49a3f8e83d1abc3c4, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1424,6 +1433,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 1609030126023980304, guid: 6952d3eee35af76448b4512b58406a3b, type: 3}
+      propertyPath: _clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 4b70ec0f0afb9ac4ea7dfea07aca4eb4, type: 3}
     - target: {fileID: 3384347497578668998, guid: 6952d3eee35af76448b4512b58406a3b, type: 3}
       propertyPath: m_Name
       value: GarbageContainer
@@ -1480,7 +1493,8 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5574270907087943396, guid: 6952d3eee35af76448b4512b58406a3b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1590,11 +1604,16 @@ PrefabInstance:
       propertyPath: _activableObject
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8265790661138655124, guid: 9335178e1e1b6914d8a15055791a44cd, type: 3}
+      propertyPath: _activableObjectType
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 9082101682479975547, guid: 9335178e1e1b6914d8a15055791a44cd, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 9213576475106725861, guid: 9335178e1e1b6914d8a15055791a44cd, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1766,7 +1785,8 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 189418784344165804, guid: f37b275543dc9bc499655270e6396e28, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1794,6 +1814,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3199990712707141684, guid: c7efe7a5d5a409e4ab8f3d873f4e4a2c, type: 3}
       propertyPath: _activableObject
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3199990712707141684, guid: c7efe7a5d5a409e4ab8f3d873f4e4a2c, type: 3}
+      propertyPath: _activableObjectType
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6158300700643771444, guid: c7efe7a5d5a409e4ab8f3d873f4e4a2c, type: 3}
@@ -1860,7 +1884,8 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 387437241081590574, guid: c7efe7a5d5a409e4ab8f3d873f4e4a2c, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1954,7 +1979,8 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7305552667520994539, guid: ead79fbc1d5b58b4fa0815964ca81968, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2066,6 +2092,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6480917605693821497}
     m_Modifications:
+    - target: {fileID: 2035315202597827202, guid: 696620ff19e502741b7c3fe3f0f9e143, type: 3}
+      propertyPath: _tip
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 2778616789115966731, guid: 696620ff19e502741b7c3fe3f0f9e143, type: 3}
       propertyPath: m_Name
       value: DoorInside
@@ -2130,7 +2160,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2021157041577120552, guid: 696620ff19e502741b7c3fe3f0f9e143, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2344,6 +2375,10 @@ PrefabInstance:
       propertyPath: _activableObject
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1151147926277250491, guid: 4f77931ba75789440bc48701f683cc86, type: 3}
+      propertyPath: _activableObjectType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3135036464340293011, guid: 4f77931ba75789440bc48701f683cc86, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
@@ -2436,7 +2471,8 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7393981282277420053, guid: 4f77931ba75789440bc48701f683cc86, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2602,11 +2638,16 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 7303588816970413046, guid: 859310ea446b7ea4cb609fe068e4522f, type: 3}
+      propertyPath: _tip
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 9121443827099338443, guid: 859310ea446b7ea4cb609fe068e4522f, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4616130559842840557, guid: 859310ea446b7ea4cb609fe068e4522f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2782,11 +2823,16 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 8073386760544385055, guid: 0cd3f5db83fc6ac40b565aa930f9644d, type: 3}
+      propertyPath: _tip
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 9095539117787558489, guid: 0cd3f5db83fc6ac40b565aa930f9644d, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5728674329703307045, guid: 0cd3f5db83fc6ac40b565aa930f9644d, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2922,6 +2968,10 @@ PrefabInstance:
       propertyPath: _activableObject
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 4140195965763411207, guid: 506fd29be147f6042a89663701d67e90, type: 3}
+      propertyPath: _activableObjectType
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4550244971752050182, guid: 506fd29be147f6042a89663701d67e90, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
@@ -2994,7 +3044,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1416912186641151127, guid: 506fd29be147f6042a89663701d67e90, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

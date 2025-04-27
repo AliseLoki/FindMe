@@ -35,8 +35,7 @@ namespace PlayerController
         {
             if (_recievedInventoryPrefabsSO.Count < _maxCells)
             {
-                _player.PlayerSoundEffects.PlayTakingInventoryPrefabSoundEffect();
-
+                _player.PlayerSoundEffects.PlaySoundEffect(inventoryPrefabSO.InventoryPrefab.Clip);
                 _recievedInventoryPrefabsSO.Add(inventoryPrefabSO);
                 InventoryPrefabSORecieved?.Invoke(inventoryPrefabSO);
                 return true;

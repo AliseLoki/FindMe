@@ -7,7 +7,6 @@ using UnityEngine;
 
 namespace PlayerController
 {
-    [RequireComponent(typeof(Player))]
     public class PlayerHands : MonoBehaviour
     {
         [SerializeField] private Transform _backpack;
@@ -72,6 +71,7 @@ namespace PlayerController
         {
             _objectInHands = gameObject;
             _indexOfObjectInHands = holdableObjects;
+            
 
             if (gameObject.TryGetComponent(out InventoryPrefab inventoryPrefab))
             {

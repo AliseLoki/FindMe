@@ -1,5 +1,5 @@
 {
-    "idSave": 2703,
+    "idSave": 2725,
     "isFirstSession": false,
     "language": "ru",
     "promptDone": false,
@@ -11,16 +11,23 @@
         false
     ],
     "Gold": 0,
-    "Health": 9,
+    "Health": 8,
     "PlayerPosition": {
-        "x": 76.20711517333985,
-        "y": 0.2253803014755249,
-        "z": 316.5622863769531
+        "x": 80.01288604736328,
+        "y": 0.2078326940536499,
+        "z": 317.3170166015625
     },
-    "IsFirstStart": true,
+    "IsFirstStart": false,
     "HasBackPack": false,
     "HoldableObject": 0,
-    "InventoryList": [],
+    "InventoryList": [
+        {
+            "instanceID": 29580
+        },
+        {
+            "instanceID": 29580
+        }
+    ],
     "OrderIsTaken": false,
     "SavedOrderedDishesListJson": [],
     "SavedPackedDishesListJson": [],
