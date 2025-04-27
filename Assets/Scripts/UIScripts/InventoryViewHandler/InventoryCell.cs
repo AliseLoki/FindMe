@@ -1,5 +1,5 @@
 using GameControllers;
-using Interactables.InventoryPrefabs;
+using Indexes;
 using PlayerController;
 using SO;
 using System;
@@ -39,7 +39,7 @@ namespace InventoryViewHandler
         {
             if (!_player.PlayerHands.HasSomethingInHands)
             {
-                if (_inventoryPrefabSO.InventoryPrefab as Necronomicon)
+                if (_inventoryPrefabSO.InventoryPrefab.Type == InventoryPrefabType.Necronomicon)
                 {
                     if (!_gameStatesSwitcher.IsWitchAppeared())
                     {

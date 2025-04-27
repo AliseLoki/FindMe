@@ -169,9 +169,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7001825578003750111}
-  - component: {fileID: 3848650504862379040}
   - component: {fileID: 7483953451331543930}
   - component: {fileID: 7665775398829226327}
+  - component: {fileID: 7292311900869382469}
   m_Layer: 0
   m_Name: CabbageForSeeds
   m_TagString: Untagged
@@ -196,28 +196,6 @@ Transform:
   - {fileID: 1210812830500324256}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3848650504862379040
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8197193545629240269}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe725b9f59fa4584eb482cc381d778d4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SelectedObject: {fileID: 4557105790484998942}
-  AudioClipsList:
-  - {fileID: 8300000, guid: dd3a9bf23f1906c41820c9956b72b01f, type: 3}
-  Player: {fileID: 0}
-  PlayerInventory: {fileID: 0}
-  TipsViewPanel: {fileID: 0}
-  DeliveryService: {fileID: 0}
-  DeliveryServiceView: {fileID: 0}
-  _holdableObjects: 5
-  _inventoryPrefabSO: {fileID: 11400000, guid: 6ff46d52a5effb3409fda4deff858da3, type: 2}
 --- !u!65 &7483953451331543930
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -335,6 +313,30 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &7292311900869382469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8197193545629240269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aaaa271edbfe27d4ab93c123f40789bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SelectedObject: {fileID: 4557105790484998942}
+  AudioClipsList:
+  - {fileID: 8300000, guid: dd3a9bf23f1906c41820c9956b72b01f, type: 3}
+  Player: {fileID: 0}
+  PlayerInventory: {fileID: 0}
+  TipsViewPanel: {fileID: 0}
+  DeliveryService: {fileID: 0}
+  DeliveryServiceView: {fileID: 0}
+  _activableObjectType: 0
+  _holdableObjects: 5
+  _inventoryPrefabSO: {fileID: 11400000, guid: 6ff46d52a5effb3409fda4deff858da3, type: 2}
+  _type: 0
 --- !u!1 &8362379336615309943
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,4 +1,5 @@
 using Enemies;
+using MainCanvas;
 using PlayerController;
 using System;
 using UIPanels;
@@ -16,26 +17,23 @@ namespace GameControllers
         [SerializeField] private LastVillage _lastVillage;
         [SerializeField] private EducationUI _educationUI;
 
+      //  [SerializeField] private CanvasUI _canvasUI;
+
         private int _finalGameOverSceneIndex = 1;
         private int _winSceneIndex = 2;
 
         private Witch _witch;
         private GameStates _gameState;
 
-        private float _waitingToStartTimer = 4f;
         private float _countdownToStartTimer = 5f;
-        private float _showEducationTipsTimer = 4f;
-
+      
         private bool _isFirstStart;
-        private bool _isReadyToStart;
         private bool _isEnteredGrannysHome;
         private bool _isEducationCancelled;
         private bool _hasWitchAppeared;
         private bool _witchIsDead;
         private bool _isGameOver;
 
-        public event Action WaitingToStartEnabled;
-        public event Action CountdownToStartEnabled;
         public event Action EducationPlayingEnabled;
         public event Action EducationStarted;
 
@@ -57,45 +55,13 @@ namespace GameControllers
         {
             switch (_gameState)
             {
-                case GameStates.WaitingToStart:
-
-                    WaitingToStartEnabled?.Invoke();
-
-                    if (_isReadyToStart)
-                    {
-                        _waitingToStartTimer -= Time.deltaTime;
-
-                        if (_waitingToStartTimer < 0f)
-                        {
-                            _gameState = GameStates.CountdownToStart;
-                            CountdownToStartEnabled?.Invoke();
-                        }
-                    }
-
-                    break;
-
-                case GameStates.CountdownToStart:
-
-                    _countdownToStartTimer -= Time.deltaTime;
-
-                    if (_countdownToStartTimer < 0f)
-                    {
-                        _gameState = GameStates.EducationPlaying;
-                        EducationPlayingEnabled?.Invoke();
-                    }
-
-                    break;
-
                 case GameStates.EducationPlaying:
+
+                    EducationPlayingEnabled?.Invoke();
 
                     if (_isEnteredGrannysHome)
                     {
-                        _showEducationTipsTimer -= Time.deltaTime;
-
-                        if (_showEducationTipsTimer < 0f)
-                        {
-                            EducationStarted?.Invoke();
-                        }
+                        EducationStarted?.Invoke();
                     }
 
                     if (_isEducationCancelled)
@@ -152,7 +118,7 @@ namespace GameControllers
 
             if (_isFirstStart)
             {
-                _gameState = GameStates.WaitingToStart;
+                _gameState = GameStates.EducationPlaying;
             }
             else
             {
@@ -163,11 +129,6 @@ namespace GameControllers
         public void WitchKilledPlayer()
         {
             SceneManager.LoadScene(_finalGameOverSceneIndex);
-        }
-
-        public void OnFirstStartPanelViewButtonPressed()
-        {
-            _isReadyToStart = true;
         }
 
         public float GetCountdownToStartTimer()

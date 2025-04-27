@@ -5600,7 +5600,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 547a1801a0cfcc943a52e4b59e9002f2, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.5
+  m_Volume: 0.1848889
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -5698,7 +5698,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _pentagram: {fileID: 0}
   _witchDeathScream: {fileID: 8300000, guid: 4b84851eda4996d4f912f85bd68ba322, type: 3}
-  _witchSteps: {fileID: 0}
+  _witchSteps: {fileID: 8300000, guid: 64a04bb4fa4ed5d4eac6b0a31f91843a, type: 3}
+  _animator: {fileID: 5230588331314797134}
+  _audioSource: {fileID: -2049067297805556161}
 --- !u!1 &4046720174529258332
 GameObject:
   m_ObjectHideFlags: 0

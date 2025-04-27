@@ -3,7 +3,6 @@ using Indexes;
 using Interactables.Containers;
 using Interactables.Containers.Tables;
 using Interactables.InventoryPrefabs;
-using Interactables.InventoryPrefabs.Mushrooms;
 using Interactables.Patches;
 using PlayerController;
 using System.Collections.Generic;
@@ -89,74 +88,74 @@ namespace Interactables
 
         private void ShowTips()
         {
-            if (this as CookingTable)
-            {
-                TipsViewPanel.ShowThisIsCookingTableTip();
-            }
-            else if (this as RussianOven)
-            {
-                TipsViewPanel.ShowThisISOvenTip();
-            }
-            else if (this as CuttingTable)
-            {
-                TipsViewPanel.ShowThisIsCuttingTableTip();
-            }
-            else if (this as PackingPlace)
-            {
-                TipsViewPanel.ShowThisIsPackingPlaceTip();
-            }
-            else if (this as GarbageContainer)
-            {
-                TipsViewPanel.ShowThisIsGarbageTip();
-            }
-            else if (this as Container)
-            {
-                TipsViewPanel.ShowThisIsContainerTip();
-            }
-            else if (this as RecievingOrdersPoint)
-            {
-                TipsViewPanel.ShowThisIsRecievingOrdersPointTip();
-            }
-            else if (this as Wood)
-            {
-                TipsViewPanel.ShowPutWoodInOvenTip();
-            }
-            else if (this as House)
-            {
-                TipsViewPanel.ShowThisIsHouseTip();
-            }
-            else if (this as Mushroom)
-            {
-                TipsViewPanel.ShowEatMeTip();
-            }
-            else if (this as Necronomicon)
-            {
-                TipsViewPanel.ShowKillTheWitchTip();
-            }
-            else if (this as Sword)
-            {
-                TipsViewPanel.ShowKillTheWolfTip();
-            }
-            else if (this as Well)
-            {
-                TipsViewPanel.ShowPutGoldInMeTip();
-            }
-            else if (this as CowPlace)
-            {
-                TipsViewPanel.ShowYouCanBringACowHereTip();
-            }
-            else if (this as Patch)
-            {
-                TipsViewPanel.ShowHereYouCanGrowVegetablesTip();
-            }
-            else if (this as CabbageForSeeds || this as TomatoForSeeds)
-            {
-                TipsViewPanel.ShowTakeMeTip();
-            }
-            else
-            {
-                TipsViewPanel.ShowTapTheObjectTip();
-            }
+            //if (this as CookingTable)
+            //{
+            //    TipsViewPanel.ShowThisIsCookingTableTip();
+            //}
+            //else if (this as RussianOven)
+            //{
+            //    TipsViewPanel.ShowThisISOvenTip();
+            //}
+            //else if (this as CuttingTable)
+            //{
+            //    TipsViewPanel.ShowThisIsCuttingTableTip();
+            //}
+            //else if (this as PackingPlace)
+            //{
+            //    TipsViewPanel.ShowThisIsPackingPlaceTip();
+            //}
+            //else if (this as GarbageContainer)
+            //{
+            //    TipsViewPanel.ShowThisIsGarbageTip();
+            //}
+            //else if (this as Container)
+            //{
+            //    TipsViewPanel.ShowThisIsContainerTip();
+            //}
+            //else if (this as RecievingOrdersPoint)
+            //{
+            //    TipsViewPanel.ShowThisIsRecievingOrdersPointTip();
+            //}
+            //else if (this as Wood)
+            //{
+            //    TipsViewPanel.ShowPutWoodInOvenTip();
+            //}
+            //else if (this as House)
+            //{
+            //    TipsViewPanel.ShowThisIsHouseTip();
+            //}
+            //else if (this.HoldableObjects)
+            //{
+            //    TipsViewPanel.ShowEatMeTip();
+            //}
+            //else if (this as Necronomicon)
+            //{
+            //    TipsViewPanel.ShowKillTheWitchTip();
+            //}
+            //else if (this as Sword)
+            //{
+            //    TipsViewPanel.ShowKillTheWolfTip();
+            //}
+            //else if (this as Well)
+            //{
+            //    TipsViewPanel.ShowPutGoldInMeTip();
+            //}
+            //else if (this as CowPlace)
+            //{
+            //    TipsViewPanel.ShowYouCanBringACowHereTip();
+            //}
+            //else if (this as Patch)
+            //{
+            //    TipsViewPanel.ShowHereYouCanGrowVegetablesTip();
+            //}
+            //else if (this as CabbageForSeeds || this as TomatoForSeeds)
+            //{
+            //    TipsViewPanel.ShowTakeMeTip();
+            //}
+            //else
+            //{
+            //    TipsViewPanel.ShowTapTheObjectTip();
+            //}
         }
     }
 }

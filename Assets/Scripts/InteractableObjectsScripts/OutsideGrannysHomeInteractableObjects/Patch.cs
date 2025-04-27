@@ -52,11 +52,11 @@ namespace Interactables.Patches
 
         private void ShowYouHaveNewIngredientTips()
         {
-            if (_inventoryPrefabSO.InventoryPrefab as Cow)
+            if (_inventoryPrefabSO.InventoryPrefab.Type == InventoryPrefabType.Cow)
             {
                 TipsViewPanel.ShowNowYouHaveCheeseTip();
             }
-            else if (_inventoryPrefabSO.InventoryPrefab as CabbageForSeeds || _inventoryPrefabSO.InventoryPrefab as TomatoForSeeds)
+            else if (_inventoryPrefabSO.InventoryPrefab.Type == InventoryPrefabType.CabbageForSeeds || _inventoryPrefabSO.InventoryPrefab.Type == InventoryPrefabType.TomatoForSeeds)
             {
                 TipsViewPanel.ShowNowYouHaveNewVegetableTip();
             }
@@ -64,11 +64,11 @@ namespace Interactables.Patches
 
         private void ShowBringWaterTip()
         {
-            if (_inventoryPrefabSO.InventoryPrefab as Cow)
+            if (_inventoryPrefabSO.InventoryPrefab.Type == InventoryPrefabType.Cow)
             {
                 TipsViewPanel.ShowGiveMeAWaterTip();
             }
-            else if (_inventoryPrefabSO.InventoryPrefab as CabbageForSeeds || _inventoryPrefabSO.InventoryPrefab as TomatoForSeeds)
+            else if (_inventoryPrefabSO.InventoryPrefab.Type == InventoryPrefabType.CabbageForSeeds || _inventoryPrefabSO.InventoryPrefab.Type == InventoryPrefabType.TomatoForSeeds)
             {
                 TipsViewPanel.ShowBringWaterHere();
             }

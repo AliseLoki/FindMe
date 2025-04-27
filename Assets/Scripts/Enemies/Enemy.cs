@@ -6,10 +6,6 @@ using UnityEngine.AI;
 
 namespace Enemies
 {
-    [RequireComponent(typeof(EnemySoundEffects))]
-    [RequireComponent(typeof(Animator))]
-    [RequireComponent(typeof(AudioSource))]
-    [RequireComponent(typeof(NavMeshAgent))]
     public class Enemy : MonoBehaviour
     {
         private const string IsWalking = nameof(IsWalking);
@@ -21,7 +17,9 @@ namespace Enemies
         [SerializeField] private Player _player;
         [SerializeField] private WolfBody _wolfBody;
 
-        private EnemySoundEffects _enemySoundEffects;
+        [SerializeField] private EnemySoundEffects _enemySoundEffects;
+        [SerializeField] private NavMeshAgent _agent;
+        [SerializeField] private Animator _animator;
 
         private int _pointIndex;
         private int _damage = -1;
@@ -35,8 +33,6 @@ namespace Enemies
         private bool _isAttacking;
         private bool _isDying;
 
-        private NavMeshAgent _agent;
-        private Animator _animator;
         private List<Transform> _targetPoints = new List<Transform>();
 
         private Coroutine _patrolCoroutine;
@@ -46,9 +42,6 @@ namespace Enemies
 
         private void Awake()
         {
-            _enemySoundEffects = GetComponent<EnemySoundEffects>();
-            _agent = GetComponent<NavMeshAgent>();
-            _animator = GetComponent<Animator>();
             InitializeTargetPoints();
         }
 

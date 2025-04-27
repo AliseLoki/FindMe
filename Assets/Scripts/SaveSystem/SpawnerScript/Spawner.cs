@@ -18,7 +18,7 @@ namespace SaveSystem
         [SerializeField] private List<HoldableObjectSO> _holdableObjectsSO;
         [SerializeField] private BucketOfWater _bucketOfWater;
         [SerializeField] private Wood _wood;
-        [SerializeField] private Necronomicon _necronomicon;
+        [SerializeField] private InventoryPrefab _necronomicon;
         [SerializeField] private Witch _witch;
         [SerializeField] private Transform _placeForBucketOfWaterInWell;
         [SerializeField] private Transform _spawnPlaces;
@@ -107,6 +107,7 @@ namespace SaveSystem
                     foreach (var interactableObject in _interactableObjects)
                     {
                         var newSpawnedInteractableObject = Instantiate(interactableObject, CalculateSpawnPosition(spawnPlace), Quaternion.identity);
+
                         newSpawnedInteractableObject.InitLinks(_tipsViewPanel, _player, _player.PlayerInventory);
                     }
                 }

@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: TomatoForSeedsSO
   m_EditorClassIdentifier: 
   Sprite: {fileID: 21300000, guid: 91e8fe3de9249fc44b7bdd8050062896, type: 3}
-  InventoryPrefab: {fileID: 4007806401801285426, guid: 10acf4e6c86d10d4aaa093deea89b210, type: 3}
+  InventoryPrefab: {fileID: 4229818988627047675, guid: 10acf4e6c86d10d4aaa093deea89b210, type: 3}

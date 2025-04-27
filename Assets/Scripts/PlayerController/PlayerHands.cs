@@ -88,9 +88,10 @@ namespace PlayerController
             TakeObject(prefabInHands.gameObject, prefabInHands.HoldableObjects);
             prefabInHands.DisableCollider();
 
-            if (inventoryPrefabSO.InventoryPrefab as Cow)
+            if (inventoryPrefabSO.InventoryPrefab.Type == InventoryPrefabType.Cow)
             {
                 prefabInHands.transform.rotation = Quaternion.LookRotation(transform.right);
+                
             }
             else
             {

@@ -1,8 +1,8 @@
-using Interactables.InventoryPrefabs.Mushrooms;
 using SO;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Indexes;
 
 namespace PlayerController
 {
@@ -47,12 +47,12 @@ namespace PlayerController
 
         public void RemoveInventoryPrefabSO(InventoryPrefabSO inventoryPrefabSO)
         {
-            if (inventoryPrefabSO.InventoryPrefab as RedMushroom)
+            if (inventoryPrefabSO.InventoryPrefab.Type == InventoryPrefabType.RedMushroom)
             {
                 int mushroomHealing = 1;
                 _player.PlayerHealth.ChangeHealthValue(mushroomHealing);
             }
-            else if (inventoryPrefabSO.InventoryPrefab as GoldMushroom)
+            else if (inventoryPrefabSO.InventoryPrefab.Type == InventoryPrefabType.GoldMushroom)
             {
                 UsedSpeedBoost?.Invoke();
             }

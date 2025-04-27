@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: RedMushroomSO
   m_EditorClassIdentifier: 
   Sprite: {fileID: -2466618239913141243, guid: 7c9547730a778504c9c663fd74dadce2, type: 3}
-  InventoryPrefab: {fileID: 6134756894157038575, guid: 63bc1f7cada8ec14b94150348cebcc85, type: 3}
+  InventoryPrefab: {fileID: 2476059580091007390, guid: 63bc1f7cada8ec14b94150348cebcc85, type: 3}

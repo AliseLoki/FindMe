@@ -25,13 +25,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2708590070297161468}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6572086076363524098}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!33 &5043775835425663454
 MeshFilter:
@@ -108,13 +108,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2956557115011382465}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6572086076363524098}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &619264945581832649
 ParticleSystem:
@@ -4937,13 +4937,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8747500464017912915}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.01, y: 1.01, z: 1.01}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 6572086076363524098}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!33 &7927190575365689724
 MeshFilter:
@@ -5017,8 +5017,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6572086076363524098}
   - component: {fileID: 5988824275343169333}
-  - component: {fileID: 8847300563622022960}
   - component: {fileID: 1998121101721530702}
+  - component: {fileID: 8078754328217772924}
   m_Layer: 0
   m_Name: Necronomicon
   m_TagString: Untagged
@@ -5033,6 +5033,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9190773195639174720}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 47.719467, y: -0.004581213, z: 291.23495}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -5042,7 +5043,6 @@ Transform:
   - {fileID: 8344169401952852748}
   - {fileID: 4809247030597706582}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &5988824275343169333
 BoxCollider:
@@ -5065,23 +5065,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.1123466, y: 0.64186394, z: 1.3742676}
   m_Center: {x: -0.052865982, y: -0.17906803, z: 0.19610596}
---- !u!114 &8847300563622022960
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9190773195639174720}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 054063feacf050b4c96115e6d4769a6b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SelectedObject: {fileID: 7610600336028955210}
-  AudioClipsList:
-  - {fileID: 8300000, guid: dd3a9bf23f1906c41820c9956b72b01f, type: 3}
-  _inventoryPrefabSO: {fileID: 11400000, guid: 587a36a619ac6e64bbdefdcdd59d72ce, type: 2}
-  _boxCollider: {fileID: 5988824275343169333}
 --- !u!82 &1998121101721530702
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5178,3 +5161,26 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8078754328217772924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9190773195639174720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aaaa271edbfe27d4ab93c123f40789bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SelectedObject: {fileID: 7610600336028955210}
+  AudioClipsList: []
+  Player: {fileID: 0}
+  PlayerInventory: {fileID: 0}
+  TipsViewPanel: {fileID: 0}
+  DeliveryService: {fileID: 0}
+  DeliveryServiceView: {fileID: 0}
+  _activableObjectType: 0
+  _holdableObjects: 7
+  _inventoryPrefabSO: {fileID: 11400000, guid: 587a36a619ac6e64bbdefdcdd59d72ce, type: 2}
+  _type: 5

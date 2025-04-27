@@ -48,8 +48,6 @@ namespace MainCanvas
 
         private void OnEnable()
         {
-            _gameStatesSwitcher.WaitingToStartEnabled += OnWaitingToStartEnabled;
-            _gameStatesSwitcher.CountdownToStartEnabled += OnCountdownToStartEnabled;
             _gameStatesSwitcher.EducationPlayingEnabled += OnEducationPlayingEnabled;
             _gameStatesSwitcher.EducationStarted += OnEducationStarted;
 
@@ -58,8 +56,6 @@ namespace MainCanvas
 
         private void OnDisable()
         {
-            _gameStatesSwitcher.WaitingToStartEnabled -= OnWaitingToStartEnabled;
-            _gameStatesSwitcher.CountdownToStartEnabled -= OnCountdownToStartEnabled;
             _gameStatesSwitcher.EducationPlayingEnabled -= OnEducationPlayingEnabled;
             _gameStatesSwitcher.EducationStarted -= OnEducationStarted;
 
@@ -96,11 +92,6 @@ namespace MainCanvas
         public void OnSkipeducationButtonPressed()
         {
             _educationUI.OnSkipEducationButtonPressed();
-        }
-
-        public void OnFirstStartPanelViewButtonPressed()
-        {
-            _firstStartPanelView.OnFirstStartPanelViewButtonPressed();
         }
 
         public void OnStartEducationButtonPressed()
@@ -144,24 +135,14 @@ namespace MainCanvas
             _yandexGame._FullscreenShow();
         }
 
-        private void OnWaitingToStartEnabled()
+        private void OnEducationPlayingEnabled()
         {
             _firstStartPanelView.gameObject.SetActive(true);
         }
 
-        private void OnCountdownToStartEnabled()
-        {
-            _firstStartPanelView.gameObject.SetActive(false);
-            _gameStartCountdownUI.gameObject.SetActive(true);
-        }
-
-        private void OnEducationPlayingEnabled()
-        {
-            _gameStartCountdownUI.gameObject.SetActive(false);
-        }
-
         private void OnEducationStarted()
         {
+            _firstStartPanelView.gameObject.SetActive(false);
             _educationUI.gameObject.SetActive(true);
             _tipsViewPanel.gameObject.SetActive(false);
         }
@@ -174,6 +155,7 @@ namespace MainCanvas
         private void OnAllSOWereGiven(TipsSO tipsSO, EducationAdvicesSO educationAdvicesSO, FirstStartTextSO firstStartTextSO, GameOverSO gameOverSO)
         {
             _firstStartPanelView.InitFirstStartTextSO(firstStartTextSO);
+
             _tipsViewPanel.InitTipsSO(tipsSO);
             _educationUI.InitEducationAdvicesSO(educationAdvicesSO);
             _gameOverUI.InitGameOverSO(gameOverSO);

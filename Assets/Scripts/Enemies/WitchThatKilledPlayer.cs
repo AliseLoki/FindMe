@@ -2,18 +2,12 @@ using UnityEngine;
 
 namespace Enemies
 {
-    [RequireComponent(typeof(AudioSource))]
     public class WitchThatKilledPlayer : MonoBehaviour
     {
         private float _eatSoundTimer = 3f;
         private bool _isEating;
 
-        private AudioSource _audioSource;
-
-        private void Awake()
-        {
-            _audioSource = GetComponent<AudioSource>();
-        }
+       [SerializeField] private AudioSource _audioSource;
 
         private void FixedUpdate()
         {

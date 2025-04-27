@@ -5,8 +5,6 @@ using UnityEngine;
 
 namespace Enemies
 {
-    [RequireComponent(typeof(AudioSource))]
-    [RequireComponent(typeof(Animator))]
     public class Witch : MonoBehaviour
     {
         private const string IsAttacking = nameof(IsAttacking);
@@ -15,6 +13,9 @@ namespace Enemies
         [SerializeField] private Transform _pentagram;
         [SerializeField] private AudioClip _witchDeathScream;
         [SerializeField] private AudioClip _witchSteps;
+
+        [SerializeField] private Animator _animator;
+        [SerializeField] private AudioSource _audioSource;
 
         private Player _player;
         private Music _music;
@@ -28,17 +29,11 @@ namespace Enemies
         private bool _isAttacking;
         private bool _isDying;
 
-        private Animator _animator;
-        private AudioSource _audioSource;
-
         public event Action WitchIsDead;
 
         private void Awake()
         {
-            _animator = GetComponent<Animator>();
-
             _timer = _timerDefaultValue;
-            _audioSource = GetComponent<AudioSource>();
         }
 
         private void Start()

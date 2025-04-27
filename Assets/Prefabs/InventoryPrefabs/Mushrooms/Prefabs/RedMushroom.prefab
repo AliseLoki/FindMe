@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7072550170060775441}
   - component: {fileID: 3275910487608893728}
-  - component: {fileID: 6134756894157038575}
   - component: {fileID: 1347179406856480936}
+  - component: {fileID: 2476059580091007390}
   m_Layer: 0
   m_Name: RedMushroom
   m_TagString: Untagged
@@ -58,29 +58,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6134756894157038575
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1310555921620295459}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37a644102daeb9d42a8d755bbd83d2e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SelectedObject: {fileID: 2230062173688153651}
-  AudioClipsList:
-  - {fileID: 8300000, guid: dd3a9bf23f1906c41820c9956b72b01f, type: 3}
-  Player: {fileID: 0}
-  PlayerInventory: {fileID: 0}
-  TipsViewPanel: {fileID: 0}
-  DeliveryService: {fileID: 0}
-  DeliveryServiceView: {fileID: 0}
-  _activableObjectType: 0
-  _holdableObjects: 0
-  _inventoryPrefabSO: {fileID: 11400000, guid: a37e23891553c0140939ad07e5d6fe5d, type: 2}
 --- !u!82 &1347179406856480936
 AudioSource:
   m_ObjectHideFlags: 0
@@ -177,6 +154,30 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2476059580091007390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1310555921620295459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aaaa271edbfe27d4ab93c123f40789bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SelectedObject: {fileID: 2230062173688153651}
+  AudioClipsList:
+  - {fileID: 8300000, guid: dd3a9bf23f1906c41820c9956b72b01f, type: 3}
+  Player: {fileID: 0}
+  PlayerInventory: {fileID: 0}
+  TipsViewPanel: {fileID: 0}
+  DeliveryService: {fileID: 0}
+  DeliveryServiceView: {fileID: 0}
+  _activableObjectType: 0
+  _holdableObjects: 0
+  _inventoryPrefabSO: {fileID: 11400000, guid: a37e23891553c0140939ad07e5d6fe5d, type: 2}
+  _type: 3
 --- !u!1 &3797201157248221054
 GameObject:
   m_ObjectHideFlags: 0

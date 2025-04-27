@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: GoldMushroomSO
   m_EditorClassIdentifier: 
   Sprite: {fileID: 3254465609978572523, guid: 7c9547730a778504c9c663fd74dadce2, type: 3}
-  InventoryPrefab: {fileID: 5042949364447077059, guid: 60f13e09a0c06174e84337af29f677d7, type: 3}
+  InventoryPrefab: {fileID: 2052872803378636598, guid: 60f13e09a0c06174e84337af29f677d7, type: 3}
