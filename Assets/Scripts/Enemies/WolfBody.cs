@@ -1,4 +1,3 @@
-using UIPanels;
 using UnityEngine;
 
 namespace Enemies
@@ -7,13 +6,11 @@ namespace Enemies
     {
         [SerializeField] private ParticleSystem _meatEffect;
         [SerializeField] private EnemySoundEffects _enemySoundEffects;
-        [SerializeField] private TipsViewPanel _tipsViewPanel;
 
         private void OnMouseDown()
         {
             _enemySoundEffects.PlayCutTheWolf();
             _meatEffect.Play();
-            _tipsViewPanel.ShowYouHaveMeatNowTip();
         }
     }
 }

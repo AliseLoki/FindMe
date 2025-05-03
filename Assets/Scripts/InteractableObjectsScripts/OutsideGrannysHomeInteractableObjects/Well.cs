@@ -28,14 +28,9 @@ namespace Interactables
                 {
                    // PlaySoundEffect(AudioClipsList[payingForWaterSoundEffectIndex]);
                     Player.PlayerHands.TakeObject(_bucketOfWater.gameObject, _bucketOfWater.HoldableObjects);
-                 //   TipsViewPanel.ShowWaterPatchTip();
                 }
 
                 _isPaid = false;
-            }
-            else
-            {
-              //  TipsViewPanel.ShowHandsAreFullTip();
             }
         }
 
@@ -44,10 +39,6 @@ namespace Interactables
             if (Player.PlayerGold.CheckIfCanPay(_price))
             {
                 _isPaid = true;
-            }
-            else
-            {
-              //  TipsViewPanel.ShowNotEnoughMoneyTip();
             }
         }
     }

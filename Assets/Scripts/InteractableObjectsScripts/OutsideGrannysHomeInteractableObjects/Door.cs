@@ -11,7 +11,7 @@ namespace Interactables
 
         private void OnEnable()
         {
-            SelectedObject.Hide();
+            DisableInteract();
         }
 
         protected override void UseObject()

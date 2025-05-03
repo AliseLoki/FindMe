@@ -3,7 +3,6 @@ using Indexies;
 using PlayerController;
 using SO;
 using System;
-using UIPanels;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,20 +12,17 @@ namespace InventoryViewHandler
     public class InventoryCell : MonoBehaviour
     {
         [SerializeField] private Image _inventoryCellImage;
+        [SerializeField] private Player _player;
+        [SerializeField] private GameStatesSwitcher _gameStatesSwitcher;
 
         private InventoryPrefabSO _inventoryPrefabSO;
 
-        [SerializeField] private Player _player;
-        [SerializeField] private TipsViewPanel _tipsViewPanel;
-        [SerializeField] private GameStatesSwitcher _gameStatesSwitcher;
-
         public event Action<InventoryPrefabSO> InventoryCellButtonPressed;
 
-        public void InitLinks(Player player, GameStatesSwitcher gameStatesSwitcher, TipsViewPanel tipsViewPanel)
+        public void InitLinks(Player player, GameStatesSwitcher gameStatesSwitcher)
         {
             _player = player;
             _gameStatesSwitcher = gameStatesSwitcher;
-            _tipsViewPanel = tipsViewPanel;
         }
 
         public void SetInventoryCellImage(InventoryPrefabSO inventoryPrefabSO)
@@ -41,11 +37,7 @@ namespace InventoryViewHandler
             {
                 if (_inventoryPrefabSO.InventoryPrefab.Type == InventoryPrefabType.Necronomicon)
                 {
-                    if (!_gameStatesSwitcher.IsWitchAppeared())
-                    {
-                        _tipsViewPanel.ShowItIsNotRightTimeTip();
-                    }
-                    else
+                    if (_gameStatesSwitcher.IsWitchAppeared())
                     {
                         RemoveInventoryCell();
                     }
@@ -54,10 +46,6 @@ namespace InventoryViewHandler
                 {
                     RemoveInventoryCell();
                 }
-            }
-            else
-            {
-                _tipsViewPanel.ShowHandsAreFullTip();
             }
         }
 

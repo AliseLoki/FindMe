@@ -4,8 +4,6 @@ namespace Interactables.Containers
     {
         protected override void UseObject()
         {
-            int throwingFoodSoundEffectIndex = 0;
-
             if (Player.PlayerHands.HasSomethingInHands && Player.PlayerHands.InventoryPrefabSO == null)
             {
                 if (Player.PlayerCookingModule.CookingRecipeSO != null)
@@ -15,13 +13,8 @@ namespace Interactables.Containers
 
                 Player.PlayerCookingModule.GiveFood();
                 Player.PlayerHands.GiveObject();
+                Player.PlayerSoundEffects.PlaySoundEffect(Clip);
 
-               // PlaySoundEffect(AudioClipsList[throwingFoodSoundEffectIndex]);
-               // TipsViewPanel.ShowThrowFoodTip();
-            }
-            else
-            {
-               // TipsViewPanel.ShowNothingInHandsTip();
             }
         }
     }

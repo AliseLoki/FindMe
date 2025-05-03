@@ -6,7 +6,6 @@ using SaveSystem;
 using SoundSystem;
 using System;
 using Triggers;
-using UIPanels;
 using UnityEngine;
 
 namespace PlayerController
@@ -14,7 +13,6 @@ namespace PlayerController
     public class PlayerCollisions : MonoBehaviour
     {
         [SerializeField] private Player _player;
-        [SerializeField] private TipsViewPanel _tipsViewPanel;
         [SerializeField] private Music _music;
         [SerializeField] private GameStatesSwitcher _gameStatesSwitcher;
         [SerializeField] private SaveData _saveData;
@@ -75,8 +73,6 @@ namespace PlayerController
                     case TriggerTypes.GrannysHome:
                         {
                             EnteredSafeZone?.Invoke();
-                            _tipsViewPanel.gameObject.SetActive(true);
-                            _tipsViewPanel.ShowYouAreSafeTip();
                             _music.PlayGrannysHomeMusic();
                             _gameStatesSwitcher.OnPlayerEnteredGrannysHome();
                         }
@@ -117,7 +113,6 @@ namespace PlayerController
                     case TriggerTypes.VillageZone:
                     case TriggerTypes.PlaceWithPentagram:
                         {
-                            _tipsViewPanel.ShowYouAreNotSafeTip();
                             _music.PlayRoadMusic();
                         }
                         break;

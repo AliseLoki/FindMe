@@ -1,6 +1,5 @@
 using Indexies;
 using Interactables.Containers;
-using Interactables.InventoryPrefabs;
 using SO;
 using UnityEngine;
 
@@ -28,11 +27,10 @@ namespace Interactables.Patches
                 {
                     _vegetable.gameObject.SetActive(true);
                     _barrelWithIngredients.gameObject.SetActive(true);
-                    ShowYouHaveNewIngredientTips();
                 }
 
                 Player.PlayerHands.GiveObject();
-              //  PlaySoundEffect(AudioClipsList[wateringSoundEffectIndex]);
+                //  PlaySoundEffect(AudioClipsList[wateringSoundEffectIndex]);
                 _well.DrawWater();
             }
             else if (Player.PlayerHands.HoldableObject == HoldableObjectType.CabbageForSeeds ||
@@ -41,36 +39,11 @@ namespace Interactables.Patches
             {
                 if (!_grass.gameObject.activeSelf && _inventoryPrefabSO == Player.PlayerHands.InventoryPrefabSO)
                 {
-                  //  PlaySoundEffect(AudioClipsList[throwingSoundEffect]);
+                    //  PlaySoundEffect(AudioClipsList[throwingSoundEffect]);
                     Player.PlayerHands.GiveObject();
                     _grass.gameObject.SetActive(true);
                     DisableInteract();
-                    ShowBringWaterTip();
                 }
-            }
-        }
-
-        private void ShowYouHaveNewIngredientTips()
-        {
-            if (_inventoryPrefabSO.InventoryPrefab.Type == InventoryPrefabType.Cow)
-            {
-             //   TipsViewPanel.ShowNowYouHaveCheeseTip();
-            }
-            else if (_inventoryPrefabSO.InventoryPrefab.Type == InventoryPrefabType.CabbageForSeeds || _inventoryPrefabSO.InventoryPrefab.Type == InventoryPrefabType.TomatoForSeeds)
-            {
-               // TipsViewPanel.ShowNowYouHaveNewVegetableTip();
-            }
-        }
-
-        private void ShowBringWaterTip()
-        {
-            if (_inventoryPrefabSO.InventoryPrefab.Type == InventoryPrefabType.Cow)
-            {
-               // TipsViewPanel.ShowGiveMeAWaterTip();
-            }
-            else if (_inventoryPrefabSO.InventoryPrefab.Type == InventoryPrefabType.CabbageForSeeds || _inventoryPrefabSO.InventoryPrefab.Type == InventoryPrefabType.TomatoForSeeds)
-            {
-               // TipsViewPanel.ShowBringWaterHere();
             }
         }
     }

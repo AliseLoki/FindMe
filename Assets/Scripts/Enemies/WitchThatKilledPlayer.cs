@@ -7,7 +7,7 @@ namespace Enemies
         private float _eatSoundTimer = 3f;
         private bool _isEating;
 
-       [SerializeField] private AudioSource _audioSource;
+        [SerializeField] private AudioSource _audioSource;
 
         private void FixedUpdate()
         {

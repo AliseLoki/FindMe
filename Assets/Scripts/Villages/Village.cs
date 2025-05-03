@@ -4,7 +4,6 @@ using Interactables;
 using Interactables.InventoryPrefabs;
 using PlayerController;
 using System.Collections.Generic;
-using UIPanels;
 using UnityEngine;
 
 namespace Villages
@@ -18,7 +17,6 @@ namespace Villages
         [SerializeField] private ParticleSystem _effect;
         [SerializeField] private AudioClip _audioClip;
         [SerializeField] private DeliveryService _deliveryService;
-        [SerializeField] private TipsViewPanel _tipsViewPanel;
         [SerializeField] private Player _player;
         [SerializeField] private PlayerInventory _playerInventory;
 
@@ -55,7 +53,7 @@ namespace Villages
         public virtual void GiveReward()
         {
             var rewardForDeliveryTest = Instantiate(_inventoryPrefab, _spawnPoint.position, Quaternion.identity, _spawnPoint);
-            rewardForDeliveryTest.InitLinks(_tipsViewPanel, _player, _playerInventory);
+            rewardForDeliveryTest.InitLinks(_player, _playerInventory);
             _effect.Play();
         }
 
@@ -65,7 +63,6 @@ namespace Villages
             {
                 _audioSource.PlayOneShot(_audioClip);
                 GiveReward();
-                _tipsViewPanel.ShowTakeRewardTip();
                 _isGivenReward = true;
             }
         }

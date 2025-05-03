@@ -7,11 +7,8 @@ namespace PlayerController
     {
         [SerializeField] private AudioClip _getHurt;
         [SerializeField] private AudioClip _deathCry;
-
         [SerializeField] private AudioClip _takingWoodSoundEffect;
-      
         [SerializeField] private AudioClip _takingGoldSoundEffect;
-
         [SerializeField] private ParticleSystem _hitEffect;
         [SerializeField] private AudioSource _audioSource;
 

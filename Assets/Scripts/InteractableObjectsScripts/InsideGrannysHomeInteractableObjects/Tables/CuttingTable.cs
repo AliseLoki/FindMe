@@ -31,11 +31,6 @@ namespace Interactables.Containers.Tables
             int puttingFoodSoundEffectIndex = 2;
 
             CheckIfCanBeCut(hasMatch, puttingFoodSoundEffectIndex);
-
-            if (!hasMatch)
-            {
-              //  TipsViewPanel.ShowCantCutItTip();
-            }
         }
 
         private void TakeChoppedFood(int gettingFoodSoundEffectIndex)
@@ -57,7 +52,6 @@ namespace Interactables.Containers.Tables
                     Destroy(PlaceForFood.GetChild(0).gameObject);
                     Food = Instantiate(FoodSO.Prefab, PlaceForFood).GetComponent<Food>();
                     IsChangedFood = true;
-                   // TipsViewPanel.ShowBringToCookingTableTip();
                   //  PlaySoundEffect(AudioClipsList[cuttingSoundEffectIndex]);
                 }
             }
@@ -75,7 +69,6 @@ namespace Interactables.Containers.Tables
                     Player.PlayerCookingModule.GiveFood();
                     Player.PlayerHands.GiveObject();
                     //PlaySoundEffect(AudioClipsList[puttingFoodSoundEffectIndex]);
-                  //  TipsViewPanel.ShowCutItTip();
                     hasMatch = true;
                 }
             }

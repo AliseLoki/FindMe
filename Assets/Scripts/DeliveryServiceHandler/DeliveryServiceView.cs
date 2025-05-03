@@ -4,7 +4,6 @@ using SO;
 using System;
 using System.Collections.Generic;
 using TMPro;
-using UIPanels;
 using UnityEngine;
 
 namespace DeliveryServiceHandler
@@ -18,7 +17,6 @@ namespace DeliveryServiceHandler
         [SerializeField] private DeliveryService _deliveryService;
         [SerializeField] private CookingTable _cookingTable;
         [SerializeField] private Player _player;
-        [SerializeField] private TipsViewPanel _tipsViewPanel;
 
         private bool _hasRecievedOrders;
 
@@ -60,7 +58,7 @@ namespace DeliveryServiceHandler
             foreach (var dish in dishesList)
             {
                 var newTemplate = Instantiate(_recipeTemplate, _recipesList);
-                newTemplate.InitLinks(_player, _tipsViewPanel);
+                newTemplate.InitLinks(_player);
                 newTemplate.SetCookingRecipeSO(dish);
             }
         }
@@ -112,7 +110,7 @@ namespace DeliveryServiceHandler
                 foreach (CookingRecipeSO cookingRecipeSO in ordersToShow)
                 {
                     var newTemplate = Instantiate(_recipeTemplate, _recipesList);
-                    newTemplate.InitLinks(_player, _tipsViewPanel);
+                    newTemplate.InitLinks(_player);
                     newTemplate.SetCookingRecipeSO(cookingRecipeSO);
                 }
 

@@ -12,20 +12,13 @@ namespace GameControllers
     public class GameStatesSwitcher : MonoBehaviour
     {
         [SerializeField] private Player _player;
-        [SerializeField] private TipsViewPanel _tipsViewPanel;
         [SerializeField] private LastVillage _lastVillage;
         [SerializeField] private EducationUI _educationUI;
 
-      //  [SerializeField] private CanvasUI _canvasUI;
-
         private int _finalGameOverSceneIndex = 1;
         private int _winSceneIndex = 2;
-
         private Witch _witch;
         private GameStates _gameState;
-
-        private float _countdownToStartTimer = 5f;
-      
         private bool _isFirstStart;
         private bool _isEnteredGrannysHome;
         private bool _isEducationCancelled;
@@ -94,8 +87,6 @@ namespace GameControllers
 
                 case GameStates.WitchAppeared:
 
-                    _tipsViewPanel.ShowUseNecronomikonTip();
-
                     if (_witchIsDead)
                     {
                         YandexGame.ResetSaveProgress();
@@ -128,11 +119,6 @@ namespace GameControllers
         public void WitchKilledPlayer()
         {
             SceneManager.LoadScene(_finalGameOverSceneIndex);
-        }
-
-        public float GetCountdownToStartTimer()
-        {
-            return _countdownToStartTimer;
         }
 
         public void OnPlayerEnteredGrannysHome()

@@ -1,10 +1,8 @@
+using Indexies;
 using MainCanvas;
 using SettingsForYG;
-using SO;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
-using Indexies;
 
 namespace AllSigns
 {

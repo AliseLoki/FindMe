@@ -54,8 +54,7 @@ namespace Interactables.Containers.Tables
                 Player.PlayerCookingModule.GiveFood();
                 Player.PlayerHands.GiveObject();
                 _cookCoroutine = StartCoroutine(CookingCountDownRoutine());
-              //  TipsViewPanel.ShowReadynessInstruction();
-               // PlaySoundEffect(AudioClipsList[cookingSoundEffectIndex]);
+                // PlaySoundEffect(AudioClipsList[cookingSoundEffectIndex]);
             }
             else if (!_hasFire && Player.PlayerHands.HoldableObject == HoldableObjectType.Wood)
             {
@@ -64,11 +63,6 @@ namespace Interactables.Containers.Tables
                 DisableInteract();
                 Player.PlayerHands.GiveObject();
                 Player.PlayerSoundEffects.PlayTakingWoodSoundEffect();
-               // TipsViewPanel.ShowCanUseOvenTip();
-            }
-            else if (!_hasFire && Player.PlayerHands.HoldableObject != HoldableObjectType.Wood)
-            {
-                //TipsViewPanel.ShowNoWoodsTip();
             }
         }
 
@@ -89,8 +83,7 @@ namespace Interactables.Containers.Tables
             Player.PlayerCookingModule.SetCookingRecipeStateOfRedyness(_stateOfReadyness);
             ResetFoodAndFoodSO();
             _smokeEffect.gameObject.SetActive(false);
-           // PlaySoundEffect(AudioClipsList[gettingFoodSoundEffectIndex]);
-            //TipsViewPanel.ShowTimeToPack();
+            // PlaySoundEffect(AudioClipsList[gettingFoodSoundEffectIndex]);
         }
 
         private IEnumerator CookingCountDownRoutine()

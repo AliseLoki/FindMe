@@ -1,7 +1,6 @@
 using GameControllers;
 using PlayerController;
 using SO;
-using UIPanels;
 using UnityEngine;
 
 namespace InventoryViewHandler
@@ -13,8 +12,7 @@ namespace InventoryViewHandler
         [SerializeField] private PlayerInventory _playerInventory;
         [SerializeField] private Player _player;
         [SerializeField] private GameStatesSwitcher _gameStatesSwitcher;
-        [SerializeField] private TipsViewPanel _tipsViewPanel;
-
+      
         private void OnEnable()
         {
             _playerInventory.InventoryPrefabSORecieved += OnInventoryPrefabSORecieved;
@@ -29,7 +27,7 @@ namespace InventoryViewHandler
         private void OnInventoryPrefabSORecieved(InventoryPrefabSO inventoryPrefabSO)
         {
             var newInventoryCell = Instantiate(_inventoryCell, _listOfInventoryPrefabImages);
-            newInventoryCell.InitLinks(_player, _gameStatesSwitcher, _tipsViewPanel);
+            newInventoryCell.InitLinks(_player, _gameStatesSwitcher);
             newInventoryCell.SetInventoryCellImage(inventoryPrefabSO);
             newInventoryCell.InventoryCellButtonPressed += OnInventoryCellButtonPressed;
         }

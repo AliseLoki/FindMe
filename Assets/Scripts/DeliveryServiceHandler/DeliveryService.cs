@@ -4,7 +4,6 @@ using Interactables.Containers;
 using SO;
 using System;
 using System.Collections.Generic;
-using UIPanels;
 using UnityEngine;
 
 namespace DeliveryServiceHandler
@@ -14,7 +13,6 @@ namespace DeliveryServiceHandler
         [SerializeField] private DeliveryServiceView _deliveryServiceView;
         [SerializeField] private RecievingOrdersPoint _recievingOrdersPoint;
         [SerializeField] private PackingPlace _packingPlace;
-        [SerializeField] private TipsViewPanel _tipsViewPanel;
 
         private MenuSO _menuSO;
 
@@ -27,8 +25,6 @@ namespace DeliveryServiceHandler
         public event Action<CookingRecipeSO> DishHasBeenDelivered;
         public event Action AllDishesHaveBeenDelivered;
         public event Action TimeToGoHasCome;
-
-        public MenuSO MenuSO => _menuSO;
 
         public List<CookingRecipeSO> OrderedDishies => _orderedDishies;
 
@@ -100,10 +96,7 @@ namespace DeliveryServiceHandler
             _packedDishes.Add(cookingRecipeSO);
             _packedDishesStates.Add(cookingRecipeSO.Readyness);
 
-            if (CheckIfOrdersAndPakcedDishesAreEqual())
-            {
-                _tipsViewPanel.ShowNoPlaceTip();
-            }
+            CheckIfOrdersAndPakcedDishesAreEqual();
         }
 
         private void SortSavedDishies()
@@ -117,15 +110,12 @@ namespace DeliveryServiceHandler
             }
         }
 
-        private bool CheckIfOrdersAndPakcedDishesAreEqual()
+        private void CheckIfOrdersAndPakcedDishesAreEqual()
         {
             if (_packedDishes.Count == _orderedDishies.Count)
             {
                 TimeToGoHasCome?.Invoke();
-                return true;
             }
-
-            return false;
         }
 
         private void OnOrdersAreTaken(string destinationPointName, MenuSO menuSO)

@@ -7,7 +7,6 @@ using PlayerController;
 using SO;
 using SoundSystem;
 using System.Collections.Generic;
-using UIPanels;
 using UnityEngine;
 
 namespace SaveSystem
@@ -27,7 +26,6 @@ namespace SaveSystem
         [SerializeField] private Transform _witchSpawnPlace;
         [SerializeField] private PresentFromAd _presentFromAd;
         [SerializeField] private Player _player;
-        [SerializeField] private TipsViewPanel _tipsViewPanel;
         [SerializeField] private GameStatesSwitcher _gameStatesSwitcher;
         [SerializeField] private Music _music;
 
@@ -42,7 +40,7 @@ namespace SaveSystem
             if (_gameStatesSwitcher.IsFirstStart)
             {
                 var wood = Instantiate(_wood, _woodSpawnPlace.position, Quaternion.identity);
-                wood.InitLinks(_tipsViewPanel, _player, _player.PlayerInventory);
+                wood.InitLinks(_player, _player.PlayerInventory);
             }
         }
 
@@ -61,7 +59,7 @@ namespace SaveSystem
 
                     if (spawnedObject.TryGetComponent(out InteractableObject interactableObject))
                     {
-                        interactableObject.InitLinks(_tipsViewPanel, _player, _player.PlayerInventory);
+                        interactableObject.InitLinks(_player, _player.PlayerInventory);
                         interactableObject.DisableCollider();
                     }
                     else if (spawnedObject.TryGetComponent(out Food food))
@@ -78,7 +76,7 @@ namespace SaveSystem
         public void GiveRewardForWatchingAd()
         {
             var presentFromAd = Instantiate(_presentFromAd, _player.PlayerHands.HandlePoint.position + _offset, Quaternion.identity);
-            presentFromAd.InitLinks(_tipsViewPanel, _player, _player.PlayerInventory);
+            presentFromAd.InitLinks(_player, _player.PlayerInventory);
         }
 
         public Witch SpawnWitch()
@@ -94,7 +92,7 @@ namespace SaveSystem
             if (_player.PlayerInventory.RecievedInventoryPrefabSO.Contains(_necronomicon.ConnectedInentoryPrefabSO) == false)
             {
                 var necronomicon = Instantiate(_necronomicon, _necronomiconSpawnPlace.position, Quaternion.identity);
-                necronomicon.InitLinks(_tipsViewPanel, _player, _player.PlayerInventory);
+                necronomicon.InitLinks(_player, _player.PlayerInventory);
             }
         }
 
@@ -108,7 +106,7 @@ namespace SaveSystem
                     {
                         var newSpawnedInteractableObject = Instantiate(interactableObject, CalculateSpawnPosition(spawnPlace), Quaternion.identity);
 
-                        newSpawnedInteractableObject.InitLinks(_tipsViewPanel, _player, _player.PlayerInventory);
+                        newSpawnedInteractableObject.InitLinks(_player, _player.PlayerInventory);
                     }
                 }
 

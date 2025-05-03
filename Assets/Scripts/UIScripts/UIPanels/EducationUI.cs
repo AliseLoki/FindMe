@@ -1,55 +1,46 @@
 using GameControllers;
-using SO;
+using SettingsForYG;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace UIPanels
 {
-    [RequireComponent(typeof(TextEqualizer))]
     public class EducationUI : MonoBehaviour
     {
-        [SerializeField] private Button _startEducationButton;
         [SerializeField] private Button _skipEducationButton;
         [SerializeField] private Button _nextAdviceButton;
         [SerializeField] private Button _previousAdviceButton;
-
+        [SerializeField] private Image _textBackground;
+        [SerializeField] private TMP_Text _preEducationText;
         [SerializeField] private TMP_Text _educationText;
-        [SerializeField] private TMP_Text _startEducationButtonText;
         [SerializeField] private TMP_Text _skipEducationButtonText;
-
         [SerializeField] private GameStatesSwitcher _gamesStatesSwitcher;
+
+        private List<string> _educationTexts;
 
         private int _index = 0;
 
-        private TextEqualizer _textEqualizer;
-        private EducationAdvicesSO _educationAdvicesSO;
-
-        private void Awake()
+        public void InitEducationTexts(AllPhrases phrases)
         {
-            _textEqualizer = GetComponent<TextEqualizer>();
-            _nextAdviceButton.gameObject.SetActive(false);
-            _previousAdviceButton.gameObject.SetActive(false);
+            _educationTexts = phrases.Education;
+            _preEducationText.text = phrases.PreEducationText;
+            _skipEducationButtonText.text = phrases.SkipEducationButtonText;
+            ShowPreEducationText(true);
         }
 
-        private void Start()
+        public void ShowPreEducationText(bool isActive)
         {
-            ShowAdvice(_educationAdvicesSO.FirstEducationText);
-            InitText();
-            _textEqualizer.MakeAllTextSameSize(_startEducationButtonText, _skipEducationButtonText);
+            _preEducationText.gameObject.SetActive(isActive);
         }
 
-        public void InitEducationAdvicesSO(EducationAdvicesSO educationAdvicesSO)
+        public void ShowEducation()
         {
-            _educationAdvicesSO = educationAdvicesSO;
-        }
-
-        public void OnStartEducationButtonPressed()
-        {
-            HideButtons();
-            _nextAdviceButton.gameObject.SetActive(true);
-            _previousAdviceButton.gameObject.SetActive(true);
-            ShowAdvice(_educationAdvicesSO.Advices[0]);
+            ShowPreEducationText(false);
+            _textBackground.gameObject.SetActive(true);
+            _skipEducationButton.gameObject.SetActive(true);
+            _educationText.text = _educationTexts[_index];
         }
 
         public void OnSkipEducationButtonPressed()
@@ -59,42 +50,20 @@ namespace UIPanels
 
         public void OnNextAdviceButtonPressed()
         {
-            if (_index == _educationAdvicesSO.Advices.Count - 1)
-            {
-                _skipEducationButton.gameObject.SetActive(true);
-            }
-
-            if (_index < _educationAdvicesSO.Advices.Count - 1)
+            if (_index < _educationTexts.Count - 1)
             {
                 _index++;
-                ShowAdvice(_educationAdvicesSO.Advices[_index]);
+                _educationText.text = _educationTexts[_index];
             }
         }
 
         public void OnPreviousAdviceButtonPressed()
         {
-            if (_index < _educationAdvicesSO.Advices.Count && _index > 0)
+            if (_index < _educationTexts.Count && _index > 0)
             {
                 _index--;
-                ShowAdvice(_educationAdvicesSO.Advices[_index]);
+                _educationText.text = _educationTexts[_index];
             }
-        }
-
-        private void ShowAdvice(string advice)
-        {
-            _educationText.text = advice;
-        }
-
-        private void HideButtons()
-        {
-            _startEducationButton.gameObject.SetActive(false);
-            _skipEducationButton.gameObject.SetActive(false);
-        }
-
-        private void InitText()
-        {
-            _startEducationButtonText.text = _educationAdvicesSO.StartEducationButtonText;
-            _skipEducationButtonText.text = _educationAdvicesSO.SkipEducationButtonText;
         }
     }
 }

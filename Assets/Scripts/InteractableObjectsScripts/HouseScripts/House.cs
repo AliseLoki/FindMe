@@ -38,14 +38,10 @@ namespace Interactables
 
                 if (deliveredDish != null)
                 {
-                   // PlaySoundEffect(AudioClipsList[puttingSoundEffectIndex]);
+                    // PlaySoundEffect(AudioClipsList[puttingSoundEffectIndex]);
                     SpawnObject(_deliveredPackage.gameObject);
                     StartCoroutine(CheckReadynessOfDishe(deliveredDish));
                     _isDelivered = true;
-                }
-                else
-                {
-                  //  TipsViewPanel.ShowIDidntOrderThisTip();
                 }
             }
         }
@@ -61,10 +57,6 @@ namespace Interactables
                 //PlaySoundEffect(AudioClipsList[goldAppearSoundEffectIndex]);
                 SpawnObject(_goldCoins.gameObject);
                 _deliveredDishesCounter.AddDeliveredDish();
-            }
-            else
-            {
-               // TipsViewPanel.ShowDishIsPreparedBadlyTip();
             }
 
             _deliveredDishesCounter.AddDeliveredDish();

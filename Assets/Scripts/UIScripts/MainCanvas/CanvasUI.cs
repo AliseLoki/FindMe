@@ -2,8 +2,8 @@ using GameControllers;
 using LeaderboardSystem;
 using PlayerController;
 using SettingsForYG;
-using SO;
 using System.Collections;
+using TMPro;
 using UIPanels;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,50 +11,39 @@ using YG;
 
 namespace MainCanvas
 {
-    [RequireComponent(typeof(YandexLeaderboard))]
-    [RequireComponent(typeof(CanvasUIButtonsController))]
     public class CanvasUI : MonoBehaviour
     {
         [SerializeField] private Image _fadeScreen;
-        [SerializeField] private TipsViewPanel _tipsViewPanel;
-        [SerializeField] private FirstStartPanelView _firstStartPanelView;
-        [SerializeField] private GameStartCountdownUI _gameStartCountdownUI;
         [SerializeField] private EducationUI _educationUI;
-        [SerializeField] private GameOverUI _gameOverUI;
-        [SerializeField] private AuthorisePanel _authorisePanel;
         [SerializeField] private LeaderboardView _leaderboardView;
-        [SerializeField] private SaveGameView _saveGameView;
         [SerializeField] private GameObject _settingView;
+        [SerializeField] private GameObject _authorisePanel;
         [SerializeField] private YandexGame _yandexGame;
-        [SerializeField] private SettingsView _settingsView;
         [SerializeField] private Player _player;
-        [SerializeField] private LanguageSwitcher _languageSwitcher;
         [SerializeField] private GameStatesSwitcher _gameStatesSwitcher;
-
+        [SerializeField] private YandexLeaderboard _yandexLeaderboard;
+        [SerializeField] private TMP_Text _gameSavedText;
+        [SerializeField] private TMP_Text _needToAuthorizeText;
+        [SerializeField] private TMP_Text _restartButtonText;
+        [SerializeField] private Button _restartButton;
         [SerializeField] private CanvasUILanguageSetter _languageSetter;
-
-        public CanvasUILanguageSetter LanguageSetter => _languageSetter;
 
         private bool _shouldFadeToBlack;
         private bool _shouldFadeFromBlack;
-        private bool _isAdPlaying;
         private float _fadeSpeed = 0.5f;
 
-        private YandexLeaderboard _yandexLeaderboard;
-
-        public bool IsAdPlaying => _isAdPlaying;
+        public CanvasUILanguageSetter LanguageSetter => _languageSetter;
 
         private void Awake()
         {
-            _yandexLeaderboard = GetComponent<YandexLeaderboard>();
-            _languageSwitcher.AllSOWereGiven += OnAllSOWereGiven;
+            _languageSetter.LanguageInitialized += OnLanguageInitialized;
+            _gameSavedText.gameObject.SetActive(false);
         }
 
         private void OnEnable()
         {
             _gameStatesSwitcher.EducationPlayingEnabled += OnEducationPlayingEnabled;
             _gameStatesSwitcher.EducationStarted += OnEducationStarted;
-
             _player.PlayerHealth.PlayerHasDied += OnPlayerhasDied;
         }
 
@@ -62,10 +51,19 @@ namespace MainCanvas
         {
             _gameStatesSwitcher.EducationPlayingEnabled -= OnEducationPlayingEnabled;
             _gameStatesSwitcher.EducationStarted -= OnEducationStarted;
-
-            _languageSwitcher.AllSOWereGiven -= OnAllSOWereGiven;
-
+            _languageSetter.LanguageInitialized -= OnLanguageInitialized;
             _player.PlayerHealth.PlayerHasDied -= OnPlayerhasDied;
+        }
+
+        public void OnAuthorizeButtonPressed()
+        {
+            YandexGame.AuthDialog();
+        }
+
+        public void ShowSavedScreen()
+        {
+            _gameSavedText.gameObject.SetActive(true);
+            StartCoroutine(Timer());
         }
 
         public void ShowRewardedVideoAd()
@@ -98,23 +96,6 @@ namespace MainCanvas
             _educationUI.OnSkipEducationButtonPressed();
         }
 
-        public void OnStartEducationButtonPressed()
-        {
-            _educationUI.OnStartEducationButtonPressed();
-        }
-
-        public void ShowOrHideTipsPanelView()
-        {
-            if (_tipsViewPanel.gameObject.activeSelf)
-            {
-                _tipsViewPanel.gameObject.SetActive(false);
-            }
-            else
-            {
-                _tipsViewPanel.gameObject.SetActive(true);
-            }
-        }
-
         public void OnSettingViewButtonPressed()
         {
             _settingView.gameObject.SetActive(true);
@@ -139,37 +120,28 @@ namespace MainCanvas
             _yandexGame._FullscreenShow();
         }
 
+        private void OnLanguageInitialized(AllPhrases phrases)
+        {
+            _educationUI.InitEducationTexts(phrases);
+            _yandexLeaderboard.InitLanguage(phrases);
+            _gameSavedText.text = phrases.SaveGameText;
+            _needToAuthorizeText.text = phrases.NeedToAuthorizeText;
+            _restartButtonText.text = phrases.Restart;
+        }
+
         private void OnEducationPlayingEnabled()
         {
-            _firstStartPanelView.gameObject.SetActive(true);
+            _educationUI.gameObject.SetActive(true);
         }
 
         private void OnEducationStarted()
         {
-            _firstStartPanelView.gameObject.SetActive(false);
-            _educationUI.gameObject.SetActive(true);
-            _tipsViewPanel.gameObject.SetActive(false);
+            _educationUI.ShowEducation();
         }
 
         private void OnPlayerhasDied()
         {
-            _gameOverUI.gameObject.SetActive(true);
-        }
-
-        private void OnAllSOWereGiven(TipsSO tipsSO, EducationAdvicesSO educationAdvicesSO, FirstStartTextSO firstStartTextSO, GameOverSO gameOverSO)
-        {
-            _educationUI.InitEducationAdvicesSO(educationAdvicesSO);
-
-
-            _firstStartPanelView.InitFirstStartTextSO(firstStartTextSO);
-            _tipsViewPanel.InitTipsSO(tipsSO);
-            _gameOverUI.InitGameOverSO(gameOverSO);
-            _gameStartCountdownUI.InitText(firstStartTextSO);
-            _authorisePanel.InitFirstStartTextSO(firstStartTextSO);
-            _leaderboardView.InitFirstStartTextSO(firstStartTextSO);
-            _yandexLeaderboard.InitFirstStartTextSO(firstStartTextSO);
-            _saveGameView.InitFirstStartTextSO(firstStartTextSO);
-            _settingsView.InitButtonText(firstStartTextSO.FullRestartButtonText);
+            _restartButton.gameObject.SetActive(true);
         }
 
         private IEnumerator FadeRoutine()
@@ -204,6 +176,14 @@ namespace MainCanvas
 
             StopCoroutine(FadeRoutine());
             StopCoroutine(LightRoutine());
+        }
+
+        private IEnumerator Timer()
+        {
+            int pause = 2;
+            yield return new WaitForSeconds(pause);
+            _gameSavedText.gameObject.SetActive(false);
+            StopCoroutine(Timer());
         }
     }
 }

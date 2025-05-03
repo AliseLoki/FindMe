@@ -12,20 +12,15 @@ namespace MainCanvas
     {
         private const string LeaderboardName = "LeaderboardPlayers";
 
-        [SerializeField] private Button _startEducationButton;
         [SerializeField] private Button _skipEducationButton;
-
         [SerializeField] private Button _fullRestartButton;
-
         [SerializeField] private GameStatesSwitcher _gameStatesSwitcher;
         [SerializeField] private SaveData _saveData;
-
         [SerializeField] private YandexLeaderboard _yandexLeaderboard;
         [SerializeField] private CanvasUI _canvasUI;
 
         private void Awake()
         {
-            _startEducationButton.onClick.AddListener(_canvasUI.OnStartEducationButtonPressed);
             _skipEducationButton.onClick.AddListener(_canvasUI.OnSkipeducationButtonPressed);
         }
 

@@ -8105,7 +8105,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0da4d12d39045d8448799b0e2691f8ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _deliveryService: {fileID: 0}
   _playerCookingModule: {fileID: 2362396880732233892}
   _playerInventory: {fileID: 1454888812883923895}
   _playerMovement: {fileID: 7923249738274056497}
@@ -8115,7 +8114,7 @@ MonoBehaviour:
   _playerRagdollController: {fileID: 6081364691475473300}
   _playerHealth: {fileID: 6314296932578260221}
   _playerGold: {fileID: 1816945819783660720}
-  _playerCollisions: {fileID: 0}
+  _playerCollisions: {fileID: 807253773857444312}
 --- !u!114 &7923249738274056497
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8135,6 +8134,7 @@ MonoBehaviour:
   _player: {fileID: 6987597894183563658}
   _gameStatesSwitcher: {fileID: 0}
   _lastVillage: {fileID: 0}
+  _navMeshAgent: {fileID: 2778799236699349008}
 --- !u!114 &807253773857444312
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8148,7 +8148,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 6987597894183563658}
-  _tipsViewPanel: {fileID: 0}
   _music: {fileID: 0}
   _gameStatesSwitcher: {fileID: 0}
   _saveData: {fileID: 0}
@@ -8255,6 +8254,7 @@ MonoBehaviour:
   _backpack: {fileID: 7095681473806640549}
   _handlePoint: {fileID: 6810968064220394174}
   _spawner: {fileID: 0}
+  _deliveryService: {fileID: 0}
 --- !u!114 &-1589223940850031321
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8270,9 +8270,9 @@ MonoBehaviour:
   _getHurt: {fileID: 8300000, guid: b219a019945d83a40ba05392bb52b1ca, type: 3}
   _deathCry: {fileID: 8300000, guid: eeb95c0d6bce82843be1b3d0b733d5fa, type: 3}
   _takingWoodSoundEffect: {fileID: 8300000, guid: 5454c8e9bd09fb54aab5081d6c950770, type: 3}
-  _takingInventoryPrefabSoundEffect: {fileID: 8300000, guid: dd3a9bf23f1906c41820c9956b72b01f, type: 3}
   _takingGoldSoundEffect: {fileID: 8300000, guid: 0e89b476d4715fd42935e9900eedb033, type: 3}
   _hitEffect: {fileID: 4912903047691596526}
+  _audioSource: {fileID: 8183379607181469130}
 --- !u!114 &6314296932578260221
 MonoBehaviour:
   m_ObjectHideFlags: 0

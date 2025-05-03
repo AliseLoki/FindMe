@@ -1,5 +1,3 @@
-using UIPanels;
-
 namespace Interactables
 {
     public class Wood : InteractableObject
@@ -10,10 +8,6 @@ namespace Interactables
             {
                 DisableCollider();
                 Player.PlayerHands.TakeObject(this.gameObject, HoldableObjects);
-            }
-            else
-            {
-              // TipsViewPanel.ShowHandsAreFullTip();
             }
         }
     }

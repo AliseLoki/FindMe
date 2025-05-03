@@ -7,35 +7,24 @@ using Villages;
 
 namespace PlayerController
 {
-    [RequireComponent(typeof(Player))]
-    [RequireComponent(typeof(NavMeshAgent))]
-    [RequireComponent(typeof(Rigidbody))]
     public class PlayerMovement : MonoBehaviour
     {
         private const string Horizontal = nameof(Horizontal);
         private const string Vertical = nameof(Vertical);
 
         [SerializeField] private int _speedBoostDuration = 5;
-
         [SerializeField] private float _moveSpeed = 5f;
         [SerializeField] private float _boostSpeed = 10f;
         [SerializeField] private float _rotateSpeed = 5f;
-
         [SerializeField] private Player _player;
         [SerializeField] private GameStatesSwitcher _gameStatesSwitcher;
         [SerializeField] private LastVillage _lastVillage;
-
-        private NavMeshAgent _navMeshAgent;
+        [SerializeField] private NavMeshAgent _navMeshAgent;
 
         private bool _isWalking;
         private bool _isRunning;
 
         public bool IsWalking => _isWalking;
-
-        private void Awake()
-        {
-            _navMeshAgent = GetComponent<NavMeshAgent>();
-        }
 
         private void OnEnable()
         {

@@ -5,76 +5,85 @@ namespace SettingsForYG
 {
     public class Russian : AllPhrases
     {
-        public static List<string> FirstSign = new List<string>()
+        private const string Bridge = "мост";
+        private const string Home = "хижина";
+        private const string Woodcutter = "дровосек";
+        private const string PearVillage = "грушевка";
+        private const string AppleVillage = "яблоневка";
+        private const string CowVillage = "коровино";
+        private const string GreenVillage = "зеленовка";
+        private const string RiverVillage = "заречье";
+
+        private static List<string> FirstSign = new List<string>()
         {
-          {"мост" }, {"хижина"},{"дровосек" }, {"грушевка"},
+          { Bridge }, { Home }, { Woodcutter }, { PearVillage },
         };
 
-        public static List<string> SecondSign = new List<string>()
+        private static List<string> SecondSign = new List<string>()
         {
-          {"мост" },{"дровосек"},{"хижина"},{"грушевка"}
+          { Bridge }, { Woodcutter }, { Home }, { PearVillage }
         };
 
-        public static List<string> ThirdSign = new List<string>()
+        private static List<string> ThirdSign = new List<string>()
         {
-          {"хижина" },{"мост"},{"дровосек"},{"грушевка"}
+          { Home }, { Bridge }, { Woodcutter }, { PearVillage }
         };
 
-        public static List<string> FourthSign = new List<string>()
+        private static List<string> FourthSign = new List<string>()
         {
-          { "дровосек" }, { "грушевка" }, { "хижина" }, { "яблоневка" }
+          { Woodcutter }, { PearVillage }, { Home }, { AppleVillage }
         };
 
-        public static List<string> FifthSign = new List<string>()
+        private static List<string> FifthSign = new List<string>()
         {
-          { "мост" }, { "яблоневка" }, { "хижина" }, { "грушевка" }
+          { Bridge }, { AppleVillage }, { Home }, { PearVillage }
         };
 
-        public static List<string> SixthSign = new List<string>()
+        private static List<string> SixthSign = new List<string>()
         {
-          { "заречье" }, { "мост" }, { "зеленовка" }, { "коровино" }
+          { RiverVillage }, { Bridge }, { GreenVillage }, { CowVillage }
         };
 
-        public static List<string> SeventhSign = new List<string>()
+        private static List<string> SeventhSign = new List<string>()
         {
-          { "коровино" }, { "мост" }, { "зеленовка" }, { "заречье" }
+          { CowVillage }, { Bridge }, { GreenVillage }, { RiverVillage }
         };
 
-        public static List<string> EighthSign = new List<string>()
+        private static List<string> EighthSign = new List<string>()
         {
-          {"мост" },{"коровино"},{"зеленовка"},{"заречье"}
+          { Bridge },{ CowVillage },{ GreenVillage },{ RiverVillage }
         };
 
-        public static List<string> NinthSign = new List<string>()
+        private static List<string> NinthSign = new List<string>()
         {
-          { "коровино" }, { "зеленовка" }, { "заречье" }, { "мост" }
+          { CowVillage }, { GreenVillage }, { RiverVillage }, { Bridge }
         };
 
-        public static List<string> TenthSign = new List<string>()
+        private static List<string> TenthSign = new List<string>()
         {
-          { "зеленовка" }, { "мост" }, { "грушевка" }, { "яблоневка" }
+          { GreenVillage }, { Bridge }, { PearVillage }, { AppleVillage }
         };
 
-        public static List<string> EleventhSign = new List<string>()
+        private static List<string> EleventhSign = new List<string>()
         {
-          { "зеленовка" }, { "мост" }, { "заречье" }, { "яблоневка" }
+          { GreenVillage }, { Bridge }, { RiverVillage }, { AppleVillage }
         };
 
-        public static List<string> TwelfthSign = new List<string>()
+        private static List<string> TwelfthSign = new List<string>()
         {
-          { "хижина" }, { "заречье" }, { "грушевка" }, { "яблоневка" }
+          { Home }, { RiverVillage }, { PearVillage }, { AppleVillage }
         };
 
         public Russian()
         {
             VillagesNames = new()
          {
-            {NamesOfVillages.Woodcutter,"дровосек"},
-            {NamesOfVillages.FirstVillageName,"грушевка"},
-            {NamesOfVillages.SecondVillageName,"яблоневка"},
-            {NamesOfVillages.ThirdVillageName,"коровино"},
-            {NamesOfVillages.FourthVillageName,"зеленовка"},
-            {NamesOfVillages.LastVillageName,"заречье"}
+            {NamesOfVillages.Woodcutter, Woodcutter},
+            {NamesOfVillages.FirstVillageName, PearVillage},
+            {NamesOfVillages.SecondVillageName, AppleVillage},
+            {NamesOfVillages.ThirdVillageName, CowVillage},
+            {NamesOfVillages.FourthVillageName, GreenVillage},
+            {NamesOfVillages.LastVillageName, RiverVillage}
                                                         };
             AllSignsText = new()
             {
@@ -91,7 +100,7 @@ namespace SettingsForYG
                 {SignsNumbers.Eleventh,EleventhSign},
                 {SignsNumbers.Twelfth,TwelfthSign},
             };
-            Advices = new()
+            Education = new()
     {
         {" чтобы перейти к следующему совету, нажми зеленую стрелочку под текстом" },
         {"ты можешь менять вид камеры и громкость, нажми на черную шестеренку справа" },
@@ -127,6 +136,16 @@ namespace SettingsForYG
         {"теперь ты сам по себе, готовь блюда, доставляй их в деревни" },
         {"... но никогда не забывай о волке" }
     };
+
+            PreEducationText = "беги вперед к дому бабушки, используй кнопки ЦФЫВ для передвижения, колесико мышки для приближения камеры";
+            SkipEducationButtonText = "пропустить обучение";
+            Restart = "рестарт";
+            SaveGameText = "игра сохранена";
+            NeedToAuthorizeText = "для просмотра таблицы игроков нужно авторизоваться";
+            LeaderbordName = " лучшие игроки";
+            Name = "имя";
+            AnonymousName = "аноним";
+            DeliveredDishesName = "доставлено блюд";
         }
     }
 }

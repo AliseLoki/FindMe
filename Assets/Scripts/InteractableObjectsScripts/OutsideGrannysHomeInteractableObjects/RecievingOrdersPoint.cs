@@ -62,10 +62,6 @@ namespace Interactables
                 ChooseMenuSO();
                 _orderIsTaken = true;
             }
-            else
-            {
-                // TipsViewPanel.ShowFirstCompleteOldOrdersTip();
-            }
         }
 
         private void OnLanguageInitialized(AllPhrases text)

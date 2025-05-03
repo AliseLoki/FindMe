@@ -19,14 +19,6 @@ namespace Interactables.Containers.Tables
             {
                 DoSomething();
             }
-            else if (FoodSO != null && Player.PlayerHands.HasSomethingInHands)
-            {
-               // TipsViewPanel.ShowHandsAreFullTip();
-            }
-            else if (FoodSO == null && !Player.PlayerHands.HasSomethingInHands)
-            {
-               // TipsViewPanel.ShowNothingInHandsTip();
-            }
         }
 
         protected abstract void DoSomething();

@@ -1,5 +1,6 @@
-using SO;
+using SettingsForYG;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using YG;
 using YG.Utils.LB;
@@ -9,16 +10,13 @@ namespace LeaderboardSystem
     public class YandexLeaderboard : MonoBehaviour
     {
         [SerializeField] private LeaderboardView _leaderboardView;
+        [SerializeField] private TMP_Text _leaderboardName;
+        [SerializeField] private TMP_Text _playerNameText;
+        [SerializeField] private TMP_Text _playerScoreText;
 
-        private string AnonymousName;
+        private string _anonymousName;
         private LBData _lb;
-        private FirstStartTextSO _firstStartTextSO;
         private List<LeaderboardPlayer> _leaderboardPlayers = new();
-
-        private void Start()
-        {
-            InitAnonymousTranslation();
-        }
 
         private void OnEnable()
         {
@@ -30,9 +28,14 @@ namespace LeaderboardSystem
             YandexGame.onGetLeaderboard -= OnGetLeaderboard;
         }
 
-        public void InitFirstStartTextSO(FirstStartTextSO firstStartTextSO)
+        public void InitLanguage(AllPhrases phrases)
         {
-            _firstStartTextSO = firstStartTextSO;
+            _anonymousName = phrases.AnonymousName;
+            _leaderboardName.text = phrases.LeaderbordName;
+            _playerNameText.text = phrases.Name;
+            _playerScoreText.text = phrases.DeliveredDishesName;
+
+            MakeAllTextSameSize(_playerNameText, _playerScoreText);
         }
 
         public void Fill()
@@ -53,7 +56,7 @@ namespace LeaderboardSystem
 
                 if (string.IsNullOrEmpty(name))
                 {
-                    name = AnonymousName;
+                    name = _anonymousName;
                 }
             }
 
@@ -65,9 +68,16 @@ namespace LeaderboardSystem
             _lb = lb;
         }
 
-        private void InitAnonymousTranslation()
+        private void MakeAllTextSameSize(TMP_Text firstText, TMP_Text secondText)
         {
-            AnonymousName = _firstStartTextSO.AnonymousName;
+            if (firstText.fontSize > secondText.fontSize)
+            {
+                firstText.fontSize = secondText.fontSize;
+            }
+            else
+            {
+                secondText.fontSize = firstText.fontSize;
+            }
         }
     }
 }

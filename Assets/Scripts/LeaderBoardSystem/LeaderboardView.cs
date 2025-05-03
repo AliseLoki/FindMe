@@ -1,39 +1,14 @@
-using SO;
 using System.Collections.Generic;
-using TMPro;
-using UIPanels;
 using UnityEngine;
 
 namespace LeaderboardSystem
 {
-    [RequireComponent(typeof(TextEqualizer))]
     public class LeaderboardView : MonoBehaviour
     {
         [SerializeField] private Transform _container;
         [SerializeField] private LeaderboardElement _leaderboardElementPrefab;
-        [SerializeField] private TMP_Text _leaderboardName;
-        [SerializeField] private TMP_Text _playerNameText;
-        [SerializeField] private TMP_Text _playerScoreText;
 
-        private FirstStartTextSO _firstStartTextSO;
-        private TextEqualizer _textEqualizer;
         private List<LeaderboardElement> _spawnedElements = new();
-
-        private void Awake()
-        {
-            _textEqualizer = GetComponent<TextEqualizer>();
-        }
-
-        private void Start()
-        {
-            InitButtonText();
-            _textEqualizer.MakeAllTextSameSize(_playerNameText, _playerScoreText);
-        }
-
-        public void InitFirstStartTextSO(FirstStartTextSO firstStartTextSO)
-        {
-            _firstStartTextSO = firstStartTextSO;
-        }
 
         public void ConstructLeaderboard(List<LeaderboardPlayer> leaderboardPlayers)
         {
@@ -65,13 +40,6 @@ namespace LeaderboardSystem
             {
                 Destroy(item.gameObject);
             }
-        }
-
-        private void InitButtonText()
-        {
-            _leaderboardName.text = _firstStartTextSO.LeaderbordName;
-            _playerNameText.text = _firstStartTextSO.Name;
-            _playerScoreText.text = _firstStartTextSO.DeliveredDishesName;
         }
     }
 }

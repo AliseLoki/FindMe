@@ -11,12 +11,10 @@ namespace PlayerController
     {
         [SerializeField] private Transform _backpack;
         [SerializeField] private Transform _handlePoint;
-
         [SerializeField] private Spawner _spawner;
         [SerializeField] private DeliveryService _deliveryService;
 
         private bool _hasBackPack;
-
         private InventoryPrefabSO _inventoryPrefabSO;
         private HoldableObjectType _indexOfObjectInHands;
         private GameObject _objectInHands;
@@ -26,8 +24,6 @@ namespace PlayerController
         public bool HasSomethingInHands => _objectInHands != null;
 
         public bool HasBackPack => _hasBackPack;
-
-        public GameObject ObjectInHands => _objectInHands;
 
         public HoldableObjectType HoldableObject => _indexOfObjectInHands;
 

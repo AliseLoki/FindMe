@@ -8,13 +8,9 @@ namespace SO
         public AudioClip BurningFire;
         public AudioClip CookingFood;
         public AudioClip CuttingFood;
-
         public AudioClip DeathCry;
         public AudioClip GetHurt;
-
-
         public AudioClip PuttingFood;
-
         public AudioClip GoldAppearing;
         public AudioClip MixingIngredients;
         public AudioClip OpeningTheDoor;
@@ -26,11 +22,7 @@ namespace SO
         public AudioClip WateringPlants;
         public AudioClip TakingWood;
         public AudioClip TakingSword;
-
-        // все контейнеры
         public AudioClip GettingFood;
-
-        // инвентори префабы
         public AudioClip TakingInventoryPrefab;
     }
 }

@@ -1,8 +1,8 @@
+using Indexies;
 using SO;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using Indexies;
 
 namespace PlayerController
 {
@@ -10,7 +10,6 @@ namespace PlayerController
     public class PlayerInventory : MonoBehaviour
     {
         [SerializeField] private List<InventoryPrefabSO> _recievedInventoryPrefabsSO;
-
         [SerializeField] private Player _player;
 
         private int _maxCells = 5;

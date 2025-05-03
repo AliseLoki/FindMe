@@ -3,8 +3,6 @@ using GameControllers;
 using Interactables;
 using MainCanvas;
 using PlayerController;
-using SettingsForYG;
-using UIPanels;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using YG;
@@ -19,17 +17,10 @@ namespace SaveSystem
         [SerializeField] private DeliveryServiceView _deliveryServiceView;
         [SerializeField] private ObjectsSaver _objectsSaver;
         [SerializeField] private GameStatesSwitcher _gameStatesSwitcher;
-        [SerializeField] private SaveGameView _saveGameView;
         [SerializeField] private Transform _defaultPlayerPosition;
-
         [SerializeField] private CanvasUI _canvasUI;
 
         private bool _isInitialized = false;
-
-        private void Awake()
-        {
-            // _canvasUI.LanguageSetter.SetCurrentLanguage(YandexGame.EnvironmentData.language);
-        }
 
         private void OnEnable()
         {
@@ -95,7 +86,6 @@ namespace SaveSystem
 
         public void Save()
         {
-            _saveGameView.ShowText();
 
             YandexGame.savesData.Gold = _player.PlayerGold.Gold;
             YandexGame.savesData.Health = _player.PlayerHealth.Health;
@@ -121,6 +111,7 @@ namespace SaveSystem
             YandexGame.savesData.VillagesWhereRewardIsntPicked = _objectsSaver.SaveNotPickedRewards();
             YandexGame.savesData.IsFirstStart = _gameStatesSwitcher.IsFirstStart;
             YandexGame.SaveProgress();
+            _canvasUI.ShowSavedScreen();
         }
     }
 }

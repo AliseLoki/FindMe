@@ -20,7 +20,7 @@ namespace MainCanvas
             }
             else if (language == Turkish)
             {
-
+                LanguageInitialized?.Invoke(new Turkish());
             }
             else if (language == English)
             {
