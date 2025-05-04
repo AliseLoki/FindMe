@@ -298,6 +298,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _triggerType: 2
+  _clip: {fileID: 8300000, guid: f61397867a46c3e498d43d4dfec0f01f, type: 3}
 --- !u!1 &7928230397616900113
 GameObject:
   m_ObjectHideFlags: 0
@@ -452,6 +453,18 @@ PrefabInstance:
       propertyPath: _well
       value: 
       objectReference: {fileID: 4872437719818025635}
+    - target: {fileID: 860583444628826374, guid: 8f213ad9914b55045a202dd7ed7440cd, type: 3}
+      propertyPath: _clips.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 860583444628826374, guid: 8f213ad9914b55045a202dd7ed7440cd, type: 3}
+      propertyPath: _clips.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 89b16bfd82038a546af1843006e3cfc0, type: 3}
+    - target: {fileID: 860583444628826374, guid: 8f213ad9914b55045a202dd7ed7440cd, type: 3}
+      propertyPath: _clips.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 4b70ec0f0afb9ac4ea7dfea07aca4eb4, type: 3}
     - target: {fileID: 1695438224115962107, guid: 8f213ad9914b55045a202dd7ed7440cd, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.03
@@ -1168,6 +1181,10 @@ PrefabInstance:
       propertyPath: _tip
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 2471323349483780717, guid: 107ab37cd1bd22d40b99537d03a55115, type: 3}
+      propertyPath: _clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 2ad5a140e762d82459807547aa5bc93b, type: 3}
     - target: {fileID: 3636454284833924163, guid: 107ab37cd1bd22d40b99537d03a55115, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
@@ -1224,7 +1241,8 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 583406509953506250, guid: 107ab37cd1bd22d40b99537d03a55115, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1564,6 +1582,10 @@ PrefabInstance:
       propertyPath: _tip
       value: 13
       objectReference: {fileID: 0}
+    - target: {fileID: 5611676630408354889, guid: 148c1fbbb507fc54590600097f30c5af, type: 3}
+      propertyPath: _clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 05b96aeaca9f99a42a4b4e48efea1c80, type: 3}
     - target: {fileID: 6448341439531806642, guid: 148c1fbbb507fc54590600097f30c5af, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
@@ -2138,9 +2160,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4872437719818025635}
     - target: {fileID: 700292159709121746, guid: f8b8169fe5b0db14b868ef1500d9747f, type: 3}
+      propertyPath: _clips.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 700292159709121746, guid: f8b8169fe5b0db14b868ef1500d9747f, type: 3}
       propertyPath: _activableObjectType
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 700292159709121746, guid: f8b8169fe5b0db14b868ef1500d9747f, type: 3}
+      propertyPath: _clips.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 89b16bfd82038a546af1843006e3cfc0, type: 3}
+    - target: {fileID: 700292159709121746, guid: f8b8169fe5b0db14b868ef1500d9747f, type: 3}
+      propertyPath: _clips.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 4b70ec0f0afb9ac4ea7dfea07aca4eb4, type: 3}
     - target: {fileID: 898151270578189859, guid: f8b8169fe5b0db14b868ef1500d9747f, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
@@ -2715,9 +2749,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4872437719818025635}
     - target: {fileID: 8025063350913808213, guid: 8f8bdb49a4b33674ba7b6bdab10460e2, type: 3}
+      propertyPath: _clips.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8025063350913808213, guid: 8f8bdb49a4b33674ba7b6bdab10460e2, type: 3}
       propertyPath: _activableObjectType
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 8025063350913808213, guid: 8f8bdb49a4b33674ba7b6bdab10460e2, type: 3}
+      propertyPath: _clips.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 89b16bfd82038a546af1843006e3cfc0, type: 3}
+    - target: {fileID: 8025063350913808213, guid: 8f8bdb49a4b33674ba7b6bdab10460e2, type: 3}
+      propertyPath: _clips.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 4b70ec0f0afb9ac4ea7dfea07aca4eb4, type: 3}
     - target: {fileID: 8139589904651615437, guid: 8f8bdb49a4b33674ba7b6bdab10460e2, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647

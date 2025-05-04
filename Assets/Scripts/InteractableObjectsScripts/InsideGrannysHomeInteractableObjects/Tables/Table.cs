@@ -1,4 +1,5 @@
 using SO;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Interactables.Containers.Tables
@@ -6,8 +7,11 @@ namespace Interactables.Containers.Tables
     public abstract class Table : Container
     {
         [SerializeField] protected Transform PlaceForFood;
+        [SerializeField] private List<AudioClip> _audioClips;
 
         protected bool IsChangedFood;
+
+        public List<AudioClip> AudioClips => _audioClips;
 
         protected override void UseObject()
         {

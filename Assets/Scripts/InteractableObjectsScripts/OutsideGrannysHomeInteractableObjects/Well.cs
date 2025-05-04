@@ -18,15 +18,13 @@ namespace Interactables
 
         protected override void UseObject()
         {
-            int payingForWaterSoundEffectIndex = 0;
-
             if (!Player.PlayerHands.HasSomethingInHands)
             {
                 PayForBucketOfWater();
 
                 if (_isPaid)
                 {
-                   // PlaySoundEffect(AudioClipsList[payingForWaterSoundEffectIndex]);
+                    Player.PlayerSoundEffects.PlaySoundEffect(Clip);
                     Player.PlayerHands.TakeObject(_bucketOfWater.gameObject, _bucketOfWater.HoldableObjects);
                 }
 

@@ -2,6 +2,7 @@ using Indexies;
 using LeaderboardSystem;
 using SO;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Interactables
@@ -14,6 +15,7 @@ namespace Interactables
         [SerializeField] private GoldCoins _goldCoins;
         [SerializeField] private DeliveredDishesCounter _deliveredDishesCounter;
         [SerializeField] private HouseIndex _houseIndex;
+        [SerializeField] private List<AudioClip> _clips;
 
         private bool _isDelivered;
 
@@ -38,7 +40,7 @@ namespace Interactables
 
                 if (deliveredDish != null)
                 {
-                    // PlaySoundEffect(AudioClipsList[puttingSoundEffectIndex]);
+                    Player.PlayerSoundEffects.PlaySoundEffect(_clips[puttingSoundEffectIndex]);
                     SpawnObject(_deliveredPackage.gameObject);
                     StartCoroutine(CheckReadynessOfDishe(deliveredDish));
                     _isDelivered = true;
@@ -54,7 +56,7 @@ namespace Interactables
 
             if (cookingRecipeSO.Readyness == _readyness)
             {
-                //PlaySoundEffect(AudioClipsList[goldAppearSoundEffectIndex]);
+                Player.PlayerSoundEffects.PlaySoundEffect(_clips[goldAppearSoundEffectIndex]);
                 SpawnObject(_goldCoins.gameObject);
                 _deliveredDishesCounter.AddDeliveredDish();
             }

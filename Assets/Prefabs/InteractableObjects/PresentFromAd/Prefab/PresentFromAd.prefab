@@ -146,10 +146,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SelectedObject: {fileID: 5979476064849079100}
-  AudioClipsList: []
+  _clip: {fileID: 8300000, guid: af62aff3db98e06428420d182b44e3b5, type: 3}
   Player: {fileID: 0}
   PlayerInventory: {fileID: 0}
-  TipsViewPanel: {fileID: 0}
   DeliveryService: {fileID: 0}
   DeliveryServiceView: {fileID: 0}
   _activableObjectType: 0

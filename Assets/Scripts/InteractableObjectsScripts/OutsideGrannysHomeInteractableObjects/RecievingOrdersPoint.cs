@@ -53,9 +53,7 @@ namespace Interactables
 
         protected override void UseObject()
         {
-            int recievingOrdersSoundEffectIndex = 0;
-
-            // PlaySoundEffect(AudioClipsList[recievingOrdersSoundEffectIndex]);
+            Player.PlayerSoundEffects.PlaySoundEffect(Clip);
 
             if (!_orderIsTaken)
             {

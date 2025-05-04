@@ -73,29 +73,23 @@ namespace PlayerController
                     case TriggerTypes.GrannysHome:
                         {
                             EnteredSafeZone?.Invoke();
-                            _music.PlayGrannysHomeMusic();
                             _gameStatesSwitcher.OnPlayerEnteredGrannysHome();
-                        }
-                        break;
-
-                    case TriggerTypes.PlaceWithPentagram:
-                        {
-                            _music.PlayPentagramMusic();
+                            _music.PlayMusic(trigger.Clip);
                         }
                         break;
 
                     case TriggerTypes.SafeZone:
                         {
-                            _music.PlaySafeZoneMusic();
                             _saveData.Save();
                             EnteredSafeZone?.Invoke();
+                            _music.PlayMusic(trigger.Clip);
                         }
                         break;
 
                     case TriggerTypes.VillageZone:
                         {
-                            _music.PlayVilageMusic();
                             EnteredSafeZone?.Invoke();
+                            _music.PlayMusic(trigger.Clip);
                         }
                         break;
                 }

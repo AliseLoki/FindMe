@@ -56,7 +56,7 @@ namespace Interactables.Containers.Tables
                     SetToTheTableListFoodSO(Player.PlayerCookingModule.FoodSO);
                     Player.PlayerHands.GiveObject();
                     Player.PlayerCookingModule.GiveFood();
-                    // PlaySoundEffect(AudioClipsList[puttingFoodSoundEffectIndex]);
+                    Player.PlayerSoundEffects.PlaySoundEffect(AudioClips[puttingFoodSoundEffectIndex]);
                     hasMatch = true;
                 }
             }
@@ -68,7 +68,7 @@ namespace Interactables.Containers.Tables
 
             if (Food == null)
             {
-                // PlaySoundEffect(AudioClipsList[mixingIngredientsSoundEffectIndex]);
+                Player.PlayerSoundEffects.PlaySoundEffect(AudioClips[mixingIngredientsSoundEffectIndex]);
                 SpawnPotOnTheTable();
             }
 
@@ -88,7 +88,7 @@ namespace Interactables.Containers.Tables
             int gettingFoodSoundEffectIndex = 1;
             Player.PlayerCookingModule.SetFood(Food, FoodSO);
             Player.PlayerHands.TakeObject(Food.gameObject, FoodSO.Type);
-            // PlaySoundEffect(AudioClipsList[gettingFoodSoundEffectIndex]);
+            Player.PlayerSoundEffects.PlaySoundEffect(AudioClips[gettingFoodSoundEffectIndex]);
         }
 
         private void SetToTheTableListFoodSO(FoodSO playerFoodSO)

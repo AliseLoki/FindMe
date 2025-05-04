@@ -26,7 +26,7 @@ namespace Interactables
         private void PlayEffects()
         {
             _confettiEffect.Play();
-            //AudioSource.Play();
+            Player.PlayerSoundEffects.PlaySoundEffect(Clip);
         }
 
         private void DestroyOpenedPresent()

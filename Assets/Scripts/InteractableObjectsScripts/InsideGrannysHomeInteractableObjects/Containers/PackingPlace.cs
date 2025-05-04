@@ -43,7 +43,7 @@ namespace Interactables.Containers
 
         private void GivePackage(int puttingFoodSoundEffectIndex)
         {
-           // Player.PlayerSoundEffects.PlaySoundEffect(Clip);
+            Player.PlayerSoundEffects.PlaySoundEffect(Clip);
             ShowPackage(false);
             Player.PlayerHands.ShowOrHideBackPack(true);
         }
@@ -54,7 +54,7 @@ namespace Interactables.Containers
             {
                 if (Player.PlayerCookingModule.FoodSO == foodSO)
                 {
-                    // PlaySoundEffect(AudioClipsList[puttingFoodSoundEffectIndex]);
+                    Player.PlayerSoundEffects.PlaySoundEffect(Clip);
                     CookingRecipeSOHasBeenPacked?.Invoke(Player.PlayerCookingModule.CookingRecipeSO);
                     Player.PlayerCookingModule.GiveFood();
                     Player.PlayerHands.GiveObject();

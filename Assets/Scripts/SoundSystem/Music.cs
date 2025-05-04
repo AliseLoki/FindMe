@@ -60,24 +60,9 @@ namespace SoundSystem
             }
         }
 
-        public void PlaySafeZoneMusic()
-        {
-            PlayMusic(_musicSO.SafeZoneMusic);
-        }
-
         public void PlayRoadMusic()
         {
             PlayMusic(_musicSO.RoadMusic);
-        }
-
-        public void PlayGrannysHomeMusic()
-        {
-            PlayMusic(_musicSO.GrannysHomeMusic);
-        }
-
-        public void PlayVilageMusic()
-        {
-            PlayMusic(_musicSO.VillageMusic);
         }
 
         public void PlayStartMusic()
@@ -90,12 +75,7 @@ namespace SoundSystem
             PlayMusic(_musicSO.GameOverMusic);
         }
 
-        public void PlayPentagramMusic()
-        {
-            PlayMusic(_musicSO.PentagramMusic);
-        }
-
-        private void PlayMusic(AudioClip audioClip)
+        public void PlayMusic(AudioClip audioClip)
         {
             _audioSource.Stop();
             _audioSource.clip = audioClip;
