@@ -1,5 +1,5 @@
 {
-    "idSave": 2765,
+    "idSave": 2774,
     "isFirstSession": false,
     "language": "ru",
     "promptDone": false,
@@ -13,9 +13,9 @@
     "Gold": 0,
     "Health": 10,
     "PlayerPosition": {
-        "x": 57.0,
-        "y": 0.0,
-        "z": 283.0
+        "x": 79.22917938232422,
+        "y": 0.21636617183685304,
+        "z": 316.5990295410156
     },
     "IsFirstStart": true,
     "HasBackPack": false,

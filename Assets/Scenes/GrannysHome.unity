@@ -49570,10 +49570,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: BlueEyesWolf
       objectReference: {fileID: 0}
-    - target: {fileID: 3772275772938391301, guid: 37fc977c5b48ca54eb23badf9616e0a8, type: 3}
-      propertyPath: _tipsViewPanel
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 4245567694648730126, guid: 37fc977c5b48ca54eb23badf9616e0a8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 244.3
@@ -54005,10 +54001,6 @@ PrefabInstance:
       propertyPath: _points
       value: 
       objectReference: {fileID: 1365212282}
-    - target: {fileID: 1414814269774204381, guid: fcfad5e19eb7824429cf417dadf06dae, type: 3}
-      propertyPath: _tipsViewPanel
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 4396494635045872165, guid: fcfad5e19eb7824429cf417dadf06dae, type: 3}
       propertyPath: m_Name
       value: RedEyesWolf

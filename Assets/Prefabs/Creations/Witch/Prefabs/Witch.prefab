@@ -5696,7 +5696,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce83fba9e14bdb04c8ec03071342607f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pentagram: {fileID: 0}
+  _pentagram: {fileID: 5896971870769556256}
   _witchDeathScream: {fileID: 8300000, guid: 4b84851eda4996d4f912f85bd68ba322, type: 3}
   _witchSteps: {fileID: 8300000, guid: 64a04bb4fa4ed5d4eac6b0a31f91843a, type: 3}
   _animator: {fileID: 5230588331314797134}

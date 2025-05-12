@@ -5344,7 +5344,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5957791666600297072}
   - component: {fileID: 6081169709315894970}
-  - component: {fileID: 1414814269774204381}
   m_Layer: 0
   m_Name: WolfBody
   m_TagString: Untagged
@@ -5389,21 +5388,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1414814269774204381
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2942251543235897455}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97f1d7973785ee749b2bdb30521f0d7a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _meatEffect: {fileID: 1116463258387872806}
-  _enemySoundEffects: {fileID: 2647121636247090455}
-  _tipsViewPanel: {fileID: 0}
 --- !u!1 &3054350898214461715
 GameObject:
   m_ObjectHideFlags: 0
@@ -5875,7 +5859,7 @@ Animator:
   m_GameObject: {fileID: 4396494635045872165}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 41ac1a9a45efa0441a2919bc139799bd, type: 3}
-  m_Controller: {fileID: 9100000, guid: c07900825de216248ae16c8963d001b8, type: 2}
+  m_Controller: {fileID: 9100000, guid: e60ae010bafc84149ab25aa67ac58099, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -5945,7 +5929,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _points: {fileID: 0}
   _player: {fileID: 0}
-  _wolfBody: {fileID: 1414814269774204381}
+  _wolfBody: {fileID: 2942251543235897455}
+  _collider: {fileID: 7721030141420105181}
   _enemySoundEffects: {fileID: 2647121636247090455}
   _agent: {fileID: 2738993976849274149}
   _animator: {fileID: 7214606308141248394}
