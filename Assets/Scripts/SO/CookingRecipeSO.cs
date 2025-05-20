@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace SO
 {
-    [CreateAssetMenu()]
+    [CreateAssetMenu]
     public class CookingRecipeSO : ScriptableObject
     {
         public string RecipeName;

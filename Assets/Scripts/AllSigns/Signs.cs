@@ -15,6 +15,7 @@ namespace AllSigns
         {
             _canvasUI.LanguageSetter.LanguageInitialized += OnLanguageInitialized;
         }
+
         private void OnDisable()
         {
             _canvasUI.LanguageSetter.LanguageInitialized -= OnLanguageInitialized;

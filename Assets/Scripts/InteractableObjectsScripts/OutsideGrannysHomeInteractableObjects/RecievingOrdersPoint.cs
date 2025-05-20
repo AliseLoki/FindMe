@@ -34,6 +34,7 @@ namespace Interactables
             DeliveryService.AllDishesHaveBeenDelivered += OnAllDishesHaveBeenDelivered;
             Player.PlayerCollisions.WolfHasBeenKilled += OnWolfHasBeenKilled;
         }
+
         private void OnDisable()
         {
             _canvasUI.LanguageSetter.LanguageInitialized -= OnLanguageInitialized;

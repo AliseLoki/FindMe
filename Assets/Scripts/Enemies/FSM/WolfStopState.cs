@@ -11,7 +11,8 @@ namespace Enemies
         private float _timerDefaultValue = 5f;
         private EnemyStateMachine _wolfStateMachine;
 
-        public WolfStopState(EnemyStateMachine enemyStateMachine, NavMeshAgent agent, Animator animator) : base(agent, animator)
+        public WolfStopState(EnemyStateMachine enemyStateMachine, NavMeshAgent agent, Animator animator)
+            : base(agent, animator)
         {
             _wolfStateMachine = enemyStateMachine;
         }

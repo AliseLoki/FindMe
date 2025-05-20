@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace SO
 {
-    [CreateAssetMenu()]
+    [CreateAssetMenu]
     public class ChangingFoodRecipeSO : ScriptableObject
     {
         public FoodSO Input;

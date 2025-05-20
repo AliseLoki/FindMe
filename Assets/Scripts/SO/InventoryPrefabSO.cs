@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace SO
 {
-    [CreateAssetMenu()]
+    [CreateAssetMenu]
     public class InventoryPrefabSO : ScriptableObject
     {
         public Sprite Sprite;

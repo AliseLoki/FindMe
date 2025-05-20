@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace SO
 {
-    [CreateAssetMenu()]
+    [CreateAssetMenu]
     public class HoldableObjectSO : ScriptableObject
     {
         public GameObject Prefab;

@@ -63,7 +63,6 @@ namespace Enemies
             _wolfStateMachine.SetState<WolfDieState>();
         }
 
-
         private void OnPlayerEnteredSafeZone()
         {
             _wolfStateMachine.SetState<WolfStopState>();

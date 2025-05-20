@@ -14,7 +14,6 @@ namespace Interactables.Containers
                 Player.PlayerCookingModule.GiveFood();
                 Player.PlayerHands.GiveObject();
                 Player.PlayerSoundEffects.PlaySoundEffect(Clip);
-
             }
         }
     }

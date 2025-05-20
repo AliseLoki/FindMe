@@ -16,7 +16,8 @@ namespace Enemies
 
         private Player _player;
 
-        public WolfChaseState(NavMeshAgent agent, Animator animator, Player player) : base(agent, animator)
+        public WolfChaseState(NavMeshAgent agent, Animator animator, Player player)
+            : base(agent, animator)
         {
             _player = player;
         }
@@ -29,7 +30,6 @@ namespace Enemies
 
         public void Update()
         {
-
             Agent.destination = _player.transform.position;
             Agent.transform.LookAt(_player.transform);
 

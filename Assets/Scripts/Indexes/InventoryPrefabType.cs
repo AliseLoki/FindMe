@@ -8,6 +8,6 @@ namespace Indexies
         RedMushroom,
         Cow,
         Necronomicon,
-        Sword
+        Sword,
     }
 }

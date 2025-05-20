@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace SO
 {
-    [CreateAssetMenu()]
+    [CreateAssetMenu]
     public class FoodSO : HoldableObjectSO
     {
         public Sprite Sprite;

@@ -5,9 +5,8 @@ namespace Enemies
 {
     public class EnemyStateMachine
     {
-        private IState StateCurrent { get; set; }
-
         private Dictionary<Type, IState> _states = new Dictionary<Type, IState>();
+        private IState StateCurrent { get; set; }
 
         public void AddState(IState state)
         {

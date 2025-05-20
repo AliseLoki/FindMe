@@ -21,84 +21,84 @@ namespace SettingsForYG
 
         public static List<string> SecondSign = new List<string>()
         {
-          { Bridge }, { Woodcutter }, { Home }, { PearVillage }
+          { Bridge }, { Woodcutter }, { Home }, { PearVillage },
         };
 
         public static List<string> ThirdSign = new List<string>()
         {
-          { Home }, { Bridge }, { Woodcutter }, {PearVillage}
+          { Home }, { Bridge }, { Woodcutter }, { PearVillage },
         };
 
         public static List<string> FourthSign = new List<string>()
         {
-          { Woodcutter }, { PearVillage }, { Home }, { AppleVillage }
+          { Woodcutter }, { PearVillage }, { Home }, { AppleVillage },
         };
 
         public static List<string> FifthSign = new List<string>()
         {
-          { Bridge }, { AppleVillage }, { Home }, { PearVillage }
+          { Bridge }, { AppleVillage }, { Home }, { PearVillage },
         };
 
         public static List<string> SixthSign = new List<string>()
         {
-          { RiverVillage }, { Bridge }, { GreenVillage }, { CowVillage }
+          { RiverVillage }, { Bridge }, { GreenVillage }, { CowVillage },
         };
 
         public static List<string> SeventhSign = new List<string>()
         {
-          { CowVillage }, { Bridge }, { GreenVillage }, { RiverVillage }
+          { CowVillage }, { Bridge }, { GreenVillage }, { RiverVillage },
         };
 
         public static List<string> EighthSign = new List<string>()
         {
-          { Bridge },{ CowVillage },{ GreenVillage },{ RiverVillage }
+          { Bridge }, { CowVillage }, { GreenVillage }, { RiverVillage },
         };
 
         public static List<string> NinthSign = new List<string>()
         {
-          { CowVillage }, { GreenVillage }, { RiverVillage }, { Bridge }
+          { CowVillage }, { GreenVillage }, { RiverVillage }, { Bridge },
         };
 
         public static List<string> TenthSign = new List<string>()
         {
-          { GreenVillage }, { Bridge }, { PearVillage }, { AppleVillage }
+          { GreenVillage }, { Bridge }, { PearVillage }, { AppleVillage },
         };
 
         public static List<string> EleventhSign = new List<string>()
         {
-          { GreenVillage }, { Bridge }, { RiverVillage }, { AppleVillage }
+          { GreenVillage }, { Bridge }, { RiverVillage }, { AppleVillage },
         };
 
         public static List<string> TwelfthSign = new List<string>()
         {
-          { Home }, { RiverVillage }, { PearVillage }, { AppleVillage }
+          { Home }, { RiverVillage }, { PearVillage }, { AppleVillage },
         };
 
         public English()
         {
             VillagesNames = new()
             {
-             {NamesOfVillages.Woodcutter, Woodcutter},
-             {NamesOfVillages.FirstVillageName, PearVillage},
-             {NamesOfVillages.SecondVillageName, AppleVillage},
-             {NamesOfVillages.ThirdVillageName, CowVillage},
-             {NamesOfVillages.FourthVillageName, GreenVillage},
-             {NamesOfVillages.LastVillageName, RiverVillage}
-                                                                 };
+              { NamesOfVillages.Woodcutter, Woodcutter },
+              { NamesOfVillages.FirstVillageName, PearVillage },
+              { NamesOfVillages.SecondVillageName, AppleVillage },
+              { NamesOfVillages.ThirdVillageName, CowVillage },
+              { NamesOfVillages.FourthVillageName, GreenVillage },
+              { NamesOfVillages.LastVillageName, RiverVillage },
+            };
             AllSignsText = new()
             {
-                {SignsNumbers.First,FirstSign },
-                {SignsNumbers.Second,SecondSign},
-                {SignsNumbers.Third,ThirdSign},
-                {SignsNumbers.Fourth,FourthSign},
-                {SignsNumbers.Fifth,FifthSign},
-                {SignsNumbers.Sixth,SixthSign},
-                {SignsNumbers.Seventh,SeventhSign},
-                {SignsNumbers.Eights,EighthSign},
-                {SignsNumbers.Ninth,NinthSign},
-                {SignsNumbers.Tenth,TenthSign},
-                {SignsNumbers.Eleventh,EleventhSign},
-                {SignsNumbers.Twelfth,TwelfthSign},
+              { SignsNumbers.First, FirstSign },
+              { SignsNumbers.Second, SecondSign },
+              { SignsNumbers.Third, ThirdSign },
+              { SignsNumbers.Fourth, FourthSign },
+              { SignsNumbers.Fifth, FifthSign },
+              { SignsNumbers.Sixth, SixthSign },
+              { SignsNumbers.Seventh, SeventhSign },
+              { SignsNumbers.Eights, EighthSign },
+              { SignsNumbers.Ninth, NinthSign },
+              { SignsNumbers.Tenth, TenthSign },
+              { SignsNumbers.Eleventh, EleventhSign },
+              { SignsNumbers.Twelfth, TwelfthSign },
             };
             Education = new()
             {

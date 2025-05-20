@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace SO
 {
-    [CreateAssetMenu()]
+    [CreateAssetMenu]
     public class MenuSO : ScriptableObject
     {
         public List<CookingRecipeSO> MenuList;

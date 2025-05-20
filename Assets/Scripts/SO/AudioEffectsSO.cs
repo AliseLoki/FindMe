@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace SO
 {
-    [CreateAssetMenu()]
+    [CreateAssetMenu]
     public class AudioEffectsSO : ScriptableObject
     {
         public AudioClip BurningFire;

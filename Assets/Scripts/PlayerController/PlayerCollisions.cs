@@ -68,6 +68,7 @@ namespace PlayerController
                             _music.PlayForestMusic();
                             EnteredTheForest?.Invoke();
                         }
+
                         break;
 
                     case TriggerTypes.GrannysHome:
@@ -76,6 +77,7 @@ namespace PlayerController
                             _gameStatesSwitcher.OnPlayerEnteredGrannysHome();
                             _music.PlayMusic(trigger.Clip);
                         }
+
                         break;
 
                     case TriggerTypes.SafeZone:
@@ -84,6 +86,7 @@ namespace PlayerController
                             EnteredSafeZone?.Invoke();
                             _music.PlayMusic(trigger.Clip);
                         }
+
                         break;
 
                     case TriggerTypes.VillageZone:
@@ -91,6 +94,7 @@ namespace PlayerController
                             EnteredSafeZone?.Invoke();
                             _music.PlayMusic(trigger.Clip);
                         }
+
                         break;
                 }
             }
@@ -109,6 +113,7 @@ namespace PlayerController
                         {
                             _music.PlayRoadMusic();
                         }
+
                         break;
                 }
             }

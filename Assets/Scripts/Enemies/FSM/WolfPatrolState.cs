@@ -14,7 +14,8 @@ namespace Enemies
 
         private List<Transform> _targetPoints = new List<Transform>();
 
-        public WolfPatrolState(List<Transform> points, NavMeshAgent agent, Animator animator) : base(agent, animator)
+        public WolfPatrolState(List<Transform> points, NavMeshAgent agent, Animator animator)
+            : base(agent, animator)
         {
             _targetPoints = points;
         }

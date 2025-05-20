@@ -67,7 +67,6 @@ namespace PlayerController
         {
             _objectInHands = gameObject;
             _indexOfObjectInHands = holdableObjects;
-            
 
             if (gameObject.TryGetComponent(out InventoryPrefab inventoryPrefab))
             {
@@ -87,7 +86,6 @@ namespace PlayerController
             if (inventoryPrefabSO.InventoryPrefab.Type == InventoryPrefabType.Cow)
             {
                 prefabInHands.transform.rotation = Quaternion.LookRotation(transform.right);
-                
             }
             else
             {

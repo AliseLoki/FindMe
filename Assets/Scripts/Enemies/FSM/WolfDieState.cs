@@ -10,7 +10,8 @@ namespace Enemies
         private Collider _collider;
         private GameObject _wolvesBody;
 
-        public WolfDieState(NavMeshAgent agent, Animator animator, Collider collider, GameObject wolvesBody) : base(agent, animator)
+        public WolfDieState(NavMeshAgent agent, Animator animator, Collider collider, GameObject wolvesBody)
+            : base(agent, animator)
         {
             _collider = collider;
             _wolvesBody = wolvesBody;

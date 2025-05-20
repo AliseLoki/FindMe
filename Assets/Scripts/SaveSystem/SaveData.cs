@@ -72,8 +72,7 @@ namespace SaveSystem
             _player.PlayerHands.InitHasBackPack(YandexGame.savesData.HasBackPack);
             _player.PlayerHands.InitHoldableObjectType(YandexGame.savesData.HoldableObject);
             _recievingOrdersPoint.GetOrderIsTaken(YandexGame.savesData.OrderIsTaken);
-            _deliveryService.GetLists(YandexGame.savesData.SavedOrderedDishesListJson, YandexGame.savesData.SavedPackedDishesListJson,
-                YandexGame.savesData.SavedStatesOfReadyness);
+            _deliveryService.GetLists(YandexGame.savesData.SavedOrderedDishesListJson, YandexGame.savesData.SavedPackedDishesListJson, YandexGame.savesData.SavedStatesOfReadyness);
             _deliveryServiceView.SetDestinationPointName(YandexGame.savesData.VillageName);
             _player.PlayerCookingModule.SetCookingRecipe(_player.PlayerCookingModule.FindRecipeByName(YandexGame.savesData.RecipeName));
             _objectsSaver.InitAllActiveContainers(YandexGame.savesData.ActiveContainers);
@@ -86,7 +85,6 @@ namespace SaveSystem
 
         public void Save()
         {
-
             YandexGame.savesData.Gold = _player.PlayerGold.Gold;
             YandexGame.savesData.Health = _player.PlayerHealth.Health;
             YandexGame.savesData.PlayerPosition = _player.transform.position;
