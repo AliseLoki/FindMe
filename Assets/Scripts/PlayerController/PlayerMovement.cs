@@ -1,6 +1,6 @@
+using System.Collections;
 using Enemies;
 using GameControllers;
-using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 using Villages;

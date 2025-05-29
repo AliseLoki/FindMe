@@ -1,8 +1,8 @@
+using System.Collections;
+using System.Collections.Generic;
 using Indexies;
 using LeaderboardSystem;
 using SO;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Interactables

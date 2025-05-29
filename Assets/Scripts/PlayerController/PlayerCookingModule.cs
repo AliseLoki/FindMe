@@ -1,7 +1,7 @@
+using System.Collections.Generic;
 using Indexies;
 using Interactables;
 using SO;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace PlayerController

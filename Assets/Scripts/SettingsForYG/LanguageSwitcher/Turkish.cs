@@ -1,5 +1,5 @@
-﻿using Indexies;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Indexies;
 
 namespace SettingsForYG
 {
@@ -76,7 +76,7 @@ namespace SettingsForYG
 
         public Turkish()
         {
-            VillagesNames = new()
+            VillagesNames = new ()
             {
               { NamesOfVillages.Woodcutter, Woodcutter },
               { NamesOfVillages.FirstVillageName, PearVillage },
@@ -85,7 +85,7 @@ namespace SettingsForYG
               { NamesOfVillages.FourthVillageName, GreenVillage },
               { NamesOfVillages.LastVillageName, RiverVillage },
             };
-            AllSignsText = new()
+            AllSignsText = new ()
             {
               { SignsNumbers.First, FirstSign },
               { SignsNumbers.Second, SecondSign },
@@ -100,7 +100,7 @@ namespace SettingsForYG
               { SignsNumbers.Eleventh, EleventhSign },
               { SignsNumbers.Twelfth, TwelfthSign },
             };
-            Education = new()
+            Education = new ()
             {
                "sonraki tavsiyei görmek için yeşil oku tıkla",
                "kamera görünümünü ve ses seviyesini değiştirebilirsin, sağdaki siyah düğme tıkla",

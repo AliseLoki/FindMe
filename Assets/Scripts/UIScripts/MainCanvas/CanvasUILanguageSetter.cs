@@ -1,5 +1,5 @@
-using SettingsForYG;
 using System;
+using SettingsForYG;
 using UnityEngine;
 
 namespace MainCanvas

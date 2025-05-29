@@ -1,6 +1,6 @@
+using System;
 using Enemies;
 using PlayerController;
-using System;
 using UIPanels;
 using UnityEngine;
 using UnityEngine.SceneManagement;

@@ -1,11 +1,11 @@
+using System;
+using System.Collections.Generic;
 using GameControllers;
 using Indexies;
 using Interactables.Containers;
 using MainCanvas;
 using SettingsForYG;
 using SO;
-using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Interactables

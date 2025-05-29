@@ -13,7 +13,8 @@ namespace Enemies
             _states.Add(state.GetType(), state);
         }
 
-        public void SetState<T>() where T : IState
+        public void SetState<T>()
+            where T : IState
         {
             var type = typeof(T);
 

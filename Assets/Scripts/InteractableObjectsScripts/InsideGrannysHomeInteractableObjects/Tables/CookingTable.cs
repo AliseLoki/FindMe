@@ -1,6 +1,6 @@
-using SO;
 using System;
 using System.Collections.Generic;
+using SO;
 using UnityEngine;
 
 namespace Interactables.Containers.Tables

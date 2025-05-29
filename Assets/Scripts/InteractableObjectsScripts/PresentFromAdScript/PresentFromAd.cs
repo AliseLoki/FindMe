@@ -7,7 +7,7 @@ namespace Interactables
     {
         [SerializeField] private ParticleSystem _confettiEffect;
         [SerializeField] private List<GameObject> _packing;
-        [SerializeField] private List<InteractableObject> _presentsList = new();
+        [SerializeField] private List<InteractableObject> _presentsList = new ();
 
         protected override void UseObject()
         {

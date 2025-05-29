@@ -1,5 +1,5 @@
-using SettingsForYG;
 using System.Collections.Generic;
+using SettingsForYG;
 using TMPro;
 using UnityEngine;
 using YG;
@@ -16,7 +16,7 @@ namespace LeaderboardSystem
 
         private string _anonymousName;
         private LBData _lb;
-        private List<LeaderboardPlayer> _leaderboardPlayers = new();
+        private List<LeaderboardPlayer> _leaderboardPlayers = new ();
 
         private void OnEnable()
         {

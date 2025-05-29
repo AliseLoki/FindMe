@@ -1,5 +1,5 @@
-using Indexies;
 using System.Collections.Generic;
+using Indexies;
 
 namespace SettingsForYG
 {
@@ -76,7 +76,7 @@ namespace SettingsForYG
 
         public English()
         {
-            VillagesNames = new()
+            VillagesNames = new ()
             {
               { NamesOfVillages.Woodcutter, Woodcutter },
               { NamesOfVillages.FirstVillageName, PearVillage },
@@ -85,7 +85,7 @@ namespace SettingsForYG
               { NamesOfVillages.FourthVillageName, GreenVillage },
               { NamesOfVillages.LastVillageName, RiverVillage },
             };
-            AllSignsText = new()
+            AllSignsText = new ()
             {
               { SignsNumbers.First, FirstSign },
               { SignsNumbers.Second, SecondSign },
@@ -100,7 +100,7 @@ namespace SettingsForYG
               { SignsNumbers.Eleventh, EleventhSign },
               { SignsNumbers.Twelfth, TwelfthSign },
             };
-            Education = new()
+            Education = new ()
             {
                 "to go to the next tip, click the green arrow under the text",
                 "you can change the camera view and volume, click on the black gear on the right",

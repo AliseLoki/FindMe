@@ -1,5 +1,5 @@
-using GameControllers;
 using System;
+using GameControllers;
 using UnityEngine;
 
 namespace PlayerController

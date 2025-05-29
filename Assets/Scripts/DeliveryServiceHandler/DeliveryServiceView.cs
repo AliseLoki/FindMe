@@ -1,8 +1,8 @@
+using System;
+using System.Collections.Generic;
 using Interactables.Containers.Tables;
 using PlayerController;
 using SO;
-using System;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 

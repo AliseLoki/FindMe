@@ -8,7 +8,7 @@ namespace LeaderboardSystem
         [SerializeField] private Transform _container;
         [SerializeField] private LeaderboardElement _leaderboardElementPrefab;
 
-        private List<LeaderboardElement> _spawnedElements = new();
+        private List<LeaderboardElement> _spawnedElements = new ();
 
         public void ConstructLeaderboard(List<LeaderboardPlayer> leaderboardPlayers)
         {

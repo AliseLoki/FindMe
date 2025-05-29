@@ -1,6 +1,6 @@
+using System;
 using PlayerController;
 using SoundSystem;
-using System;
 using UnityEngine;
 
 namespace Enemies
