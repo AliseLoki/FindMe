@@ -15,15 +15,13 @@ namespace MainCanvas
     {
         [SerializeField] private Image _fadeScreen;
         [SerializeField] private EducationUI _educationUI;
-        [SerializeField] private LeaderboardView _leaderboardView;
+     
         [SerializeField] private GameObject _settingView;
-        [SerializeField] private GameObject _authorisePanel;
+
         [SerializeField] private YandexGame _yandexGame;
         [SerializeField] private Player _player;
         [SerializeField] private GameStatesSwitcher _gameStatesSwitcher;
-        [SerializeField] private YandexLeaderboard _yandexLeaderboard;
         [SerializeField] private TMP_Text _gameSavedText;
-        [SerializeField] private TMP_Text _needToAuthorizeText;
         [SerializeField] private TMP_Text _restartButtonText;
         [SerializeField] private Button _restartButton;
         [SerializeField] private CanvasUILanguageSetter _languageSetter;
@@ -71,26 +69,6 @@ namespace MainCanvas
             _yandexGame._RewardedShow(1);
         }
 
-        public void CloseLeaderboardView()
-        {
-            _leaderboardView.gameObject.SetActive(false);
-        }
-
-        public void ShowLeaderboardView()
-        {
-            _leaderboardView.gameObject.SetActive(true);
-        }
-
-        public void ShowAuthorisePanel()
-        {
-            _authorisePanel.gameObject.SetActive(true);
-        }
-
-        public void CloseAuthorizePanel()
-        {
-            _authorisePanel.gameObject.SetActive(false);
-        }
-
         public void OnSkipeducationButtonPressed()
         {
             _educationUI.OnSkipEducationButtonPressed();
@@ -123,9 +101,7 @@ namespace MainCanvas
         private void OnLanguageInitialized(AllPhrases phrases)
         {
             _educationUI.InitEducationTexts(phrases);
-            _yandexLeaderboard.InitLanguage(phrases);
             _gameSavedText.text = phrases.SaveGameText;
-            _needToAuthorizeText.text = phrases.NeedToAuthorizeText;
             _restartButtonText.text = phrases.Restart;
         }
 

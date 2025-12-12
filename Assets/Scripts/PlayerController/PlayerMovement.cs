@@ -28,6 +28,7 @@ namespace PlayerController
 
         private void OnEnable()
         {
+            _navMeshAgent.updateRotation = false;
             _player.PlayerInventory.UsedSpeedBoost += OnUsedSpeedBoost;
             _lastVillage.WitchAppeared += LookAtTheWitch;
         }
