@@ -14,9 +14,9 @@ namespace Enemies
         private float _distanceToPlayer = 8f;
         private float _runSpeed = 20f;
 
-        private Player _player;
+        private PlayerOld _player;
 
-        public WolfChaseState(NavMeshAgent agent, Animator animator, Player player)
+        public WolfChaseState(NavMeshAgent agent, Animator animator, PlayerOld player)
             : base(agent, animator)
         {
             _player = player;

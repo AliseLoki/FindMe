@@ -8,7 +8,7 @@ namespace StatsView
     {
         [SerializeField] private TMP_Text _healthChangedText;
 
-        [SerializeField] private Player _player;
+        [SerializeField] private PlayerOld _player;
 
         private void OnEnable()
         {

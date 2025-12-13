@@ -9,7 +9,7 @@ namespace Interactables
     {
         [SerializeField] private SelectedObject SelectedObject;
         [SerializeField] private AudioClip _clip;
-        [SerializeField] protected Player Player;
+        [SerializeField] protected PlayerOld Player;
         [SerializeField] protected PlayerInventory PlayerInventory;
         [SerializeField] protected DeliveryService DeliveryService;
         [SerializeField] protected DeliveryServiceView DeliveryServiceView;
@@ -22,7 +22,7 @@ namespace Interactables
 
         public HoldableObjectType HoldableObjects => _holdableObjects;
 
-        public void InitLinks(Player player, PlayerInventory playerInventory)
+        public void InitLinks(PlayerOld player, PlayerInventory playerInventory)
         {
             Player = player;
             PlayerInventory = playerInventory;

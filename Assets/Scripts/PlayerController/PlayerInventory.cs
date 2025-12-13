@@ -6,11 +6,11 @@ using UnityEngine;
 
 namespace PlayerController
 {
-    [RequireComponent(typeof(Player))]
+    [RequireComponent(typeof(PlayerOld))]
     public class PlayerInventory : MonoBehaviour
     {
         [SerializeField] private List<InventoryPrefabSO> _recievedInventoryPrefabsSO;
-        [SerializeField] private Player _player;
+        [SerializeField] private PlayerOld _player;
 
         private int _maxCells = 5;
 

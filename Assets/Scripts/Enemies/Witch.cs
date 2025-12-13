@@ -12,7 +12,7 @@ namespace Enemies
         [SerializeField] private AudioSource _audioSource;
 
         private EnemyStateMachine _enemyStateMachine;
-        private Player _player;
+        private PlayerOld _player;
         private Music _music;
 
         public event Action WitchIsDead;
@@ -34,13 +34,13 @@ namespace Enemies
 
         private void OnCollisionEnter(Collision collision)
         {
-            if (collision.collider.TryGetComponent(out Player player))
+            if (collision.collider.TryGetComponent(out PlayerOld player))
             {
                 _enemyStateMachine.SetState<AttackState>();
             }
         }
 
-        public void InitLinks(Music music, Player player)
+        public void InitLinks(Music music, PlayerOld player)
         {
             _player = player;
             _music = music;

@@ -11,7 +11,7 @@ namespace SaveSystem
 {
     public class SaveData : MonoBehaviour
     {
-        [SerializeField] private Player _player;
+        [SerializeField] private PlayerOld _player;
         [SerializeField] private RecievingOrdersPoint _recievingOrdersPoint;
         [SerializeField] private DeliveryService _deliveryService;
         [SerializeField] private DeliveryServiceView _deliveryServiceView;

@@ -10,7 +10,7 @@ namespace PlayerController
         private const string IsDying = nameof(IsDying);
         private const string IsWitchAppeared = nameof(IsWitchAppeared);
 
-        [SerializeField] private Player _player;
+        [SerializeField] private PlayerOld _player;
 
         private Animator _animatior;
 

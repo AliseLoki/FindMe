@@ -12,14 +12,14 @@ namespace InventoryViewHandler
     public class InventoryCell : MonoBehaviour
     {
         [SerializeField] private Image _inventoryCellImage;
-        [SerializeField] private Player _player;
+        [SerializeField] private PlayerOld _player;
         [SerializeField] private GameStatesSwitcher _gameStatesSwitcher;
 
         private InventoryPrefabSO _inventoryPrefabSO;
 
         public event Action<InventoryPrefabSO> InventoryCellButtonPressed;
 
-        public void InitLinks(Player player, GameStatesSwitcher gameStatesSwitcher)
+        public void InitLinks(PlayerOld player, GameStatesSwitcher gameStatesSwitcher)
         {
             _player = player;
             _gameStatesSwitcher = gameStatesSwitcher;

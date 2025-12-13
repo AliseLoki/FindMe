@@ -25,7 +25,7 @@ namespace SaveSystem
         [SerializeField] private Transform _necronomiconSpawnPlace;
         [SerializeField] private Transform _witchSpawnPlace;
         [SerializeField] private PresentFromAd _presentFromAd;
-        [SerializeField] private Player _player;
+        [SerializeField] private PlayerOld _player;
         [SerializeField] private GameStatesSwitcher _gameStatesSwitcher;
         [SerializeField] private Music _music;
 

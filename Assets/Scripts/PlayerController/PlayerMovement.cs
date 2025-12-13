@@ -16,7 +16,7 @@ namespace PlayerController
         [SerializeField] private float _moveSpeed = 5f;
         [SerializeField] private float _boostSpeed = 10f;
         [SerializeField] private float _rotateSpeed = 5f;
-        [SerializeField] private Player _player;
+        [SerializeField] private PlayerOld _player;
         [SerializeField] private GameStatesSwitcher _gameStatesSwitcher;
         [SerializeField] private LastVillage _lastVillage;
         [SerializeField] private NavMeshAgent _navMeshAgent;

@@ -9,9 +9,9 @@ namespace Enemies
 
         private float _moveSpeed = 0.5f;
         private Transform _transform;
-        private Player _player;
+        private PlayerOld _player;
 
-        public MoveState(EnemyStateMachine enemyStateMachine, Transform transform, Player player)
+        public MoveState(EnemyStateMachine enemyStateMachine, Transform transform, PlayerOld player)
         {
             _transform = transform;
             _player = player;

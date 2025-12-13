@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace PlayerController
 {
-    [RequireComponent(typeof(Player))]
+    [RequireComponent(typeof(PlayerOld))]
     public class PlayerCookingModule : MonoBehaviour
     {
         private Food _food;

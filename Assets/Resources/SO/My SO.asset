@@ -15,3 +15,8 @@ MonoBehaviour:
   _speed: 5
   _rotSpeed: 5
   _minStep: 0.0001
+  _forestClip: {fileID: 8300000, guid: 2fe3fd1e345d37b4bae5241291119668, type: 3}
+  _safeClip: {fileID: 8300000, guid: 07b617989100d41498b00f741cbf80db, type: 3}
+  _roadClip: {fileID: 8300000, guid: 55652cf9dcfb70847a001cf2e5e8f723, type: 3}
+  _pentagramClip: {fileID: 8300000, guid: a3225ed581d470a44a16348209dd5dc5, type: 3}
+  _grannyClip: {fileID: 8300000, guid: f61397867a46c3e498d43d4dfec0f01f, type: 3}

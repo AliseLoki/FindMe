@@ -19,7 +19,7 @@ namespace MainCanvas
         [SerializeField] private GameObject _settingView;
 
         [SerializeField] private YandexGame _yandexGame;
-        [SerializeField] private Player _player;
+        [SerializeField] private PlayerOld _player;
         [SerializeField] private GameStatesSwitcher _gameStatesSwitcher;
         [SerializeField] private TMP_Text _gameSavedText;
         [SerializeField] private TMP_Text _restartButtonText;

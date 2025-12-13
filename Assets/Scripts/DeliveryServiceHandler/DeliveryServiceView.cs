@@ -16,7 +16,7 @@ namespace DeliveryServiceHandler
         [SerializeField] private TMP_Text _destinationPointName;
         [SerializeField] private DeliveryService _deliveryService;
         [SerializeField] private CookingTable _cookingTable;
-        [SerializeField] private Player _player;
+        [SerializeField] private PlayerOld _player;
 
         private bool _hasRecievedOrders;
 

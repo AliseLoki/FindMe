@@ -12,7 +12,7 @@ namespace PlayerController
 {
     public class PlayerCollisions : MonoBehaviour
     {
-        [SerializeField] private Player _player;
+        [SerializeField] private PlayerOld _player;
         [SerializeField] private Music _music;
         [SerializeField] private GameStatesSwitcher _gameStatesSwitcher;
         [SerializeField] private SaveData _saveData;
@@ -59,11 +59,11 @@ namespace PlayerController
                 _player.PlayerGold.OnGoldAmountChanged(goldCoins.CoinsValue);
             }
 
-            if (other.TryGetComponent(out Trigger trigger))
+            if (other.TryGetComponent(out TriggerOld trigger))
             {
                 switch (trigger.TriggerType)
                 {
-                    case TriggerTypes.Forest:
+                    case TriggerTypesOld.Forest:
                         {
                             _music.PlayForestMusic();
                             EnteredTheForest?.Invoke();
@@ -71,7 +71,7 @@ namespace PlayerController
 
                         break;
 
-                    case TriggerTypes.GrannysHome:
+                    case TriggerTypesOld.GrannysHome:
                         {
                             EnteredSafeZone?.Invoke();
                             _gameStatesSwitcher.OnPlayerEnteredGrannysHome();
@@ -80,7 +80,7 @@ namespace PlayerController
 
                         break;
 
-                    case TriggerTypes.SafeZone:
+                    case TriggerTypesOld.SafeZone:
                         {
                             _saveData.Save();
                             EnteredSafeZone?.Invoke();
@@ -89,7 +89,7 @@ namespace PlayerController
 
                         break;
 
-                    case TriggerTypes.VillageZone:
+                    case TriggerTypesOld.VillageZone:
                         {
                             EnteredSafeZone?.Invoke();
                             _music.PlayMusic(trigger.Clip);
@@ -102,14 +102,14 @@ namespace PlayerController
 
         private void OnTriggerExit(Collider other)
         {
-            if (other.TryGetComponent(out Trigger trigger))
+            if (other.TryGetComponent(out TriggerOld trigger))
             {
                 switch (trigger.TriggerType)
                 {
-                    case TriggerTypes.GrannysHome:
-                    case TriggerTypes.SafeZone:
-                    case TriggerTypes.VillageZone:
-                    case TriggerTypes.PlaceWithPentagram:
+                    case TriggerTypesOld.GrannysHome:
+                    case TriggerTypesOld.SafeZone:
+                    case TriggerTypesOld.VillageZone:
+                    case TriggerTypesOld.PlaceWithPentagram:
                         {
                             _music.PlayRoadMusic();
                         }

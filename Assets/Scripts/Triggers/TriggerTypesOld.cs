@@ -1,6 +1,6 @@
 namespace Triggers
 {
-    public enum TriggerTypes
+    public enum TriggerTypesOld
     {
         Forest = 1,
         GrannysHome = 2,

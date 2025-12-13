@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace PlayerController
 {
-    public class Player : MonoBehaviour
+    public class PlayerOld : MonoBehaviour
     {
         [SerializeField] private PlayerCookingModule _playerCookingModule;
         [SerializeField] private PlayerInventory _playerInventory;

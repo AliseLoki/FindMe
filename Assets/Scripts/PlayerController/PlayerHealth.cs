@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace PlayerController
 {
-    [RequireComponent(typeof(Player))]
+    [RequireComponent(typeof(PlayerOld))]
     public class PlayerHealth : MonoBehaviour
     {
-        [SerializeField] private Player _player;
+        [SerializeField] private PlayerOld _player;
         [SerializeField] private GameStatesSwitcher _gameStatesSwitcher;
 
         private int _health = 10;

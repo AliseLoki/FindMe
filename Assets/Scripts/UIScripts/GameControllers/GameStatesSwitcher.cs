@@ -11,7 +11,7 @@ namespace GameControllers
 {
     public class GameStatesSwitcher : MonoBehaviour
     {
-        [SerializeField] private Player _player;
+        [SerializeField] private PlayerOld _player;
         [SerializeField] private LastVillage _lastVillage;
         [SerializeField] private EducationUI _educationUI;
 

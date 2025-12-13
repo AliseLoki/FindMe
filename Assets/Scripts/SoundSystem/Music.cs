@@ -11,7 +11,7 @@ namespace SoundSystem
     {
         [SerializeField] private MusicSO _musicSO;
         [SerializeField] private Slider _musicVolumeSlider;
-        [SerializeField] private Player _player;
+        [SerializeField] private PlayerOld _player;
         [SerializeField] private Saver _saver;
 
         private bool _isForestMusicPlaying;

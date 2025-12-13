@@ -10,7 +10,7 @@ namespace InventoryViewHandler
         [SerializeField] private InventoryCell _inventoryCell;
         [SerializeField] private Transform _listOfInventoryPrefabImages;
         [SerializeField] private PlayerInventory _playerInventory;
-        [SerializeField] private Player _player;
+        [SerializeField] private PlayerOld _player;
         [SerializeField] private GameStatesSwitcher _gameStatesSwitcher;
       
         private void OnEnable()

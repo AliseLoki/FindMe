@@ -13,7 +13,7 @@ namespace DeliveryServiceHandler
         [SerializeField] private Transform _ingredientsContainer;
         [SerializeField] private Transform _ingredient;
         [SerializeField] private Button _canCookButton;
-        [SerializeField] private Player _player;
+        [SerializeField] private PlayerOld _player;
 
         private float _minUpPosition = 10;
         private bool _hasBeenCooked;
@@ -23,7 +23,7 @@ namespace DeliveryServiceHandler
 
         public event Action<CookingRecipeSO> DishPrepared;
 
-        public void InitLinks(Player player)
+        public void InitLinks(PlayerOld player)
         {
             _player = player;
         }

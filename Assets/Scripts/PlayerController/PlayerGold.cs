@@ -7,7 +7,7 @@ namespace PlayerController
     {
         private int _gold;
 
-        [SerializeField] private Player _player;
+        [SerializeField] private PlayerOld _player;
 
         public event Action<int> GoldAmountChanged;
 

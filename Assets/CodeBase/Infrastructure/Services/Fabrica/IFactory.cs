@@ -1,6 +1,7 @@
 ﻿namespace Assets.CodeBase.Infrastructure.Services.Fabrica
 {
-    public interface IFactory :IService
+    public interface IFactory : IService
     {
+        void CreatePlayer();
     }
 }

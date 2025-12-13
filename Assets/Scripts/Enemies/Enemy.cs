@@ -8,7 +8,7 @@ namespace Enemies
     public class Enemy : MonoBehaviour
     {
         [SerializeField] private Transform _points;
-        [SerializeField] private Player _player;
+        [SerializeField] private PlayerOld _player;
         [SerializeField] private GameObject _wolfBody;
         [SerializeField] private Collider _collider;
         [SerializeField] private NavMeshAgent _agent;

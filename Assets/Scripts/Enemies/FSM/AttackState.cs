@@ -10,10 +10,10 @@ namespace Enemies
         private int _damage = -1;
         private float _timer;
         private float _timerDefaultValue = 1.5f;
-        private Player _player;
+        private PlayerOld _player;
         private Animator _animator;
 
-        public AttackState(EnemyStateMachine enemyStateMachine, Player player, Animator animator)
+        public AttackState(EnemyStateMachine enemyStateMachine, PlayerOld player, Animator animator)
         {
             _player = player;
             _animator = animator;

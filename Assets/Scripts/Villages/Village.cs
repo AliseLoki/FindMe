@@ -17,7 +17,7 @@ namespace Villages
         [SerializeField] private ParticleSystem _effect;
         [SerializeField] private AudioClip _audioClip;
         [SerializeField] private DeliveryService _deliveryService;
-        [SerializeField] private Player _player;
+        [SerializeField] private PlayerOld _player;
         [SerializeField] private PlayerInventory _playerInventory;
 
         [SerializeField] private VillageIndex _villageIndex;

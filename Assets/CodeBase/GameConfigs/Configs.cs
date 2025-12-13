@@ -13,5 +13,18 @@ namespace Assets.CodeBase.GameConfigs
         public float Speed => _speed;
         public float RotSpeed => _rotSpeed;
         public float MinStep => _minStep;
+
+        [Header("AudioClips")]
+        [SerializeField] private AudioClip _forestClip;
+        [SerializeField] private AudioClip _safeClip;
+        [SerializeField] private AudioClip _roadClip;
+        [SerializeField] private AudioClip _pentagramClip;
+        [SerializeField] private AudioClip _grannyClip;
+
+        public AudioClip ForestClip => _forestClip;
+        public AudioClip SafeClip => _safeClip;
+        public AudioClip RoadClip => _roadClip;
+        public AudioClip PentagramClip => _pentagramClip;
+        public AudioClip GrannyClip => _grannyClip;
     }
 }

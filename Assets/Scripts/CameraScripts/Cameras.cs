@@ -14,15 +14,24 @@ public class Cameras : MonoBehaviour
     private float _minValue = 20f;
     private float _maxValue = 70f;
 
-    private void Awake()
-    {
-        _cameraSlider.value = _saver.LoadCameraValue();
-        ChangeCameraZoom(_cameraSlider.value);
-    }
+    //private void Awake()
+    //{
+    //    _cameraSlider.value = _saver.LoadCameraValue();
+    //    ChangeCameraZoom(_cameraSlider.value);
+    //}
 
     private void Update()
     {
         ZoomCameraWithMouseWheel();
+    }
+
+    public void Init(Transform target)
+    {
+        _cinemachineVirtualCamera.Follow = target;
+        _cinemachineVirtualCamera.LookAt = target;
+
+        _cameraSlider.value = _saver.LoadCameraValue();
+        ChangeCameraZoom(_cameraSlider.value);
     }
 
     public void SwitchCameras()
