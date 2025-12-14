@@ -2,6 +2,7 @@
 using Assets.CodeBase.GamePlay.Hero;
 using Assets.CodeBase.Infrastructure.Data.Common;
 using Assets.CodeBase.Infrastructure.DIContainer;
+using Assets.CodeBase.Infrastructure.EntryPoint;
 using Assets.CodeBase.Infrastructure.Services.Fabrica;
 using Assets.CodeBase.Infrastructure.Services.Input;
 using Assets.CodeBase.Infrastructure.Services.SceneLoaders;
@@ -15,6 +16,7 @@ namespace Assets.CodeBase.Infrastructure.StateMachine.States
         private readonly DI _di;
         private readonly SceneLoader _sceneLoader;
 
+        private SceneScope _sceneScope;
         private  IFactory _factory;
 
         public LoadLevelState(GameFSM fsm, DI di, SceneLoader sceneLoader)
@@ -34,9 +36,11 @@ namespace Assets.CodeBase.Infrastructure.StateMachine.States
 
         private void OnLoaded()
         {
-            _factory.CreatePlayer();
-
+           Player player =  _factory.CreatePlayer();
+            // игрока тоже можно будет передавать
             _fsm.ChangeState<GamePlayState>();
+            _sceneScope = GameObject.FindFirstObjectByType<SceneScope>();
+            _sceneScope.Init(_di, player);
         }
 
         public void Exit()

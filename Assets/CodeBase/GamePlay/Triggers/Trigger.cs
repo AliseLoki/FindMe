@@ -4,7 +4,6 @@ namespace Assets.CodeBase.GamePlay.Triggers
 {
     public class Trigger : BaseTrigger
     {
-        [SerializeField] private TriggerType _type;
         [SerializeField] private AudioClip _clip;
 
         private void OnTriggerEnter(Collider other)
