@@ -9,25 +9,19 @@ namespace Assets.CodeBase.GamePlay.Loot
        
         private PickableInteractionService _interactionService;
 
-        public void Init(PickableInteractionService interactionService)
-        {
+        private void OnTriggerEnter(Collider other) => 
+            EnableInteract();
+
+        private void OnTriggerExit(Collider other) => 
+            DisableInteract();
+
+        public void Init(PickableInteractionService interactionService) =>
             _interactionService = interactionService;
-        }
 
         protected override void UseObject()
         {
-           _interactionService.Pick(_pickableType, _clip);
+           _interactionService?.Pick(_pickableType, _clip);
             Destroy(gameObject);
-        }
-
-        private void OnTriggerEnter(Collider other)
-        {
-            EnableInteract();
-        }
-
-        private void OnTriggerExit(Collider other)
-        {
-            DisableInteract();
         }
     }
 }

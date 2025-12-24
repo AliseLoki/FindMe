@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using PlayerController;
+using Assets.CodeBase.GamePlay.Hero;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -7,42 +7,37 @@ namespace Enemies
 {
     public class Enemy : MonoBehaviour
     {
-        [SerializeField] private Transform _points;
-        [SerializeField] private PlayerOld _player;
         [SerializeField] private GameObject _wolfBody;
         [SerializeField] private Collider _collider;
         [SerializeField] private NavMeshAgent _agent;
         [SerializeField] private Animator _animator;
 
-        private List<Transform> _targetPoints = new List<Transform>();
+        private List<Transform> _targetPoints = new();
 
         private EnemyStateMachine _wolfStateMachine;
 
-        private void Awake()
-        {
-            InitializeTargetPoints();
-        }
-
-        private void Start()
+        public void Init(Transform points, Transform player)
         {
             _wolfStateMachine = new EnemyStateMachine();
+
             _wolfStateMachine.AddState(new WolfPatrolState(_targetPoints, _agent, _animator));
-            _wolfStateMachine.AddState(new WolfChaseState(_agent, _animator, _player));
+            _wolfStateMachine.AddState(new WolfChaseState(_agent, _animator, player));
             _wolfStateMachine.AddState(new WolfStopState(_wolfStateMachine, _agent, _animator));
             _wolfStateMachine.AddState(new WolfDieState(_agent, _animator, _collider, _wolfBody));
 
-            _wolfStateMachine.SetState<WolfPatrolState>();
 
-            _player.PlayerCollisions.EnteredTheForest += OnPlayerEnteredTheForest;
-            _player.PlayerCollisions.EnteredSafeZone += OnPlayerEnteredSafeZone;
-            _player.PlayerCollisions.WolfHasBeenKilled += OnWolfHasBeenKilled;
+            InitializeTargetPoints(points);
+            _wolfStateMachine.SetState<WolfPatrolState>();
+            //_player.PlayerCollisions.EnteredTheForest += OnPlayerEnteredTheForest;
+            //_player.PlayerCollisions.EnteredSafeZone += OnPlayerEnteredSafeZone;
+            //_player.PlayerCollisions.WolfHasBeenKilled += OnWolfHasBeenKilled;
         }
 
         private void OnDisable()
         {
-            _player.PlayerCollisions.EnteredTheForest -= OnPlayerEnteredTheForest;
-            _player.PlayerCollisions.EnteredSafeZone -= OnPlayerEnteredSafeZone;
-            _player.PlayerCollisions.WolfHasBeenKilled -= OnWolfHasBeenKilled;
+            //_player.PlayerCollisions.EnteredTheForest -= OnPlayerEnteredTheForest;
+            //_player.PlayerCollisions.EnteredSafeZone -= OnPlayerEnteredSafeZone;
+            //_player.PlayerCollisions.WolfHasBeenKilled -= OnWolfHasBeenKilled;
         }
 
         private void Update()
@@ -50,9 +45,9 @@ namespace Enemies
             _wolfStateMachine?.Update();
         }
 
-        private void InitializeTargetPoints()
+        private void InitializeTargetPoints(Transform points)
         {
-            foreach (Transform child in _points)
+            foreach (Transform child in points)
             {
                 _targetPoints.Add(child);
             }
@@ -63,12 +58,12 @@ namespace Enemies
             _wolfStateMachine.SetState<WolfDieState>();
         }
 
-        private void OnPlayerEnteredSafeZone()
+        public void OnPlayerEnteredSafeZone()
         {
             _wolfStateMachine.SetState<WolfStopState>();
         }
 
-        private void OnPlayerEnteredTheForest()
+        public void OnPlayerEnteredTheForest()
         {
             _wolfStateMachine.SetState<WolfChaseState>();
         }

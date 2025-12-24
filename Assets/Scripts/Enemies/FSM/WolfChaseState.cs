@@ -14,12 +14,12 @@ namespace Enemies
         private float _distanceToPlayer = 8f;
         private float _runSpeed = 20f;
 
-        private PlayerOld _player;
+        private Transform _playerTransform;
 
-        public WolfChaseState(NavMeshAgent agent, Animator animator, PlayerOld player)
+        public WolfChaseState(NavMeshAgent agent, Animator animator, Transform playerTransform)
             : base(agent, animator)
         {
-            _player = player;
+            _playerTransform = playerTransform;
         }
 
         public void Enter()
@@ -30,8 +30,8 @@ namespace Enemies
 
         public void Update()
         {
-            Agent.destination = _player.transform.position;
-            Agent.transform.LookAt(_player.transform);
+            Agent.destination = _playerTransform.transform.position;
+            Agent.transform.LookAt(_playerTransform.transform);
 
             if (Agent.remainingDistance < _distanceToPlayer)
             {
@@ -40,7 +40,9 @@ namespace Enemies
 
                 if (_timer <= 0)
                 {
-                    _player.PlayerHealth.ChangeHealthValue(-1);
+                    // у синдикатов через геет компонент хэлс
+                   // WARNING
+                  //  _playerTransform.PlayerHealth.ChangeHealthValue(-1);
                     _timer = _timerDefaultValue;
                 }
             }

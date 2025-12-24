@@ -112,6 +112,9 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 3
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -219,7 +222,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &7654234222032967993
 Animator:
-  serializedVersion: 5
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -233,6 +236,7 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
@@ -250,7 +254,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e92b9686a60de548a1b26d2f2ac718f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 6987597894183563658}
+  _player: {fileID: 0}
 --- !u!1 &733429022576138149
 GameObject:
   m_ObjectHideFlags: 0
@@ -407,13 +411,13 @@ CharacterJoint:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 804127910352750644}
+  serializedVersion: 3
   m_ConnectedBody: {fileID: 363892253291561614}
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: -1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
   m_ConnectedAnchor: {x: -0.0000039213337, y: 0.09869503, z: 0.00000029057264}
-  serializedVersion: 2
   m_SwingAxis: {x: 0, y: -1, z: 0}
   m_TwistLimitSpring:
     spring: 0
@@ -823,6 +827,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -961,6 +968,9 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 3
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1134,6 +1144,9 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 3
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1301,13 +1314,13 @@ CharacterJoint:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3797720871682076565}
+  serializedVersion: 3
   m_ConnectedBody: {fileID: 8346482376219707282}
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: -1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
   m_ConnectedAnchor: {x: 0.08736361, y: -0.052278038, z: -0.005576834}
-  serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
     spring: 0
@@ -1527,13 +1540,13 @@ CharacterJoint:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4253332883665102573}
+  serializedVersion: 3
   m_ConnectedBody: {fileID: 8706189538587512190}
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: -1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
   m_ConnectedAnchor: {x: -0.0000010617077, y: 0.32396513, z: -0.0000059548765}
-  serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
     spring: 0
@@ -1722,13 +1735,13 @@ CharacterJoint:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4471918421225470197}
+  serializedVersion: 3
   m_ConnectedBody: {fileID: 2323064347721954293}
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: -1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
   m_ConnectedAnchor: {x: -0.00000012665987, y: 0.32418814, z: -0.00000090152025}
-  serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
     spring: 0
@@ -1978,13 +1991,13 @@ CharacterJoint:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5111072269349297104}
+  serializedVersion: 3
   m_ConnectedBody: {fileID: 8346482376219707282}
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
   m_ConnectedAnchor: {x: 0.018038139, y: 0.20227337, z: -0.003837428}
-  serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
     spring: 0
@@ -2257,13 +2270,13 @@ CharacterJoint:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5387977445434743269}
+  serializedVersion: 3
   m_ConnectedBody: {fileID: 8346482376219707282}
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: -1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
   m_ConnectedAnchor: {x: -0.08736243, y: -0.052278996, z: -0.026061216}
-  serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
     spring: 0
@@ -2484,13 +2497,13 @@ CharacterJoint:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6213160445600243517}
+  serializedVersion: 3
   m_ConnectedBody: {fileID: 6872686547169739374}
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: -1}
   m_AutoConfigureConnectedAnchor: 1
   m_ConnectedAnchor: {x: 0.05482426, y: 0.24999367, z: 0.0029012542}
-  serializedVersion: 2
   m_SwingAxis: {x: -1, y: 0, z: 0}
   m_TwistLimitSpring:
     spring: 0
@@ -2572,6 +2585,9 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 3
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -7384,6 +7400,9 @@ ParticleSystemRenderer:
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -7422,13 +7441,15 @@ ParticleSystemRenderer:
   m_RenderAlignment: 0
   m_Pivot: {x: 0, y: 0, z: 0}
   m_Flip: {x: 0, y: 0, z: 0}
-  m_UseCustomVertexStreams: 0
   m_EnableGPUInstancing: 1
   m_ApplyActiveColorSpace: 1
   m_AllowRoll: 1
   m_FreeformStretching: 0
   m_RotateWithStretchDirection: 1
+  m_UseCustomVertexStreams: 0
   m_VertexStreams: 00010304
+  m_UseCustomTrailVertexStreams: 0
+  m_TrailVertexStreams: 00010304
   m_Mesh: {fileID: 0}
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
@@ -7555,6 +7576,9 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 3
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -7837,13 +7861,13 @@ CharacterJoint:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7113310188450130852}
+  serializedVersion: 3
   m_ConnectedBody: {fileID: 198130952345789731}
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
   m_ConnectedAnchor: {x: -0.00000021513551, y: 0.09869407, z: 0.00000026263297}
-  serializedVersion: 2
   m_SwingAxis: {x: 0, y: -1, z: 0}
   m_TwistLimitSpring:
     spring: 0
@@ -7889,7 +7913,6 @@ GameObject:
   - component: {fileID: 1888216581685457371}
   - component: {fileID: 8183379607181469130}
   - component: {fileID: 2778799236699349008}
-  - component: {fileID: 6987597894183563658}
   - component: {fileID: 7923249738274056497}
   - component: {fileID: 807253773857444312}
   - component: {fileID: 2362396880732233892}
@@ -7899,6 +7922,7 @@ GameObject:
   - component: {fileID: -1589223940850031321}
   - component: {fileID: 6314296932578260221}
   - component: {fileID: 1816945819783660720}
+  - component: {fileID: 7337640703972477127}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -7986,6 +8010,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -8093,28 +8118,6 @@ NavMeshAgent:
   m_BaseOffset: 0.1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &6987597894183563658
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7365430745992133591}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0da4d12d39045d8448799b0e2691f8ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _playerCookingModule: {fileID: 2362396880732233892}
-  _playerInventory: {fileID: 1454888812883923895}
-  _playerMovement: {fileID: 7923249738274056497}
-  _playerHands: {fileID: 4714304899007245062}
-  _playerSoundEffects: {fileID: -1589223940850031321}
-  _playerAnimation: {fileID: 5982760016551287422}
-  _playerRagdollController: {fileID: 6081364691475473300}
-  _playerHealth: {fileID: 6314296932578260221}
-  _playerGold: {fileID: 1816945819783660720}
-  _playerCollisions: {fileID: 807253773857444312}
 --- !u!114 &7923249738274056497
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8131,7 +8134,7 @@ MonoBehaviour:
   _moveSpeed: 5
   _boostSpeed: 10
   _rotateSpeed: 5
-  _player: {fileID: 6987597894183563658}
+  _player: {fileID: 0}
   _gameStatesSwitcher: {fileID: 0}
   _lastVillage: {fileID: 0}
   _navMeshAgent: {fileID: 2778799236699349008}
@@ -8147,7 +8150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd74bfc827338b34da596c19740c8cfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 6987597894183563658}
+  _player: {fileID: 0}
   _music: {fileID: 0}
   _gameStatesSwitcher: {fileID: 0}
   _saveData: {fileID: 0}
@@ -8213,7 +8216,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _recievedInventoryPrefabsSO: []
-  _player: {fileID: 6987597894183563658}
+  _player: {fileID: 0}
 --- !u!114 &6081364691475473300
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8285,7 +8288,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 010f908276637ca49adf9c8d8bd5f2f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 6987597894183563658}
+  _player: {fileID: 0}
   _gameStatesSwitcher: {fileID: 0}
 --- !u!114 &1816945819783660720
 MonoBehaviour:
@@ -8299,7 +8302,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75619501487fca848b4b0b149741588c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 6987597894183563658}
+  _player: {fileID: 0}
+--- !u!114 &7337640703972477127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7365430745992133591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac58fe20811c2774380c246f548ea5b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerCookingModule: {fileID: 0}
+  _playerInventory: {fileID: 0}
+  _playerMovement: {fileID: 0}
+  _playerHands: {fileID: 0}
+  _playerSoundEffects: {fileID: 0}
+  _playerAnimation: {fileID: 0}
+  _playerRagdollController: {fileID: 0}
+  _playerHealth: {fileID: 0}
+  _playerGold: {fileID: 0}
+  _playerCollisions: {fileID: 0}
 --- !u!1 &7508619874564338871
 GameObject:
   m_ObjectHideFlags: 0
@@ -8601,6 +8626,9 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 3
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -8994,6 +9022,9 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 3
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -9122,13 +9153,13 @@ CharacterJoint:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8894180583548756307}
+  serializedVersion: 3
   m_ConnectedBody: {fileID: 6872686547169739374}
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
   m_ConnectedAnchor: {x: 0.0006432757, y: 0.35695142, z: 0.03508274}
-  serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
     spring: 0
@@ -9285,13 +9316,13 @@ CharacterJoint:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9072974778248143962}
+  serializedVersion: 3
   m_ConnectedBody: {fileID: 6872686547169739374}
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: -1}
   m_AutoConfigureConnectedAnchor: 1
   m_ConnectedAnchor: {x: -0.043484982, y: 0.25436273, z: 0.0046788477}
-  serializedVersion: 2
   m_SwingAxis: {x: 1, y: 0, z: 0}
   m_TwistLimitSpring:
     spring: 0

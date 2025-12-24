@@ -5,6 +5,7 @@ using Assets.CodeBase.Infrastructure.Data.Common;
 using Assets.CodeBase.Infrastructure.DIContainer;
 using Assets.CodeBase.Infrastructure.Services.Input;
 using Assets.CodeBase.Infrastructure.Services.Interactions;
+using Enemies;
 using UnityEngine;
 
 namespace Assets.CodeBase.Infrastructure.Services.Fabrica
@@ -26,6 +27,21 @@ namespace Assets.CodeBase.Infrastructure.Services.Fabrica
             player.Init(_di.GetService<IInput>(), _configs);
             Camera.main.GetComponent<Cameras>().Init(player.transform);
             return player;
+        }
+
+        public Enemy [] SpawnEnemies(Transform enemyPatrolPoints, Transform player)
+        {
+            Enemy[] newEnemies = Resources.LoadAll<Enemy>(AssetPathes.EnemyPath);
+            Enemy[] spawnedEnemies  =  new Enemy [newEnemies.Length];
+           
+            for (int i = 0; i < newEnemies.Length; i++)
+            {
+              Enemy newEnemy =   MonoBehaviour.Instantiate(newEnemies[i], enemyPatrolPoints.GetChild(i).GetChild(0).transform.position, Quaternion.identity);
+                newEnemy.Init(enemyPatrolPoints.GetChild(i), player);
+                spawnedEnemies[i] = newEnemy;
+            }
+
+            return spawnedEnemies;
         }
 
         public void SpawnLoot(Transform spawnPlaces, PickableInteractionService pickableInteractionService, Transform parent)
